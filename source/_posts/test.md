@@ -25,3 +25,6 @@ public class EightQueens {
 	 * 若产生冲突，将其往后移动一列，避免冲突
 ```
 
+
+
+我就试试不说话
