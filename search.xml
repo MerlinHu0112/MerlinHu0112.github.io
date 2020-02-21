@@ -1,6 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java创建线程的方式</title>
+    <url>/2020/02/21/Java%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>尽管提倡使用线程池高效地管理线程，但了解线程创建的基础方法还是非常有必要的。</p>
+<a id="more"></a>
+
+<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>创建线程的四种方式：</p>
+<ul>
+<li>继承Thread类，无返回结果</li>
+<li>实现Runnable接口，无返回结果</li>
+<li>通过FutureTask类，有返回结果</li>
+<li>通过线程池创建</li>
+</ul>
+<h3 id="二、继承Thread类创建线程类"><a href="#二、继承Thread类创建线程类" class="headerlink" title="二、继承Thread类创建线程类"></a>二、继承Thread类创建线程类</h3><blockquote>
+<p>Java的单继承机制，使得类继承Thread类后，不能再继承其它类。</p>
+</blockquote>
+<p>（1）具体实现过程如下：</p>
+<ol>
+<li>继承Thread类，重写<strong>run( )</strong>方法。run( )方法表示线程要执行的任务，被称为执行体。</li>
+<li>创建Thread子类对象实例，即创建线程对象。</li>
+<li>调用线程对象的<strong>start( )</strong>方法启动该线程。</li>
+</ol>
+<p>（2）实现代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之一：继承Thread类，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">   MyThread myThread = <span class="keyword">new</span> MyThread(); <span class="comment">// 实例化线程对象</span></span><br><span class="line">   myThread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）匿名内部类形式</p>
+<p><em>上述还可以写成匿名内部类的形式</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、通过Runnable接口创建线程类"><a href="#二、通过Runnable接口创建线程类" class="headerlink" title="二、通过Runnable接口创建线程类"></a>二、通过Runnable接口创建线程类</h3><blockquote>
+<p>在多数情况下，如果仅覆盖run( )方法而不涉及Thread类的其它方法，不建议使用第一种途径新建线程。</p>
+</blockquote>
+<p>（1）具体实现过程如下：</p>
+<ol>
+<li>定义Runnable接口的实现类，重写run( )方法。该实现类的实例作为<strong>任务对象</strong>，run( )方法为执行体。</li>
+<li>传入任务对象，构造Thread类实例对象，即真正的线程对象。</li>
+<li>调用线程对象的start( )方法启动该线程。</li>
+</ol>
+<p>（2）实现代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// RunnableTask类——任务类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之二：实现Runnable接口，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    RunnableTask runTask = <span class="keyword">new</span> RunnableTask(); <span class="comment">// 实例化任务类</span></span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(runTask); <span class="comment">// 传入任务对象，创建线程对象</span></span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）匿名内部类形式</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、通过FutureTask类创建有返回结果的线程"><a href="#三、通过FutureTask类创建有返回结果的线程" class="headerlink" title="三、通过FutureTask类创建有返回结果的线程"></a>三、通过FutureTask类创建有返回结果的线程</h3><blockquote>
+<p>FutureTask实现 <code>Future</code> 和 <code>Runnable</code> 接口，是一个可取消的<strong>异步计算任务</strong>，通过其可跟踪任务的执行情况，获取任务的执行结果。</p>
+</blockquote>
+<p>（1）FutureTask类的两个构造方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FutureTask(Callable&lt;V&gt; callable); <span class="comment">// 执行给定的Callable对象</span></span><br><span class="line">FutureTask(Runnable runnable, V result); <span class="comment">// 执行给定的Runnable对象，成功后返回给定的result</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）具体实现过程如下：</p>
+<ol>
+<li>创建Callable接口的实现类，重写call( )方法。call( )方法为执行体，<strong>有返回值</strong>。或者，创建Runnable接口的实现类，重写run( )方法。run( )方法为执行体，无返回值。</li>
+<li>调用FutureTask类的构造方法创建FutureTask对象，其中对Runnable对象需要指定result。</li>
+<li>传入FutureTask对象，构造Thread类实例对象，即真正的线程对象。</li>
+<li>调用线程对象的start( )方法启动该线程。</li>
+<li>调用FutureTask对象的<strong>get( )</strong>方法获取线程执行结束的返回值。</li>
+</ol>
+<p>（3）实现代码</p>
+<ol>
+<li><em>对于 Callable对象</em></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建Callable接口的实现类，重写call( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Double</span>&gt; </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Double <span class="title">call</span><span class="params">()</span> </span>&#123; <span class="comment">// call( )方法有返回值</span></span><br><span class="line">		<span class="keyword">double</span> number = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"异步计算任务开始"</span>);</span><br><span class="line">			number = Math.random()*<span class="number">10</span>;</span><br><span class="line">			number += <span class="number">500</span>;</span><br><span class="line">		&#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> number;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    FutureTask&lt;Double&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;&gt;(<span class="keyword">new</span> CallableTask()); <span class="comment">// 传入Callable对象，创建FutureTask对象</span></span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(futureTask); <span class="comment">// 传入FutureTask对象，创建线程对象</span></span><br><span class="line">    thread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">    Double result = futureTask.get(); <span class="comment">// 通过FutureTask类的get()方法获取异步计算结果</span></span><br><span class="line">    System.out.println(<span class="string">"计算结果为："</span>+result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><em>对于 Runnable 对象</em></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建Runnable接口的实现类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"开启线程"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    FutureTask&lt;Double&gt; futureTask = <span class="keyword">new</span> FutureTask&lt;Double&gt;(<span class="keyword">new</span> RunnableTask(), <span class="number">520.0</span>);</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(futureTask);</span><br><span class="line">    thread.start();</span><br><span class="line">    Double result = futureTask.get();</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="四、通过线程池管理线程"><a href="#四、通过线程池管理线程" class="headerlink" title="四、通过线程池管理线程"></a>四、通过线程池管理线程</h3><blockquote>
+<p>通过工厂类 Executors 或 ThreadPoolExecutor 类可创建线程池，通过线程池可管理线程。</p>
+</blockquote>
+<p><em>以 Executors 为例</em></p>
+<p>（1）Executors 可生成四种不同的线程池</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span></span>; <span class="comment">// 固定长度</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span></span>; <span class="comment">// 可缓存</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">()</span></span>; <span class="comment">// 单线程</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ScheduledExecutorService <span class="title">newScheduledThreadPool</span><span class="params">(<span class="keyword">int</span> corePoolSize)</span></span>; <span class="comment">// 延时/定时执行任务，固定长度</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）演示</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 实现Runnable接口</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"实现Runnable接口，重写run方法，无返回值"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ExecutorService es = Executors.newSingleThreadExecutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> RunnableTask());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>参考资料</strong></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/jinggod/p/8485106.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinggod/p/8485106.html</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+        <tag>Thread</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java类中代码加载顺序</title>
     <url>/2020/02/04/Java%E7%B1%BB%E4%B8%AD%E4%BB%A3%E7%A0%81%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<p>Java中静态变量、静态代码块、构造代码块、成员变量和构造方法的加载顺序，以及父类、子类中的加载顺序。</p>
@@ -1001,185 +1100,6 @@
       <tags>
         <tag>SSM</tag>
         <tag>Spring MVC</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java学习之虚拟机</title>
-    <url>/2019/08/22/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
-    <content><![CDATA[<p>​        前段时间阅读了《深入理解Java虚拟机》一书，显然看完就忘。正好搭建了个人博客，记录自己的复习之路，也是成长之路。</p>
-<p>Fighting！！！</p>
-<a id="more"></a>
-
-<p> <strong>一、内存管理机制</strong></p>
-<p>​        Java内存区域图示如下：</p>
-<p><img src="/2019/08/22/Java学习之虚拟机/1.jpg" alt></p>
-<blockquote>
-<p>值得注意的是：<strong>Java虚拟机栈（Java Virtual Machine Stacks）</strong>、<strong>堆（Heap）</strong>、<strong>方法区（Method Area）</strong>：</p>
-<ul>
-<li>虚拟机栈主要与方法调用相关，存储的局部变量表中保存<strong>对象引用</strong></li>
-<li>堆：存放所有的对象实例</li>
-<li>方法区：与编译相关，存储虚拟机加载的类信息、<strong>静态变量</strong>、常量等</li>
-<li>运行时常量池：编译生成的字面量和符号引用</li>
-</ul>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/2.jpg" alt></p>
-<p>2、HotSpot虚拟机新建对象过程</p>
-<p>​        以常见的HotSpot为例，介绍其新建普通 Java对象的过程。</p>
-<p><img src="/2019/08/22/Java学习之虚拟机/HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg" alt></p>
-<blockquote>
-<p>（1）在堆中分配内存的两种方式：</p>
-<blockquote>
-<p>指针碰撞：内存区域规整（未使用区域与已使用区域分界）时，仅需要移动指针。</p>
-<p>空闲列表：因内存区域杂乱无章，虚拟机维持记录可用内存区域的表。</p>
-</blockquote>
-<p>（2）如何保证分配内存时线程安全**？</p>
-<blockquote>
-<p>（1）同步机制，CAS + 失败重试；</p>
-<p>（2）<strong>每个线程</strong>单独预分配一块内存区域，称之为<strong>本地线程分配缓冲（TLAB）</strong>。</p>
-</blockquote>
-<p>（3）对象的内存布局</p>
-<blockquote>
-<p>（1）对象头：保存运行时数据，如哈希码、GC分代年龄等；另一部分保存指向类元数据的<strong>类型指针</strong>；</p>
-<p>（2）实例数据部分；</p>
-<p>（3）填充位；</p>
-</blockquote>
-</blockquote>
-<p><strong>3、对象的访问方式</strong></p>
-<p>​        访问对象的途径主要是通过句柄和直接访问。</p>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
-<blockquote>
-<p><strong>对象类型数据</strong>是指该实例所属的类</p>
-<p>查找对象的元数据信息未经过对象本身</p>
-<p>优点：垃圾收集需要调整对象所在内存地址时，不影响reference；</p>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
-<blockquote>
-<p>查找对象的元数据信息须经过对象本身</p>
-<p>优点：访问速度快</p>
-</blockquote>
-<p><strong>二、回收内存</strong></p>
-<p>​        在 JVM中，虚拟机栈、本地方法栈和程序计数器属于线程私有，随线程结束而释放内存。JVM中的GC关注的是<strong>方法区</strong>和<strong>堆</strong>。</p>
-<p>1、回收堆</p>
-<p>（1）如何判断对象内存可回收？</p>
-<p>​        <strong>可达性分析算法</strong>：根搜索方法，通过一些“GC Roots”对象作为起点，从这些节点开始往下搜索，搜索通过的路径成为引用链（ReferenceChain）。</p>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg" alt></p>
-<p>​    Java中可作为GC Roots的四种对象：</p>
-<blockquote>
-<p>虚拟机栈的本地变量表中引用的对象</p>
-<p>方法区类静态属性引用的对象</p>
-<p>方法区常量引用的对象</p>
-<p>本地方法栈Native方法引用的对象</p>
-</blockquote>
-<p>（2）经可达性分析后，可回收对象就一定会被回收？</p>
-<blockquote>
-<p>经可达性分析后，被定为可回收的对象须经历<strong>两次标记</strong>方能被GC回收内存。</p>
-<blockquote>
-<p>重点：finalize()方法</p>
-</blockquote>
-</blockquote>
-<p>（3）JVM为什么不采用经典的<strong>引用计数</strong>算法来判断对象是否可回收？</p>
-<p>​        引用计数算法实现简单，但面临一个重要缺陷：</p>
-<blockquote>
-<p>当两个对象互相引用（循环引用）时，相应的内存区域无法被回收，导致<strong>内存泄漏</strong></p>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg" alt></p>
-<p>（4）引用分类（是否回收被引用对象所在的内存区域）</p>
-<blockquote>
-<p>强引用：new出来的对象引用关系，不会回收；</p>
-<p>软引用：有用、非必需，在内存溢出前进行二次回收；</p>
-<p>弱引用：生存至下一次GC工作前，一旦GC开始回收内存，则直接回收其对象；</p>
-<p>虚引用：无法通过虚引用取得对象，仅能在此对象被回收时通知系统。</p>
-</blockquote>
-<p> 2、回收方法区</p>
-<p>​    方法区待回收的内容主要为：废弃常量 和 无用的类。</p>
-<p>（1）废弃常量</p>
-<p>​        当常量池中的常量不被任何对象引用时，则可以清理出常量池。</p>
-<p>（2）无用的类</p>
-<p>无用的类须满足下述三个条件 ：</p>
-<blockquote>
-<p>&lt;1&gt; Java堆中该类所有的实例均已被回收；<br>&lt;2&gt; 该类的加载器ClassLoader已被回收；<br>&lt;3&gt; 无法通过反射机制访问该类的方法。</p>
-</blockquote>
-<p><strong>三、回收算法</strong></p>
-<p>​        JVM 针对 Java堆 采用的回收算法主要分为：<strong>标记-清除算法、复制算法和标记-整理算法</strong>；采用的策略为：分代收集算法，即新生代采用复制算法，老年代采用标记-清除算法和标记-整理算法</p>
-<p>1、算法</p>
-<p>（1）标记-清除（Mark-Sweep）算法</p>
-<p>​        在标记阶段，由<strong>根节点开始经可达性分析</strong>，标记所有从根节点开始的可达对象，因此未被标记的对象就是未被引用的垃圾对象；</p>
-<p>​        在清除阶段，清除所有未被标记的对象。</p>
-<blockquote>
-<p>特点：</p>
-<blockquote>
-<p>将循环引用标记为不可达，解决了引用计数算法无法处理循环引用的问题</p>
-</blockquote>
-<p>缺点:</p>
-<blockquote>
-<p>1、效率低</p>
-<p>2、易导致内存区域不规整（即大量不连续的内存碎片）</p>
-</blockquote>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" alt></p>
-<p>（2）复制（Copying）算法</p>
-<p>​        内存对半分，先使用一半，需要清理时先将存活对象转移至保留内存区域，随后全部回收刚使用过的一半内存。</p>
-<p>​        <strong>适用于新生代</strong>中对象存活率低、可回收对象比例高的场景。</p>
-<blockquote>
-<p>优点：</p>
-<blockquote>
-<p>1、无内存碎片</p>
-<p>2、效率高</p>
-</blockquote>
-<p>缺点：</p>
-<blockquote>
-<p>1、实际使用内存仅占一半，浪费资源</p>
-<p>2、当对象存活率高时，需要较为频繁的复制操作，效率降低</p>
-</blockquote>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" alt></p>
-<p>（3）标记-整理（Mark-Compact）算法</p>
-<p>​        针对老年代中对象存活率高，若使用复制算法，则效率低。</p>
-<p>​        标记-整理算法（或标记-压缩算法）核心在于：标记完成后，将“分散”的存活对象移动至“端集中”区域，随后清理其端边界以外的内存。</p>
-<blockquote>
-<p>优点</p>
-<blockquote>
-<p>1、适用于对象存活率高的场景</p>
-<p>2、无内存碎片</p>
-</blockquote>
-<p>缺点：标记、整理过程代价高昂</p>
-</blockquote>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" alt></p>
-<p>（4）分代收集（Generational Collection）算法</p>
-<p>​        将 Java堆分为<strong>新生代</strong>和<strong>老年代</strong></p>
-<blockquote>
-<p>新生代：对象存活率低，垃圾多；</p>
-<p>老年代：对象存活率高，垃圾少。</p>
-</blockquote>
-<p>​        基于上述算法的优缺点，分代收集的策略是：<em>对新生代采用复制算法，对老年代采用标记-清除或标记-整理算法</em> 。</p>
-<p>​        在新生代中，分为：较大的<strong>Eden空间</strong>和两块较小的<strong>Survivor空间</strong>。</p>
-<p><img src="/2019/08/22/Java学习之虚拟机/%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png" alt></p>
-<blockquote>
-<p>（1）在新生代中，先使用Eden和一块Survivor区域，另一Survivor区域保留，其空间比例一般为8：1：1；</p>
-<p>（2）回收时，Eden和Survivor(From)中<strong>存活时间长和大对象直接进入老年代</strong>，其余存活对象进入Survivor(To)区域；</p>
-<p>（3）当Survivor(To)区域空间不足时，利用<strong>分配担保机制</strong>，非存活时间长或大对象的存活对象同样被放入老年代中；</p>
-<p>（4）清理Eden和Survivor(From)。</p>
-</blockquote>
-<p>2、HotSpot 的算法实现</p>
-<p>（1）在可达性分析算法中，如何快速、精确地找出（枚举）根节点（GC Roots）？</p>
-<blockquote>
-<p>精确：GC进行时停止所有 Java线程，确保分析时引用关系不再变化；</p>
-<p>速度：OopMap（Ordinary Object Pointer Map）普通对象指针的Map数据结构，保存对象引用信息。</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>参考资料</p>
-<ol>
-<li>《深入理解Java虚拟机》周志明 著</li>
-<li><a href="https://blog.csdn.net/qq_41701956/article/details/81664921" target="_blank" rel="noopener">https://blog.csdn.net/qq_41701956/article/details/81664921</a></li>
-<li><a href="https://blog.csdn.net/wen7280/article/details/54428387" target="_blank" rel="noopener">https://blog.csdn.net/wen7280/article/details/54428387</a></li>
-<li><a href="https://www.jianshu.com/p/114bf4d9e59e" target="_blank" rel="noopener">https://www.jianshu.com/p/114bf4d9e59e</a></li>
-</ol>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-        <tag>JVM</tag>
       </tags>
   </entry>
   <entry>
