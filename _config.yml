@@ -3,11 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Merlin的学习天地
-subtitle: 道阻且长，终亦无悔!
-description: 因为我仍有梦
+title: Merlin小站
+subtitle: 一只菜鸟的学习天地
+description: 累了，想一想，再出发！
 keywords: “Java”
 author: Merlin Hu
+language: zh-Hans # 网站使用中文
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -72,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -98,3 +99,10 @@ jsonContent:
       excerpt: false
       categories: false
       tags: true
+      
+# 搜索服务
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
