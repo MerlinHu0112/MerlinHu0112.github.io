@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Merlin的博客
+title: Merlin的学习天地
 subtitle: 道阻且长，终亦无悔!
 description: 因为我仍有梦
 keywords: “Java”
@@ -29,6 +29,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
+auto_spacing: true # 中英文之间加入空格
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
