@@ -162,15 +162,6 @@
       </tags>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2020/01/16/test/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 八皇后问题，基于递归的回溯思想，解决此问题</span></span><br><span class="line"><span class="comment"> * 2020-01-13</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EightQueens</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] checkerboard = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>]; <span class="comment">// 棋盘的列投影，记录每一行的皇后存放的列索引值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> len = <span class="number">8</span>; <span class="comment">// 棋盘的行或列长度为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> queens = <span class="number">8</span>; <span class="comment">// 皇后数，为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 记录总共的解法数，对八皇后问题，应为92</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EightQueens</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 递归地放置皇后到第i+1行合适的位置</span></span><br><span class="line"><span class="comment">	 * 放置第i+1行的皇后之后，需要判断其是否与之前的皇后冲突，若无，递归进入下一行；</span></span><br><span class="line"><span class="comment">	 * 若产生冲突，将其往后移动一列，避免冲突</span></span><br></pre></td></tr></table></figure>
-
-<p>我就试试不说话</p>
-<p>你真棒！</p>
-]]></content>
-  </entry>
-  <entry>
     <title>常用算法之回溯算法</title>
     <url>/2020/01/13/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>常用算法之回溯算法</p>
