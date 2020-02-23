@@ -22,6 +22,7 @@ sidebar:
   toc: 文章目录
 
 post:
+  comments: 评论
   created: 创建于
   modified: 更新于
   sticky: 置顶
@@ -31,9 +32,9 @@ post:
   untitled: 未命名
   toc_empty: 此文章未包含目录
   visitors: 阅读次数
-  wordcount: 字数统计
-  min2read: 阅读时长
-  totalcount: Site words total count
+  wordcount: 全文共
+  min2read: 阅读本文约耗时
+  totalcount: 全站共计
   copyright:
     author: 本文作者
     link: 本文链接

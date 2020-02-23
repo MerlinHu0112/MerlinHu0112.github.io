@@ -83,7 +83,7 @@
                 <i class="fa fa-calendar-check-o"></i>
               </span>
               {% if theme.post_meta.item_text %}
-                <span class="post-meta-item-text">{{ __('post.modified') }}&#58;</span>
+                <span class="post-meta-item-text">{{ __('post.modified') }}</span>
               {% endif %}
               <time title="{{ __('post.modified') }}" itemprop="dateModified" datetime="{{ moment(post.updated).format() }}">
                 {{ date(post.updated, config.date_format) }}
@@ -192,6 +192,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+				{# 手动添加下述if语句，以实现在文章副标题处显示评论数 #}
+				{% if theme.post_meta.item_text %}
+                 <span class="post-meta-item-text">{{__('post.comments')}}</span>
+				{% endif %}
                 <a href="{{ url_for(post.path) }}#comments" itemprop="discussionUrl">
                   <span class="post-comments-count valine-comment-count" data-xid="{{ url_for(post.path) }}" itemprop="commentCount"></span>
                 </a>
@@ -207,7 +211,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                {% if theme.post_meta.item_text %}
-                 <span class="post-meta-item-text">{{__('post.visitors')}}&#58;</span>
+                 <span class="post-meta-item-text">{{__('post.visitors')}}</span>
                {% endif %}
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -230,10 +234,10 @@
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 {% if theme.post_wordcount.item_text %}
-                  <span class="post-meta-item-text">{{ __('post.wordcount') }}&#58;</span>
+                  <span class="post-meta-item-text">{{ __('post.wordcount') }}</span>
                 {% endif %}
                 <span title="{{ __('post.wordcount') }}">
-                  {{ wordcount(post.content) }}
+                  {{ wordcount(post.content) }} 字
                 </span>
               {% endif %}
 
@@ -246,10 +250,10 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 {% if theme.post_wordcount.item_text %}
-                  <span class="post-meta-item-text">{{ __('post.min2read') }} &asymp;</span>
+                  <span class="post-meta-item-text">{{ __('post.min2read') }}</span>
                 {% endif %}
                 <span title="{{ __('post.min2read') }}">
-                  {{ min2read(post.content) }}
+                  {{ min2read(post.content) }} 分钟
                 </span>
               {% endif %}
             </div>
