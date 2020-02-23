@@ -387,7 +387,7 @@ valine:
   placeholder: 感谢您提出宝贵的意见 # comment box placeholder
   avatar: monsterid # gravatar style
   guest_info: nick,mail # 评论者仅需输入昵称和邮箱，无须输入网址
-  pageSize: 10 # pagination size
+  pageSize: 5 # pagination size
 
 
 # Support for youyan comments system.
@@ -646,6 +646,14 @@ tabs:
     tabs: false
     labels: true
   border_radius: 0
+  
+  
+# 添加复制代码按钮
+codeblock:
+    border_radius:
+    copy_button:
+        enable: true
+        show_result: true
 
 
 #! ---------------------------------------------------------------
