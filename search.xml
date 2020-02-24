@@ -159,8 +159,8 @@
       </tags>
   </entry>
   <entry>
-    <title>常用算法之回溯算法</title>
-    <url>/2020/01/13/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
+    <title>五大常用算法之回溯算法</title>
+    <url>/2020/01/13/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>基于八皇后问题给出回溯算法的解析过程。回溯算法是真的难，过于抽象，还需反反复复地看看看！</p>
 <a id="more"></a>
 
@@ -178,27 +178,27 @@
 </li>
 </ul>
 <h5 id="2-图解"><a href="#2-图解" class="headerlink" title="2. 图解"></a>2. 图解</h5><p>（1）放置第1行的皇后：8格均可，先尝试放置在第1格。红色表示<strong>下一行</strong>对应位置已被锁定。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/1.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/1.jpg" alt></p>
 <p>（2）放置第2行的皇后：前两格已被第1行的皇后锁定，故只能在后6格中任选，选第3格。相应的，前两行放置好的皇后也锁定了第3行部分位置。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/2.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/2.jpg" alt></p>
 <p>（3）放置第3行的皇后：在未被锁定的后4格中任选，选第5格。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/3.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/3.jpg" alt></p>
 <p>（4）放置第4行的皇后：只有3格可选，选第2格。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/4.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/4.jpg" alt></p>
 <p>（5）放置第5行的皇后：只剩2格可选，选第1格。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/5.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/5.jpg" alt></p>
 <p>（6）放置第6行的皇后：只能选择第4格。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/6.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/6.jpg" alt></p>
 <p>（7）放置第7行的皇后：只能选择第6格。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/7.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/7.jpg" alt></p>
 <p>（8）放置完前7行后可发现，第8行所有位置均被锁定。故回溯至第7行。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/8.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/8.jpg" alt></p>
 <p>（9）第7行仅有一个位置，且已尝试过，故继续回溯至第6行。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/9.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/9.jpg" alt></p>
 <p>（10）同样地，继续回溯至第5行。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/10.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/10.jpg" alt></p>
 <p>（11）第5行有两个位置，前一个已被尝试过，故选择第4格作为第5行皇后的新位置。</p>
-<p><img src="/2020/01/13/常用算法之回溯算法/11.jpg" alt></p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/11.jpg" alt></p>
 <blockquote>
 <p>很不幸，第5行重新放置后，第6行所有位置被锁定，故仍需回溯至第4行。在此就不继续演示了。</p>
 </blockquote>
@@ -661,13 +661,13 @@
       </tags>
   </entry>
   <entry>
-    <title>常用算法之动态规划</title>
-    <url>/2020/01/02/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</url>
+    <title>五大常用算法之动态规划</title>
+    <url>/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</url>
     <content><![CDATA[<p>通过阅读他人优秀的文章，基于经典的青蛙跳台阶问题，深入地学习动态规划建模过程。通过递归算法、自顶向下的备忘录算法及自低向上的动态规划算法，解决实际问题。</p>
 <a id="more"></a>
 
 <h4 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h4><p>动态规划（Dynamic Programming）与 <strong>分治法</strong> 类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p>
-<p>与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
+<p>与分治法不同的是，适合于用动态规划求解的问题，经分解得到<strong>子问题往往不是互相独立的</strong>。</p>
 <p>用一个表来记录所有已解的子问题的答案，不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中，这就是动态规划法的基本思路。</p>
 <h4 id="二、建模"><a href="#二、建模" class="headerlink" title="二、建模"></a>二、建模</h4><p>对问题建模前，须明确以下三个重要概念：</p>
 <blockquote>
@@ -675,24 +675,24 @@
 <p>2、边界</p>
 <p>3、状态转移方程</p>
 </blockquote>
-<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><h5 id="1-对青蛙跳台阶问题的图解"><a href="#1-对青蛙跳台阶问题的图解" class="headerlink" title="1. 对青蛙跳台阶问题的图解"></a>1. 对青蛙跳台阶问题的图解</h5><p>（本小节图源：<a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg）" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg）</a></p>
+<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><h5 id="1-对青蛙跳台阶问题的图解"><a href="#1-对青蛙跳台阶问题的图解" class="headerlink" title="1. 对青蛙跳台阶问题的图解"></a>1. 对青蛙跳台阶问题的图解</h5><p>（本小节图源：<a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a> ）</p>
 <ul>
 <li>每次跳1级台阶</li>
 </ul>
-<p><img src="/2020/01/02/常用算法之动态规划/1.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/1.jpg" alt></p>
 <ul>
 <li>或每次跳2级台阶</li>
 </ul>
-<p><img src="/2020/01/02/常用算法之动态规划/2.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/2.jpg" alt></p>
 <p>如果站在第n级台阶的角度上，如何到达该层？</p>
 <blockquote>
 <p>a. 从第n-1级台阶，跳1级台阶，到达第n级</p>
 </blockquote>
-<p><img src="/2020/01/02/常用算法之动态规划/3.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/3.jpg" alt></p>
 <blockquote>
 <p>b. 从第n-2级台阶，跳2级台阶，到达第n级</p>
 </blockquote>
-<p><img src="/2020/01/02/常用算法之动态规划/4.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/4.jpg" alt></p>
 <p>显然，<strong>到达第n级台阶的路线总数等于到达第n-1级和第n-2级之和</strong>。</p>
 <h5 id="2-建模"><a href="#2-建模" class="headerlink" title="2. 建模"></a>2. 建模</h5><ul>
 <li><p>最优子结构</p>
@@ -722,7 +722,7 @@
 <li>时间复杂度：O(N)</li>
 <li>空间复杂度：O(N)</li>
 </ul>
-<p>==（3）动态规划（自底向上）==</p>
+<p>（3）动态规划（自底向上）</p>
 <p>备忘录算法中须保存所有子状态，若仅仅保存递推所需的前两个子状态，便能优化算法的空间复杂度。</p>
 <blockquote>
 <p>通过自底向上的递推，仅仅利用常数额外空间，优化算法的时间和空间复杂度，这便是动态规划</p>
@@ -735,8 +735,8 @@
 <li>空间复杂度：O(1)</li>
 </ul>
 <h4 id="四、更加复杂的动态规划——国王与金矿问题"><a href="#四、更加复杂的动态规划——国王与金矿问题" class="headerlink" title="四、更加复杂的动态规划——国王与金矿问题"></a>四、更加复杂的动态规划——国王与金矿问题</h4><p>问题：有一个国家发现了n座金矿，每座金矿的黄金储量不同，且每座金矿需要参与挖掘的工人数也不同。参与挖矿工人的总数是w。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
-<p>（本小节图源：<a href="https://www.cnblogs.com/hczd123/p/7412950.html）" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html）</a></p>
-<p><img src="/2020/01/02/常用算法之动态规划/5.jpg" alt></p>
+<p>（本小节图源：<a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a> ）</p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/5.jpg" alt></p>
 <h5 id="1-建模"><a href="#1-建模" class="headerlink" title="1. 建模"></a>1. 建模</h5><blockquote>
 <p>n：金矿数量；w：总的工人数；g[]：保存每座金矿的矿藏量；p[]：保存每座金矿的用工数</p>
 </blockquote>
@@ -747,7 +747,7 @@
 <li>若不挖第5座金矿，则最优解为10人开挖4座金矿的最优解；</li>
 <li>若挖第5座金矿，则需要找到剩下的人挖剩余的4座金矿的最优解；</li>
 </ul>
-<p><img src="/2020/01/02/常用算法之动态规划/6.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/6.jpg" alt></p>
 <blockquote>
 <p>显然，10人挖5座金矿的最优解是这两种子状态的较大值</p>
 </blockquote>
@@ -798,7 +798,7 @@
 </ul>
 <p>==（3）动态规划算法==</p>
 <p>以10名工人挖5座金矿为例，可作下表</p>
-<p><img src="/2020/01/02/常用算法之动态规划/7.jpg" alt></p>
+<p><img src="/2020/01/02/五大常用算法之动态规划/7.jpg" alt></p>
 <p>表中，每一行的所有数据均可<strong>由上一行数据推导得到</strong>，因而动态规划算法可基于此规律，利用前一行数据推导当前行数据。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] preResult = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>]; <span class="comment">// w+1列，保存上一行数据</span></span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 填充边界</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(j&lt;p[<span class="number">0</span>]) &#123;</span><br><span class="line">            preResult[j] = <span class="number">0</span>; <span class="comment">// 当金矿数为1，但工人总数无法满足开采要求时</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            preResult[j] = g[<span class="number">0</span>]; <span class="comment">// 金矿数为1，且工人总数满足要求</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> preResult[w];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 状态转移方程</span></span><br><span class="line">    <span class="comment">// 外循环中，i为当前金矿索引；内循环中，j为工人数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j&lt;p[i]) &#123;</span><br><span class="line">                <span class="comment">// 若j个工人不能满足开采第i+1座金矿所需的工人数</span></span><br><span class="line">                result[j] = preResult[j];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 若第i+1座金矿有足够的人工开挖，则j个工人开挖i+1座金矿</span></span><br><span class="line">                result[j] = Math.max(preResult[j], preResult[j-p[i]]+g[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新子状态</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            preResult[j] = result[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result[w];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1497,8 +1497,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>SSM</tag>
         <tag>Spring MVC</tag>
+        <tag>SSM</tag>
       </tags>
   </entry>
   <entry>
@@ -1610,8 +1610,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Mybatis</tag>
         <tag>SSM</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
 </search>
