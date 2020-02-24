@@ -116,7 +116,7 @@
 
 
 
-  <meta name="keywords" content="Java,Thread,">
+  <meta name="keywords" content="Java,Thread,ThreadPool,">
 
 
 
@@ -128,14 +128,14 @@
 
 
 <meta name="description" content="尽管提倡使用线程池高效地管理线程，但了解线程创建的基础方法还是非常有必要的。">
-<meta name="keywords" content="Java,Thread">
+<meta name="keywords" content="Java,Thread,ThreadPool">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java创建线程的方式">
 <meta property="og:url" content="http://yoursite.com/2020/02/21/Java创建线程的方式/index.html">
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="尽管提倡使用线程池高效地管理线程，但了解线程创建的基础方法还是非常有必要的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-21T05:45:30.772Z">
+<meta property="og:updated_time" content="2020-02-24T01:26:01.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java创建线程的方式">
 <meta name="twitter:description" content="尽管提倡使用线程池高效地管理线程，但了解线程创建的基础方法还是非常有必要的。">
@@ -396,14 +396,36 @@
                 <i class="fa fa-calendar-check-o"></i>
               </span>
               
-                <span class="post-meta-item-text">更新于&#58;</span>
+                <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-21T13:45:30+08:00">
-                2020-02-21
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-24T09:26:01+08:00">
+                2020-02-24
               </time>
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -413,6 +435,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+				
+				
+                 <span class="post-meta-item-text">评论</span>
+				
                 <a href="/2020/02/21/Java创建线程的方式/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count valine-comment-count" data-xid="/2020/02/21/Java创建线程的方式/" itemprop="commentCount"></span>
                 </a>
@@ -428,7 +454,7 @@
                  <i class="fa fa-eye"></i>
                </span>
                
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
+                 <span class="post-meta-item-text">阅读次数</span>
                
                  <span class="leancloud-visitors-count"></span>
              </span>
@@ -436,6 +462,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">全文共</span>
+                
+                <span title="全文共">
+                  1,254 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读本文约耗时</span>
+                
+                <span title="阅读本文约耗时">
+                  5 分钟
+                </span>
+              
+            </div>
           
 
           
@@ -466,54 +523,46 @@
 <h3 id="二、继承Thread类创建线程类"><a href="#二、继承Thread类创建线程类" class="headerlink" title="二、继承Thread类创建线程类"></a>二、继承Thread类创建线程类</h3><blockquote>
 <p>Java的单继承机制，使得类继承Thread类后，不能再继承其它类。</p>
 </blockquote>
-<p>（1）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下："><a href="#1-具体实现过程如下：" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>继承Thread类，重写<strong>run( )</strong>方法。run( )方法表示线程要执行的任务，被称为执行体。</li>
 <li>创建Thread子类对象实例，即创建线程对象。</li>
 <li>调用线程对象的<strong>start( )</strong>方法启动该线程。</li>
 </ol>
-<p>（2）实现代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之一：继承Thread类，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-实现代码"><a href="#2-实现代码" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之一：继承Thread类，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">   MyThread myThread = <span class="keyword">new</span> MyThread(); <span class="comment">// 实例化线程对象</span></span><br><span class="line">   myThread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（3）匿名内部类形式</p>
-<p><em>上述还可以写成匿名内部类的形式</em></p>
+<h5 id="3-匿名内部类形式"><a href="#3-匿名内部类形式" class="headerlink" title="3. 匿名内部类形式"></a>3. 匿名内部类形式</h5><p><em>上述还可以写成匿名内部类的形式</em></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="二、通过Runnable接口创建线程类"><a href="#二、通过Runnable接口创建线程类" class="headerlink" title="二、通过Runnable接口创建线程类"></a>二、通过Runnable接口创建线程类</h3><blockquote>
 <p>在多数情况下，如果仅覆盖run( )方法而不涉及Thread类的其它方法，不建议使用第一种途径新建线程。</p>
 </blockquote>
-<p>（1）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下：-1"><a href="#1-具体实现过程如下：-1" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>定义Runnable接口的实现类，重写run( )方法。该实现类的实例作为<strong>任务对象</strong>，run( )方法为执行体。</li>
 <li>传入任务对象，构造Thread类实例对象，即真正的线程对象。</li>
 <li>调用线程对象的start( )方法启动该线程。</li>
 </ol>
-<p>（2）实现代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RunnableTask类——任务类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之二：实现Runnable接口，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-实现代码-1"><a href="#2-实现代码-1" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// RunnableTask类——任务类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之二：实现Runnable接口，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    RunnableTask runTask = <span class="keyword">new</span> RunnableTask(); <span class="comment">// 实例化任务类</span></span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(runTask); <span class="comment">// 传入任务对象，创建线程对象</span></span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（3）匿名内部类形式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-匿名内部类形式-1"><a href="#3-匿名内部类形式-1" class="headerlink" title="3. 匿名内部类形式"></a>3. 匿名内部类形式</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="三、通过FutureTask类创建有返回结果的线程"><a href="#三、通过FutureTask类创建有返回结果的线程" class="headerlink" title="三、通过FutureTask类创建有返回结果的线程"></a>三、通过FutureTask类创建有返回结果的线程</h3><blockquote>
 <p>FutureTask实现 <code>Future</code> 和 <code>Runnable</code> 接口，是一个可取消的<strong>异步计算任务</strong>，通过其可跟踪任务的执行情况，获取任务的执行结果。</p>
 </blockquote>
-<p>（1）FutureTask类的两个构造方法</p>
+<p>FutureTask类的两个构造方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FutureTask(Callable&lt;V&gt; callable); <span class="comment">// 执行给定的Callable对象</span></span><br><span class="line">FutureTask(Runnable runnable, V result); <span class="comment">// 执行给定的Runnable对象，成功后返回给定的result</span></span><br></pre></td></tr></table></figure>
 
-<p>（2）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下：-2"><a href="#1-具体实现过程如下：-2" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>创建Callable接口的实现类，重写call( )方法。call( )方法为执行体，<strong>有返回值</strong>。或者，创建Runnable接口的实现类，重写run( )方法。run( )方法为执行体，无返回值。</li>
 <li>调用FutureTask类的构造方法创建FutureTask对象，其中对Runnable对象需要指定result。</li>
 <li>传入FutureTask对象，构造Thread类实例对象，即真正的线程对象。</li>
 <li>调用线程对象的start( )方法启动该线程。</li>
 <li>调用FutureTask对象的<strong>get( )</strong>方法获取线程执行结束的返回值。</li>
 </ol>
-<p>（3）实现代码</p>
-<ol>
+<h5 id="2-实现代码-2"><a href="#2-实现代码-2" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><ol>
 <li><em>对于 Callable对象</em></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建Callable接口的实现类，重写call( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Double</span>&gt; </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Double <span class="title">call</span><span class="params">()</span> </span>&#123; <span class="comment">// call( )方法有返回值</span></span><br><span class="line">		<span class="keyword">double</span> number = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"异步计算任务开始"</span>);</span><br><span class="line">			number = Math.random()*<span class="number">10</span>;</span><br><span class="line">			number += <span class="number">500</span>;</span><br><span class="line">		&#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> number;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -539,10 +588,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ExecutorService es = Executors.newSingleThreadExecutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> RunnableTask());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>参考资料</strong></p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/jinggod/p/8485106.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinggod/p/8485106.html</a></p>
-</blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://www.cnblogs.com/jinggod/p/8485106.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinggod/p/8485106.html</a></p>
 
       
     </div>
@@ -584,14 +630,34 @@
     
 
     
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Merlin Hu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/02/21/Java创建线程的方式/" title="Java创建线程的方式">http://yoursite.com/2020/02/21/Java创建线程的方式/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
 
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
           
-            <a href="/tags/Thread/" rel="tag"># Thread</a>
+            <a href="/tags/Thread/" rel="tag"><i class="fa fa-tag"></i> Thread</a>
+          
+            <a href="/tags/ThreadPool/" rel="tag"><i class="fa fa-tag"></i> ThreadPool</a>
           
         </div>
       
@@ -694,12 +760,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -707,7 +782,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -756,7 +831,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、继承Thread类创建线程类"><span class="nav-number">2.</span> <span class="nav-text">二、继承Thread类创建线程类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、通过Runnable接口创建线程类"><span class="nav-number">3.</span> <span class="nav-text">二、通过Runnable接口创建线程类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、通过FutureTask类创建有返回结果的线程"><span class="nav-number">4.</span> <span class="nav-text">三、通过FutureTask类创建有返回结果的线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、通过线程池管理线程"><span class="nav-number">5.</span> <span class="nav-text">四、通过线程池管理线程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、继承Thread类创建线程类"><span class="nav-text">二、继承Thread类创建线程类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-具体实现过程如下："><span class="nav-text">1. 具体实现过程如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-实现代码"><span class="nav-text">2. 实现代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-匿名内部类形式"><span class="nav-text">3. 匿名内部类形式</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#二、通过Runnable接口创建线程类"><span class="nav-text">二、通过Runnable接口创建线程类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-具体实现过程如下：-1"><span class="nav-text">1. 具体实现过程如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-实现代码-1"><span class="nav-text">2. 实现代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-匿名内部类形式-1"><span class="nav-text">3. 匿名内部类形式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、通过FutureTask类创建有返回结果的线程"><span class="nav-text">三、通过FutureTask类创建有返回结果的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-具体实现过程如下：-2"><span class="nav-text">1. 具体实现过程如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-实现代码-2"><span class="nav-text">2. 实现代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、通过线程池管理线程"><span class="nav-text">四、通过线程池管理线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></div>
             
 
           </div>
@@ -782,6 +857,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Merlin Hu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">全站共计</span>
+    
+    <span title="全站共计">22.0k 字</span>
   
 </div>
 

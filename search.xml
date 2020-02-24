@@ -16,54 +16,46 @@
 <h3 id="二、继承Thread类创建线程类"><a href="#二、继承Thread类创建线程类" class="headerlink" title="二、继承Thread类创建线程类"></a>二、继承Thread类创建线程类</h3><blockquote>
 <p>Java的单继承机制，使得类继承Thread类后，不能再继承其它类。</p>
 </blockquote>
-<p>（1）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下："><a href="#1-具体实现过程如下：" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>继承Thread类，重写<strong>run( )</strong>方法。run( )方法表示线程要执行的任务，被称为执行体。</li>
 <li>创建Thread子类对象实例，即创建线程对象。</li>
 <li>调用线程对象的<strong>start( )</strong>方法启动该线程。</li>
 </ol>
-<p>（2）实现代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之一：继承Thread类，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-实现代码"><a href="#2-实现代码" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类，重写run( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之一：继承Thread类，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">   MyThread myThread = <span class="keyword">new</span> MyThread(); <span class="comment">// 实例化线程对象</span></span><br><span class="line">   myThread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（3）匿名内部类形式</p>
-<p><em>上述还可以写成匿名内部类的形式</em></p>
+<h5 id="3-匿名内部类形式"><a href="#3-匿名内部类形式" class="headerlink" title="3. 匿名内部类形式"></a>3. 匿名内部类形式</h5><p><em>上述还可以写成匿名内部类的形式</em></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="二、通过Runnable接口创建线程类"><a href="#二、通过Runnable接口创建线程类" class="headerlink" title="二、通过Runnable接口创建线程类"></a>二、通过Runnable接口创建线程类</h3><blockquote>
 <p>在多数情况下，如果仅覆盖run( )方法而不涉及Thread类的其它方法，不建议使用第一种途径新建线程。</p>
 </blockquote>
-<p>（1）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下：-1"><a href="#1-具体实现过程如下：-1" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>定义Runnable接口的实现类，重写run( )方法。该实现类的实例作为<strong>任务对象</strong>，run( )方法为执行体。</li>
 <li>传入任务对象，构造Thread类实例对象，即真正的线程对象。</li>
 <li>调用线程对象的start( )方法启动该线程。</li>
 </ol>
-<p>（2）实现代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// RunnableTask类——任务类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之二：实现Runnable接口，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-实现代码-1"><a href="#2-实现代码-1" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// RunnableTask类——任务类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Java创建线程的方式之二：实现Runnable接口，重写run方法。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    RunnableTask runTask = <span class="keyword">new</span> RunnableTask(); <span class="comment">// 实例化任务类</span></span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(runTask); <span class="comment">// 传入任务对象，创建线程对象</span></span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（3）匿名内部类形式</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-匿名内部类形式-1"><a href="#3-匿名内部类形式-1" class="headerlink" title="3. 匿名内部类形式"></a>3. 匿名内部类形式</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    thread.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="三、通过FutureTask类创建有返回结果的线程"><a href="#三、通过FutureTask类创建有返回结果的线程" class="headerlink" title="三、通过FutureTask类创建有返回结果的线程"></a>三、通过FutureTask类创建有返回结果的线程</h3><blockquote>
 <p>FutureTask实现 <code>Future</code> 和 <code>Runnable</code> 接口，是一个可取消的<strong>异步计算任务</strong>，通过其可跟踪任务的执行情况，获取任务的执行结果。</p>
 </blockquote>
-<p>（1）FutureTask类的两个构造方法</p>
+<p>FutureTask类的两个构造方法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">FutureTask(Callable&lt;V&gt; callable); <span class="comment">// 执行给定的Callable对象</span></span><br><span class="line">FutureTask(Runnable runnable, V result); <span class="comment">// 执行给定的Runnable对象，成功后返回给定的result</span></span><br></pre></td></tr></table></figure>
 
-<p>（2）具体实现过程如下：</p>
-<ol>
+<h5 id="1-具体实现过程如下：-2"><a href="#1-具体实现过程如下：-2" class="headerlink" title="1. 具体实现过程如下："></a>1. 具体实现过程如下：</h5><ol>
 <li>创建Callable接口的实现类，重写call( )方法。call( )方法为执行体，<strong>有返回值</strong>。或者，创建Runnable接口的实现类，重写run( )方法。run( )方法为执行体，无返回值。</li>
 <li>调用FutureTask类的构造方法创建FutureTask对象，其中对Runnable对象需要指定result。</li>
 <li>传入FutureTask对象，构造Thread类实例对象，即真正的线程对象。</li>
 <li>调用线程对象的start( )方法启动该线程。</li>
 <li>调用FutureTask对象的<strong>get( )</strong>方法获取线程执行结束的返回值。</li>
 </ol>
-<p>（3）实现代码</p>
-<ol>
+<h5 id="2-实现代码-2"><a href="#2-实现代码-2" class="headerlink" title="2. 实现代码"></a>2. 实现代码</h5><ol>
 <li><em>对于 Callable对象</em></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建Callable接口的实现类，重写call( )方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallableTask</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">Double</span>&gt; </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Double <span class="title">call</span><span class="params">()</span> </span>&#123; <span class="comment">// call( )方法有返回值</span></span><br><span class="line">		<span class="keyword">double</span> number = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"异步计算任务开始"</span>);</span><br><span class="line">			number = Math.random()*<span class="number">10</span>;</span><br><span class="line">			number += <span class="number">500</span>;</span><br><span class="line">		&#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> number;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -89,14 +81,15 @@
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ExecutorService es = Executors.newSingleThreadExecutor();</span><br><span class="line">    es.execute(<span class="keyword">new</span> RunnableTask());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>参考资料</strong></p>
-<blockquote>
-<p><a href="https://www.cnblogs.com/jinggod/p/8485106.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinggod/p/8485106.html</a></p>
-</blockquote>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://www.cnblogs.com/jinggod/p/8485106.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinggod/p/8485106.html</a></p>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
       <tags>
         <tag>Java</tag>
         <tag>Thread</tag>
+        <tag>ThreadPool</tag>
       </tags>
   </entry>
   <entry>
@@ -105,8 +98,7 @@
     <content><![CDATA[<p>Java中静态变量、静态代码块、构造代码块、成员变量和构造方法的加载顺序，以及父类、子类中的加载顺序。</p>
 <a id="more"></a>
 
-<p><strong>一、单一类中代码的首次加载顺序</strong></p>
-<blockquote>
+<h3 id="一、单一类中代码的首次加载顺序"><a href="#一、单一类中代码的首次加载顺序" class="headerlink" title="一、单一类中代码的首次加载顺序"></a>一、单一类中代码的首次加载顺序</h3><blockquote>
 <p>静态变量/静态代码块 &gt;&gt;&gt; 成员变量/构造代码块 &gt;&gt;&gt; 构造方法</p>
 </blockquote>
 <p><em>代码示例：</em></p>
@@ -127,17 +119,21 @@
 <li>每调用一次构造方法，都要按序加载成员变量、构造代码块、构造函数；</li>
 <li>静态方法仅在被调用时才会加载。</li>
 </ul>
-<hr>
-<p><strong>二、首次加载时父类与子类的情况</strong></p>
-<p><em>加载顺序规则如下</em>：</p>
-<ul>
-<li>1、按代码位置加载<strong>父类</strong>的静态变量和静态代码块；</li>
-<li>2、按代码位置加载<strong>子类</strong>的静态变量和静态代码块；</li>
-<li>3、按代码位置加载<strong>父类</strong>的成员变量和构造代码块；</li>
-<li>4、加载<strong>父类的构造方法</strong>；</li>
-<li>5、按代码位置加载<strong>子类</strong>的成员变量和构造代码块；</li>
-<li>6、加载<strong>子类的构造方法</strong>。</li>
-</ul>
+<h3 id="二、首次加载时父类与子类的情况"><a href="#二、首次加载时父类与子类的情况" class="headerlink" title="二、首次加载时父类与子类的情况"></a>二、首次加载时父类与子类的情况</h3><p><em>加载顺序规则如下</em>：</p>
+<ol>
+<li><p>按代码位置加载<strong>父类</strong>的静态变量和静态代码块；</p>
+</li>
+<li><p>按代码位置加载<strong>子类</strong>的静态变量和静态代码块；</p>
+</li>
+<li><p>按代码位置加载<strong>父类</strong>的成员变量和构造代码块；</p>
+</li>
+<li><p>加载<strong>父类的构造方法</strong>；</p>
+</li>
+<li><p>按代码位置加载<strong>子类</strong>的成员变量和构造代码块；</p>
+</li>
+<li><p>加载<strong>子类的构造方法</strong>。</p>
+</li>
+</ol>
 <p><em>代码示例如下：</em></p>
 <p>（父类）</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> &#123;</span><br><span class="line">		System.out.println(<span class="string">"父类的静态代码块被加载"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Father</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"父类的成员变量：fatherEle = "</span>+fatherEle);</span><br><span class="line">		System.out.println(<span class="string">"父类的构造方法被加载"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> fatherEle = <span class="number">520</span>;</span><br><span class="line">	</span><br><span class="line">	&#123;</span><br><span class="line">		System.out.println(<span class="string">"父类的构造代码块被加载"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -151,12 +147,13 @@
 <p><em>代码的执行结果如下：</em></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">父类的静态代码块被加载</span><br><span class="line">子类的静态代码块被加载</span><br><span class="line">父类的构造代码块被加载</span><br><span class="line">父类的成员变量：fatherEle = <span class="number">520</span></span><br><span class="line">父类的构造方法被加载</span><br><span class="line">子类的构造代码块被加载</span><br><span class="line">子类的成员变量：sonEle = <span class="number">1314</span></span><br><span class="line">子类的构造方法被加载</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p><strong>三、非首次加载时父类与子类的情况</strong></p>
-<blockquote>
+<h3 id="三、非首次加载时父类与子类的情况"><a href="#三、非首次加载时父类与子类的情况" class="headerlink" title="三、非首次加载时父类与子类的情况"></a>三、非首次加载时父类与子类的情况</h3><blockquote>
 <p>静态变量和静态代码块不需要再加载，其余按上述（3~6）执行。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
       <tags>
         <tag>Java</tag>
       </tags>
@@ -164,20 +161,13 @@
   <entry>
     <title>常用算法之回溯算法</title>
     <url>/2020/01/13/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>常用算法之回溯算法</p>
+    <content><![CDATA[<p>基于八皇后问题给出回溯算法的解析过程。回溯算法是真的难，过于抽象，还需反反复复地看看看！</p>
 <a id="more"></a>
 
-<blockquote>
-<p>参考资料：</p>
-<p>[1] <a href="https://www.php.cn/faq/415926.html" target="_blank" rel="noopener">https://www.php.cn/faq/415926.html</a></p>
-<p>[2] <a href="https://www.jianshu.com/p/dd3c3f3e84c0" target="_blank" rel="noopener">https://www.jianshu.com/p/dd3c3f3e84c0</a></p>
-</blockquote>
-<h5 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h5><p>回溯法（探索与回溯法）是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“<strong>回溯点</strong>”。</p>
+<h4 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h4><p>回溯法（探索与回溯法）是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“<strong>回溯点</strong>”。</p>
 <p>其基本思想是，在包含问题的所有解的解空间树中，按照<strong>深度优先搜索</strong>的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。</p>
-<h5 id="二、典型应用之八皇后问题"><a href="#二、典型应用之八皇后问题" class="headerlink" title="二、典型应用之八皇后问题"></a>二、典型应用之八皇后问题</h5><p>1、题干</p>
-<p>八皇后问题由马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上。试问总共有多少种摆放的方法？（92种）</p>
-<p>2、分析</p>
-<ul>
+<h4 id="二、典型应用之八皇后问题"><a href="#二、典型应用之八皇后问题" class="headerlink" title="二、典型应用之八皇后问题"></a>二、典型应用之八皇后问题</h4><p>题干：八皇后问题由马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上。试问总共有多少种摆放的方法？==（92种）==</p>
+<h5 id="1-分析"><a href="#1-分析" class="headerlink" title="1. 分析"></a>1. 分析</h5><ul>
 <li><p>显然，棋盘上每一行（或每一列）上只能同时出现一个皇后。要解决此问题，可先摆放第1行的皇后，紧接着摆放第2行的皇后。</p>
 </li>
 <li><p>在摆放第i行的皇后时，需要判断其是否与前面所有行已存在的皇后产生冲突。</p>
@@ -187,8 +177,7 @@
 <li><p>若产生冲突，则调整此行的皇后位置。若此行所有位置均不符合要求，则需要<strong>回溯至第i-1行，调整改行皇后的位置</strong>，直至回溯至第1行。</p>
 </li>
 </ul>
-<p>3、图解</p>
-<p>（1）放置第1行的皇后：8格均可，先尝试放置在第1格。红色表示下一行对应位置已被锁定。</p>
+<h5 id="2-图解"><a href="#2-图解" class="headerlink" title="2. 图解"></a>2. 图解</h5><p>（1）放置第1行的皇后：8格均可，先尝试放置在第1格。红色表示<strong>下一行</strong>对应位置已被锁定。</p>
 <p><img src="/2020/01/13/常用算法之回溯算法/1.jpg" alt></p>
 <p>（2）放置第2行的皇后：前两格已被第1行的皇后锁定，故只能在后6格中任选，选第3格。相应的，前两行放置好的皇后也锁定了第3行部分位置。</p>
 <p><img src="/2020/01/13/常用算法之回溯算法/2.jpg" alt></p>
@@ -213,17 +202,23 @@
 <blockquote>
 <p>很不幸，第5行重新放置后，第6行所有位置被锁定，故仍需回溯至第4行。在此就不继续演示了。</p>
 </blockquote>
-<p>4、代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 八皇后问题，基于递归的回溯思想，解决此问题</span></span><br><span class="line"><span class="comment"> * 2020-01-13</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EightQueens</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] checkerboard = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>]; <span class="comment">// 棋盘的列投影，记录每一行的皇后存放的列索引值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> len = <span class="number">8</span>; <span class="comment">// 棋盘的行或列长度为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> queens = <span class="number">8</span>; <span class="comment">// 皇后数，为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 记录总共的解法数，对八皇后问题，应为92</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EightQueens</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 递归地放置皇后到第i+1行合适的位置</span></span><br><span class="line"><span class="comment">	 * 放置第i+1行的皇后之后，需要判断其是否与之前的皇后冲突，若无，递归进入下一行；</span></span><br><span class="line"><span class="comment">	 * 若产生冲突，将其往后移动一列，避免冲突</span></span><br><span class="line"><span class="comment">	 * 注意for循环内部是递归嵌套的，若到最后某一行皇后已无法移动，则会逐步返回上一层，直至</span></span><br><span class="line"><span class="comment">	 * 调整首行以实现放入所有皇后</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putQueen</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==queens) &#123;</span><br><span class="line">			total++; <span class="comment">// 此语句执行则说明当前结果是一种可行解法，故总解法数加1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>; col&lt;len; col++) &#123;</span><br><span class="line">				checkerboard[i] = col; <span class="comment">// 对于第i+1行，该行的皇后放在第col+1列；若if语句为false，则调整第i+1行的皇后位置</span></span><br><span class="line">				<span class="keyword">if</span>(check(i)) &#123;</span><br><span class="line">					putQueen(i+<span class="number">1</span>); <span class="comment">// 若检查发现，第i+1行及之前各行皇后位置均满足题意，则递归移动下一行</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断第i+1行放入的皇后是否与之前的皇后产生冲突</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++) &#123;</span><br><span class="line">			<span class="comment">// j为第i+1行之前的所有行，需要逐一比较</span></span><br><span class="line">			<span class="keyword">if</span>(checkerboard[i]==checkerboard[j] || i-checkerboard[i]==j-checkerboard[j] ||</span><br><span class="line">					i+checkerboard[i]==j+checkerboard[j]) &#123;</span><br><span class="line">				<span class="comment">// checkerboard[i]==checkerboard[j] 判断不同行的皇后是否在同一列</span></span><br><span class="line">				<span class="comment">// i-checkerboard[i]==j-checkerboard[j] 判断不同行的皇后是否在左对角线上</span></span><br><span class="line">				<span class="comment">// i+checkerboard[i]==j+checkerboard[j] 判断不同行的皇后是否在右对角线上</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 辅助方法，启动putQueen</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		putQueen(<span class="number">0</span>); <span class="comment">// 从第1行开始，其行序号为0</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<h5 id="3-算法实现"><a href="#3-算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 八皇后问题，基于递归的回溯思想，解决此问题</span></span><br><span class="line"><span class="comment"> * 2020-01-13</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EightQueens</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] checkerboard = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>]; <span class="comment">// 棋盘的列投影，记录每一行的皇后存放的列索引值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> len = <span class="number">8</span>; <span class="comment">// 棋盘的行或列长度为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> queens = <span class="number">8</span>; <span class="comment">// 皇后数，为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 记录总共的解法数，对八皇后问题，应为92</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EightQueens</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 递归地放置皇后到第i+1行合适的位置</span></span><br><span class="line"><span class="comment">	 * 放置第i+1行的皇后之后，需要判断其是否与之前的皇后冲突，若无，递归进入下一行；</span></span><br><span class="line"><span class="comment">	 * 若产生冲突，将其往后移动一列，避免冲突</span></span><br><span class="line"><span class="comment">	 * 注意for循环内部是递归嵌套的，若到最后某一行皇后已无法移动，则会逐步返回上一层，直至</span></span><br><span class="line"><span class="comment">	 * 调整首行以实现放入所有皇后</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putQueen</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==queens) &#123;</span><br><span class="line">			total++; <span class="comment">// 此语句执行则说明当前结果是一种可行解法，故总解法数加1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>; col&lt;len; col++) &#123;</span><br><span class="line">				checkerboard[i] = col; <span class="comment">// 对于第i+1行，该行的皇后放在第col+1列；若if语句为false，则调整第i+1行的皇后位置</span></span><br><span class="line">				<span class="keyword">if</span>(check(i)) &#123;</span><br><span class="line">					putQueen(i+<span class="number">1</span>); <span class="comment">// 若检查发现，第i+1行及之前各行皇后位置均满足题意，则递归移动下一行</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断第i+1行放入的皇后是否与之前的皇后产生冲突</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++) &#123;</span><br><span class="line">			<span class="comment">// j为第i+1行之前的所有行，需要逐一比较</span></span><br><span class="line">			<span class="keyword">if</span>(checkerboard[i]==checkerboard[j] || i-checkerboard[i]==j-checkerboard[j] ||</span><br><span class="line">					i+checkerboard[i]==j+checkerboard[j]) &#123;</span><br><span class="line">				<span class="comment">// checkerboard[i]==checkerboard[j] 判断不同行的皇后是否在同一列</span></span><br><span class="line">				<span class="comment">// i-checkerboard[i]==j-checkerboard[j] 判断不同行的皇后是否在左对角线上</span></span><br><span class="line">				<span class="comment">// i+checkerboard[i]==j+checkerboard[j] 判断不同行的皇后是否在右对角线上</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 辅助方法，启动putQueen</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		putQueen(<span class="number">0</span>); <span class="comment">// 从第1行开始，其行序号为0</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://www.php.cn/faq/415926.html" target="_blank" rel="noopener">https://www.php.cn/faq/415926.html</a></p>
+<p>[2] <a href="https://www.jianshu.com/p/dd3c3f3e84c0" target="_blank" rel="noopener">https://www.jianshu.com/p/dd3c3f3e84c0</a></p>
+]]></content>
+      <categories>
+        <category>算法刷题</category>
+      </categories>
       <tags>
         <tag>Backtracking</tag>
         <tag>Algorithms</tag>
       </tags>
   </entry>
   <entry>
-    <title>Java并发编程学习笔记（未完待续）</title>
+    <title>Java并发编程学习笔记</title>
     <url>/2020/01/12/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>学习、理解多线程与Java并发。</p>
+    <content><![CDATA[<p>学习、理解多线程与Java并发。笔记主要基于《Java并发编程实战》一书，并结合部分优秀的文章。</p>
 <a id="more"></a>
 
 <p>多线程</p>
@@ -347,7 +342,10 @@
 <blockquote>
 <p>随机测试结果表明：并发过程出现异常，即 <em>关键字 volatile 无法保证原子性！</em></p>
 </blockquote>
-<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
+<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><blockquote>
+<p>有待进一步阅读相关书籍和文章。</p>
+</blockquote>
+<p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
 <h3 id="二、Java类库中的并发基础构建模块"><a href="#二、Java类库中的并发基础构建模块" class="headerlink" title="二、Java类库中的并发基础构建模块"></a>二、Java类库中的并发基础构建模块</h3><h4 id="1-同步容器类"><a href="#1-同步容器类" class="headerlink" title="1. 同步容器类"></a>1. 同步容器类</h4><ul>
 <li>Vector</li>
 <li>Hashtable</li>
@@ -455,13 +453,14 @@
 
 <h5 id="2-3-Executor框架结构"><a href="#2-3-Executor框架结构" class="headerlink" title="2.3 Executor框架结构"></a>2.3 Executor框架结构</h5><p><img src="/2020/01/12/Java并发编程笔记/5.jpg" alt></p>
 <p><em>Executor框架包括以下三个部分：</em></p>
-<blockquote>
 <ol>
-<li><strong>任务</strong>：被执行的任务需要实现Runnable接口或Callable接口；</li>
-<li><strong>执行</strong>：线程执行任务，包括Executor接口和最重要的<strong>ThreadPoolExecutor</strong>类；</li>
-<li><strong>异步计算</strong>：包括Future接口及实现Future接口的FutureTask类。</li>
+<li><p><strong>任务</strong>：被执行的任务需要实现Runnable接口或Callable接口；</p>
+</li>
+<li><p><strong>执行</strong>：线程执行任务，包括Executor接口和最重要的<strong>ThreadPoolExecutor</strong>类；</p>
+</li>
+<li><p><strong>异步计算</strong>：包括Future接口及实现Future接口的FutureTask类。</p>
+</li>
 </ol>
-</blockquote>
 <h5 id="2-4-Executor框架的执行过程"><a href="#2-4-Executor框架的执行过程" class="headerlink" title="2.4 Executor框架的执行过程"></a>2.4 Executor框架的执行过程</h5><p>（1）创建任务对象</p>
 <p>创建实现Runnable接口或Callable接口的任务对象。</p>
 <p><em>实现 Runnable接口，重写 run 方法：</em></p>
@@ -523,7 +522,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (task == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    RunnableFuture&lt;T&gt; ftask = newTaskFor(task);</span><br><span class="line">    execute(ftask);</span><br><span class="line">    <span class="keyword">return</span> ftask;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-线程池-——-高效地管理线程的生命周期"><a href="#3-线程池-——-高效地管理线程的生命周期" class="headerlink" title="3. 线程池 —— 高效地管理线程的生命周期"></a>3. 线程池 —— 高效地管理线程的生命周期</h4><p><em>重要参数：</em></p>
-<blockquote>
 <ul>
 <li><p>corePoolSize：线程池的目标大小，即无任何任务执行时线程池的大小，且仅当工作队列已满才会产生大于此值的线程数量。</p>
 </li>
@@ -532,12 +530,14 @@
 <li><p>keepAliveTime：线程存活时间。线程空闲时间大于存活时间，被标记为“可回收”；活动线程数大于corePoolSize时，回收标记为“可回收”的空闲线程。</p>
 </li>
 </ul>
-</blockquote>
 <p><strong><em>两个重要的问题：</em></strong></p>
 <ol>
-<li>为什么要使用线程池，而不是直接手动创建线程？<ul>
-<li>使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资<br>源不足的问题。</li>
-<li>如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者<br>“过度切换”的问题。</li>
+<li><p>为什么要使用线程池，而不是直接手动创建线程？</p>
+<ul>
+<li><p>使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资<br>源不足的问题。</p>
+</li>
+<li><p>如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者<br>“过度切换”的问题。</p>
+</li>
 </ul>
 </li>
 </ol>
@@ -558,15 +558,18 @@
 <li>newScheduledThreadPool 延时/定时执行任务，固定长度</li>
 </ul>
 <p>（1）newFixedThreadPool</p>
-<blockquote>
 <ul>
-<li>corePoolSize和maximumPoolSize均设为指定值nThread，keepAliveTime设为0。</li>
-<li>固定长度的线程池。因corePoolSize为nThread，故每提交一个任务就创建一个线程，直到总数为nThreads。</li>
-<li>keepAliveTime为0，线程不会超时。</li>
-<li>线程执行过程中异常中断，会新建线程以补充。</li>
-<li>无边界的任务队列LinkedBlockingQueue<runnable>。</runnable></li>
+<li><p>corePoolSize和maximumPoolSize均设为指定值nThread，keepAliveTime设为0。</p>
+</li>
+<li><p>固定长度的线程池。因corePoolSize为nThread，故每提交一个任务就创建一个线程，直到总数为nThreads。</p>
+</li>
+<li><p>keepAliveTime为0，线程不会超时。</p>
+</li>
+<li><p>线程执行过程中异常中断，会新建线程以补充。</p>
+</li>
+<li><p>无边界的任务队列LinkedBlockingQueue<runnable>。</runnable></p>
+</li>
 </ul>
-</blockquote>
 <p>Executors类中有两个静态方法用于生成该线程池对象：</p>
 <blockquote>
 <p>两种方法的差异在于：前者使用<strong>默认的ThreadFactory对象</strong>，后者使用指定的ThreadFactory对象。</p>
@@ -577,16 +580,20 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（2）newCachedThreadPool</p>
-<blockquote>
 <ul>
-<li>corePoolSize设为0，maximumPoolSize设为Integer.MAX_VALUE，keepAliveTime设为60秒。</li>
-<li>无可用线程时新建线程，有可用线程时则复用该线程。</li>
-<li>因maximumPoolSize设为Integer.MAX_VALUE，即线程数最大值为2147483647。</li>
-<li>线程存活时间为60秒，避免大量空闲线程对资源的消耗。</li>
-<li>同步任务队列SynchronousQueue<runnable>。</runnable></li>
-<li>此线程池适用于大量短暂的异步任务。</li>
+<li><p>corePoolSize设为0，maximumPoolSize设为Integer.MAX_VALUE，keepAliveTime设为60秒。</p>
+</li>
+<li><p>无可用线程时新建线程，有可用线程时则复用该线程。</p>
+</li>
+<li><p>因maximumPoolSize设为Integer.MAX_VALUE，即线程数最大值为2147483647。</p>
+</li>
+<li><p>线程存活时间为60秒，避免大量空闲线程对资源的消耗。</p>
+</li>
+<li><p>同步任务队列SynchronousQueue<runnable>。</runnable></p>
+</li>
+<li><p>此线程池适用于大量短暂的异步任务。</p>
+</li>
 </ul>
-</blockquote>
 <p>Executors类中有两个静态方法用于生成该线程池对象：</p>
 <blockquote>
 <p>两种方法的差异在于：前者使用<strong>默认的ThreadFactory对象</strong>，后者使用指定的ThreadFactory对象。</p>
@@ -597,7 +604,6 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                  <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（3）newSingleThreadExecutor</p>
-<blockquote>
 <ul>
 <li><p>corePoolSize和maximumPoolSize均设为1，keepAliveTime设为0。</p>
 </li>
@@ -610,7 +616,6 @@
 <li><p>无边界的任务队列LinkedBlockingQueue<runnable>。</runnable></p>
 </li>
 </ul>
-</blockquote>
 <p>Executors类中有两个静态方法用于生成该线程池对象：</p>
 <blockquote>
 <p>两种方法的差异在于：前者使用<strong>默认的ThreadFactory对象</strong>，后者使用指定的ThreadFactory对象。</p>
@@ -621,12 +626,12 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用Executors类的静态方法newSingleThreadExecutor</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newSingleThreadExecutor</span><span class="params">(ThreadFactory threadFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> FinalizableDelegatedExecutorService</span><br><span class="line">        (<span class="keyword">new</span> ThreadPoolExecutor(<span class="number">1</span>, <span class="number">1</span>,</span><br><span class="line">                                <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(),</span><br><span class="line">                                threadFactory));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Executors的静态内部类FinalizableDelegatedExecutorService，其继承自Executors的静态内部类DelegatedExecutorService</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">FinalizableDelegatedExecutorService</span></span></span><br><span class="line"><span class="class">        <span class="keyword">extends</span> <span class="title">DelegatedExecutorService</span> </span>&#123;</span><br><span class="line">    FinalizableDelegatedExecutorService(ExecutorService executor) &#123;</span><br><span class="line">        <span class="keyword">super</span>(executor); <span class="comment">// 调用父类的构造函数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Executors的静态内部类DelegatedExecutorService</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DelegatedExecutorService</span> <span class="keyword">extends</span> <span class="title">AbstractExecutorService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ExecutorService e; <span class="comment">// 内部保存一个ExecutorService对象</span></span><br><span class="line">    DelegatedExecutorService(ExecutorService executor) &#123; e = executor; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（4）newScheduledThreadPool</p>
-<blockquote>
 <ul>
-<li>创建一个定长线程池，支持定时及周期性任务执行。</li>
-<li>可延时执行阻塞任务的队列。</li>
+<li><p>创建一个定长线程池，支持定时及周期性任务执行。</p>
+</li>
+<li><p>可延时执行阻塞任务的队列。</p>
+</li>
 </ul>
-</blockquote>
 <p>Executors类中有两个静态方法用于生成该线程池对象：</p>
 <blockquote>
 <p>两种方法的差异在于：前者使用<strong>默认的ThreadFactory对象</strong>，后者使用指定的ThreadFactory对象。</p>
@@ -640,17 +645,17 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ScheduledThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(corePoolSize, Integer.MAX_VALUE, <span class="number">0</span>, NANOSECONDS,</span><br><span class="line">          <span class="keyword">new</span> DelayedWorkQueue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h5 id="3-2-ThreadPoolExecutor"><a href="#3-2-ThreadPoolExecutor" class="headerlink" title="3.2 ThreadPoolExecutor"></a>3.2 ThreadPoolExecutor</h5><p>（暂无）</p>
-<blockquote>
-<p>参考资料：</p>
-<p>[1] Java并发编程实战. Goetz B. 著，童云兰译</p>
+<h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h3><p>[1] 《Java并发编程实战》Goetz B. 著，童云兰译</p>
 <p>[2] <a href="https://www.infoq.cn/article/ConcurrentHashMap/" target="_blank" rel="noopener">https://www.infoq.cn/article/ConcurrentHashMap/</a></p>
 <p>[3] <a href="http://www.bubuko.com/infodetail-1518587.html" target="_blank" rel="noopener">http://www.bubuko.com/infodetail-1518587.html</a></p>
 <p>[4] <a href="https://blog.csdn.net/tongdanping/article/details/79604637" target="_blank" rel="noopener">https://blog.csdn.net/tongdanping/article/details/79604637</a></p>
 <p>[5] <a href="https://www.cnblogs.com/xifengxiaoma/p/11477136.html" target="_blank" rel="noopener">https://www.cnblogs.com/xifengxiaoma/p/11477136.html</a></p>
 <p>[6] <a href="https://www.cnblogs.com/jiansen/p/7351872.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiansen/p/7351872.html</a></p>
-</blockquote>
 <p>​                                                                                                                                                                                                                                                                                                                                                                                                               </p>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
       <tags>
         <tag>Concurrency</tag>
       </tags>
@@ -661,11 +666,6 @@
     <content><![CDATA[<p>通过阅读他人优秀的文章，基于经典的青蛙跳台阶问题，深入地学习动态规划建模过程。通过递归算法、自顶向下的备忘录算法及自低向上的动态规划算法，解决实际问题。</p>
 <a id="more"></a>
 
-<blockquote>
-<p>参考资料：</p>
-<p>[1] <a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a></p>
-<p>[2] <a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a></p>
-</blockquote>
 <h4 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h4><p>动态规划（Dynamic Programming）与 <strong>分治法</strong> 类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p>
 <p>与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。</p>
 <p>用一个表来记录所有已解的子问题的答案，不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中，这就是动态规划法的基本思路。</p>
@@ -675,7 +675,7 @@
 <p>2、边界</p>
 <p>3、状态转移方程</p>
 </blockquote>
-<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><p>1、对青蛙跳台阶问题的图解</p>
+<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><h5 id="1-对青蛙跳台阶问题的图解"><a href="#1-对青蛙跳台阶问题的图解" class="headerlink" title="1. 对青蛙跳台阶问题的图解"></a>1. 对青蛙跳台阶问题的图解</h5><p>（本小节图源：<a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg）" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg）</a></p>
 <ul>
 <li>每次跳1级台阶</li>
 </ul>
@@ -694,8 +694,7 @@
 </blockquote>
 <p><img src="/2020/01/02/常用算法之动态规划/4.jpg" alt></p>
 <p>显然，<strong>到达第n级台阶的路线总数等于到达第n-1级和第n-2级之和</strong>。</p>
-<p>2、建模</p>
-<ul>
+<h5 id="2-建模"><a href="#2-建模" class="headerlink" title="2. 建模"></a>2. 建模</h5><ul>
 <li><p>最优子结构</p>
 <p>如上所述，第n级台阶的路线总数等于到达第n-1级和第n-2级之和，即 F(n) = F(n-1) + F(n-2)。</p>
 </li>
@@ -706,8 +705,7 @@
 <p>F(1) = 1, F(2) = 2</p>
 </li>
 </ul>
-<p>3、算法实现</p>
-<p>（1）递归</p>
+<h5 id="3-算法实现"><a href="#3-算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><p>（1）递归</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">frogJump</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> frogJump(N-<span class="number">1</span>) + frogJump(N-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
@@ -715,7 +713,6 @@
 <li>时间复杂度：O(2^N)</li>
 <li>空间复杂度：O(N)</li>
 </ul>
-<hr>
 <p>（2）备忘录算法（自顶向下）</p>
 <p>利用集合Map，避免递归算法中的重复计算部分，提高算法效率</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">frogJump</span><span class="params">(<span class="keyword">int</span> N, HashMap&lt;Integer, Integer&gt; map)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(N))&#123;</span><br><span class="line">        <span class="keyword">return</span> map.get(N);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = frogJump(N-<span class="number">1</span>) + frogJump(N-<span class="number">2</span>);</span><br><span class="line">        map.put(N, val);</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -725,7 +722,7 @@
 <li>时间复杂度：O(N)</li>
 <li>空间复杂度：O(N)</li>
 </ul>
-<p>（3）动态规划（自底向上）</p>
+<p>==（3）动态规划（自底向上）==</p>
 <p>备忘录算法中须保存所有子状态，若仅仅保存递推所需的前两个子状态，便能优化算法的空间复杂度。</p>
 <blockquote>
 <p>通过自底向上的递推，仅仅利用常数额外空间，优化算法的时间和空间复杂度，这便是动态规划</p>
@@ -737,11 +734,10 @@
 <li>时间复杂度：O(N)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
-<h4 id="四、更加复杂的动态规划——国王与金矿问题"><a href="#四、更加复杂的动态规划——国王与金矿问题" class="headerlink" title="四、更加复杂的动态规划——国王与金矿问题"></a>四、更加复杂的动态规划——国王与金矿问题</h4><p>1、问题</p>
-<p>有一个国家发现了n座金矿，每座金矿的黄金储量不同，且每座金矿需要参与挖掘的工人数也不同。参与挖矿工人的总数是w。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
+<h4 id="四、更加复杂的动态规划——国王与金矿问题"><a href="#四、更加复杂的动态规划——国王与金矿问题" class="headerlink" title="四、更加复杂的动态规划——国王与金矿问题"></a>四、更加复杂的动态规划——国王与金矿问题</h4><p>问题：有一个国家发现了n座金矿，每座金矿的黄金储量不同，且每座金矿需要参与挖掘的工人数也不同。参与挖矿工人的总数是w。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
+<p>（本小节图源：<a href="https://www.cnblogs.com/hczd123/p/7412950.html）" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html）</a></p>
 <p><img src="/2020/01/02/常用算法之动态规划/5.jpg" alt></p>
-<p>2、建模：</p>
-<blockquote>
+<h5 id="1-建模"><a href="#1-建模" class="headerlink" title="1. 建模"></a>1. 建模</h5><blockquote>
 <p>n：金矿数量；w：总的工人数；g[]：保存每座金矿的矿藏量；p[]：保存每座金矿的用工数</p>
 </blockquote>
 <p>建模过程中，需要明确最优子结构、状态转移方程和边界这三个要素。</p>
@@ -781,8 +777,7 @@
 <blockquote>
 <p>F(n, w) = 0, n==1, w&lt;p[0]</p>
 </blockquote>
-<p>3、算法实现</p>
-<p>（1）递归解法</p>
+<h5 id="2-算法实现"><a href="#2-算法实现" class="headerlink" title="2. 算法实现"></a>2. 算法实现</h5><p>（1）递归解法</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&lt;p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&gt;=p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> g[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> a = getMaxGold(n-<span class="number">1</span>, w, g, p);</span><br><span class="line">    <span class="keyword">if</span>(w&lt;p[n-<span class="number">1</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> b = getMaxGold(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>], g, p) + g[n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> Math.max(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
@@ -801,7 +796,7 @@
 <li>时间复杂度：O(n*w)</li>
 <li>空间复杂度：O(n*w)</li>
 </ul>
-<p>（3）动态规划算法</p>
+<p>==（3）动态规划算法==</p>
 <p>以10名工人挖5座金矿为例，可作下表</p>
 <p><img src="/2020/01/02/常用算法之动态规划/7.jpg" alt></p>
 <p>表中，每一行的所有数据均可<strong>由上一行数据推导得到</strong>，因而动态规划算法可基于此规律，利用前一行数据推导当前行数据。</p>
@@ -812,126 +807,538 @@
 <li>时间复杂度：O(n*w)</li>
 <li>空间复杂度：O(w)</li>
 </ul>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>[1] <a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a></p>
+<p>[2] <a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a></p>
 ]]></content>
+      <categories>
+        <category>算法刷题</category>
+      </categories>
       <tags>
         <tag>Algorithms</tag>
         <tag>Dynamic Programming</tag>
       </tags>
   </entry>
   <entry>
-    <title>Spring MVC框架学习笔记</title>
-    <url>/2019/08/26/Spring%20MVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>纵使前路荆棘遍野，亦将坦然无惧仗剑前行！</p>
+    <title>Java学习之虚拟机</title>
+    <url>/2019/11/11/Java%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%99%9A%E6%8B%9F%E6%9C%BA/</url>
+    <content><![CDATA[<p>通读周志明先生的《深入理解Java虚拟机》一书，学习了Java虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！</p>
 <a id="more"></a>
 
-<p>MVC模式</p>
+<h3 id="一、内存管理机制"><a href="#一、内存管理机制" class="headerlink" title="一、内存管理机制"></a>一、内存管理机制</h3><h4 id="1-Java内存区域图示如下："><a href="#1-Java内存区域图示如下：" class="headerlink" title="1. Java内存区域图示如下："></a>1. Java内存区域图示如下：</h4><p><img src="/2019/11/11/Java学习之虚拟机/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png" alt></p>
+<p>值得注意的是：<strong>Java虚拟机栈（Java Virtual Machine Stacks）</strong>、<strong>堆（Heap）</strong>、<strong>方法区（Method Area）</strong>：</p>
+<ol>
+<li><p>虚拟机栈主要与方法调用相关，存储的局部变量表中保存<strong>对象引用</strong>；</p>
+</li>
+<li><p>堆：存放所有的对象实例；</p>
+</li>
+<li><p>方法区：与编译相关，存储虚拟机加载的类信息、<strong>静态变量</strong>、常量等；</p>
+</li>
+<li><p>运行时常量池：编译生成的字面量和符号引用。</p>
+</li>
+</ol>
+<p><img src="/2019/11/11/Java学习之虚拟机/2.png" alt></p>
+<h4 id="2-HotSpot虚拟机新建对象过程"><a href="#2-HotSpot虚拟机新建对象过程" class="headerlink" title="2. HotSpot虚拟机新建对象过程"></a>2. HotSpot虚拟机新建对象过程</h4><p>以常见的HotSpot为例，介绍其新建普通 Java对象的过程。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg" alt></p>
+<p>（1）在堆中分配内存的两种方式：</p>
+<ul>
+<li><p>指针碰撞：内存区域规整（未使用区域与已使用区域分界）时，仅需要移动指针</p>
+</li>
+<li><p>空闲列表：因内存区域杂乱无章，虚拟机维持记录可用内存区域的表</p>
+</li>
+</ul>
+<p><strong>（2）两种保证分配内存时线程安全的方法：</strong></p>
+<ul>
+<li><p>同步机制，CAS + 失败重试</p>
+</li>
+<li><p><strong>每个线程</strong>单独预分配一块内存区域，称之为<strong>本地线程分配缓冲（TLAB）</strong></p>
+</li>
+</ul>
+<p>（3）对象的内存布局：</p>
+<ol>
+<li><p>对象头：保存运行时数据，如哈希码、GC分代年龄等；另一部分保存指向类元数据的<strong>类型指针</strong></p>
+</li>
+<li><p>实例数据部分</p>
+</li>
+<li><p>填充位</p>
+</li>
+</ol>
+<h4 id="3-对象的访问方式"><a href="#3-对象的访问方式" class="headerlink" title="3. 对象的访问方式"></a>3. 对象的访问方式</h4><p>访问对象的途径主要是通过句柄和直接访问：</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
+<blockquote>
+<p><strong>对象类型数据</strong>是指该实例所属的类</p>
+<p>查找对象的元数据信息未经过对象本身</p>
+<p>优点：垃圾收集需要调整对象所在内存地址时，不影响reference；</p>
+</blockquote>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
+<blockquote>
+<p>查找对象的元数据信息须经过对象本身</p>
+<p>优点：访问速度快</p>
+</blockquote>
+<h4 id="4、内存分配策略"><a href="#4、内存分配策略" class="headerlink" title="4、内存分配策略"></a>4、内存分配策略</h4><p>具体的内存分配策略取决于 GC组合、JVM参数设置：</p>
+<ol>
+<li><p>对象优先在新生代 Eden 区分配，该区域不足时，发起 Minor GC；</p>
+</li>
+<li><p>占用大内存的对象直接进入老年代；</p>
+</li>
+<li><p>寿命长的对象进入老年代（根据对象年龄计数器来判断）；</p>
+</li>
+<li><p>Survivor 空间中相同年龄的对象达到一半空间时，年龄大于或等于该年龄的对象可进入老年代；</p>
+</li>
+<li><p>老年代为 Minor GC提供空间分配担保。</p>
+</li>
+</ol>
+<h3 id="二、GC工作区域"><a href="#二、GC工作区域" class="headerlink" title="二、GC工作区域"></a>二、GC工作区域</h3><p>在 JVM中，虚拟机栈、本地方法栈和程序计数器属于线程私有，随线程结束而释放内存。JVM中的GC关注的是<strong>方法区</strong>和<strong>堆</strong>。</p>
+<h4 id="1-回收堆"><a href="#1-回收堆" class="headerlink" title="1. 回收堆"></a>1. 回收堆</h4><h5 id="1-1-如何判断对象内存可回收？"><a href="#1-1-如何判断对象内存可回收？" class="headerlink" title="1.1 如何判断对象内存可回收？"></a>1.1 如何判断对象内存可回收？</h5><p><strong>可达性分析算法</strong>：根搜索方法，通过一些“GC Roots”对象作为起点，从这些节点开始往下搜索，搜索通过的路径成为引用链（ReferenceChain）。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg" alt></p>
+<h5 id="1-2-Java中可作为GC-Roots的四种对象："><a href="#1-2-Java中可作为GC-Roots的四种对象：" class="headerlink" title="1.2 Java中可作为GC Roots的四种对象："></a>1.2 Java中可作为GC Roots的四种对象：</h5><ul>
+<li><p>虚拟机栈的本地变量表中引用的对象</p>
+</li>
+<li><p>方法区类静态属性引用的对象</p>
+</li>
+<li><p>方法区常量引用的对象</p>
+</li>
+<li><p>本地方法栈Native方法引用的对象</p>
+</li>
+</ul>
+<h5 id="1-3-经可达性分析后，可回收对象就一定会被回收？"><a href="#1-3-经可达性分析后，可回收对象就一定会被回收？" class="headerlink" title="1.3 经可达性分析后，可回收对象就一定会被回收？"></a>1.3 经可达性分析后，可回收对象就一定会被回收？</h5><p>经可达性分析后，被定为可回收的对象须经历<strong>两次标记</strong>方能被GC回收内存。【重点：finalize()方法】</p>
+<h5 id="1-4-JVM为什么不采用经典的引用计数算法来判断对象是否可回收？"><a href="#1-4-JVM为什么不采用经典的引用计数算法来判断对象是否可回收？" class="headerlink" title="1.4 JVM为什么不采用经典的引用计数算法来判断对象是否可回收？"></a>1.4 JVM为什么不采用经典的<strong>引用计数</strong>算法来判断对象是否可回收？</h5><p>引用计数算法实现简单，但面临一个重要缺陷：当两个对象互相引用（循环引用）时，相应的内存区域无法被回收，导致<strong>内存泄漏</strong></p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg" alt></p>
+<h5 id="1-5-引用分类（是否回收被引用对象所在的内存区域）"><a href="#1-5-引用分类（是否回收被引用对象所在的内存区域）" class="headerlink" title="1.5 引用分类（是否回收被引用对象所在的内存区域）"></a>1.5 引用分类（是否回收被引用对象所在的内存区域）</h5><ol>
+<li><p>强引用：new出来的对象引用关系，不会回收；</p>
+</li>
+<li><p>软引用：有用、非必需，在内存溢出前进行二次回收；</p>
+</li>
+<li><p>弱引用：生存至下一次GC工作前，一旦GC开始回收内存，则直接回收其对象；</p>
+</li>
+<li><p>虚引用：无法通过虚引用取得对象，仅能在此对象被回收时通知系统。</p>
+</li>
+</ol>
+<h4 id="2、回收方法区"><a href="#2、回收方法区" class="headerlink" title="2、回收方法区"></a>2、回收方法区</h4><p>方法区待回收的内容主要为：废弃常量 和 无用的类。</p>
+<p>（1）废弃常量：当常量池中的常量不被任何对象引用时，则可以清理出常量池。</p>
+<p>（2）无用的类：无用的类须满足下述三个条件，</p>
+<ul>
+<li><p>Java堆中该类所有的实例均已被回收；</p>
+</li>
+<li><p>该类的加载器ClassLoader已被回收；</p>
+</li>
+<li><p>无法通过反射机制访问该类的方法。</p>
+</li>
+</ul>
+<h3 id="三、回收算法"><a href="#三、回收算法" class="headerlink" title="三、回收算法"></a>三、回收算法</h3><p>JVM 针对 Java堆 采用的回收算法主要分为：<strong>标记-清除算法、复制算法和标记-整理算法</strong>；采用的策略为：分代收集算法，即新生代采用复制算法，老年代采用标记-清除算法和标记-整理算法</p>
+<h4 id="1-算法"><a href="#1-算法" class="headerlink" title="1. 算法"></a>1. 算法</h4><h5 id="1-1-标记-清除（Mark-Sweep）算法"><a href="#1-1-标记-清除（Mark-Sweep）算法" class="headerlink" title="1.1 标记-清除（Mark-Sweep）算法"></a>1.1 标记-清除（Mark-Sweep）算法</h5><p>在标记阶段，由<strong>根节点开始经可达性分析</strong>，标记所有从根节点开始的可达对象，因此未被标记的对象就是未被引用的垃圾对象；</p>
+<p>在清除阶段，清除所有未被标记的对象。</p>
+<ul>
+<li><p><em>特点：将循环引用标记为不可达，解决了引用计数算法无法处理循环引用的问题.</em></p>
+</li>
+<li><p><em>缺点：1、效率低；2、易导致内存区域不规整（即大量不连续的内存碎片）。</em></p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-2-复制（Copying）算法"><a href="#1-2-复制（Copying）算法" class="headerlink" title="1.2 复制（Copying）算法"></a>1.2 复制（Copying）算法</h5><p>内存对半分，先使用一半，需要清理时先将存活对象转移至保留内存区域，随后全部回收刚使用过的一半内存。</p>
+<p><strong>适用于新生代</strong>中对象存活率低、可回收对象比例高的场景。</p>
+<ul>
+<li><em>优点：1、无内存碎片；2、效率高。</em></li>
+<li><em>缺点：1、实际使用内存仅占一半，浪费资源；2、当对象存活率高时，需要较为频繁的复制操作，效率降低。</em></li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-3-标记-整理（Mark-Compact）算法"><a href="#1-3-标记-整理（Mark-Compact）算法" class="headerlink" title="1.3 标记-整理（Mark-Compact）算法"></a>1.3 标记-整理（Mark-Compact）算法</h5><p>针对老年代中对象存活率高，若使用复制算法，则效率低。</p>
+<p>标记-整理算法（或标记-压缩算法）核心在于：标记完成后，将“分散”的存活对象移动至“端集中”区域，随后清理其端边界以外的内存。</p>
+<ul>
+<li><p><em>优点：1、适用于对象存活率高的场景；2、无内存碎片。</em></p>
+</li>
+<li><p><em>缺点：标记、整理过程代价高昂。</em></p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-4-分代收集（Generational-Collection）算法"><a href="#1-4-分代收集（Generational-Collection）算法" class="headerlink" title="1.4 分代收集（Generational Collection）算法"></a>1.4 分代收集（Generational Collection）算法</h5><p>将 Java堆分为<strong>新生代</strong>和<strong>老年代</strong></p>
+<ul>
+<li><p>新生代：对象存活率低，垃圾多；</p>
+</li>
+<li><p>老年代：对象存活率高，垃圾少。</p>
+</li>
+</ul>
+<p>基于上述算法的优缺点，分代收集的策略是：<em>对新生代采用复制算法，对老年代采用标记-清除或标记-整理算法</em> 。</p>
+<p>在新生代中，分为：较大的<strong>Eden空间</strong>和两块较小的<strong>Survivor空间</strong>。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png" alt></p>
+<ol>
+<li><p>在新生代中，先使用Eden和一块Survivor区域，另一块Survivor区域保留，其空间比例一般为8：1：1；</p>
+</li>
+<li><p>回收时，Eden和Survivor(From)中<strong>存活时间长和大对象直接进入老年代</strong>，其余存活对象进入Survivor(To)区域；</p>
+</li>
+<li><p>当Survivor(To)区域空间不足时，利用<strong>分配担保机制</strong>，非存活时间长或大对象的存活对象同样被放入老年代中；</p>
+</li>
+<li><p>清理Eden和Survivor(From)。</p>
+</li>
+</ol>
+<h4 id="2-HotSpot-的算法实现"><a href="#2-HotSpot-的算法实现" class="headerlink" title="2. HotSpot 的算法实现"></a>2. HotSpot 的算法实现</h4><p>（1）在可达性分析算法中，如何快速、精确地找出（枚举）根节点（GC Roots）？</p>
+<p>精确：GC进行时停止所有 Java线程，确保分析时引用关系不再变化；</p>
+<p>速度：OopMap（Ordinary Object Pointer Map）普通对象指针的Map数据结构，保存对象引用信息。</p>
+<p>（2）Safe Point &amp; Safe Region</p>
+<blockquote>
+<p>安全点：GC中断线程的“位置”</p>
+</blockquote>
+<h3 id="四、垃圾收集器"><a href="#四、垃圾收集器" class="headerlink" title="四、垃圾收集器"></a>四、垃圾收集器</h3><p>重要概念：</p>
+<p>（1）在垃圾收集器中，并发（Concurrent）与并行（Parallel）的区别：</p>
+<ul>
+<li><p>并发：用户进程与垃圾收集进程并发执行。单CPU环境，只能交替执行；多CPU环境，可同时执行。</p>
+<blockquote>
+<p><em>CMS 在并发标记、清理阶段</em></p>
+</blockquote>
+</li>
+<li><p>并行：用户进程暂停，在多CPU环境中，多条垃圾收集线程可同时执行。</p>
+</li>
+</ul>
+<p>在垃圾收集器中，并发与并行的重要区别在于<strong>前者不用暂停用户进程，后者必须暂停用户进程</strong>，这与常说的线程并发和并行的概念还是有点不同！单核和多核环境只决定了线程能否同时执行。</p>
+<p>（2）吞吐量与GC停顿时间的关系</p>
+<ul>
+<li><p>吞吐量越高，表示CPU利用效率越高</p>
+</li>
+<li><p>GC停顿时间缩短是以牺牲吞吐量和新生代空间大小换来的</p>
+</li>
+</ul>
+<p>因此，追求更短的 GC停顿时间，适合交互频繁的场景，代价是 CPU利用率下降；追求更高的 CPU利用率，适合计算量大的场景，代价是 GC停顿时间延长。*</p>
+<p>（3）Minor GC 和 Full GC</p>
+<ul>
+<li><p>Minor GC：发生在新生代的垃圾收集动作，GC 频繁且速度快；</p>
+</li>
+<li><p>Major GC / Full GC：发生在老年代，速度比 Minor GC 慢。</p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg" alt></p>
+<h4 id="1-Serial-收集器"><a href="#1-Serial-收集器" class="headerlink" title="1. Serial 收集器"></a>1. Serial 收集器</h4><p>（1）单线程：单条GC线程完成收集，且必须暂停其它所有用户正常工作线程（中断其它的 Java 线程）；</p>
+<p>（2）对于单CPU环境，Serial 没有线程交互开销，最高的单线程收集效率；</p>
+<p>（3）Client 模式下默认的新生代收集器。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/Serial.jpg" alt></p>
+<h4 id="2-ParNew-收集器"><a href="#2-ParNew-收集器" class="headerlink" title="2. ParNew 收集器"></a>2. ParNew 收集器</h4><p>（1）多线程：多条GC线程（多核时才可能同时执行），且必须暂停其它所有用户正常工作线程；</p>
+<p>（2）除多线程外，ParNew 其余实现与 Serial 相同；</p>
+<p>（3）对于单CPU环境，ParNew 存在线程交互开销，效率低于 Serial；</p>
+<p>（4）对于多核CPU环境，ParNew 因多线程并行，效率一般高于 Serial；</p>
+<p>（5）Server模式下首选的新生代收集器。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/ParNew.jpg" alt></p>
+<h4 id="3-Parallel-Scavenge-收集器"><a href="#3-Parallel-Scavenge-收集器" class="headerlink" title="3. Parallel Scavenge 收集器"></a>3. Parallel Scavenge 收集器</h4><p>（1）与 ParNew 在基本实现上相似；</p>
+<p>（2）吞吐量优先：在GC停顿时间和CPU效率间平衡选择，不同于 CMS 等收集器追求尽可能短的 GC 停顿时          间；</p>
+<p>（3）GC Ergonomics：自适应调节策略。</p>
+<p>![](Java学习之虚拟机/Parallel Scavenge.jpg)</p>
+<h4 id="4-Serial-Old-收集器"><a href="#4-Serial-Old-收集器" class="headerlink" title="4. Serial Old 收集器"></a>4. Serial Old 收集器</h4><p>（1）Serial 收集器的 老年代 版</p>
+<p>（2）标记 - 整理 算法</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/SerialOld.jpg" alt></p>
+<h4 id="5-Parallel-Old-收集器"><a href="#5-Parallel-Old-收集器" class="headerlink" title="5. Parallel Old 收集器"></a>5. Parallel Old 收集器</h4><p>（1）Parallel Scavenge 收集器的 老年代 版</p>
+<p>（2）标记 - 整理 算法</p>
+<p>（3）Parallel Scavenge + Parallel Old 组合：吞吐量优先，适合注重吞吐量和CPU资源敏感的场景</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/ParallelOld.jpg" alt></p>
+<h4 id="6-CMS-收集器"><a href="#6-CMS-收集器" class="headerlink" title="6. CMS 收集器"></a>6. CMS 收集器</h4><p>（1）标记 - 清理 算法</p>
+<p>（2）突出点：CMS ( Concurrent Mark Sweep ) 收集器在运行期间，<strong>不需要一直中断其它线程</strong>，因此能实现<strong>最短的 GC 停顿时间</strong></p>
+<p>（3）分为以下四个步骤：</p>
+<ul>
+<li><p>初始标记</p>
+</li>
+<li><p>并发标记</p>
+</li>
+<li><p>重新标记</p>
+</li>
+<li><p>并发清理</p>
+</li>
+</ul>
+<p>其中，并发标记 / 并发清理期间，不暂停其它 CPU 核上的线程，耗时较长；初始标记 / 重新标记期间，需要暂停其它所有线程，耗时较短。</p>
+<p>（4）CMS 的不足：</p>
+<ul>
+<li><p>对CPU资源敏感，使吞吐量下降，CPU利用率降低</p>
+</li>
+<li><p>并发清理阶段其它用户线程产生的“浮动垃圾”须等到下次GC</p>
+</li>
+<li><p>潜在的 Concurrent Mode Failure 问题</p>
+</li>
+<li><p>清理算法产生大量空间碎片</p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/CMS.jpg" alt></p>
+<h4 id="7-G1-Garbage-First-收集器"><a href="#7-G1-Garbage-First-收集器" class="headerlink" title="7. G1( Garbage-First ) 收集器"></a>7. G1( Garbage-First ) 收集器</h4><p>基本原理：Region + 区域回收优先级</p>
+<p>(1) 不再使用 新生代 / 老年代 划分，而是使用 <strong>Region</strong> 划分堆内存区域；</p>
+<p>(2) G1追踪不同的 Region，并维护 <strong>优先列表</strong>，由此决定优先GC的区域；</p>
+<p>(3) 不同的Region之间的对象引用关系保存在 Remembered Set中（新生代与老年代之间亦是）。</p>
+<p><em>优点：</em></p>
+<ul>
+<li><p>更适合多 CPU的环境；</p>
+</li>
+<li><p>可独自运作，且对寿命不同的对象也采取不同的策略；</p>
+</li>
+<li><p>无内存碎片；</p>
+</li>
+<li><p><strong>可预测的暂停</strong>。</p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/g1.jpg" alt></p>
+<p>运行过程如下：</p>
+<ol>
+<li><p>初始标记：标记GC Roots直接关联的对象；</p>
+</li>
+<li><p>并发标记：可达性分析，耗时长、与其它 Java线程并发；</p>
+</li>
+<li><p>最终标记：Remembered Set Logs中数据（记录并发标记阶段的引用变化）与Remembered Set合并；</p>
+</li>
+<li><p>筛选回收：有选择地确定GC Region。</p>
+</li>
+</ol>
+<h3 id="五、虚拟机类加载"><a href="#五、虚拟机类加载" class="headerlink" title="五、虚拟机类加载"></a>五、虚拟机类加载</h3><p><strong><em>虚拟机将编译得到的字节码文件加载到内存，经连接、解析等过程，得到可直接使用的 Java 类型的过程，称为类加载</em></strong>。</p>
+<p><strong><em>程序运行时期进行</em></strong></p>
+<h4 id="1-加载过程"><a href="#1-加载过程" class="headerlink" title="1. 加载过程"></a>1. 加载过程</h4><p>类的生命周期如下图</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt></p>
+<h5 id="1-1-加载"><a href="#1-1-加载" class="headerlink" title="1.1 加载"></a>1.1 加载</h5><p>加载Class文件过程三个动作：</p>
+<ol>
+<li><p>通过<strong>非数组类</strong>的全限定名获取二进制字节流，但具体的获取途径并未规定（可以从ZIP包、网络、JSP文件等）；</p>
+<blockquote>
+<p><em>数组类直接由虚拟机加载，不经过类加载器</em></p>
+</blockquote>
+</li>
+<li><p>将字节流所代表的静态存储结构转换为方法区的运行时数据结构；</p>
+</li>
+<li><p>在内存中生成类的访问入口对象 java.lang.Class。</p>
+<blockquote>
+<p><em>HotSpot 虚拟机将 Class 对象存放在方法区</em></p>
+</blockquote>
+</li>
+</ol>
+<h5 id="1-2-验证"><a href="#1-2-验证" class="headerlink" title="1.2 验证"></a>1.2 验证</h5><p><img src="/2019/11/11/Java学习之虚拟机/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E6%B5%81%E7%A8%8B.jpg" alt></p>
+<blockquote>
+<p>符号引用验证发生于解析阶段，说明<strong>类加载过程各项“工作”是按先后顺序开始，但不一定是前一阶段结束才开始后一阶段，不同阶段的“工作”可并行</strong></p>
+</blockquote>
+<h5 id="1-3-准备"><a href="#1-3-准备" class="headerlink" title="1.3 准备"></a>1.3 准备</h5><p>在方法区为<strong>类静态变量</strong>分配内存并初始化为零值，<strong>final</strong>修饰的<strong>类静态常量</strong>赋给定的初值</p>
+<h5 id="1-4-解析"><a href="#1-4-解析" class="headerlink" title="1.4 解析"></a>1.4 解析</h5><p>（1）符号引用：存放于常量池中的常量，包括：</p>
+<ol>
+<li><p>类和接口的全限定名；</p>
+</li>
+<li><p>字段名和描述符；</p>
+</li>
+<li><p>方法名和描述符。</p>
+</li>
+</ol>
+<p>（2）解析过程：将符号引用解析、翻译，匹配对应的物理内存地址，即直接引用。</p>
+<h5 id="1-5-初始化"><a href="#1-5-初始化" class="headerlink" title="1.5 初始化"></a>1.5 初始化</h5><p>初始化阶段，执行类构造器的 <code>&lt;clinit&gt;()</code> 方法</p>
+<blockquote>
+<p>类变量赋值语句 &amp;&amp; 静态代码块</p>
+</blockquote>
+<h4 id="2、双亲委派模型"><a href="#2、双亲委派模型" class="headerlink" title="2、双亲委派模型"></a>2、双亲委派模型</h4><p>双亲委派模型的要点：</p>
+<ol>
+<li><p>子类加载器先请求父类加载器尝试加载；</p>
+</li>
+<li><p>父类加载器无法加载时，子类加载器再尝试加载；</p>
+</li>
+<li><p><strong>所有的加载请求首先被启动类加载器处理</strong>。</p>
+</li>
+</ol>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg" alt></p>
+<h3 id="六、并发"><a href="#六、并发" class="headerlink" title="六、并发"></a>六、并发</h3><h4 id="1-Java内存模型"><a href="#1-Java内存模型" class="headerlink" title="1. Java内存模型"></a>1. Java内存模型</h4><blockquote>
+<p>定义了<strong>线程共享的变量</strong>从虚拟机内存中被读取或写入的底层实现</p>
+<p>线程共享变量：实例字段、静态字段、构成数组对象的元素</p>
+</blockquote>
+<h4 id="1-1-主内存与工作内存"><a href="#1-1-主内存与工作内存" class="headerlink" title="1.1 主内存与工作内存"></a>1.1 主内存与工作内存</h4><ul>
+<li><p>工作内存中保存主内存中（共享）变量的拷贝副本；</p>
+</li>
+<li><p>工作内存中还保存了<strong>线程私有的变量</strong>；</p>
+</li>
+<li><p>线程对（共享）变量的读写操作必须经过工作内存才可与主内存交互；</p>
+</li>
+<li><p>线程间（共享）变量值的传递须借助主内存。</p>
+</li>
+</ul>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE.jpg" alt></p>
+<h4 id="1-2-内存间交互"><a href="#1-2-内存间交互" class="headerlink" title="1.2 内存间交互"></a>1.2 内存间交互</h4><table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th align="center">作用对象</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">lock</td>
+<td align="center">主内存中的变量</td>
+<td align="center">锁定状态，线程独占</td>
+</tr>
+<tr>
+<td align="center">unlock</td>
+<td align="center">主内存中的变量</td>
+<td align="center">解除锁定状态</td>
+</tr>
+<tr>
+<td align="center">read</td>
+<td align="center">主内存中的变量</td>
+<td align="center">将变量值传输至对应的工作内存中</td>
+</tr>
+<tr>
+<td align="center">load</td>
+<td align="center">工作内存中的变量</td>
+<td align="center">read 操作后，将变量值放入工作内存的变量副本中</td>
+</tr>
+<tr>
+<td align="center">use</td>
+<td align="center">工作内存中的变量</td>
+<td align="center">使用变量值</td>
+</tr>
+<tr>
+<td align="center">assign</td>
+<td align="center">工作内存中的变量</td>
+<td align="center">赋值</td>
+</tr>
+<tr>
+<td align="center">store</td>
+<td align="center">工作内存中的变量</td>
+<td align="center">将变量值传输至主内存中</td>
+</tr>
+<tr>
+<td align="center">write</td>
+<td align="center">主内存中的变量</td>
+<td align="center">store 操作后，变量值存入主内存的变量中</td>
+</tr>
+</tbody></table>
+<h4 id="1-3-原子性、可见性和有序性"><a href="#1-3-原子性、可见性和有序性" class="headerlink" title="1.3 原子性、可见性和有序性"></a>1.3 原子性、可见性和有序性</h4><p>（1）原子性</p>
+<ol>
+<li>read、load、use、assign、store、write 均为原子性的变量操作，实现<strong>基本数据类型的访问和读写操作是原子性的</strong>；</li>
+<li>lock 和 unlock 操作，更大范围内实现原子性（<strong>synchronized</strong> 关键字）。</li>
+</ol>
+<p>（2）可见性</p>
+<ol>
+<li><strong>volatile</strong> 关键字，<strong>最轻量级的同步机制</strong>，其修饰的变量对所有线程是可见的；</li>
+<li>final 关键字；</li>
+<li><strong>synchronized</strong> 关键字，同步代码块。</li>
+</ol>
+<p>（3）有序性</p>
+<ol>
+<li><em>线程内表现为串行的语义</em> ：在本线程内观察，操作是有序的；</li>
+<li><em>指令重排</em> &amp; <em>工作内存与主内存同步延迟</em> ： 从另一个线程观察，被观察线程内的操作是无序的。</li>
+</ol>
+<h4 id="2-Java线程"><a href="#2-Java线程" class="headerlink" title="2. Java线程"></a>2. Java线程</h4><blockquote>
+<p>线程将进程的<strong>资源分配</strong>和<strong>执行调度</strong>分开，线程共享进程资源（内存地址、文件I/O等），线程独立被CPU调用、执行。</p>
+</blockquote>
+<p>实现线程的三种方式：内核线程实现、用户线程实现、用户线程加轻量级进程的混合实现。</p>
+<h5 id="2-1-内核线程实现"><a href="#2-1-内核线程实现" class="headerlink" title="2.1 内核线程实现"></a>2.1 内核线程实现</h5><p><em>内核线程（Kernel-Level Thread, KLT）*：由操作系统内核完成线程切换、调度、任务映射等操作，用户程序通过 *轻量级进程 （Light Weight Process, LWP)</em> 接口使用内核线程。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<blockquote>
+<p>特点：系统调用代价高</p>
+</blockquote>
+<h5 id="2-2-用户线程实现"><a href="#2-2-用户线程实现" class="headerlink" title="2.2 用户线程实现"></a>2.2 用户线程实现</h5><p><em>用户线程（User Thread, UT）</em> ：建立在用户空间的线程库，用户线程的建立、同步、调度和销毁在用户态中完成。</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<blockquote>
+<p>特点：用户态操作，代价小；实现过程异常复杂。</p>
+</blockquote>
+<h5 id="2-3-用户线程加轻量级进程的混合实现"><a href="#2-3-用户线程加轻量级进程的混合实现" class="headerlink" title="2.3 用户线程加轻量级进程的混合实现"></a>2.3 用户线程加轻量级进程的混合实现</h5><blockquote>
+<p>轻量级进程是用户线程与内核线程之间的桥梁</p>
+</blockquote>
+<p><img src="/2019/11/11/Java学习之虚拟机/%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] 《深入理解Java虚拟机》周志明 著</p>
+<p>[2] <a href="https://blog.csdn.net/qq_41701956/article/details/81664921" target="_blank" rel="noopener">https://blog.csdn.net/qq_41701956/article/details/81664921</a></p>
+<p>[3] <a href="https://blog.csdn.net/wen7280/article/details/54428387" target="_blank" rel="noopener">https://blog.csdn.net/wen7280/article/details/54428387</a></p>
+<p>[4] <a href="https://www.jianshu.com/p/114bf4d9e59e" target="_blank" rel="noopener">https://www.jianshu.com/p/114bf4d9e59e</a></p>
+<p>[5] <a href="https://www.jianshu.com/p/50d5c88b272dc" target="_blank" rel="noopener">https://www.jianshu.com/p/50d5c88b272dc</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring MVC框架学习笔记</title>
+    <url>/2019/08/26/Spring%20MVC%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>笔记基于《Spring MVC+Mybatis开发从入门到项目实战》一书，偏向于实践。</p>
+<a id="more"></a>
+
+<p><strong>MVC模式</strong></p>
 <blockquote>
 <p>Model：数据模型层，封装用户的输入/输出数据</p>
 <p>Controller：控制层，前、后端交互</p>
 <p>View：视图层，前端显示</p>
 </blockquote>
 <hr>
-<p>Spring MVC框架流程图如下，其中最核心的是<strong>前端控制器（DispatcherServlet）</strong></p>
+<h4 id="1-Spring-MVC流程"><a href="#1-Spring-MVC流程" class="headerlink" title="1. Spring MVC流程"></a>1. Spring MVC流程</h4><p>Spring MVC框架流程图如下，其中最核心的是<strong>前端控制器（DispatcherServlet）</strong></p>
 <p>![](Spring MVC框架学习笔记/Spring MVC框架流程图.png)</p>
-<blockquote>
+<p><em>流程描述如下：</em></p>
 <ol>
-<li>用户请求被拦截、发送至前端控制器（DispatcherServlet）；</li>
-<li>DispatcherServlet请求处理器映射器（HandlerMapping）查找相应的处理器（Handler），HandlerMapping将Handler、Intercepter（拦截器）返回给DispatcherServlet；</li>
-<li>DispatcherServlet根据返回的Handler，请求处理器适配器（HandlerAdapter）执行Handler；</li>
-<li>HandlerAdapter调用自己的Handler方法，利用 Java的<strong>反射机制</strong>执行具体的Controller方法，获得ModelAndView 视图对象；</li>
-<li>HandlerAdapter将ModelAndView 视图对象发送给DispatcherServlet；</li>
-<li>DispatcherServlet请求视图处理器（ViewResolver）解析，返回结果；</li>
-<li>DispatcherServlet渲染视图，<strong>将Model中的模型数据填充到View视图的Request域</strong>，生成最终的View视图；</li>
-<li>DispatcherServlet发送Response响应至用户界面。</li>
+<li><p>用户请求被拦截、发送至前端控制器（DispatcherServlet）；</p>
+</li>
+<li><p>DispatcherServlet请求处理器映射器（HandlerMapping）查找相应的处理器（Handler），HandlerMapping将Handler、Intercepter（拦截器）返回给DispatcherServlet；</p>
+</li>
+<li><p>DispatcherServlet根据返回的Handler，请求处理器适配器（HandlerAdapter）执行Handler；</p>
+</li>
+<li><p>HandlerAdapter调用自己的Handler方法，利用 Java的<strong>反射机制</strong>执行具体的Controller方法，获得ModelAndView 视图对象；</p>
+</li>
+<li><p>HandlerAdapter将ModelAndView 视图对象发送给DispatcherServlet；</p>
+</li>
+<li><p>DispatcherServlet请求视图处理器（ViewResolver）解析，返回结果；</p>
+</li>
+<li><p>DispatcherServlet渲染视图，<strong>将Model中的模型数据填充到View视图的Request域</strong>，生成最终的View视图；</p>
+</li>
+<li><p>DispatcherServlet发送Response响应至用户界面。</p>
+</li>
 </ol>
-</blockquote>
-<hr>
-<p>一、DispatcherServlet</p>
-<p>DispatcherServlet是Spring MVC处理Http请求的核心组件：</p>
-<blockquote>
+<h4 id="2-DispatcherServlet"><a href="#2-DispatcherServlet" class="headerlink" title="2. DispatcherServlet"></a>2. DispatcherServlet</h4><p>DispatcherServlet是Spring MVC处理Http请求的核心组件：</p>
 <p>（1）其顶级父类是HttpServlet，因此DispatcherServlet本质上是一个Servlet；</p>
 <p>（2）其中的doService方法负责处理request请求；</p>
 <p>（3）核心方法<strong>doDispatch</strong>负责处理拦截，转发请求，调用处理器获得结果，并得到结果视图。</p>
-</blockquote>
 <p>web.xml中的配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Spring MVC前端控制器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 使用配置的springmvc.xml文件对DispatcherServlet进行初始化 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置拦截url符合".action"的请求至前端处理器DispatcherServlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>二、HandlerMapping</p>
-<p>​    HandlerMapping常见有：BeanNameUrlHandlerMapping、SimpleUrlHandlerMapping、ControllerClassNameHandlerMapping。</p>
-<p><em>Springmvc.xml配置如下</em></p>
+<h4 id="3-HandlerMapping"><a href="#3-HandlerMapping" class="headerlink" title="3. HandlerMapping"></a>3. HandlerMapping</h4><p>HandlerMapping常见有：BeanNameUrlHandlerMapping、SimpleUrlHandlerMapping、ControllerClassNameHandlerMapping。</p>
+<p>Springmvc.xml配置如下</p>
 <p>（1）BeanNameUrlHandlerMapping</p>
-<blockquote>
 <p>映射规则：将bean的name作为url进行匹配</p>
-</blockquote>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置处理器映射器BeanNameUrlHandlerMapping --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 配置被url映射的Handler --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/test.action"</span> <span class="attr">class</span>=<span class="string">"cn.merlin.ssm.controller.ControllerTest"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>（2）SimpleUrlHandlerMapping</p>
-<blockquote>
 <p>通过<property>标签配置url与handler的映射关系</property></p>
-</blockquote>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置处理器映射器SimpleUrlHandlerMapping --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"simpleUrlHandlerMapping"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 拦截器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"interceptor"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"Interceptor_A"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">"Interceptor_B"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Handler --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"testA.action"</span>&gt;</span>ControllerTestA<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"testB.action"</span>&gt;</span>ControllerTestB<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>（3）ControllerClassNameHandlerMapping</p>
-<blockquote>
 <p>采用CoC惯例优先原则</p>
-<blockquote>
-<p>对普通的Controller类，将类名“xxxController”映射至“/xxx*”的请求url</p>
-<p>对MultiActionController（多动作控制器）类，会将特定的方法“yyy”映射至“/xxx/yyy.action”的请求url</p>
-</blockquote>
-</blockquote>
+<ul>
+<li><p>对普通的Controller类，将类名“xxxController”映射至“/xxx*”的请求url</p>
+</li>
+<li><p>对MultiActionController（多动作控制器）类，会将特定的方法“yyy”映射至“/xxx/yyy.action”的请求url</p>
+</li>
+</ul>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置映射器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.support.ControllerBeanNameHandlerMapping"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>三、HandlerAdapter</p>
-<p>（1）SimpleControllerHandlerAdapter</p>
+<h4 id="4-HandlerAdapter"><a href="#4-HandlerAdapter" class="headerlink" title="4. HandlerAdapter"></a>4. HandlerAdapter</h4><p>（1）SimpleControllerHandlerAdapter</p>
 <p>springmvc.xml中的配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>SimpleControllerHandlerAdapter要求编写实现Controller接口的Handler方法</p>
-</blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> <span class="keyword">package</span> cn.merlin.ssm.controller</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModerlAndView</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.mvc.Controller</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerTest</span> <span class="keyword">implements</span> <span class="title">Controller</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	modelAndView.addObject();</span><br><span class="line">	modelAndView.setViewName();</span><br><span class="line">	<span class="keyword">return</span> modelAndView;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（2）HttpRequestHandlerAdapter</p>
 <p>springmvc.xml中的配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>HttpRequestHandlerAdapter要求编写实现<strong>HttpRequestHandler接口</strong>的Handler方法</p>
-</blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> <span class="keyword">package</span> cn.merlin.ssm.controller</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.HttpRequestHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerTest</span> <span class="keyword">implements</span> <span class="title">HttpRequestHandler</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleRequest</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException,IOException</span>&#123;</span><br><span class="line">	request.setAttribute();</span><br><span class="line">	request.getRequestDispatcher();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong><em>HttpRequestHandlerAdapter与 SimpleControllerHandlerAdapter相比优点在于：</em></strong></p>
-<blockquote>
-<p>前者可以通过request获得http请求信息，及设置返回对象response的格式，如 JSON串！</p>
-</blockquote>
-<p>四、注解方式使用HandlerMapping和HandlerAdapter</p>
-<blockquote>
-<p>“但是这种开发模式有一个缺点，<strong>一个Handler类中只能编写一个方法</strong>“”。</p>
-<blockquote>
+<ul>
+<li>前者可以通过request获得http请求信息，及设置返回对象response的格式，如 JSON串！</li>
+</ul>
+<h4 id="5-注解方式使用HandlerMapping和HandlerAdapter"><a href="#5-注解方式使用HandlerMapping和HandlerAdapter" class="headerlink" title="5. 注解方式使用HandlerMapping和HandlerAdapter"></a>5. 注解方式使用HandlerMapping和HandlerAdapter</h4><p>“但是这种开发模式有一个缺点，<strong>一个Handler类中只能编写一个方法</strong>“”。</p>
 <p>注：上面原话来自于《Spring MVC+Mybatis开发从入门到项目实战》p151。但是对这句话的理解产生了歧义！如MultiActionController类中就能编写多个处理方法。</p>
-</blockquote>
 <p>改成：<strong>一个Handler类中一般只能编写一个处理方法</strong>。</p>
+<blockquote>
 <p>通过注解的方式，可以在单个Handler中通过@RequestMapping注解方式配置多个方法！</p>
 </blockquote>
 <p>（1）配置方式</p>
 <p>使用默认的注解的映射器和适配器</p>
+<blockquote>
+<p>Spring MVC使用的默认注解的映射器和适配器是<strong>RequestMappingHandlerMapping</strong>和<strong>RequestMappingHandlerAdapter</strong></p>
+</blockquote>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>或者手动注明</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>Spring MVC使用的默认注解的映射器和适配器正是<strong>RequestMappingHandlerMapping</strong>和<strong>RequestMappingHandlerAdapter</strong></p>
-</blockquote>
 <p>（2）编写Handler类</p>
 <p>此时，Handler不需要实现Controller接口或者HttpRequestHandler：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin.ssm.</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;controller</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModerlAndView</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerTest</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/queryMethod"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">queryMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/deleteMethod"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
 <p><strong>@Controller</strong>：标明Handler控制器类</p>
 <p><strong>@RequestMapping</strong>：将url请求映射至Handler类中特定的方法</p>
-</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin.ssm.</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;controller</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModerlAndView</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerTest</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/queryMethod"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">queryMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/deleteMethod"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>（3）配置Handler类的bean</p>
 <p>逐个Handler类配置：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"cn.merlin.ssm.controller.ControllerTest"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
@@ -939,76 +1346,69 @@
 <p>或扫描指定包下所有@Controller注解的Handler类（推荐）：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.merlin.ssm.controller"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>五、Handler</p>
-<p>1、请求映射 @RequestMapping注解</p>
-<p>（1）请求路径</p>
-<blockquote>
-<p>&lt;1&gt; 类上注解@RequestMapping：请求域，相对Web应用根目录，表示此Handler所有方法的请求路径均在此路径下；</p>
-<p>&lt;2&gt; 方法上注解@RequestMapping：相对于请求域路径。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"RequestArea"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerDemo</span></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-Handler"><a href="#6-Handler" class="headerlink" title="6. Handler"></a>6. Handler</h4><h5 id="6-1-请求映射-RequestMapping注解"><a href="#6-1-请求映射-RequestMapping注解" class="headerlink" title="6.1 请求映射@RequestMapping注解"></a>6.1 请求映射@RequestMapping注解</h5><p>（1）请求路径</p>
+<ol>
+<li><p>类上注解@RequestMapping：请求域，相对Web应用根目录，表示此Handler所有方法的请求路径均在此路径下；</p>
+</li>
+<li><p>方法上注解@RequestMapping：相对于请求域路径。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 请求URL为：http://localhost:8080/"WebProjectName"/RequestArea/test.action</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"RequestArea"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ControllerDemo</span></span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"test"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>请求URL为：<a href="http://localhost:8080/&quot;WebProjectName&quot;/RequestArea/test.action" target="_blank" rel="noopener">http://localhost:8080/&quot;WebProjectName&quot;/RequestArea/test.action</a></p>
-</blockquote>
 <p>（2）限定请求</p>
 <blockquote>
 <p>只能在方法上@RequestMapping实现</p>
 </blockquote>
-<p>限制请求方法：GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</p>
-<blockquote>
+<ol>
+<li><p>限制请求方法：GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS, TRACE</p>
 <p>@RequestMapping(value=”/test”, method=RequestMethod.GET)  // 限制请求方法为GET</p>
-</blockquote>
-<p>限制请求参数：</p>
-<blockquote>
+</li>
+<li><p>限制请求参数：</p>
 <p>@RequestMapping(value=”/test”, params=”username”) // 限制请求参数中必须含参数“username”</p>
-</blockquote>
-<p>限制请求头：</p>
-<blockquote>
+</li>
+<li><p>限制请求头：</p>
 <p>@RequestMapping(value=”/test”, headers=”Content-Type:text/html;charset=”utf-8”)</p>
-</blockquote>
-<p>2、参数绑定</p>
-<p>（1）可直接绑定的类型：HttpRequest、HttpResponse、HttpSession、Model、ModelMap</p>
+</li>
+</ol>
+<h5 id="6-2-参数绑定"><a href="#6-2-参数绑定" class="headerlink" title="6.2 参数绑定"></a>6.2 参数绑定</h5><p>（1）可直接绑定的类型：HttpRequest、HttpResponse、HttpSession、Model、ModelMap</p>
 <p>（2）简单参数</p>
+<ul>
+<li><p>value：查询结果字段名 user_id 与 Java实体类中成员变量名 userId 可以不一致；</p>
+</li>
+<li><p>defaultValue：默认值</p>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/test"</span>, method=&#123;RequestMethod.GET&#125;)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">queryDemo</span><span class="params">(Model model,@RequestParam(value=<span class="string">"user_id"</span>,defaultValue=<span class="string">"1"</span>)</span> Integer userId)</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>value：查询结果字段名 user_id 与 Java实体类中成员变量名 userId 可以不一致；</p>
-<p>defaultValue：默认值</p>
-</blockquote>
 <p>（3）绑定包装类</p>
+<p>Spring MVC会完成创建相应的实体类 Fruit 并使用set方法注入属性值</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/queryFruitsByCondition"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">queryFruitsByCondition</span><span class="params">(Model model,Fruit fruit)</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>Spring MVC会完成创建相应的实体类 Fruit 并使用set方法注入属性值</p>
-</blockquote>
 <p>（4）绑定集合</p>
-<hr>
-<p>六、视图解析器</p>
-<p>1、Spring MVC中的视图解析器</p>
-<p>（1）AbstractCachingViewResolver</p>
-<blockquote>
+<h4 id="7-视图解析器"><a href="#7-视图解析器" class="headerlink" title="7. 视图解析器"></a>7. 视图解析器</h4><h5 id="7-1-Spring-MVC中的视图解析器"><a href="#7-1-Spring-MVC中的视图解析器" class="headerlink" title="7.1 Spring MVC中的视图解析器"></a>7.1 Spring MVC中的视图解析器</h5><p>（1）AbstractCachingViewResolver</p>
 <p>抽象类，定义了视图解析器<strong>缓存</strong>已解析视图的方法。</p>
-</blockquote>
 <p>（2）UrlBasedViewResolver</p>
-<blockquote>
-<p>&lt;1&gt; extends AbstractCachingViewResolver，缓存功能；</p>
-<p>&lt;2&gt; 前缀属性prefix指定视图资源所在路径的前缀，后缀属性suffix指定视图资源所在路径的后缀；</p>
-<p>&lt;3&gt; 支持<strong>“redirect:” 重定向</strong> 和 <strong>“forword:”内部跳转</strong>；</p>
-<p>&lt;4&gt; 支持解析为多种不同类型的视图View对象。</p>
-</blockquote>
+<ol>
+<li><p>extends AbstractCachingViewResolver，缓存功能；</p>
+</li>
+<li><p>前缀属性prefix指定视图资源所在路径的前缀，后缀属性suffix指定视图资源所在路径的后缀；</p>
+</li>
+<li><p>支持<strong>“redirect:” 重定向</strong> 和 <strong>“forword:”内部跳转</strong>；</p>
+</li>
+<li><p>支持解析为多种不同类型的视图View对象。</p>
+</li>
+</ol>
 <p>springmvc.xml中的配置：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jspViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.UrlBasedViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 前缀prefix属性指定了视图资源所在路径的前缀信息 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 后缀suffix属性指定了视图资源所在路径的后缀信息 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 解析至指定的视图，此处用来展示jsp页面 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span> <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceView"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>InternalResourceView类在服务器端通过<em>跳转</em> 的方式访问不能直接访问的/WEB-INF/目录下的资源</p>
-</blockquote>
 <p><strong>（3）InternalResourceViewResolver</strong></p>
-<blockquote>
-<p>&lt;1&gt; extends UrlBasedViewResolver，缓存功能 + 支持<strong>“redirect:” 重定向</strong> 和 <strong>“forword:”内部跳转</strong>；</p>
-<p>&lt;2&gt; viewClass指定为InternalResourceView，因此不支持解析为其它视图View对象。</p>
-</blockquote>
+<ol>
+<li><p>extends UrlBasedViewResolver，缓存功能 + 支持<strong>“redirect:” 重定向</strong> 和 <strong>“forword:”内部跳转</strong>；</p>
+</li>
+<li><p>viewClass指定为InternalResourceView，因此不支持解析为其它视图View对象。</p>
+</li>
+</ol>
 <p>springmvc.xml中的配置：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jspViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">""</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -1016,27 +1416,29 @@
 <p>对于UserController类，其实现为</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 *	定义toLogin()方法，处理拦截器传来的重定向至登录</span></span><br><span class="line"><span class="comment">	 *	页面的请求</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/user/toLogin.action"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toLogin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"/login.jsp"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>处理器返回一个ModelAndView对象，InternalResourceViewResolver将名为“login.jsp”的<strong>视图View</strong>解析成一个InternalResourceView对象后，并将返回的model模型属性信息存放到对应的HttpRequest属性中，最后利用<strong>RequestDispatcher</strong>将请求<strong>跳转</strong>至资源“/WEB-INF/pages/login.jsp”。</p>
-</blockquote>
 <p>（4）BeanNameViewResolver</p>
-<blockquote>
-<p>&lt;1&gt; 不继承 AbstractCachingViewResolver，因而无缓存视图的能力；</p>
-<p>&lt;2&gt; 支持解析为多种不同类型的视图View对象。</p>
-</blockquote>
+<ol>
+<li><p>不继承 AbstractCachingViewResolver，因而无缓存视图的能力；</p>
+</li>
+<li><p>支持解析为多种不同类型的视图View对象。</p>
+</li>
+</ol>
 <p>在springmvc.xml中的配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.BeanNameViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 将此视图解析器的优先级设为高 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"toLogin"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceView"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/login.jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
 <p>当Controller层返回名为“toLogin”<strong>（即类型为InternalResourceView的bean的id）</strong>的逻辑视图时，类似的，视图解析器BeanNameViewResolver将该视图解析为<strong>InternalResourceView对象</strong>，并跳转至指定资源。</p>
-</blockquote>
 <p>（5）XmlViewResolver</p>
-<blockquote>
-<p>&lt;1&gt; extends AbstractCachingViewResolver，缓存视图；</p>
-<p>&lt;2&gt; 类似于BeanNameViewResolver，只是InternalResourceView类型的bean的配置信息单独配置在views.xml文件中；</p>
-<p>&lt;3&gt; <strong>对views.xml存放位置无要求</strong>；</p>
-<p>&lt;4&gt; 支持解析为多种不同类型的视图View对象。</p>
-</blockquote>
+<ol>
+<li><p>extends AbstractCachingViewResolver，缓存视图；</p>
+</li>
+<li><p>类似于BeanNameViewResolver，只是InternalResourceView类型的bean的配置信息单独配置在views.xml文件中；</p>
+</li>
+<li><p><strong>对views.xml存放位置无要求</strong>；</p>
+</li>
+<li><p>支持解析为多种不同类型的视图View对象。</p>
+</li>
+</ol>
 <p>springmvc.xml中配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.XmlViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"location"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -1044,11 +1446,14 @@
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span> </span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> </span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans </span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd&gt;</span></span></span><br><span class="line"><span class="tag"><span class="string">&lt;bean id="</span><span class="attr">toLogin</span>" <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceView"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/login.jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>（6）ResourceBundleViewResolver</strong></p>
-<blockquote>
-<p>&lt;1&gt; extends AbstractCachingViewResolver，缓存视图；</p>
-<p>&lt;2&gt; 视图资源文件为properties属性文件，且必须<strong>位于classpath根目录下</strong>；</p>
-<p>&lt;3&gt; 支持解析为多种不同类型的视图View对象。</p>
-</blockquote>
+<ol>
+<li><p>extends AbstractCachingViewResolver，缓存视图；</p>
+</li>
+<li><p>视图资源文件为properties属性文件，且必须<strong>位于classpath根目录下</strong>；</p>
+</li>
+<li><p>支持解析为多种不同类型的视图View对象。</p>
+</li>
+</ol>
 <p>springmvc.xml中配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.ResourceBundleViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定视图资源文件名为viewResource --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basename"</span> <span class="attr">value</span>=<span class="string">"viewResource"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -1056,11 +1461,14 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">login.(class)=org.springframework.web.servlet.view.InternalResourceView</span><br><span class="line">login.url=/WEB-INF/pages/login.jsp</span><br></pre></td></tr></table></figure>
 
 <p>（7）FreeMarkerViewResolver</p>
-<blockquote>
-<p>&lt;1&gt; extends UrlBasedViewResolver，缓存；</p>
-<p>&lt;2&gt; 指定解析后的视图类型为<strong>FreeMarkerView</strong>；</p>
-<p>&lt;3&gt; 得到的模板文件，可输出为多种文本文档，如HTML、XML、RTF等。</p>
-</blockquote>
+<ol>
+<li><p>extends UrlBasedViewResolver，缓存；</p>
+</li>
+<li><p>指定解析后的视图类型为<strong>FreeMarkerView</strong>；</p>
+</li>
+<li><p>得到的模板文件，可输出为多种文本文档，如HTML、XML、RTF等。</p>
+</li>
+</ol>
 <p>首先在springmvc.xml中配置该视图解析器：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"fm_"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".html"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -1071,23 +1479,23 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>FreeMarkerView<span class="tag">&lt;/<span class="name">title</span>&gt;</span>            </span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 取出数据放入 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>（8）VelocityViewResolver</p>
-<blockquote>
-<p>与FreeMarkerViewResolver相似</p>
-<p>&lt;1&gt; extends UrlBasedViewResolver；</p>
-<p>&lt;2&gt; 指定解析后的视图类型为VelocityView。</p>
-</blockquote>
-<ol start="2">
-<li>视图解析器链 ViewResolverChain</li>
+<ol>
+<li><p>与FreeMarkerViewResolver相似</p>
+</li>
+<li><p>extends UrlBasedViewResolver；</p>
+</li>
+<li><p>指定解析后的视图类型为VelocityView。</p>
+</li>
 </ol>
-<p>（1）ViewResolver 实现 Ordered 接口，order属性明确了视图解析器链中不同视图解析器的优先级；</p>
+<h5 id="7-2-视图解析器链-ViewResolverChain"><a href="#7-2-视图解析器链-ViewResolverChain" class="headerlink" title="7.2 视图解析器链 ViewResolverChain"></a>7.2 视图解析器链 ViewResolverChain</h5><p>（1）ViewResolver 实现 Ordered 接口，order属性明确了视图解析器链中不同视图解析器的优先级；</p>
 <p>（2）<strong>order越小，优先级越高</strong>；</p>
 <p>（3）解析视图时，先从优先级高的解析器开始，若不能解析，则找下一优先级的解析器，若均不能解析，则返回一个null的View对象，抛异常；</p>
 <p>（4）<strong>InternalResourceViewResolver可解析任意视图</strong>。</p>
-<hr>
-<blockquote>
-<p>参考资料：《Spring MVC+Mybatis开发从入门到项目实战》 朱要光 著</p>
-</blockquote>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>[1]《Spring MVC+Mybatis开发从入门到项目实战》朱要光 著</p>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
       <tags>
         <tag>SSM</tag>
         <tag>Spring MVC</tag>
@@ -1096,117 +1504,91 @@
   <entry>
     <title>Mybatis框架学习笔记</title>
     <url>/2019/08/22/Mybatis%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>纵使前路荆棘遍野，亦将坦然无惧仗剑前行！</p>
+    <content><![CDATA[<p>笔记基于《Spring MVC+Mybatis开发从入门到项目实战》一书，偏向于实践。</p>
 <a id="more"></a>
 
-<blockquote>
-<p>参考资料：</p>
-<p>[1] Spring MVC+Mybatis开发从入门到项目实战. 朱要光 著</p>
-</blockquote>
-<p>一些概念：</p>
-<blockquote>
-<p>1、ORM</p>
-<blockquote>
-<p>Object Relation Mapping，对象关系映射。通过操作 Java对象来操作关系型数据库。</p>
-</blockquote>
-<p>2、POJO与 JavaBean</p>
-<blockquote>
-<p>POJO：只有private属性和get/set方法且没有其他继承、实现的 Java对象。</p>
-<p>JavaBean：private成员变量、get/set方法、<strong>空参构造函数</strong>、<strong>可序列化</strong>。</p>
-</blockquote>
-</blockquote>
-<hr>
-<p>Mybatis框架运行流程示意图如下：</p>
-<p><img src="/2019/08/22/Mybatis框架学习笔记/1.jpg" alt></p>
-<hr>
-<p>基本配置示例：</p>
-<p>1、日志输出环境配置文件 <em>log4j.properties</em></p>
+<p><em>一些概念：</em></p>
+<ol>
+<li><p>ORM：Object Relation Mapping，对象关系映射。通过操作 Java对象来操作关系型数据库。</p>
+</li>
+<li><p>POJO与 JavaBean</p>
+<ul>
+<li>POJO：只有private属性和get/set方法且没有其他继承、实现的 Java对象。</li>
+<li>JavaBean：private成员变量、get/set方法、<strong>空参构造函数</strong>、<strong>可序列化</strong>。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-Mybatis框架运行流程示意图如下："><a href="#1-Mybatis框架运行流程示意图如下：" class="headerlink" title="1. Mybatis框架运行流程示意图如下："></a>1. Mybatis框架运行流程示意图如下：</h4><p><img src="/2019/08/22/Mybatis框架学习笔记/1.jpg" alt></p>
+<h4 id="2-基本配置示例："><a href="#2-基本配置示例：" class="headerlink" title="2. 基本配置示例："></a>2. 基本配置示例：</h4><p>（1）日志输出环境配置文件 <em>log4j.properties</em></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 日志级别</span><br><span class="line"># 在开发环境下，日志级别设置为DEBUG，生产环境设置为INFO或ERROR</span><br><span class="line">log4j.rootLogger=DEBUG, stdout</span><br><span class="line"># 配置将日志信息打印至控制台</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line"># 定制打印界面格式</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n</span><br></pre></td></tr></table></figure>
 
-<p>2、数据库配置文件 <em>db.properties</em> </p>
+<p>（2）数据库配置文件 <em>db.properties</em> </p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 数据库配置文件</span><br><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/mybatis_test</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=123</span><br><span class="line">#c3p0.pool.maxPoolSize=400</span><br><span class="line">#c3p0.pool.minPoolSize=50</span><br><span class="line">#c3p0.pool.initialPoolSize=50</span><br><span class="line">#c3p0.pool.acquireIncrement=100</span><br></pre></td></tr></table></figure>
 
-<p>3、Mybatis核心配置文件 <em>SqlMapConfig.xml</em></p>
+<p>（3）Mybatis核心配置文件 <em>SqlMapConfig.xml</em></p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span>  </span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span>  </span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- properties标签，引入外部配置文件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"db.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 配置日志输出模式 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"logImpl"</span> <span class="attr">value</span>=<span class="string">"LOG4J"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 是否启用延迟加载（懒加载） --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnable"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 是否启用积极加载，false表示按需加载（即消极加载） --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 是否开启二级缓存 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 配置数据类型的别名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 自动为cn.merlin.mybatis.po包下所有的Java类配置别名，类名称s首字母小写 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.merlin.mybatis.po"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 配置插件 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugin</span> <span class="attr">interceptor</span>=<span class="string">"cn.merlin.mybatis.test.QueryPlugin"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 配置MyBatis环境信息 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 每一个environment标签对应一个单独的数据库环境 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 事务管理 --&gt;</span>	</span><br><span class="line">			<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span> /&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- 数据库配置信息 --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">				<span class="comment">&lt;!-- 全局参数 --&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 映射器，配置SQL映射文件的位置 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"UserMapper.xml"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"BankMapper.xml"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"cn/merlin/mybatis/mapper/UserMapper.xml"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>4、SQL映射文件 <em>UserMapper.xml</em></p>
+<p>（4）SQL映射文件 <em>UserMapper.xml</em></p>
 <blockquote>
-<p>加载时机：Mapper映射文件随会话工厂对象 SqlSessionFactory 时被加载</p>
+<p>加载时机：Mapper映射文件随会话工厂对象 SqlSessionFactory 时被加载。</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span>  </span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>  </span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"test"</span> &gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 根据id查询对象 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserById"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">		SELECT * FROM user WHERE id = #&#123;value&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 当user表中仅有部分字段名称与User类的属性名对应时</span></span><br><span class="line"><span class="comment">		如user_id和user_name字段不对应</span></span><br><span class="line"><span class="comment">		需要使用resultMap标签</span></span><br><span class="line"><span class="comment">	 --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;resultMap type="user" id="UserResult"&gt;</span></span><br><span class="line"><span class="comment">		&lt;id property="id" column="user_id"/&gt;</span></span><br><span class="line"><span class="comment">		&lt;result property="username" column="user_name"/&gt;</span></span><br><span class="line"><span class="comment">	&lt;/resultMap&gt;</span></span><br><span class="line"><span class="comment">	</span></span><br><span class="line"><span class="comment">	&lt;select id="findUserById" parameterType="integer" resultMap="UserResult"&gt;</span></span><br><span class="line"><span class="comment">		SELECT * FROM user WHERE user_id = #&#123;value&#125;</span></span><br><span class="line"><span class="comment">	&lt;/select&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 模糊查询 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserListByUsername"</span> <span class="attr">parameterType</span>=<span class="string">"string"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- SELECT * FROM user WHERE username LIKE '%$&#123;value&#125;%' --&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 使用"#&#123;&#125;"替代"$&#123;&#125;"可以有效避免SQL注入 --&gt;</span></span><br><span class="line">		SELECT * FROM user WHERE username LIKE "%" #&#123;value&#125; "%"</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 插入 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span> <span class="attr">parameterType</span>=<span class="string">"user"</span> &gt;</span></span><br><span class="line">		INSERT INTO user (username,password,gender,province,city) </span><br><span class="line">		VALUE (#&#123;username&#125;,#&#123;password&#125;,#&#123;gender&#125;,#&#123;province&#125;,#&#123;city&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- 演示自定义的查询包装类 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserByUserQueryInfo"</span> <span class="attr">parameterType</span>=<span class="string">"userQueryInfo"</span> <span class="attr">resultType</span>=<span class="string">"userInstance"</span>&gt;</span></span><br><span class="line">		SELECT * FROM user WHERE user.username = #&#123;userInstance.username&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Tips:</p>
 <ol>
-<li>使用<strong>“#{}”</strong>替代”${}”可以有效<strong>避免SQL注入攻击</strong></li>
-<li>当表中部分字段名与 Java类成员变量名不匹配时，需要使用<strong>resultMap</strong>完成列名转换</li>
+<li>使用<strong>“#{}”</strong>替代”${}”可以有效<strong>避免SQL注入攻击</strong>；</li>
+<li>当表中部分字段名与 Java类成员变量名不匹配时，需要使用<strong>resultMap</strong>完成列名转换。</li>
 </ol>
 </blockquote>
-<p><strong><em>获取sqlSession会话对象的三种途径：</em></strong></p>
-<p>1、XML配置文件中set属性注入</p>
-<p>spring配置文件：</p>
+<h4 id="3-获取sqlSession会话对象的三种途径："><a href="#3-获取sqlSession会话对象的三种途径：" class="headerlink" title="3. 获取sqlSession会话对象的三种途径："></a>3. 获取sqlSession会话对象的三种途径：</h4><h5 id="3-1-XML配置文件中set属性注入"><a href="#3-1-XML配置文件中set属性注入" class="headerlink" title="3.1 XML配置文件中set属性注入"></a>3.1 XML配置文件中set属性注入</h5><p>spring配置文件：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"cn.merlin.ssm.dao.UserDaoImpl"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>UserDaoImpl 需继承 <strong>SqlSessionDaoSupport 类</strong>，方能通过get方法获取sqlSession</p>
+<p>UserDaoImpl 需继承 <strong>SqlSessionDaoSupport 类</strong>，方能通过get方法获取sqlSession。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">SqlSession sqlSession = <span class="keyword">this</span>.getSqlSession(); <span class="comment">// 调用父类（SqlSessionDaoSupport）的getSqlSession()方法</span></span><br></pre></td></tr></table></figure>
 
-<p>2、注解方式</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">extends</span> <span class="title">SqlSessionDaoSupport</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span> <span class="comment">// 注入sqlSessionFactory对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSqlSessionFactory</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.setSqlSessionFactory(sqlSessionFactory);</span><br><span class="line">	&#125;</span><br><span class="line"> 	</span><br><span class="line">    <span class="comment">// 获取sqlSession对象</span></span><br><span class="line">    SqlSession sqlSession = <span class="keyword">this</span>.getSqlSession();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-2-注解方式"><a href="#3-2-注解方式" class="headerlink" title="3.2 注解方式"></a>3.2 注解方式</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">extends</span> <span class="title">SqlSessionDaoSupport</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Autowired</span> <span class="comment">// 注入sqlSessionFactory对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSqlSessionFactory</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>.setSqlSessionFactory(sqlSessionFactory);</span><br><span class="line">	&#125;</span><br><span class="line"> 	</span><br><span class="line">    <span class="comment">// 获取sqlSession对象</span></span><br><span class="line">    SqlSession sqlSession = <span class="keyword">this</span>.getSqlSession();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>3、手动获取</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自动装配，获取SqlSessionFactory对象</span></span><br><span class="line"><span class="meta">@Autowired</span> </span><br><span class="line"><span class="keyword">private</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"><span class="comment">// 调用SqlSessionFactory类的openSession()方法</span></span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br></pre></td></tr></table></figure>
+<h5 id="3-3-手动获取"><a href="#3-3-手动获取" class="headerlink" title="3.3 手动获取"></a>3.3 手动获取</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 自动装配，获取SqlSessionFactory对象</span></span><br><span class="line"><span class="meta">@Autowired</span> </span><br><span class="line"><span class="keyword">private</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line"><span class="comment">// 调用SqlSessionFactory类的openSession()方法</span></span><br><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br></pre></td></tr></table></figure>
 
 <p><strong><em>SqlSessionDaoSupport原理</em></strong></p>
-<p>抽象类SqlSessionDaoSupport中有成员变量SqlSession，并配置了get方法。通过setSqlSessionFactory方法可以获得sqlSession实例</p>
+<p>抽象类SqlSessionDaoSupport中有成员变量SqlSession，并配置了get方法。通过setSqlSessionFactory方法可以获得sqlSession实例。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSqlSessionFactory</span><span class="params">(SqlSessionFactory sqlSessionFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="keyword">this</span>.externalSqlSession) &#123;</span><br><span class="line">      <span class="keyword">this</span>.sqlSession = <span class="keyword">new</span> SqlSessionTemplate(sqlSessionFactory);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>Mapper输出映射类型</p>
-<p>1、resultType</p>
-<blockquote>
-<p>&lt;1&gt; 支持基本数据类型、基本数据包装类、自定义包装类（如 JavaBean）</p>
-<p>&lt;2&gt; 输出时创建自定义包装类的前提是：<strong>表字段名与包装类属性名完全一致</strong></p>
-<p>&lt;3&gt; 当&lt;2&gt;不满足时，还可以输出为<strong>HashMap</strong>结构</p>
-</blockquote>
-<p>2、resultMap</p>
-<blockquote>
-<p>当表字段名与包装类属性名不完全一致时</p>
-</blockquote>
+<h4 id="4-Mapper输出映射类型"><a href="#4-Mapper输出映射类型" class="headerlink" title="4. Mapper输出映射类型"></a>4. Mapper输出映射类型</h4><h5 id="4-1-resultType"><a href="#4-1-resultType" class="headerlink" title="4.1 resultType"></a>4.1 resultType</h5><p>（1）支持基本数据类型、基本数据包装类、自定义包装类（如 JavaBean）；</p>
+<p>（2）输出时创建自定义包装类的前提是：<strong>表字段名与包装类属性名完全一致</strong>；</p>
+<p>（3）当（2）不满足时，还可以输出为<strong>HashMap</strong>结构、</p>
+<h5 id="4-2-resultMap"><a href="#4-2-resultMap" class="headerlink" title="4.2 resultMap"></a>4.2 resultMap</h5><p>当表字段名与包装类属性名不完全一致时</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- id="userResultMap"唯一地标识resultMap --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"cn.com.mybatis.po.User"</span> <span class="attr">id</span>=<span class="string">"userResultMap"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- id标签：与主键相对应 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"_id"</span> <span class="attr">properties</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- result：普通列 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"_username"</span> <span class="attr">properties</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findUserByResultMap"</span> <span class="attr">parameter</span>=<span class="string">"int"</span> <span class="attr">resultMap</span>=<span class="string">"userResultMap"</span>&gt;</span></span><br><span class="line">	select id _id,username _username from user where id = #&#123;value&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>注意resultMap中的<strong>association</strong>、<strong>collection</strong>标签，在涉及 Java包装类属性含有其它包装类或 List集合时会用到。</p>
 </blockquote>
-<hr>
-<p>延迟加载</p>
-<p>（1）功能：对于有关联的表，先查询单表，有需要时才查询关联表，以节约资源</p>
+<h4 id="5-延迟加载"><a href="#5-延迟加载" class="headerlink" title="5. 延迟加载"></a>5. 延迟加载</h4><p>（1）功能：对于有关联的表，先查询单表，有需要时才查询关联表，以节约资源</p>
 <p>（2）设置：</p>
-<blockquote>
-<p>lazyLoadingEnabled:true 开启延迟加载</p>
-<p>aggressiveLazyLoading:false 开启消极加载（即按需加载）</p>
-</blockquote>
-<hr>
-<p>动态代理</p>
-<blockquote>
-<p>不编写DAO层操作数据库代码，在符合一定规范的前提下，由Mapper代理自动完成数据交互</p>
+<ul>
+<li><p>lazyLoadingEnabled:true 开启延迟加载</p>
+</li>
+<li><p>aggressiveLazyLoading:false 开启消极加载（即按需加载）</p>
+</li>
+</ul>
+<h4 id="6-动态代理"><a href="#6-动态代理" class="headerlink" title="6. 动态代理"></a>6. 动态代理</h4><blockquote>
+<p>不编写DAO层操作数据库代码，在符合一定规范的前提下，由Mapper代理自动完成数据交互。</p>
 </blockquote>
 <p>示例：</p>
-<p>1、编写名称与Mapper配置文件相同的接口</p>
+<p>（1）编写名称与Mapper配置文件相同的接口</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CustomerMapper</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Customer <span class="title">findCustomerById</span><span class="params">(<span class="keyword">int</span> id)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>2、编写CustomerMapper.xml文件</p>
+<p>（2）编写CustomerMapper.xml文件</p>
 <blockquote>
 <p>namespace 设为 接口的全包名：cn.com.mybatis.mapper.CustomerMapper</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span>  </span></span><br><span class="line"><span class="meta">PUBLIC <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span>  </span></span><br><span class="line"><span class="meta"><span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.com.mybatis.mapper.CustomerMapper"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findCustomerById"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span> <span class="attr">resultType</span>=<span class="string">"customer"</span>&gt;</span></span><br><span class="line">		select * from customer where id = #&#123;id&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>3、调用SqlSession类的getMapper()方法，获取代理对象</p>
+<p>（3）调用SqlSession类的getMapper()方法，获取代理对象</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testProxyMapper</span><span class="params">()</span></span>&#123;</span><br><span class="line">	...</span><br><span class="line">    CustomerMapper customerMapper = sqlSession.getMapper(CustomerMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    <span class="comment">// 执行SQL语句</span></span><br><span class="line">    Customer customer = customerMapper.findCustomerById(id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<p>缓存（<strong>HashMap</strong>结构）</p>
-<p>1、一级缓存</p>
-<p><img src="/2019/08/22/Mybatis框架学习笔记/2.jpg" alt></p>
+<h4 id="7-缓存（HashMap结构）"><a href="#7-缓存（HashMap结构）" class="headerlink" title="7. 缓存（HashMap结构）"></a>7. 缓存（<strong>HashMap</strong>结构）</h4><h5 id="7-1-一级缓存"><a href="#7-1-一级缓存" class="headerlink" title="7.1 一级缓存"></a>7.1 一级缓存</h5><p><img src="/2019/08/22/Mybatis框架学习笔记/2.jpg" alt></p>
 <blockquote>
 <p>一级缓存基于SqlSession会话对象实例，sqlSession级别独立</p>
 </blockquote>
@@ -1214,8 +1596,7 @@
 <blockquote>
 <p>查询时，sqlSession首先查询一级缓存，若无，再查询数据库，并将结果存储至一级缓存</p>
 </blockquote>
-<p>2、二级缓存</p>
-<p><img src="/2019/08/22/Mybatis框架学习笔记/4.jpg" alt></p>
+<h5 id="7-2-二级缓存"><a href="#7-2-二级缓存" class="headerlink" title="7.2 二级缓存"></a>7.2 二级缓存</h5><p><img src="/2019/08/22/Mybatis框架学习笔记/4.jpg" alt></p>
 <blockquote>
 <p>二级缓存基于Mapper实例，namespace一致则共享，否则独立</p>
 </blockquote>
@@ -1223,7 +1604,11 @@
 <blockquote>
 <p>不同的SqlSession实例，执行同一个Mapper文件中的SQL语句，共享二级缓存</p>
 </blockquote>
+<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>[1] 《Spring MVC+Mybatis开发从入门到项目实战》朱要光 著</p>
 ]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
       <tags>
         <tag>Mybatis</tag>
         <tag>SSM</tag>
