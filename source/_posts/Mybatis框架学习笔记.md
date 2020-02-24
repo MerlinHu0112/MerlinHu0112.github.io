@@ -1,45 +1,37 @@
 ---
 title: Mybatis框架学习笔记
+comments: true
 date: 2019-08-22
 tags:
 	- Mybatis
 	- SSM
-
+categories:	
+	- 学习笔记
 ---
 
-纵使前路荆棘遍野，亦将坦然无惧仗剑前行！
+笔记基于《Spring MVC+Mybatis开发从入门到项目实战》一书，偏向于实践。
 
 <!--more-->
 
-> 参考资料：
->
-> [1] Spring MVC+Mybatis开发从入门到项目实战. 朱要光 著
+*一些概念：*
+
+1. ORM：Object Relation Mapping，对象关系映射。通过操作 Java对象来操作关系型数据库。
+
+2. POJO与 JavaBean
+   - POJO：只有private属性和get/set方法且没有其他继承、实现的 Java对象。
+   - JavaBean：private成员变量、get/set方法、**空参构造函数**、**可序列化**。
 
 
 
-一些概念：
-
-> 1、ORM
->
-> > Object Relation Mapping，对象关系映射。通过操作 Java对象来操作关系型数据库。
->
-> 2、POJO与 JavaBean
->
-> > POJO：只有private属性和get/set方法且没有其他继承、实现的 Java对象。
-> >
-> > JavaBean：private成员变量、get/set方法、**空参构造函数**、**可序列化**。
-
-------
-
-Mybatis框架运行流程示意图如下：
+#### 1. Mybatis框架运行流程示意图如下：
 
 ![](Mybatis框架学习笔记/1.jpg)
 
-------
 
-基本配置示例：
 
-1、日志输出环境配置文件 *log4j.properties*
+#### 2. 基本配置示例：
+
+（1）日志输出环境配置文件 *log4j.properties*
 
 ```
 # 日志级别
@@ -52,7 +44,7 @@ log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n
 ```
 
-2、数据库配置文件 *db.properties* 
+（2）数据库配置文件 *db.properties* 
 
 ```
 # 数据库配置文件
@@ -66,7 +58,7 @@ jdbc.password=123
 #c3p0.pool.acquireIncrement=100
 ```
 
-3、Mybatis核心配置文件 *SqlMapConfig.xml*
+（3）Mybatis核心配置文件 *SqlMapConfig.xml*
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -126,9 +118,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 </configuration>
 ```
 
-4、SQL映射文件 *UserMapper.xml*
+（4）SQL映射文件 *UserMapper.xml*
 
-> 加载时机：Mapper映射文件随会话工厂对象 SqlSessionFactory 时被加载
+> 加载时机：Mapper映射文件随会话工厂对象 SqlSessionFactory 时被加载。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -178,14 +170,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 > Tips:
 >
-> 1. 使用**"#{}"**替代"${}"可以有效**避免SQL注入攻击**
-> 2. 当表中部分字段名与 Java类成员变量名不匹配时，需要使用**resultMap**完成列名转换
+> 1. 使用**"#{}"**替代"${}"可以有效**避免SQL注入攻击**；
+> 2. 当表中部分字段名与 Java类成员变量名不匹配时，需要使用**resultMap**完成列名转换。
 
 
 
-***获取sqlSession会话对象的三种途径：***
+#### 3. 获取sqlSession会话对象的三种途径：
 
-1、XML配置文件中set属性注入
+##### 3.1 XML配置文件中set属性注入
 
 spring配置文件：
 
@@ -195,13 +187,15 @@ spring配置文件：
 </bean>
 ```
 
-UserDaoImpl 需继承 **SqlSessionDaoSupport 类**，方能通过get方法获取sqlSession
+UserDaoImpl 需继承 **SqlSessionDaoSupport 类**，方能通过get方法获取sqlSession。
 
 ```java
 SqlSession sqlSession = this.getSqlSession(); // 调用父类（SqlSessionDaoSupport）的getSqlSession()方法
 ```
 
-2、注解方式
+
+
+##### 3.2 注解方式
 
 ```java
 public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
@@ -216,7 +210,7 @@ public class UserDaoImpl extends SqlSessionDaoSupport implements UserDao {
 }
 ```
 
-3、手动获取
+##### 3.3 手动获取
 
 ```java
 // 自动装配，获取SqlSessionFactory对象
@@ -228,7 +222,7 @@ SqlSession sqlSession = sqlSessionFactory.openSession();
 
 ***SqlSessionDaoSupport原理***
 
-抽象类SqlSessionDaoSupport中有成员变量SqlSession，并配置了get方法。通过setSqlSessionFactory方法可以获得sqlSession实例
+抽象类SqlSessionDaoSupport中有成员变量SqlSession，并配置了get方法。通过setSqlSessionFactory方法可以获得sqlSession实例。
 
 ```java
 private SqlSession sqlSession;
@@ -240,21 +234,23 @@ public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 }
 ```
 
-------
 
-Mapper输出映射类型
 
-1、resultType
+#### 4. Mapper输出映射类型
 
-> <1> 支持基本数据类型、基本数据包装类、自定义包装类（如 JavaBean）
->
-> <2> 输出时创建自定义包装类的前提是：**表字段名与包装类属性名完全一致**
->
-> <3> 当<2>不满足时，还可以输出为**HashMap**结构
+##### 4.1 resultType
 
-2、resultMap
+（1）支持基本数据类型、基本数据包装类、自定义包装类（如 JavaBean）；
 
-> 当表字段名与包装类属性名不完全一致时
+（2）输出时创建自定义包装类的前提是：**表字段名与包装类属性名完全一致**；
+
+（3）当（2）不满足时，还可以输出为**HashMap**结构、
+
+
+
+##### 4.2 resultMap
+
+当表字段名与包装类属性名不完全一致时
 
 ```xml
 <!-- id="userResultMap"唯一地标识resultMap -->
@@ -272,27 +268,27 @@ Mapper输出映射类型
 
 > 注意resultMap中的**association**、**collection**标签，在涉及 Java包装类属性含有其它包装类或 List集合时会用到。
 
-------
 
-延迟加载
+
+#### 5. 延迟加载
 
 （1）功能：对于有关联的表，先查询单表，有需要时才查询关联表，以节约资源
 
 （2）设置：
 
-> lazyLoadingEnabled:true 开启延迟加载
->
-> aggressiveLazyLoading:false 开启消极加载（即按需加载）
+- lazyLoadingEnabled:true 开启延迟加载
 
-------
+- aggressiveLazyLoading:false 开启消极加载（即按需加载）
 
-动态代理
 
-> 不编写DAO层操作数据库代码，在符合一定规范的前提下，由Mapper代理自动完成数据交互
+
+#### 6. 动态代理
+
+> 不编写DAO层操作数据库代码，在符合一定规范的前提下，由Mapper代理自动完成数据交互。
 
 示例：
 
-1、编写名称与Mapper配置文件相同的接口
+（1）编写名称与Mapper配置文件相同的接口
 
 ```java
 public interface CustomerMapper{
@@ -300,7 +296,7 @@ public interface CustomerMapper{
 }
 ```
 
-2、编写CustomerMapper.xml文件
+（2）编写CustomerMapper.xml文件
 
 > namespace 设为 接口的全包名：cn.com.mybatis.mapper.CustomerMapper
 
@@ -317,7 +313,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </mapper>
 ```
 
-3、调用SqlSession类的getMapper()方法，获取代理对象
+（3）调用SqlSession类的getMapper()方法，获取代理对象
 
 ```java
 public void testProxyMapper(){
@@ -328,11 +324,11 @@ public void testProxyMapper(){
 }
 ```
 
-------
 
-缓存（**HashMap**结构）
 
-1、一级缓存
+#### 7. 缓存（**HashMap**结构）
+
+##### 7.1 一级缓存
 
 ![](Mybatis框架学习笔记/2.jpg)
 
@@ -342,7 +338,9 @@ public void testProxyMapper(){
 
 > 查询时，sqlSession首先查询一级缓存，若无，再查询数据库，并将结果存储至一级缓存
 
-2、二级缓存
+
+
+##### 7.2 二级缓存
 
 ![](Mybatis框架学习笔记/4.jpg)
 
@@ -351,3 +349,9 @@ public void testProxyMapper(){
 ![](Mybatis框架学习笔记/5.jpg)
 
 > 不同的SqlSession实例，执行同一个Mapper文件中的SQL语句，共享二级缓存
+
+
+
+#### 参考资料：
+
+[1] 《Spring MVC+Mybatis开发从入门到项目实战》朱要光 著

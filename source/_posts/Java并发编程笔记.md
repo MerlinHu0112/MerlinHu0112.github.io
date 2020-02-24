@@ -1,11 +1,14 @@
 ---
-title:  Java并发编程学习笔记（未完待续）
+title:  Java并发编程学习笔记
+comments: true
 date: 2020-01-12
 tags:
 	- Concurrency
+categories:	
+	- 学习笔记
 ---
 
-学习、理解多线程与Java并发。
+学习、理解多线程与Java并发。笔记主要基于《Java并发编程实战》一书，并结合部分优秀的文章。
 
 <!--more-->
 
@@ -148,6 +151,8 @@ public class Demo{
 ##### 2.2 如何保证可见性？
 
 ![](Java并发编程笔记/保证可见性.png)
+
+
 
 
 
@@ -545,6 +550,8 @@ Thread-0 存入 300 元，余额为 1400 元
 
 #### 4. Java 中的锁
 
+> 有待进一步阅读相关书籍和文章。
+
 ![](Java并发编程笔记/Java中的锁.png)
 
 
@@ -825,9 +832,11 @@ public interface Executor{
 
 *Executor框架包括以下三个部分：*
 
-> 1. **任务**：被执行的任务需要实现Runnable接口或Callable接口；
-> 2. **执行**：线程执行任务，包括Executor接口和最重要的**ThreadPoolExecutor**类；
-> 3. **异步计算**：包括Future接口及实现Future接口的FutureTask类。
+1. **任务**：被执行的任务需要实现Runnable接口或Callable接口；
+
+2. **执行**：线程执行任务，包括Executor接口和最重要的**ThreadPoolExecutor**类；
+
+3. **异步计算**：包括Future接口及实现Future接口的FutureTask类。
 
 
 
@@ -971,8 +980,6 @@ public FutureTask(Runnable runnable, V result) {
 }
 ```
 
-
-
 *对于提交的 Callable 对象，AbstractExecutorService 类同样是调用 newTaskFor 方法 返回一个 FutureTask 对象：*
 
 ```java
@@ -990,18 +997,21 @@ public <T> Future<T> submit(Callable<T> task) {
 
 *重要参数：*
 
->- corePoolSize：线程池的目标大小，即无任何任务执行时线程池的大小，且仅当工作队列已满才会产生大于此值的线程数量。
->
->- maximumPoolSize：线程池最大同时活动线程数。
->- keepAliveTime：线程存活时间。线程空闲时间大于存活时间，被标记为“可回收”；活动线程数大于corePoolSize时，回收标记为“可回收”的空闲线程。
+- corePoolSize：线程池的目标大小，即无任何任务执行时线程池的大小，且仅当工作队列已满才会产生大于此值的线程数量。
+
+- maximumPoolSize：线程池最大同时活动线程数。
+
+- keepAliveTime：线程存活时间。线程空闲时间大于存活时间，被标记为“可回收”；活动线程数大于corePoolSize时，回收标记为“可回收”的空闲线程。
 
 
 
 ***两个重要的问题：***
 
 1. 为什么要使用线程池，而不是直接手动创建线程？
+   
    - 使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资
      源不足的问题。
+   
    - 如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者
      “过度切换”的问题。
 
@@ -1028,11 +1038,15 @@ public <T> Future<T> submit(Callable<T> task) {
 
 （1）newFixedThreadPool
 
-> - corePoolSize和maximumPoolSize均设为指定值nThread，keepAliveTime设为0。
-> - 固定长度的线程池。因corePoolSize为nThread，故每提交一个任务就创建一个线程，直到总数为nThreads。
-> - keepAliveTime为0，线程不会超时。
-> - 线程执行过程中异常中断，会新建线程以补充。
-> - 无边界的任务队列LinkedBlockingQueue<Runnable>。
+- corePoolSize和maximumPoolSize均设为指定值nThread，keepAliveTime设为0。
+
+- 固定长度的线程池。因corePoolSize为nThread，故每提交一个任务就创建一个线程，直到总数为nThreads。
+
+- keepAliveTime为0，线程不会超时。
+
+- 线程执行过程中异常中断，会新建线程以补充。
+
+- 无边界的任务队列LinkedBlockingQueue<Runnable>。
 
 
 
@@ -1060,12 +1074,17 @@ public static ExecutorService newFixedThreadPool(int nThreads) {
 
 （2）newCachedThreadPool
 
-> - corePoolSize设为0，maximumPoolSize设为Integer.MAX_VALUE，keepAliveTime设为60秒。
-> - 无可用线程时新建线程，有可用线程时则复用该线程。
-> - 因maximumPoolSize设为Integer.MAX_VALUE，即线程数最大值为2147483647。
-> - 线程存活时间为60秒，避免大量空闲线程对资源的消耗。
-> - 同步任务队列SynchronousQueue<Runnable>。
-> - 此线程池适用于大量短暂的异步任务。
+- corePoolSize设为0，maximumPoolSize设为Integer.MAX_VALUE，keepAliveTime设为60秒。
+
+- 无可用线程时新建线程，有可用线程时则复用该线程。
+
+- 因maximumPoolSize设为Integer.MAX_VALUE，即线程数最大值为2147483647。
+
+- 线程存活时间为60秒，避免大量空闲线程对资源的消耗。
+
+- 同步任务队列SynchronousQueue<Runnable>。
+
+- 此线程池适用于大量短暂的异步任务。
 
 
 
@@ -1092,12 +1111,15 @@ public static ExecutorService newCachedThreadPool() {
 
 （3）newSingleThreadExecutor
 
-> - corePoolSize和maximumPoolSize均设为1，keepAliveTime设为0。
->
-> - 首次提交任务时创建单个线程，且仅维持一个线程。
-> - 当线程在关闭前异常终止，程序新建一个线程以执行后续任务。
-> - 确保任务串行执行。
-> - 无边界的任务队列LinkedBlockingQueue<Runnable>。
+- corePoolSize和maximumPoolSize均设为1，keepAliveTime设为0。
+
+- 首次提交任务时创建单个线程，且仅维持一个线程。
+
+- 当线程在关闭前异常终止，程序新建一个线程以执行后续任务。
+
+- 确保任务串行执行。
+
+- 无边界的任务队列LinkedBlockingQueue<Runnable>。
 
 
 
@@ -1144,8 +1166,9 @@ static class DelegatedExecutorService extends AbstractExecutorService {
 
 （4）newScheduledThreadPool
 
-> - 创建一个定长线程池，支持定时及周期性任务执行。
-> - 可延时执行阻塞任务的队列。
+- 创建一个定长线程池，支持定时及周期性任务执行。
+
+- 可延时执行阻塞任务的队列。
 
 Executors类中有两个静态方法用于生成该线程池对象：
 
@@ -1184,19 +1207,19 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 
 
 
-> 参考资料：
->
-> [1] Java并发编程实战. Goetz B. 著，童云兰译
->
-> [2] https://www.infoq.cn/article/ConcurrentHashMap/
->
-> [3] http://www.bubuko.com/infodetail-1518587.html
->
-> [4] https://blog.csdn.net/tongdanping/article/details/79604637
->
-> [5] https://www.cnblogs.com/xifengxiaoma/p/11477136.html
->
-> [6] https://www.cnblogs.com/jiansen/p/7351872.html
+### 参考资料：
+
+[1] 《Java并发编程实战》Goetz B. 著，童云兰译
+
+[2] https://www.infoq.cn/article/ConcurrentHashMap/
+
+[3] http://www.bubuko.com/infodetail-1518587.html
+
+[4] https://blog.csdn.net/tongdanping/article/details/79604637
+
+[5] https://www.cnblogs.com/xifengxiaoma/p/11477136.html
+
+[6] https://www.cnblogs.com/jiansen/p/7351872.html
 
 
 
