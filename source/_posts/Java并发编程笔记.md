@@ -128,23 +128,27 @@ public class Demo{
 
 
 
-#### 2. 共享可变变量的可见性
+#### 2. 多线程的安全性
+
+> 安全的多线程并发应保证原子性、可见性和有序性
 
 ##### 2.1 原子性、可见性和有序性
 
-（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。 
+（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。
 
-> read、load、use、assign、store、write 均为**原子性的变量操作**，实现基本数据类型的访问和读写操作是原子性的。
+> Atomic包、synchronized关键字、Lock接口
 
 （2）可见性：对于共享的可变变量，当一个线程修改了它，其它线程能立即看到变化。
 
-（3）有序性:
+> 关键字 synchronized、volatile 和 final，Lock接口
+
+（3）有序性: 
+
+> happens-before原则
 
 - 程序的执行顺序与代码顺序相同；
 - JVM在实际执行时会发生 *指令重排序* ；
 - 重排序对单线程程序无影响，对多线程程序可能会造成并发异常！
-
-> 并发过程应保证原子性、可见性和有序性
 
 
 
@@ -158,7 +162,7 @@ public class Demo{
 
 #### 3. Java 的同步机制
 
-> 同步以保证线程安全。Java提供关键字**synchronized（内置锁）**和**ReentrantLock（显示锁）**这两种机制实现同步。关键字**volatile**仅保证可见性，不保证原子性。
+> 同步以保证线程安全。Java提供关键字**synchronized（内置锁）** 和 **Lock接口** 这两种机制实现同步。关键字**volatile** 仅保证可见性，不保证原子性。
 
 ##### 3.1 多线程并发异常演示
 
@@ -418,6 +422,8 @@ Thread-1 支取 500 元，余额为 300 元
 
 ##### 3.4 ReentrantLock 【显示锁】
 
+> ReentrantLock类实现Lock接口
+
 （1）ReentrantLock加锁
 
 ```java
@@ -550,11 +556,58 @@ Thread-0 存入 300 元，余额为 1400 元
 
 #### 4. Java 中的锁
 
-> 有待进一步阅读相关书籍和文章。
-
 ![](Java并发编程笔记/Java中的锁.png)
 
 
+
+##### 4.1 synchronized及锁升级过程
+
+>JDK 1.5之后，synchronized锁被划分为四种状态：无锁 - 偏向锁 - 轻量级锁 - 重量级锁。
+
+（1）Java普通对象的内存布局
+
+（图源：https://blog.csdn.net/csdnnews/article/details/104471154/ & https://www.cnblogs.com/panning/p/10990502.html ）
+
+![](Java并发编程笔记\对象的内存布局.jpg)
+
+（2）锁升级过程
+
+Java锁升级过程（图源：https://blog.csdn.net/csdnnews/article/details/104471154/ ）
+
+![](Java并发编程笔记\Java锁升级过程.jpg)
+
+1. 无锁
+
+   - 偏向锁标志位：0
+   - 锁标志位：01
+
+2. 偏向锁
+
+   - 设定 -XX:BiasedLockingStartupDelay = 0，由默认轻量级锁改为偏向锁。
+   - 偏向锁标志位：1
+   - 锁标志位：01
+   - **记录当前线程ID**
+
+3. 轻量级锁
+
+   - 锁标志位：00
+
+   - 当**第二个线程**参与竞争偏向锁时，对象根据对象头markdown中记录的**线程ID**发现是新线程，**立即撤销偏向锁，升级为轻量级锁**。
+   - 线程生成**LockRecord**保存在线程栈中。每个线程通过**CAS（自旋）**操作，试图将对象头中的**指向栈中锁记录的指针**记录为自己的LockRecord。成功则获取锁。
+
+4. 重量级锁
+
+   - 锁标志位：10
+   - 锁竞争加剧（如线程自旋次数或自旋的线程数超过阈值），由轻量级锁升级为重量级锁。
+   - 重量级锁开始切换用户态/内核态，开销较大。
+
+##### 4.2 ReentrantLock
+
+（暂无）
+
+##### 4.3 ReentrantReadWriteLock
+
+（暂无）
 
 ### 二、Java类库中的并发基础构建模块
 
@@ -1220,6 +1273,10 @@ public ScheduledThreadPoolExecutor(int corePoolSize) {
 [5] https://www.cnblogs.com/xifengxiaoma/p/11477136.html
 
 [6] https://www.cnblogs.com/jiansen/p/7351872.html
+
+[7] https://blog.csdn.net/csdnnews/article/details/104471154/
+
+[8] https://www.cnblogs.com/panning/p/10990502.html
 
 
 
