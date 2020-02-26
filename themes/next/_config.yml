@@ -660,6 +660,9 @@ codeblock:
         enable: true
         show_result: true
         
+# 文章结束语
+passage_end_tag:
+enabled: true
 
 
 #! ---------------------------------------------------------------
