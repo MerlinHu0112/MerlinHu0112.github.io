@@ -138,10 +138,12 @@
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7.png">
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png">
+<meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5CJava%E9%94%81%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/3.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/4.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/01/12/Java并发编程笔记/5.jpg">
-<meta property="og:updated_time" content="2020-02-24T01:26:13.356Z">
+<meta property="og:updated_time" content="2020-02-26T05:04:51.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java并发编程学习笔记">
 <meta name="twitter:description" content="学习、理解多线程与Java并发。笔记主要基于《Java并发编程实战》一书，并结合部分优秀的文章。">
@@ -405,8 +407,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-02-24T09:26:13+08:00">
-                2020-02-24
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-26T13:04:51+08:00">
+                2020-02-26
               </time>
             
           </span>
@@ -480,7 +482,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  7,186 字
+                  7,510 字
                 </span>
               
 
@@ -496,7 +498,7 @@
                   <span class="post-meta-item-text">阅读本文约耗时</span>
                 
                 <span title="阅读本文约耗时">
-                  30 分钟
+                  31 分钟
                 </span>
               
             </div>
@@ -570,23 +572,29 @@
 <p>两个线程交替执行时，<code>count++</code> 操作是 <strong>非原子性</strong> 的，最终两个线程分别执行完 <code>count++</code> 操作后得到的 <code>count</code> 是相同的，显然这出现了并发异常。</p>
 <p>（3）对于竞态条件，如何保证并发安全性？</p>
 <p><img src="/2020/01/12/Java并发编程笔记/%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6.png" alt></p>
-<h4 id="2-共享可变变量的可见性"><a href="#2-共享可变变量的可见性" class="headerlink" title="2. 共享可变变量的可见性"></a>2. 共享可变变量的可见性</h4><h5 id="2-1-原子性、可见性和有序性"><a href="#2-1-原子性、可见性和有序性" class="headerlink" title="2.1 原子性、可见性和有序性"></a>2.1 原子性、可见性和有序性</h5><p>（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。 </p>
+<h4 id="2-多线程的安全性"><a href="#2-多线程的安全性" class="headerlink" title="2. 多线程的安全性"></a>2. 多线程的安全性</h4><blockquote>
+<p>安全的多线程并发应保证原子性、可见性和有序性</p>
+</blockquote>
+<h5 id="2-1-原子性、可见性和有序性"><a href="#2-1-原子性、可见性和有序性" class="headerlink" title="2.1 原子性、可见性和有序性"></a>2.1 原子性、可见性和有序性</h5><p>（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。</p>
 <blockquote>
-<p>read、load、use、assign、store、write 均为<strong>原子性的变量操作</strong>，实现基本数据类型的访问和读写操作是原子性的。</p>
+<p>Atomic包、synchronized关键字、Lock接口</p>
 </blockquote>
 <p>（2）可见性：对于共享的可变变量，当一个线程修改了它，其它线程能立即看到变化。</p>
-<p>（3）有序性:</p>
+<blockquote>
+<p>关键字 synchronized、volatile 和 final，Lock接口</p>
+</blockquote>
+<p>（3）有序性: </p>
+<blockquote>
+<p>happens-before原则</p>
+</blockquote>
 <ul>
 <li>程序的执行顺序与代码顺序相同；</li>
 <li>JVM在实际执行时会发生 <em>指令重排序</em> ；</li>
 <li>重排序对单线程程序无影响，对多线程程序可能会造成并发异常！</li>
 </ul>
-<blockquote>
-<p>并发过程应保证原子性、可见性和有序性</p>
-</blockquote>
 <h5 id="2-2-如何保证可见性？"><a href="#2-2-如何保证可见性？" class="headerlink" title="2.2 如何保证可见性？"></a>2.2 如何保证可见性？</h5><p><img src="/2020/01/12/Java并发编程笔记/%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7.png" alt></p>
 <h4 id="3-Java-的同步机制"><a href="#3-Java-的同步机制" class="headerlink" title="3. Java 的同步机制"></a>3. Java 的同步机制</h4><blockquote>
-<p>同步以保证线程安全。Java提供关键字<strong>synchronized（内置锁）</strong>和<strong>ReentrantLock（显示锁）</strong>这两种机制实现同步。关键字<strong>volatile</strong>仅保证可见性，不保证原子性。</p>
+<p>同步以保证线程安全。Java提供关键字<strong>synchronized（内置锁）</strong> 和 <strong>Lock接口</strong> 这两种机制实现同步。关键字<strong>volatile</strong> 仅保证可见性，不保证原子性。</p>
 </blockquote>
 <h5 id="3-1-多线程并发异常演示"><a href="#3-1-多线程并发异常演示" class="headerlink" title="3.1 多线程并发异常演示"></a>3.1 多线程并发异常演示</h5><p>（1）Bank类模拟银行账户存取操作，其中未对相应的方法进行同步，使其面临并发异常的风险。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟多线程并发操作银行账户，Bank类实现了取钱和存钱操作。</span></span><br><span class="line"><span class="comment"> * 注意：在实际应用中，涉及金融数字时不应采用任何基本数据类型，而应使用BigDecimal类。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-02-17</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> count; <span class="comment">// 账户余额</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bank</span><span class="params">(<span class="keyword">int</span> initMoney)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.count = initMoney;</span><br><span class="line">		System.out.println(<span class="string">"当前账户初始金额为 "</span>+initMoney+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 取钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(count &lt; money) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"当前账户余额不足"</span>); <span class="comment">// 当前账户余额不足时，抛出异常</span></span><br><span class="line">		&#125;</span><br><span class="line">		count -= money;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">" 支取 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 存钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		count += money;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">" 存入 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -623,7 +631,10 @@
 <p>同步代码块：对有并发风险的操作语句进行加锁；</p>
 <p>同步方法：对含有并发风险操作的方法进行加锁。</p>
 </blockquote>
-<h5 id="3-4-ReentrantLock-【显示锁】"><a href="#3-4-ReentrantLock-【显示锁】" class="headerlink" title="3.4 ReentrantLock 【显示锁】"></a>3.4 ReentrantLock 【显示锁】</h5><p>（1）ReentrantLock加锁</p>
+<h5 id="3-4-ReentrantLock-【显示锁】"><a href="#3-4-ReentrantLock-【显示锁】" class="headerlink" title="3.4 ReentrantLock 【显示锁】"></a>3.4 ReentrantLock 【显示锁】</h5><blockquote>
+<p>ReentrantLock类实现Lock接口</p>
+</blockquote>
+<p>（1）ReentrantLock加锁</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LockBank类，线程安全类。</span></span><br><span class="line"><span class="comment"> * Lock接口定义了锁的操作（包括lock和unlock）。ReentrantLock类实现Lock接口，</span></span><br><span class="line"><span class="comment"> * 默认采用非公平的锁策略。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-02-18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockBank</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> count; <span class="comment">// 账户余额</span></span><br><span class="line">	<span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock(); <span class="comment">// 锁对象</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LockBank</span><span class="params">(<span class="keyword">int</span> initMoney)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.count = initMoney;</span><br><span class="line">		System.out.println(<span class="string">"当前账户初始金额为 "</span>+initMoney+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 取钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		lock.lock(); <span class="comment">// 加锁</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(count &lt; money) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"当前账户余额不足"</span>); <span class="comment">// 当前账户余额不足时，抛出异常</span></span><br><span class="line">			&#125;</span><br><span class="line">			count -= money;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">" 支取 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock(); <span class="comment">// 解锁</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 存钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		lock.lock();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			count += money;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">" 存入 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（2）随机试验结果</p>
@@ -641,10 +652,51 @@
 <blockquote>
 <p>随机测试结果表明：并发过程出现异常，即 <em>关键字 volatile 无法保证原子性！</em></p>
 </blockquote>
-<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><blockquote>
-<p>有待进一步阅读相关书籍和文章。</p>
+<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
+<h5 id="4-1-synchronized及锁升级过程"><a href="#4-1-synchronized及锁升级过程" class="headerlink" title="4.1 synchronized及锁升级过程"></a>4.1 synchronized及锁升级过程</h5><blockquote>
+<p>JDK 1.5之后，synchronized锁被划分为四种状态：无锁 - 偏向锁 - 轻量级锁 - 重量级锁。</p>
 </blockquote>
-<p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
+<p>（1）Java普通对象的内存布局</p>
+<p>（图源：<a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a> &amp; <a href="https://www.cnblogs.com/panning/p/10990502.html" target="_blank" rel="noopener">https://www.cnblogs.com/panning/p/10990502.html</a> ）</p>
+<p><img src="/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.jpg" alt></p>
+<p>（2）锁升级过程</p>
+<p>Java锁升级过程（图源：<a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a> ）</p>
+<p><img src="/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5CJava%E9%94%81%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B.jpg" alt></p>
+<ol>
+<li><p>无锁</p>
+<ul>
+<li>偏向锁标志位：0</li>
+<li>锁标志位：01</li>
+</ul>
+</li>
+<li><p>偏向锁</p>
+<ul>
+<li>设定 -XX:BiasedLockingStartupDelay = 0，由默认轻量级锁改为偏向锁。</li>
+<li>偏向锁标志位：1</li>
+<li>锁标志位：01</li>
+<li><strong>记录当前线程ID</strong></li>
+</ul>
+</li>
+<li><p>轻量级锁</p>
+<ul>
+<li><p>锁标志位：00</p>
+</li>
+<li><p>当<strong>第二个线程</strong>参与竞争偏向锁时，对象根据对象头markdown中记录的<strong>线程ID</strong>发现是新线程，<strong>立即撤销偏向锁，升级为轻量级锁</strong>。</p>
+</li>
+<li><p>线程生成<strong>LockRecord</strong>保存在线程栈中。每个线程通过<strong>CAS（自旋）</strong>操作，试图将对象头中的<strong>指向栈中锁记录的指针</strong>记录为自己的LockRecord。成功则获取锁。</p>
+</li>
+</ul>
+</li>
+<li><p>重量级锁</p>
+<ul>
+<li>锁标志位：10</li>
+<li>锁竞争加剧（如线程自旋次数或自旋的线程数超过阈值），由轻量级锁升级为重量级锁。</li>
+<li>重量级锁开始切换用户态/内核态，开销较大。</li>
+</ul>
+</li>
+</ol>
+<h5 id="4-2-ReentrantLock"><a href="#4-2-ReentrantLock" class="headerlink" title="4.2 ReentrantLock"></a>4.2 ReentrantLock</h5><p>（暂无）</p>
+<h5 id="4-3-ReentrantReadWriteLock"><a href="#4-3-ReentrantReadWriteLock" class="headerlink" title="4.3 ReentrantReadWriteLock"></a>4.3 ReentrantReadWriteLock</h5><p>（暂无）</p>
 <h3 id="二、Java类库中的并发基础构建模块"><a href="#二、Java类库中的并发基础构建模块" class="headerlink" title="二、Java类库中的并发基础构建模块"></a>二、Java类库中的并发基础构建模块</h3><h4 id="1-同步容器类"><a href="#1-同步容器类" class="headerlink" title="1. 同步容器类"></a>1. 同步容器类</h4><ul>
 <li>Vector</li>
 <li>Hashtable</li>
@@ -950,6 +1002,8 @@
 <p>[4] <a href="https://blog.csdn.net/tongdanping/article/details/79604637" target="_blank" rel="noopener">https://blog.csdn.net/tongdanping/article/details/79604637</a></p>
 <p>[5] <a href="https://www.cnblogs.com/xifengxiaoma/p/11477136.html" target="_blank" rel="noopener">https://www.cnblogs.com/xifengxiaoma/p/11477136.html</a></p>
 <p>[6] <a href="https://www.cnblogs.com/jiansen/p/7351872.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiansen/p/7351872.html</a></p>
+<p>[7] <a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a></p>
+<p>[8] <a href="https://www.cnblogs.com/panning/p/10990502.html" target="_blank" rel="noopener">https://www.cnblogs.com/panning/p/10990502.html</a></p>
 <p>​                                                                                                                                                                                                                                                                                                                                                                                                               </p>
 
       
@@ -1122,7 +1176,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1133,7 +1187,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1144,7 +1198,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1193,7 +1247,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基础知识"><span class="nav-text">一、基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安全性问题"><span class="nav-text">1. 安全性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-线程安全"><span class="nav-text">1.1 线程安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-竞态条件（Race-Condition）"><span class="nav-text">1.2 竞态条件（Race Condition）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-共享可变变量的可见性"><span class="nav-text">2. 共享可变变量的可见性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-原子性、可见性和有序性"><span class="nav-text">2.1 原子性、可见性和有序性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-如何保证可见性？"><span class="nav-text">2.2 如何保证可见性？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Java-的同步机制"><span class="nav-text">3. Java 的同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-多线程并发异常演示"><span class="nav-text">3.1 多线程并发异常演示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-synchronized-修饰的同步方法【内置锁】"><span class="nav-text">3.2 synchronized 修饰的同步方法【内置锁】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-synchronized-同步代码块"><span class="nav-text">3.3 synchronized 同步代码块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-ReentrantLock-【显示锁】"><span class="nav-text">3.4 ReentrantLock 【显示锁】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-关键字-volatile-【不行！】"><span class="nav-text">3.5 关键字 volatile 【不行！】</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Java-中的锁"><span class="nav-text">4. Java 中的锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Java类库中的并发基础构建模块"><span class="nav-text">二、Java类库中的并发基础构建模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-同步容器类"><span class="nav-text">1. 同步容器类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-为什么要为同步容器类额外地进行客户端加锁？"><span class="nav-text">1.1 为什么要为同步容器类额外地进行客户端加锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-对容器进行迭代操作是有并发风险的"><span class="nav-text">1.2 对容器进行迭代操作是有并发风险的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-如何降低加锁带来的性能影响？"><span class="nav-text">1.3 如何降低加锁带来的性能影响？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-并发容器类"><span class="nav-text">2. 并发容器类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-并发容器类与同步容器类的比较"><span class="nav-text">2.1 并发容器类与同步容器类的比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-以ConcurrentHashMap为例"><span class="nav-text">2.2 以ConcurrentHashMap为例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-ConcurrentHashMap结构及分段锁"><span class="nav-text">2.3 ConcurrentHashMap结构及分段锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步工具类"><span class="nav-text">3. 同步工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-信号量"><span class="nav-text">3.1 信号量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-闭锁"><span class="nav-text">3.2 闭锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-栅栏"><span class="nav-text">3.3 栅栏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、任务执行策略"><span class="nav-text">三、任务执行策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-串行与并行执行任务"><span class="nav-text">1. 串行与并行执行任务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-串行执行任务"><span class="nav-text">1.1 串行执行任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-并行执行任务"><span class="nav-text">1.2 并行执行任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-主线程频繁新建线程的风险"><span class="nav-text">1.3 主线程频繁新建线程的风险</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Executor框架-——-异步任务执行框架"><span class="nav-text">2. Executor框架 —— 异步任务执行框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-为何使用Executor框架？"><span class="nav-text">2.1 为何使用Executor框架？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-Executor框架的基础-——-生产者-消费者模式"><span class="nav-text">2.2 Executor框架的基础 —— 生产者-消费者模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-Executor框架结构"><span class="nav-text">2.3 Executor框架结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-Executor框架的执行过程"><span class="nav-text">2.4 Executor框架的执行过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-对Runnbale对象直接调用ExecutorService的submit方法的理解"><span class="nav-text">2.5 对Runnbale对象直接调用ExecutorService的submit方法的理解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-线程池-——-高效地管理线程的生命周期"><span class="nav-text">3. 线程池 —— 高效地管理线程的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-通过工厂类Executors的静态工厂方法"><span class="nav-text">3.1 通过工厂类Executors的静态工厂方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-ThreadPoolExecutor"><span class="nav-text">3.2 ThreadPoolExecutor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、基础知识"><span class="nav-text">一、基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安全性问题"><span class="nav-text">1. 安全性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-线程安全"><span class="nav-text">1.1 线程安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-竞态条件（Race-Condition）"><span class="nav-text">1.2 竞态条件（Race Condition）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-多线程的安全性"><span class="nav-text">2. 多线程的安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-原子性、可见性和有序性"><span class="nav-text">2.1 原子性、可见性和有序性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-如何保证可见性？"><span class="nav-text">2.2 如何保证可见性？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Java-的同步机制"><span class="nav-text">3. Java 的同步机制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-多线程并发异常演示"><span class="nav-text">3.1 多线程并发异常演示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-synchronized-修饰的同步方法【内置锁】"><span class="nav-text">3.2 synchronized 修饰的同步方法【内置锁】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-synchronized-同步代码块"><span class="nav-text">3.3 synchronized 同步代码块</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-ReentrantLock-【显示锁】"><span class="nav-text">3.4 ReentrantLock 【显示锁】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-关键字-volatile-【不行！】"><span class="nav-text">3.5 关键字 volatile 【不行！】</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Java-中的锁"><span class="nav-text">4. Java 中的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-synchronized及锁升级过程"><span class="nav-text">4.1 synchronized及锁升级过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-ReentrantLock"><span class="nav-text">4.2 ReentrantLock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-ReentrantReadWriteLock"><span class="nav-text">4.3 ReentrantReadWriteLock</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Java类库中的并发基础构建模块"><span class="nav-text">二、Java类库中的并发基础构建模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-同步容器类"><span class="nav-text">1. 同步容器类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-为什么要为同步容器类额外地进行客户端加锁？"><span class="nav-text">1.1 为什么要为同步容器类额外地进行客户端加锁？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-对容器进行迭代操作是有并发风险的"><span class="nav-text">1.2 对容器进行迭代操作是有并发风险的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-如何降低加锁带来的性能影响？"><span class="nav-text">1.3 如何降低加锁带来的性能影响？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-并发容器类"><span class="nav-text">2. 并发容器类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-并发容器类与同步容器类的比较"><span class="nav-text">2.1 并发容器类与同步容器类的比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-以ConcurrentHashMap为例"><span class="nav-text">2.2 以ConcurrentHashMap为例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-ConcurrentHashMap结构及分段锁"><span class="nav-text">2.3 ConcurrentHashMap结构及分段锁</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-同步工具类"><span class="nav-text">3. 同步工具类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-信号量"><span class="nav-text">3.1 信号量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-闭锁"><span class="nav-text">3.2 闭锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-栅栏"><span class="nav-text">3.3 栅栏</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、任务执行策略"><span class="nav-text">三、任务执行策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-串行与并行执行任务"><span class="nav-text">1. 串行与并行执行任务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-串行执行任务"><span class="nav-text">1.1 串行执行任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-并行执行任务"><span class="nav-text">1.2 并行执行任务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-主线程频繁新建线程的风险"><span class="nav-text">1.3 主线程频繁新建线程的风险</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Executor框架-——-异步任务执行框架"><span class="nav-text">2. Executor框架 —— 异步任务执行框架</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-为何使用Executor框架？"><span class="nav-text">2.1 为何使用Executor框架？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-Executor框架的基础-——-生产者-消费者模式"><span class="nav-text">2.2 Executor框架的基础 —— 生产者-消费者模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-Executor框架结构"><span class="nav-text">2.3 Executor框架结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-Executor框架的执行过程"><span class="nav-text">2.4 Executor框架的执行过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-5-对Runnbale对象直接调用ExecutorService的submit方法的理解"><span class="nav-text">2.5 对Runnbale对象直接调用ExecutorService的submit方法的理解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-线程池-——-高效地管理线程的生命周期"><span class="nav-text">3. 线程池 —— 高效地管理线程的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-通过工厂类Executors的静态工厂方法"><span class="nav-text">3.1 通过工厂类Executors的静态工厂方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-ThreadPoolExecutor"><span class="nav-text">3.2 ThreadPoolExecutor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></div>
             
 
           </div>
@@ -1227,7 +1281,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">22.0k 字</span>
+    <span title="全站共计">24.3k 字</span>
   
 </div>
 

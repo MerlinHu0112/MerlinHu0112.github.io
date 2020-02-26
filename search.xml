@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>五大常用算法之分治法</title>
+    <url>/2020/02/26/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%88%86%E6%B2%BB%E6%B3%95/</url>
+    <content><![CDATA[<p><a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>是一种十分重要的算法思想，其精髓是”分而治之”，即把复杂的问题分解成数个小规模的、形式相同的子问题，再逐个”击破”子问题，最后合并所有子问题的解以解决原问题。诸如快速排序、归并排序、快速傅里叶变换等算法均是分治法思想的重要体现。</p>
+<a id="more"></a>
+
+<h4 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h4><p>分治法（Divide and Conquer）与<strong>动态规划</strong>类似，二者最大的区别在于：适用于分治法求解的问题，经分解后得到的<strong>子问题往往是相互独立的</strong>。</p>
+<p>分治法可解决的问题，应具备如下特征：</p>
+<p>（1）问题的规模缩小后，更容易解决。</p>
+<p>（2）该问题可分解为若干个小规模的、形式相同的问题，即该问题具有最优子结构性质。这体现了<strong>递归思想</strong>在分治法中的应用。</p>
+<p><strong>（3）利用该问题分解出的子问题的解能够合并为该问题的解。</strong>这决定了某一问题是否适用于分治法。不符时应考虑贪心法或<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">动态规划</a>。</p>
+<p>（4）子问题是相互独立的。子问题若不独立，应考虑<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="noopener">动态规划</a>。</p>
+<h4 id="二、二分查找"><a href="#二、二分查找" class="headerlink" title="二、二分查找"></a>二、二分查找</h4><p>二分查找是分治思想的重要且常用的实现算法之一。</p>
+<p>二分查找的基本思路是：将目标对象（一般为数组）一分为二，递归地进入子对象继续进行二分查找，直至子问题可以很容易被解决。其核心代码如下。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二分查找</span></span><br><span class="line"><span class="keyword">while</span>(lo&lt;=hi)&#123;</span><br><span class="line">    mid = (hi+lo)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(nums[mid]==target)&#123;</span><br><span class="line">        <span class="keyword">return</span> mid; <span class="comment">// 最小规模的子问题，直接返回子问题的结果</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[mid]&gt;target)&#123;</span><br><span class="line">        hi = mid-<span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        lo = mid+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、最大子序和问题"><a href="#三、最大子序和问题" class="headerlink" title="三、最大子序和问题"></a>三、最大子序和问题</h4><p>最大子序和问题是一道经典的算法题，可参见LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题</a>。</p>
+<p>问题描述：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
+<p>正确输出结果：6</p>
+<p>在动态规划和分治法求解最大子序和问题一文中，采用动态规划法解决了此问题。如何用分治法解决此问题呢？</p>
+<p>分治法的核心在于如何将目标数组划分为若干个子数组并分别求出子数组的最大子序和。容易想到，将数组沿 <code>(left+right)/2</code> 划分为两段，分别递归求解两段的最大子序和，随后合并结果（即从两个值中选择较大者）。</p>
+<p>那么，取上述两段最大子序和中的较大者就是数组 <code>nums</code> 的最大子序和了吗？</p>
+<p>显然，上述结论是不成立的。因为将数组一分为二，没有考虑到<strong>数组跨越中间元素组成的序列</strong>的情况。那么，考虑它就是咯！</p>
+<p>就测试用例而言，我们可沿索引为 <code>4</code> 的元素将 <code>nums</code> 划分为：</p>
+<ul>
+<li>[-2, 1, -3, 4, -1]，左半段，leftSum；</li>
+<li>[2, 1, -5, 4]，右半段，rightSum；</li>
+<li>[ … , 4, <strong>-1</strong>, 2, … ]，跨越中间元素的数组，crossSum。</li>
+<li>取上述三者的最大值。</li>
+</ul>
+<p>对于左右半段，递归调用函数即可求解。如何求解跨越中间元素数组的最大子序和（crossSum）呢？</p>
+<p>如图，以已经划分至最小规模的 <code>[-2, 1, -3]</code> 为例。我们从 <code>-1</code> 出发，扫描至左端边界，求得跨越中间元素数组的<strong>含边界</strong> <code>-1</code> 的最大子序和 <code>leftCrossSum</code> ；再从 <code>-3</code> 出发，扫描至右端边界，求得跨越中间元素数组的含边界 <code>-3</code> 的最大子序 <code>rightCrossSum</code> ；二者之和即为 <code>crossSum</code> 。</p>
+<p><img src="/2020/02/26/五大常用算法之分治法/fig1.png" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> recursion(nums, <span class="number">0</span>, nums.length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">recursion</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(left==right) &#123;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> mid = (left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> leftSum = recursion(nums, left, mid); <span class="comment">// 继续划分，递归求解，左段</span></span><br><span class="line">    <span class="keyword">int</span> rightSum = recursion(nums, mid+<span class="number">1</span>, right); <span class="comment">// 继续划分，递归求解，右段</span></span><br><span class="line">    <span class="keyword">int</span> crossSum = crossSum(nums, left, right); <span class="comment">// 求解跨越中间元素时的最大序列和</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Math.max(Math.max(leftSum, rightSum), crossSum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求解跨越中间元素时的最大序列和</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">crossSum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (left+right)&gt;&gt;<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> leftCrossSum = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> leftCurrSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=mid; i&gt;=left; i--) &#123;</span><br><span class="line">        <span class="comment">// 扫描左边</span></span><br><span class="line">        leftCurrSum += nums[i];</span><br><span class="line">        leftCrossSum = Math.max(leftCrossSum, leftCurrSum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> rightCrossSum = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">int</span> rightCurrSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=mid+<span class="number">1</span>; i&lt;=right; i++) &#123;</span><br><span class="line">        <span class="comment">// 扫描右边</span></span><br><span class="line">        rightCurrSum += nums[i];</span><br><span class="line">        rightCrossSum = Math.max(rightCrossSum, rightCurrSum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> leftCrossSum+rightCrossSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n log n)；</li>
+<li>空间复杂度：O(log n)。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Divide and Conquer</tag>
+        <tag>Algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>动态规划和分治法求解最大子序和问题</title>
+    <url>/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>基于LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题</a>，总结<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin" target="_blank" rel="noopener">动态规划</a>和<a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>的解题思路，同时涉及经典的Kadane算法。</p>
+<a id="more"></a>
+
+<h4 id="一、题目介绍"><a href="#一、题目介绍" class="headerlink" title="一、题目介绍"></a>一、题目介绍</h4><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
+<p>正确输出结果：6</p>
+<h4 id="二、动态规划法"><a href="#二、动态规划法" class="headerlink" title="二、动态规划法"></a>二、动态规划法</h4><p>在<a href="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/" target="_blank" rel="noopener">五大常用算法之动态规划</a>中学习了动态规划中首先需要确定的三个要素：</p>
+<ul>
+<li><p>最优子结构</p>
+</li>
+<li><p>边界</p>
+</li>
+<li><p>状态转移方程</p>
+</li>
+</ul>
+<p>在本题中，对于数组 <code>nums</code> 中索引为 <code>i</code> 的元素，其<strong>当前最大子序和</strong>为下列二者中的较大者：</p>
+<ul>
+<li>索引 <code>i-1</code> 处的当前最大子序和，加上索引 <code>i</code> 处的 <code>nums</code> 数组元素值；</li>
+<li>索引 <code>i</code> 处的 <code>nums</code> 数组元素值。</li>
+</ul>
+<p>设 <code>dp</code> 数组保存每个元素位置的<strong>当前最大子序和</strong>。</p>
+<p>状态转移方程为：<code>dp[i] = max( (dp[i-1]+nums[i]), (nums[i]) )</code>；边界条件为：<code>dp[0] = nums[0]</code>。</p>
+<p>算法过程的图示如下：</p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// dp数组存储nums数组每个元素位置的当前最大子序和</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max((dp[i-<span class="number">1</span>]+nums[i]), nums[i]); <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; ++i) &#123;</span><br><span class="line">        res = Math.max(dp[i], res); <span class="comment">// 遍历dp数组，找出最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<h4 id="三、Kadane算法"><a href="#三、Kadane算法" class="headerlink" title="三、Kadane算法"></a>三、Kadane算法</h4><blockquote>
+<p>Kadane算法是一种动态规划算法。</p>
+</blockquote>
+<p>在上述动态规划算法中，使用 <code>dp</code> 数组保存数组 <code>nums</code> 所有位置的最大子序和。在经典的 kadane算法中，对此进行了优化。</p>
+<p>Kadane算法采用两个辅助变量：</p>
+<ul>
+<li>currSum：当前位置 <code>i</code> 的最大子序和，对应的是 <code>dp</code> 中 <code>i</code> 位置的元素值；</li>
+<li>maxSum：保存全局最大子序和。</li>
+</ul>
+<p>算法过程的图示如下：</p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="四、分治法"><a href="#四、分治法" class="headerlink" title="四、分治法"></a>四、分治法</h4><p>关于分治法求解过程，详见五大常用算法之分治法。</p>
+<h4 id="五、算法性能总结："><a href="#五、算法性能总结：" class="headerlink" title="五、算法性能总结："></a>五、算法性能总结：</h4><p>暴力法的时间复杂度较高，为 O(n^3) 或 O(n^2)。</p>
+<p>分治法的思路较为复杂，从是否跨越中间元素出发，将数组分为三个不会重合的子序列，对其分别求出最大子序和，取三者中的较大者即可。该算法的时间复杂度为 O(n log n)，空间复杂度为 O(log n)。</p>
+<p>动态规划法的思路更加直观、易理解。算法性能也是最优的，时间复杂度可达 O(n)，空间复杂度为 O(1)。</p>
+]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Algorithms</tag>
+        <tag>DP</tag>
+        <tag>Kadane</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java创建线程的方式</title>
     <url>/2020/02/21/Java%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<p>尽管提倡使用线程池高效地管理线程，但了解线程创建的基础方法还是非常有必要的。</p>
@@ -208,11 +327,11 @@
 <p>[2] <a href="https://www.jianshu.com/p/dd3c3f3e84c0" target="_blank" rel="noopener">https://www.jianshu.com/p/dd3c3f3e84c0</a></p>
 ]]></content>
       <categories>
-        <category>算法刷题</category>
+        <category>算法</category>
       </categories>
       <tags>
-        <tag>Backtracking</tag>
         <tag>Algorithms</tag>
+        <tag>Backtracking</tag>
       </tags>
   </entry>
   <entry>
@@ -271,23 +390,29 @@
 <p>两个线程交替执行时，<code>count++</code> 操作是 <strong>非原子性</strong> 的，最终两个线程分别执行完 <code>count++</code> 操作后得到的 <code>count</code> 是相同的，显然这出现了并发异常。</p>
 <p>（3）对于竞态条件，如何保证并发安全性？</p>
 <p><img src="/2020/01/12/Java并发编程笔记/%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6.png" alt></p>
-<h4 id="2-共享可变变量的可见性"><a href="#2-共享可变变量的可见性" class="headerlink" title="2. 共享可变变量的可见性"></a>2. 共享可变变量的可见性</h4><h5 id="2-1-原子性、可见性和有序性"><a href="#2-1-原子性、可见性和有序性" class="headerlink" title="2.1 原子性、可见性和有序性"></a>2.1 原子性、可见性和有序性</h5><p>（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。 </p>
+<h4 id="2-多线程的安全性"><a href="#2-多线程的安全性" class="headerlink" title="2. 多线程的安全性"></a>2. 多线程的安全性</h4><blockquote>
+<p>安全的多线程并发应保证原子性、可见性和有序性</p>
+</blockquote>
+<h5 id="2-1-原子性、可见性和有序性"><a href="#2-1-原子性、可见性和有序性" class="headerlink" title="2.1 原子性、可见性和有序性"></a>2.1 原子性、可见性和有序性</h5><p>（1）原子性：对于单个或者多个操作，要么全部执行且不会被中断，要么都不执行。</p>
 <blockquote>
-<p>read、load、use、assign、store、write 均为<strong>原子性的变量操作</strong>，实现基本数据类型的访问和读写操作是原子性的。</p>
+<p>Atomic包、synchronized关键字、Lock接口</p>
 </blockquote>
 <p>（2）可见性：对于共享的可变变量，当一个线程修改了它，其它线程能立即看到变化。</p>
-<p>（3）有序性:</p>
+<blockquote>
+<p>关键字 synchronized、volatile 和 final，Lock接口</p>
+</blockquote>
+<p>（3）有序性: </p>
+<blockquote>
+<p>happens-before原则</p>
+</blockquote>
 <ul>
 <li>程序的执行顺序与代码顺序相同；</li>
 <li>JVM在实际执行时会发生 <em>指令重排序</em> ；</li>
 <li>重排序对单线程程序无影响，对多线程程序可能会造成并发异常！</li>
 </ul>
-<blockquote>
-<p>并发过程应保证原子性、可见性和有序性</p>
-</blockquote>
 <h5 id="2-2-如何保证可见性？"><a href="#2-2-如何保证可见性？" class="headerlink" title="2.2 如何保证可见性？"></a>2.2 如何保证可见性？</h5><p><img src="/2020/01/12/Java并发编程笔记/%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7.png" alt></p>
 <h4 id="3-Java-的同步机制"><a href="#3-Java-的同步机制" class="headerlink" title="3. Java 的同步机制"></a>3. Java 的同步机制</h4><blockquote>
-<p>同步以保证线程安全。Java提供关键字<strong>synchronized（内置锁）</strong>和<strong>ReentrantLock（显示锁）</strong>这两种机制实现同步。关键字<strong>volatile</strong>仅保证可见性，不保证原子性。</p>
+<p>同步以保证线程安全。Java提供关键字<strong>synchronized（内置锁）</strong> 和 <strong>Lock接口</strong> 这两种机制实现同步。关键字<strong>volatile</strong> 仅保证可见性，不保证原子性。</p>
 </blockquote>
 <h5 id="3-1-多线程并发异常演示"><a href="#3-1-多线程并发异常演示" class="headerlink" title="3.1 多线程并发异常演示"></a>3.1 多线程并发异常演示</h5><p>（1）Bank类模拟银行账户存取操作，其中未对相应的方法进行同步，使其面临并发异常的风险。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟多线程并发操作银行账户，Bank类实现了取钱和存钱操作。</span></span><br><span class="line"><span class="comment"> * 注意：在实际应用中，涉及金融数字时不应采用任何基本数据类型，而应使用BigDecimal类。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-02-17</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bank</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> count; <span class="comment">// 账户余额</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Bank</span><span class="params">(<span class="keyword">int</span> initMoney)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.count = initMoney;</span><br><span class="line">		System.out.println(<span class="string">"当前账户初始金额为 "</span>+initMoney+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 取钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(count &lt; money) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"当前账户余额不足"</span>); <span class="comment">// 当前账户余额不足时，抛出异常</span></span><br><span class="line">		&#125;</span><br><span class="line">		count -= money;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">" 支取 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 存钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		count += money;</span><br><span class="line">		System.out.println(Thread.currentThread().getName()+<span class="string">" 存入 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -324,7 +449,10 @@
 <p>同步代码块：对有并发风险的操作语句进行加锁；</p>
 <p>同步方法：对含有并发风险操作的方法进行加锁。</p>
 </blockquote>
-<h5 id="3-4-ReentrantLock-【显示锁】"><a href="#3-4-ReentrantLock-【显示锁】" class="headerlink" title="3.4 ReentrantLock 【显示锁】"></a>3.4 ReentrantLock 【显示锁】</h5><p>（1）ReentrantLock加锁</p>
+<h5 id="3-4-ReentrantLock-【显示锁】"><a href="#3-4-ReentrantLock-【显示锁】" class="headerlink" title="3.4 ReentrantLock 【显示锁】"></a>3.4 ReentrantLock 【显示锁】</h5><blockquote>
+<p>ReentrantLock类实现Lock接口</p>
+</blockquote>
+<p>（1）ReentrantLock加锁</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * LockBank类，线程安全类。</span></span><br><span class="line"><span class="comment"> * Lock接口定义了锁的操作（包括lock和unlock）。ReentrantLock类实现Lock接口，</span></span><br><span class="line"><span class="comment"> * 默认采用非公平的锁策略。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-02-18</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockBank</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> count; <span class="comment">// 账户余额</span></span><br><span class="line">	<span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock(); <span class="comment">// 锁对象</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">LockBank</span><span class="params">(<span class="keyword">int</span> initMoney)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.count = initMoney;</span><br><span class="line">		System.out.println(<span class="string">"当前账户初始金额为 "</span>+initMoney+<span class="string">" 元"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 取钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		lock.lock(); <span class="comment">// 加锁</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(count &lt; money) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"当前账户余额不足"</span>); <span class="comment">// 当前账户余额不足时，抛出异常</span></span><br><span class="line">			&#125;</span><br><span class="line">			count -= money;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">" 支取 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock(); <span class="comment">// 解锁</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 存钱操作</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">(<span class="keyword">int</span> money)</span> </span>&#123;</span><br><span class="line">		lock.lock();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			count += money;</span><br><span class="line">			System.out.println(Thread.currentThread().getName()+<span class="string">" 存入 "</span>+money+<span class="string">" 元，余额为 "</span>+count+<span class="string">" 元"</span>);</span><br><span class="line">		&#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（2）随机试验结果</p>
@@ -342,10 +470,51 @@
 <blockquote>
 <p>随机测试结果表明：并发过程出现异常，即 <em>关键字 volatile 无法保证原子性！</em></p>
 </blockquote>
-<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><blockquote>
-<p>有待进一步阅读相关书籍和文章。</p>
+<h4 id="4-Java-中的锁"><a href="#4-Java-中的锁" class="headerlink" title="4. Java 中的锁"></a>4. Java 中的锁</h4><p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
+<h5 id="4-1-synchronized及锁升级过程"><a href="#4-1-synchronized及锁升级过程" class="headerlink" title="4.1 synchronized及锁升级过程"></a>4.1 synchronized及锁升级过程</h5><blockquote>
+<p>JDK 1.5之后，synchronized锁被划分为四种状态：无锁 - 偏向锁 - 轻量级锁 - 重量级锁。</p>
 </blockquote>
-<p><img src="/2020/01/12/Java并发编程笔记/Java%E4%B8%AD%E7%9A%84%E9%94%81.png" alt></p>
+<p>（1）Java普通对象的内存布局</p>
+<p>（图源：<a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a> &amp; <a href="https://www.cnblogs.com/panning/p/10990502.html" target="_blank" rel="noopener">https://www.cnblogs.com/panning/p/10990502.html</a> ）</p>
+<p><img src="/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80.jpg" alt></p>
+<p>（2）锁升级过程</p>
+<p>Java锁升级过程（图源：<a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a> ）</p>
+<p><img src="/2020/01/12/Java并发编程笔记/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0%5CJava%E9%94%81%E5%8D%87%E7%BA%A7%E8%BF%87%E7%A8%8B.jpg" alt></p>
+<ol>
+<li><p>无锁</p>
+<ul>
+<li>偏向锁标志位：0</li>
+<li>锁标志位：01</li>
+</ul>
+</li>
+<li><p>偏向锁</p>
+<ul>
+<li>设定 -XX:BiasedLockingStartupDelay = 0，由默认轻量级锁改为偏向锁。</li>
+<li>偏向锁标志位：1</li>
+<li>锁标志位：01</li>
+<li><strong>记录当前线程ID</strong></li>
+</ul>
+</li>
+<li><p>轻量级锁</p>
+<ul>
+<li><p>锁标志位：00</p>
+</li>
+<li><p>当<strong>第二个线程</strong>参与竞争偏向锁时，对象根据对象头markdown中记录的<strong>线程ID</strong>发现是新线程，<strong>立即撤销偏向锁，升级为轻量级锁</strong>。</p>
+</li>
+<li><p>线程生成<strong>LockRecord</strong>保存在线程栈中。每个线程通过<strong>CAS（自旋）</strong>操作，试图将对象头中的<strong>指向栈中锁记录的指针</strong>记录为自己的LockRecord。成功则获取锁。</p>
+</li>
+</ul>
+</li>
+<li><p>重量级锁</p>
+<ul>
+<li>锁标志位：10</li>
+<li>锁竞争加剧（如线程自旋次数或自旋的线程数超过阈值），由轻量级锁升级为重量级锁。</li>
+<li>重量级锁开始切换用户态/内核态，开销较大。</li>
+</ul>
+</li>
+</ol>
+<h5 id="4-2-ReentrantLock"><a href="#4-2-ReentrantLock" class="headerlink" title="4.2 ReentrantLock"></a>4.2 ReentrantLock</h5><p>（暂无）</p>
+<h5 id="4-3-ReentrantReadWriteLock"><a href="#4-3-ReentrantReadWriteLock" class="headerlink" title="4.3 ReentrantReadWriteLock"></a>4.3 ReentrantReadWriteLock</h5><p>（暂无）</p>
 <h3 id="二、Java类库中的并发基础构建模块"><a href="#二、Java类库中的并发基础构建模块" class="headerlink" title="二、Java类库中的并发基础构建模块"></a>二、Java类库中的并发基础构建模块</h3><h4 id="1-同步容器类"><a href="#1-同步容器类" class="headerlink" title="1. 同步容器类"></a>1. 同步容器类</h4><ul>
 <li>Vector</li>
 <li>Hashtable</li>
@@ -651,6 +820,8 @@
 <p>[4] <a href="https://blog.csdn.net/tongdanping/article/details/79604637" target="_blank" rel="noopener">https://blog.csdn.net/tongdanping/article/details/79604637</a></p>
 <p>[5] <a href="https://www.cnblogs.com/xifengxiaoma/p/11477136.html" target="_blank" rel="noopener">https://www.cnblogs.com/xifengxiaoma/p/11477136.html</a></p>
 <p>[6] <a href="https://www.cnblogs.com/jiansen/p/7351872.html" target="_blank" rel="noopener">https://www.cnblogs.com/jiansen/p/7351872.html</a></p>
+<p>[7] <a href="https://blog.csdn.net/csdnnews/article/details/104471154/" target="_blank" rel="noopener">https://blog.csdn.net/csdnnews/article/details/104471154/</a></p>
+<p>[8] <a href="https://www.cnblogs.com/panning/p/10990502.html" target="_blank" rel="noopener">https://www.cnblogs.com/panning/p/10990502.html</a></p>
 <p>​                                                                                                                                                                                                                                                                                                                                                                                                               </p>
 ]]></content>
       <categories>
@@ -811,11 +982,11 @@
 <p>[2] <a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a></p>
 ]]></content>
       <categories>
-        <category>算法刷题</category>
+        <category>算法</category>
       </categories>
       <tags>
         <tag>Algorithms</tag>
-        <tag>Dynamic Programming</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>

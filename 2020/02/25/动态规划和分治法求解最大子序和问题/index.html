@@ -116,7 +116,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Algorithms,DP,Kadane,">
 
 
 
@@ -127,17 +127,21 @@
 
 
 
-<meta name="description" content="累了，想一想，再出发！">
-<meta name="keywords" content="“Java”">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Merlin小站">
-<meta property="og:url" content="http://yoursite.com/tags/Dynamic-Programming/index.html">
+<meta name="description" content="基于LeetCode第53题，总结动态规划和分治法的解题思路，同时涉及经典的Kadane算法。">
+<meta name="keywords" content="Algorithms,DP,Kadane">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划和分治法求解最大子序和问题">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/index.html">
 <meta property="og:site_name" content="Merlin小站">
-<meta property="og:description" content="累了，想一想，再出发！">
+<meta property="og:description" content="基于LeetCode第53题，总结动态规划和分治法的解题思路，同时涉及经典的Kadane算法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png">
+<meta property="og:image" content="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png">
+<meta property="og:updated_time" content="2020-02-26T09:10:02.363Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Merlin小站">
-<meta name="twitter:description" content="累了，想一想，再出发！">
+<meta name="twitter:title" content="动态规划和分治法求解最大子序和问题">
+<meta name="twitter:description" content="基于LeetCode第53题，总结动态规划和分治法的解题思路，同时涉及经典的Kadane算法。">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png">
 
 
 
@@ -167,13 +171,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Dynamic-Programming/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/">
 
 
 
 
 
-  <title>标签: Dynamic Programming | Merlin小站</title>
+  <title>动态规划和分治法求解最大子序和问题 | Merlin小站</title>
   
 
 
@@ -202,7 +206,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -338,52 +342,346 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Dynamic Programming<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Merlin Hu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Merlin小站">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/01/02/五大常用算法之动态规划/" itemprop="url">
-              
-                <span itemprop="name">五大常用算法之动态规划</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">动态规划和分治法求解最大子序和问题</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-01-02T00:00:00+08:00" content="2020-01-02">
-          01-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T00:00:00+08:00">
+                2020-02-25
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2020-02-26T17:10:02+08:00">
+                2020-02-26
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+				
+				
+                 <span class="post-meta-item-text">评论</span>
+				
+                <a href="/2020/02/25/动态规划和分治法求解最大子序和问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/25/动态规划和分治法求解最大子序和问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/02/25/动态规划和分治法求解最大子序和问题/" class="leancloud_visitors" data-flag-title="动态规划和分治法求解最大子序和问题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">全文共</span>
+                
+                <span title="全文共">
+                  771 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读本文约耗时</span>
+                
+                <span title="阅读本文约耗时">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>基于LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题</a>，总结<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin" target="_blank" rel="noopener">动态规划</a>和<a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>的解题思路，同时涉及经典的Kadane算法。</p>
+<a id="more"></a>
+
+<h4 id="一、题目介绍"><a href="#一、题目介绍" class="headerlink" title="一、题目介绍"></a>一、题目介绍</h4><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
+<p>正确输出结果：6</p>
+<h4 id="二、动态规划法"><a href="#二、动态规划法" class="headerlink" title="二、动态规划法"></a>二、动态规划法</h4><p>在<a href="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/" target="_blank" rel="noopener">五大常用算法之动态规划</a>中学习了动态规划中首先需要确定的三个要素：</p>
+<ul>
+<li><p>最优子结构</p>
+</li>
+<li><p>边界</p>
+</li>
+<li><p>状态转移方程</p>
+</li>
+</ul>
+<p>在本题中，对于数组 <code>nums</code> 中索引为 <code>i</code> 的元素，其<strong>当前最大子序和</strong>为下列二者中的较大者：</p>
+<ul>
+<li>索引 <code>i-1</code> 处的当前最大子序和，加上索引 <code>i</code> 处的 <code>nums</code> 数组元素值；</li>
+<li>索引 <code>i</code> 处的 <code>nums</code> 数组元素值。</li>
+</ul>
+<p>设 <code>dp</code> 数组保存每个元素位置的<strong>当前最大子序和</strong>。</p>
+<p>状态转移方程为：<code>dp[i] = max( (dp[i-1]+nums[i]), (nums[i]) )</code>；边界条件为：<code>dp[0] = nums[0]</code>。</p>
+<p>算法过程的图示如下：</p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// dp数组存储nums数组每个元素位置的当前最大子序和</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max((dp[i-<span class="number">1</span>]+nums[i]), nums[i]); <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; ++i) &#123;</span><br><span class="line">        res = Math.max(dp[i], res); <span class="comment">// 遍历dp数组，找出最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<h4 id="三、Kadane算法"><a href="#三、Kadane算法" class="headerlink" title="三、Kadane算法"></a>三、Kadane算法</h4><blockquote>
+<p>Kadane算法是一种动态规划算法。</p>
+</blockquote>
+<p>在上述动态规划算法中，使用 <code>dp</code> 数组保存数组 <code>nums</code> 所有位置的最大子序和。在经典的 kadane算法中，对此进行了优化。</p>
+<p>Kadane算法采用两个辅助变量：</p>
+<ul>
+<li>currSum：当前位置 <code>i</code> 的最大子序和，对应的是 <code>dp</code> 中 <code>i</code> 位置的元素值；</li>
+<li>maxSum：保存全局最大子序和。</li>
+</ul>
+<p>算法过程的图示如下：</p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<h4 id="四、分治法"><a href="#四、分治法" class="headerlink" title="四、分治法"></a>四、分治法</h4><p>关于分治法求解过程，详见五大常用算法之分治法。</p>
+<h4 id="五、算法性能总结："><a href="#五、算法性能总结：" class="headerlink" title="五、算法性能总结："></a>五、算法性能总结：</h4><p>暴力法的时间复杂度较高，为 O(n^3) 或 O(n^2)。</p>
+<p>分治法的思路较为复杂，从是否跨越中间元素出发，将数组分为三个不会重合的子序列，对其分别求出最大子序和，取三者中的较大者即可。该算法的时间复杂度为 O(n log n)，空间复杂度为 O(log n)。</p>
+<p>动态规划法的思路更加直观、易理解。算法性能也是最优的，时间复杂度可达 O(n)，空间复杂度为 O(1)。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请我喝肥宅快乐水吧!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Merlin Hu 微信">
+        <p>微信</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Merlin Hu 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Merlin Hu
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/" title="动态规划和分治法求解最大子序和问题">http://yoursite.com/2020/02/25/动态规划和分治法求解最大子序和问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithms/" rel="tag"><i class="fa fa-tag"></i> Algorithms</a>
+          
+            <a href="/tags/DP/" rel="tag"><i class="fa fa-tag"></i> DP</a>
+          
+            <a href="/tags/Kadane/" rel="tag"><i class="fa fa-tag"></i> Kadane</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+			  <a href="/2020/02/26/五大常用算法之分治法/" rel="prev" title="五大常用算法之分治法">
+				<i class="fa fa-chevron-left"></i> 五大常用算法之分治法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+			  <a href="/2020/02/21/Java创建线程的方式/" rel="next" title="Java创建线程的方式">
+				Java创建线程的方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -391,6 +689,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -411,8 +716,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -429,7 +743,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -440,7 +754,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -451,7 +765,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -491,6 +805,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、题目介绍"><span class="nav-text">一、题目介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、动态规划法"><span class="nav-text">二、动态规划法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Kadane算法"><span class="nav-text">三、Kadane算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、分治法"><span class="nav-text">四、分治法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、算法性能总结："><span class="nav-text">五、算法性能总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -518,7 +848,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">22.0k 字</span>
+    <span title="全站共计">24.3k 字</span>
   
 </div>
 
@@ -660,6 +990,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
