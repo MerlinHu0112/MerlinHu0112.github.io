@@ -1,13 +1,18 @@
 ---
+
 title: 关于我
 date: 2020-02-22 11:48:35
 type: "about"
 comments: false
 ---
 
+
+
 ![](index/cover.jpg)
 
 
+
+### 关于我
 
 华东理工大学硕士在读，积极准备找工作中。
 
@@ -19,3 +24,13 @@ comments: false
 
 另，博客项目的配置文件和文章源码在 https://github.com/MerlinHu0112/MerlinHu0112.github.io
 
+
+
+
+
+### 关于Merlin小站
+
+- 2019.08  建站，基于Yillia主题。
+
+- 2020.02  更换为NexT主题。
+- future ~ ~ ~
