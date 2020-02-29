@@ -61,6 +61,13 @@
         {% endif %}
 
         <div class="post-meta">
+			{# 在文章上部显示置顶字样 #}
+			{% if post.top %}
+				<i class="fa fa-thumb-tack"></i>
+				<font>置顶</font>
+				<span class="post-meta-divider">|</span>
+			{% endif %}
+			
           <span class="post-time">
             {% if theme.post_meta.created_at %}
               <span class="post-meta-item-icon">
@@ -192,7 +199,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-				{# 手动添加下述if语句，以实现在文章副标题处显示评论数 #}
+				{# 手动添加下述if语句，以实现在文章标题下面显示评论数 #}
 				{% if theme.post_meta.item_text %}
                  <span class="post-meta-item-text">{{__('post.comments')}}</span>
 				{% endif %}
@@ -258,13 +265,20 @@
               {% endif %}
             </div>
           {% endif %}
-
           {% if post.description and (not theme.excerpt_description or not is_index) %}
               <div class="post-description">
                   {{ post.description }}
               </div>
           {% endif %}
-
+		  {# 调整文章标签的显示位置 #}
+	      {% if post.tags and post.tags.length and not is_index %}
+			 <div class="post-tags">
+				{% for tag in post.tags %}
+					<a href="{{ url_for(tag.path) }}" rel="tag"><i class="fa fa-tag"></i> {{ tag.name }}</a>
+				{% endfor %}
+			</div>
+         {% endif %}
+		 
         </div>
       </header>
     {% endif %}
@@ -345,7 +359,13 @@
     {### END POST BODY ###}
     {#####################}
 
-    {% if theme.wechat_subscriber.enabled and not is_index %}
+    {% if theme.post_copyright.enable and not is_index %}
+      <div>
+        {% include 'post-copyright.swig' with { post: post } %}
+      </div>
+    {% endif %}
+	
+	{% if theme.wechat_subscriber.enabled and not is_index %}
       <div>
         {% include 'wechat-subscriber.swig' %}
       </div>
@@ -357,20 +377,8 @@
       </div>
     {% endif %}
 
-    {% if theme.post_copyright.enable and not is_index %}
-      <div>
-        {% include 'post-copyright.swig' with { post: post } %}
-      </div>
-    {% endif %}
-
     <footer class="post-footer">
-      {% if post.tags and post.tags.length and not is_index %}
-        <div class="post-tags">
-          {% for tag in post.tags %}
-            <a href="{{ url_for(tag.path) }}" rel="tag"><i class="fa fa-tag"></i> {{ tag.name }}</a>
-          {% endfor %}
-        </div>
-      {% endif %}
+
 
       {% if not is_index %}
       {% if theme.rating.enable or (theme.vkontakte_api.enable and theme.vkontakte_api.like) or (theme.facebook_sdk.enable and theme.facebook_sdk.like_button) or (theme.needmoreshare2.enable and theme.needmoreshare2.postbottom.enable) %}
