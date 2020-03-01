@@ -1,8 +1,8 @@
 ---
 title: {{ title }}
+comments: true
+top: false
 date: {{ date }}
 tags:
 categories:
-comments: true
-top:false
 ---
