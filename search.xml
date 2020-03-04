@@ -1,6 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>差点忘了学字符串算法</title>
+    <url>/2020/03/03/%E5%B7%AE%E7%82%B9%E5%BF%98%E4%BA%86%E5%AD%A6%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
+<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
+<a id="more"></a>
+
+<h3 id="一、BF算法"><a href="#一、BF算法" class="headerlink" title="一、BF算法"></a>一、BF算法</h3><p>遇到任何困难，都不要怕，先试试暴力法！</p>
+<h4 id="1-BF算法流程："><a href="#1-BF算法流程：" class="headerlink" title="1. BF算法流程："></a>1. BF算法流程：</h4><p>在前三轮中，模式串首位字符与主串对应位置字符不匹配，将模式串“向右移动一位”。在第四轮匹配中，模式串的首位字符与主串对应位置的字符匹配，则继续比较第二位，直到完成全部匹配。</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/BF_Algorithm.jpg" alt></p>
+<h4 id="2-BF算法实现："><a href="#2-BF算法实现：" class="headerlink" title="2. BF算法实现："></a>2. BF算法实现：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bruteForce</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;=((string.length())-(pattern.length())); ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(j&lt;pattern.length()) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(i+j) != pattern.charAt(j)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(j == pattern.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-BF算法的性能"><a href="#3-BF算法的性能" class="headerlink" title="3. BF算法的性能"></a>3. BF算法的性能</h4><p>BF算法不需要前期预处理，它的时间复杂度取决于内外循环，为 <code>O ( ( m - n + 1 ) * n ) = O ( m * n )</code> 。其中， <code>m</code> 为主串长度， <code>n</code> 为 模式串长度。</p>
+<hr>
+<h3 id="二、RK算法"><a href="#二、RK算法" class="headerlink" title="二、RK算法"></a>二、RK算法</h3><p>BF算法在最坏情况下，外层循环执行 <code>m - n + 1</code> 次，内层循环执行 <code>n</code> 次。RK（Robin-Karp）算法利用字符串本身，通过<strong>比较字符串哈希值</strong> 和 <strong>逐位字符匹配</strong> 相结合的方式，提高算法性能。</p>
+<h4 id="1-RK算法流程"><a href="#1-RK算法流程" class="headerlink" title="1. RK算法流程"></a>1. RK算法流程</h4><h5 id="1-1-计算模式串哈希值以及首次计算部分主串哈希值"><a href="#1-1-计算模式串哈希值以及首次计算部分主串哈希值" class="headerlink" title="1.1 计算模式串哈希值以及首次计算部分主串哈希值"></a>1.1 计算模式串哈希值以及首次计算部分主串哈希值</h5><p>计算长度为 <code>n</code> 的模式串的哈希值。</p>
+<p>截取主串 <code>[0, n-1]</code> 段，<strong>首次</strong>计算部分主串哈希值</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_1.jpg" alt></p>
+<p>那么如何计算哈希值呢？</p>
+<p>（1）按位相加</p>
+<p>按位相加意指将字符串 <code>a - z</code> 视为 <code>0 - 25</code> ，取每一位字符的”和”。</p>
+<p>示例如图：</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_2.jpg" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 首次计算主串和模式串的哈希值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">firstHash</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashcode = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 这里采用最简单的哈希值计算方式：</span></span><br><span class="line">    <span class="comment">// 把a当做0，把b当中1，把c当中2.....然后按位相加</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123; </span><br><span class="line">        hashcode += str.charAt(i)-<span class="string">'a'</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashcode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）转换成二十六进制</p>
+<p>转换成二十六进制是指将字符串 <code>a - z</code> 视为 <code>0 - 25</code> ，且将每一位字符当成二十六进制数来计算。</p>
+<p>示例如图：</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_3.jpg" alt></p>
+<p>算法实现如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> d = <span class="number">26</span>;</span><br><span class="line"><span class="comment">// 用计算得到的哈希值对q取模，防止哈希值溢出</span></span><br><span class="line"><span class="comment">// q为满足(q*d &lt; MAX_INT)的随机素数</span></span><br><span class="line"><span class="keyword">int</span> q = <span class="number">144451</span>;</span><br><span class="line"><span class="comment">// h标记字符串高位字符的基数</span></span><br><span class="line"><span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 主串的初始哈希值</span></span><br><span class="line"><span class="keyword">int</span> strCode = string.charAt(<span class="number">0</span>)-<span class="string">'a'</span>;</span><br><span class="line"><span class="comment">// 模式串的初始哈希值</span></span><br><span class="line"><span class="keyword">int</span> patternCode = pattern.charAt(<span class="number">0</span>)-<span class="string">'a'</span>;</span><br><span class="line"><span class="comment">// 首次计算主串和模式串的哈希值</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; ++i) &#123;</span><br><span class="line">    strCode = (strCode * d + string.charAt(i)-<span class="string">'a'</span>) % q;</span><br><span class="line">    patternCode = (patternCode * d + pattern.charAt(i)-<span class="string">'a'</span>) % q;</span><br><span class="line">    h = (h * d) % q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，为防止哈希值溢出，需要对其取模。</p>
+<h5 id="1-2-比较哈希值"><a href="#1-2-比较哈希值" class="headerlink" title="1.2 比较哈希值"></a>1.2 比较哈希值</h5><p>对每一轮计算得到的哈希值进行比较。</p>
+<ul>
+<li><p>哈希值不等，模式串“向右移动一位“，重新计算主串部分的哈希值，模式串不变。</p>
+</li>
+<li><p>哈希值相等，进入逐位匹配。</p>
+</li>
+</ul>
+<h5 id="1-3-移动主串，重新计算主串部分哈希值"><a href="#1-3-移动主串，重新计算主串部分哈希值" class="headerlink" title="1.3 移动主串，重新计算主串部分哈希值"></a>1.3 移动主串，重新计算主串部分哈希值</h5><p>显然，第一轮两种哈希值计算方法得到的结果均不等，需要重新计算主串部分的哈希值。</p>
+<p>在首次计算哈希值过程中，循环语句执行 <code>n</code> 次，即计算哈希值的算法时间复杂度为 <code>O (n)</code>。如果在<strong>重新计算主串部分的哈希值</strong>过程中<strong>完全重新</strong>计算，时间复杂度仍为 <code>O(n)</code>。</p>
+<p>将模式串移动一位，<strong>主串部分</strong>去除首位元素并添加末位元素，中间部分并未改变。中间部分的哈希值保存在上一次计算结果当中。故，若是能利用上一次的哈希值计算本次哈希值，则<strong>将时间复杂度优化为</strong> <code>O(1)</code>。</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_4.jpg" alt></p>
+<p>（1）按位相加</p>
+<p>按位相加计算哈希值的算法，其重新计算哈希值的过程较为简单：减去当前主串部分首位字符的值，再加上下一位待添加字符的值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nextHash</span><span class="params">(String string, <span class="keyword">int</span> hashCode, <span class="keyword">int</span> index, <span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line">    hashCode -= string.charAt(index)-<span class="string">'a'</span>; <span class="comment">// 减去当前主串部分首位字符的值</span></span><br><span class="line">    hashCode += string.charAt(index+n)-<span class="string">'a'</span>; <span class="comment">// 加上下一位待添加字符的值</span></span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）二十六进制算法</p>
+<p>按位相加计算哈希值的算法，其重新计算哈希值的过程稍复杂。变量 <code>h</code> 记录了字符串首位字符的基数，重新计算时，将其乘以首位字符的值，得到的是首位字符的哈希值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 更新主串从i到i+n的哈希值</span></span><br><span class="line">strCode = ((strCode - h*(string.charAt(i)-<span class="string">'a'</span>))*d + (string.charAt(i+n)-<span class="string">'a'</span>)) % q;</span><br><span class="line"><span class="keyword">if</span>(strCode &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    strCode += q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-4-逐位匹配"><a href="#1-4-逐位匹配" class="headerlink" title="1.4 逐位匹配"></a>1.4 逐位匹配</h5><p>两个字符串的哈希值相同，并不意味着字符串一定相同，这是<strong>哈希冲突</strong>。</p>
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_5.jpg" alt></p>
+<p>当字符串的哈希值相同时，仍需要进一步逐位匹配字符。</p>
+<ul>
+<li>哈希值相同的两个字符串，逐位匹配成功，则返回结果。</li>
+<li>否则，重新计算哈希值（步骤1.3）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 因存在哈希冲突，当哈希值相同时，仍需要额外逐位比对字符串</span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">compareString</span><span class="params">(<span class="keyword">int</span> start, String string, String pattern)</span></span>&#123; </span><br><span class="line">    String subString = string.substring(start, start+pattern.length());</span><br><span class="line">    <span class="keyword">return</span> subString.equals(pattern);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/03/03/差点忘了学字符串匹配算法/RK_Algorithm_6.jpg" alt></p>
+<h4 id="2-RK算法的完整实现"><a href="#2-RK算法的完整实现" class="headerlink" title="2. RK算法的完整实现"></a>2. RK算法的完整实现</h4><h5 id="2-1-按位相加"><a href="#2-1-按位相加" class="headerlink" title="2.1 按位相加"></a>2.1 按位相加</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">robinKarp</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 主串长度</span></span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="comment">// 模式串的长度</span></span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line">    <span class="comment">// 计算模式串的哈希值</span></span><br><span class="line">    <span class="keyword">int</span> patternCode = firstHash(pattern);</span><br><span class="line">    <span class="comment">// 计算主串当中第一个和模式串等长的子串哈希值</span></span><br><span class="line">    <span class="keyword">int</span> strCode = firstHash(string.substring(<span class="number">0</span>, n));</span><br><span class="line">    <span class="comment">// 用模式串的哈希值和主串的局部哈希值比较。</span></span><br><span class="line">    <span class="comment">// 如果匹配，则进行精确比较；如果不匹配，计算主串中相邻子串的哈希值。</span></span><br><span class="line">    <span class="comment">// 外层循环的最大循环次数为 m-n+1。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m-n+<span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(strCode == patternCode &amp;&amp; compareString(i, string, pattern))&#123;</span><br><span class="line">            <span class="keyword">return</span> i; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果不是最后一轮，更新主串从i到i+n的哈希值</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;m-n)&#123;</span><br><span class="line">            strCode = nextHash(string, strCode, i, n); </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 首次计算主串和模式串的哈希值</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">firstHash</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> hashcode = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 这里采用最简单的哈希值计算方式：</span></span><br><span class="line">    <span class="comment">// 把a当做0，把b当中1，把c当中2.....然后按位相加</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123; </span><br><span class="line">        hashcode += str.charAt(i)-<span class="string">'a'</span>; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> hashcode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">nextHash</span><span class="params">(String string, <span class="keyword">int</span> hashCode, <span class="keyword">int</span> index, <span class="keyword">int</span> n)</span></span>&#123; </span><br><span class="line">    hashCode -= string.charAt(index)-<span class="string">'a'</span>; </span><br><span class="line">    hashCode += string.charAt(index+n)-<span class="string">'a'</span>;</span><br><span class="line">    <span class="keyword">return</span> hashCode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因存在哈希冲突，当哈希值相同时，仍需要额外逐位比对字符串</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">compareString</span><span class="params">(<span class="keyword">int</span> start, String string, String pattern)</span></span>&#123; </span><br><span class="line">    String subString = string.substring(start, start+pattern.length());</span><br><span class="line">    <span class="keyword">return</span> subString.equals(pattern);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-二十六进制法"><a href="#2-2-二十六进制法" class="headerlink" title="2.2 二十六进制法"></a>2.2 二十六进制法</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">improvedRobinKarp</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 主串长度</span></span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="comment">// 模式串的长度</span></span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line">    <span class="comment">// 26个字母，二十六进制</span></span><br><span class="line">    <span class="keyword">int</span> d = <span class="number">26</span>;</span><br><span class="line">    <span class="comment">// 用计算得到的哈希值对q取模，防止哈希值溢出</span></span><br><span class="line">    <span class="comment">// q为满足(q*d &lt; MAX_INT)的随机素数</span></span><br><span class="line">    <span class="keyword">int</span> q = <span class="number">144451</span>;</span><br><span class="line">    <span class="comment">// h标记字符串高位字符的基数</span></span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 主串的初始哈希值</span></span><br><span class="line">    <span class="keyword">int</span> strCode = string.charAt(<span class="number">0</span>)-<span class="string">'a'</span>;</span><br><span class="line">    <span class="comment">// 模式串的初始哈希值</span></span><br><span class="line">    <span class="keyword">int</span> patternCode = pattern.charAt(<span class="number">0</span>)-<span class="string">'a'</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 首次计算主串和模式串的哈希值</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; ++i) &#123;</span><br><span class="line">        strCode = (strCode * d + string.charAt(i)-<span class="string">'a'</span>) % q;</span><br><span class="line">        patternCode = (patternCode * d + pattern.charAt(i)-<span class="string">'a'</span>) % q;</span><br><span class="line">        h = (h * d) % q;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用模式串的哈希值和主串的局部哈希值比较。</span></span><br><span class="line">    <span class="comment">// 如果匹配，则进行精确比较；如果不匹配，计算主串中相邻子串的哈希值。</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;m-n+<span class="number">1</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(strCode == patternCode &amp;&amp; compareString(i, string, pattern))&#123;</span><br><span class="line">            <span class="keyword">return</span> i; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; m-n) &#123;</span><br><span class="line">            <span class="comment">// 更新主串从i到i+n的哈希值</span></span><br><span class="line">            strCode = ((strCode - h*(string.charAt(i)-<span class="string">'a'</span>))*d + (string.charAt(i+n)-<span class="string">'a'</span>)) % q;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(strCode &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            strCode += q;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-RK算法的性能"><a href="#3-RK算法的性能" class="headerlink" title="3. RK算法的性能"></a>3. RK算法的性能</h4><p>RK算法首次计算哈希值过程可视为预处理，其时间复杂度为 <code>O(n)</code>。优化后的重新计算哈希值的算法，其时间复杂度为 <code>O(1)</code>。用模式串的哈希值和主串的局部哈希值比较，最大循环次数为 <code>m - n + 1</code>，故其时间复杂度为 <code>O( m - n + 1 )</code>。</p>
+<p>综上，RK算法在较好的情况下，时间复杂度为 <code>O(m)</code>。</p>
+<p>当然，RK算法也有不足。<strong>当哈希冲突频繁时</strong>，算法性能会下降，<strong>严重时RK算法会退化成BF算法。</strong></p>
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/103966767" target="_blank" rel="noopener">漫画：什么是字符串匹配算法？</a></p>
+<p>[2] <a href="https://blog.csdn.net/tyler_download/article/details/52457108?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task" target="_blank" rel="noopener">面试算法之字符串匹配算法，Rabin-Karp算法详解</a></p>
+<p>[3]  <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
+]]></content>
+      <categories>
+        <category>Algorithms</category>
+      </categories>
+      <tags>
+        <tag>String Matching</tag>
+        <tag>RK</tag>
+        <tag>KMP</tag>
+        <tag>BM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>xmall项目源码学习</title>
+    <url>/2020/03/01/xmall%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>通过阅读GitHub上开源的<a href="https://github.com/Exrick/xmall" target="_blank" rel="noopener">xmall项目</a>深入学习分布式项目，初步了解Spring Boot框架及多种中间件的使用、原理。</p>
+<a id="more"></a>
+
+<h3 id="一、前期配置学习"><a href="#一、前期配置学习" class="headerlink" title="一、前期配置学习"></a>一、前期配置学习</h3><h4 id="1-ZooKeeper"><a href="#1-ZooKeeper" class="headerlink" title="1. ZooKeeper"></a>1. ZooKeeper</h4><h5 id="1-1-ZooKeeper概述"><a href="#1-1-ZooKeeper概述" class="headerlink" title="1.1 ZooKeeper概述"></a>1.1 ZooKeeper概述</h5><p>ZooKpeeper用于分布式应用程序的高性能协调服务。（“ZooKeeper is a high-performance coordination service for distributed applications.”）</p>
+<p>ZooKeeper可提供用于命名，配置管理，同步和组服务等高级别的服务，目的在于减轻分布式应用程序从头开始实施协调服务的责任。</p>
+<p><em>ZooKeeper服务如下图</em></p>
+<p><img src="/2020/03/01/xmall项目源码学习/xmall%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%5Czookeeper_service.jpg" alt></p>
+<p>ZooKeeper允许分布式进程通过共享的<strong>层次命名空间</strong>相互协调。ZooKeeper命名空间中的每个节点都可以具有与其关联的数据以及子节点。将ZooKeeper数据节点称为<strong>znode</strong>。</p>
+<p><em>ZooKeeper的层次命名空间</em></p>
+<p><img src="/2020/03/01/xmall项目源码学习/xmall%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%5Czookeeper_namespace.jpg" alt></p>
+<h5 id="1-2-ZooKeeper的特点"><a href="#1-2-ZooKeeper的特点" class="headerlink" title="1.2 ZooKeeper的特点"></a>1.2 ZooKeeper的特点</h5><ol>
+<li>ZooKeeper数据保存在内存中，因此具备高吞吐量和低延迟。</li>
+<li>ZooKeeper的所有服务器维护内存中的状态图像，以及持久存储事务日志和数据库快照。</li>
+<li>只要大多数服务器可用，ZooKeeper服务将正常服务。</li>
+<li>标记每一次更新，可用于实现同步。</li>
+<li>在“读取为主”的工作负载中，ZooKeeper非常快。</li>
+</ol>
+<h5 id="1-3-ZooKeeper的配置及运行"><a href="#1-3-ZooKeeper的配置及运行" class="headerlink" title="1.3 ZooKeeper的配置及运行"></a>1.3 ZooKeeper的配置及运行</h5><p>（1）从<a href="http://zookeeper.apache.org/" target="_blank" rel="noopener">ZooKeeper官网</a>下载压缩包 <code>apache-zookeeper-3.5.7-bin.tar.gz</code> ，解压至本地文件夹。</p>
+<p>（2）解压后有两个文件夹：<code>apache-zookeeper-3.5.7-bin</code> 和 <code>PaxHeaders.X</code> ，前者的 <code>conf</code> 和 <code>bin</code> 文件夹较为重要。</p>
+<p>（3）将 apache-zookeeper-3.5.7-bin\conf\ 目录下的 <code>zoo_sample.cfg</code> 文件重命名为 <code>zoo.cfg</code> ，并修改配置，如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># The number of milliseconds of each tick</span><br><span class="line"># 用作&quot;心跳&quot;，且最小会话超时为tickTime的两倍</span><br><span class="line">tickTime=2000</span><br><span class="line"># The number of ticks that the initial </span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit=10</span><br><span class="line"># The number of ticks that can pass between </span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit=5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just </span><br><span class="line"># example sakes.</span><br><span class="line"># 内存数据库快照</span><br><span class="line">dataDir=D:\\...(模糊化处理)\\Zookeeper\\dataDir</span><br><span class="line"># 日志文件目录</span><br><span class="line">dataLogDir=D:\\...(模糊化处理)\\Zookeeper\\dataLogDir</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line"># 用于侦听客户端连接的端口</span><br><span class="line">clientPort=2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the </span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount=3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval=1</span><br></pre></td></tr></table></figure>
+
+<p>注意：<code>dataDir</code> 和 <code>dataLogDir</code> 两项，地址中分隔符应为 <code>\\</code> 而不是 <code>\</code> ，后者在ZooKeeper运行时将在 apache-zookeeper-3.5.7-bin\bin\ 目录下生成文件夹存放日志文件和快照，而不是在指定位置。</p>
+<h4 id="2-Redis"><a href="#2-Redis" class="headerlink" title="2. Redis"></a>2. Redis</h4><h5 id="2-1-Redis概述"><a href="#2-1-Redis概述" class="headerlink" title="2.1 Redis概述"></a>2.1 Redis概述</h5><p>Redis是用C语言编写的、基于<strong>内存数据集（in-memory dataset）</strong>的内存数据存储结构，可用来实现<strong>数据库</strong>、<strong>缓存</strong>（cache）和<strong>消息代理</strong>（message broker）。</p>
+<p>Redis是<strong>键值存储</strong>的形式，支持常见的字符串，哈希，列表（list），集合（set）、有序集合、位图和超日志等。</p>
+<p>Redis具备：</p>
+<ul>
+<li>事务。</li>
+<li>不同级别的磁盘持久化（on-disk persistence），可一次全部持久化，也可以通过将每个命令附加到log来持久化它，还可以选择禁用持久化（用于网络内存缓存）。</li>
+<li>通过<strong>哨兵</strong>（Redis Sentinel）和 Redis Cluster自动分区提供高可用性。</li>
+<li>对数据进行原子操作（如 <em>INCR</em> 命令），如追加到字符串，在哈希中增加值，将元素推送到列表等。</li>
+</ul>
+<h5 id="2-2-在Windows环境下安装、测试Redis"><a href="#2-2-在Windows环境下安装、测试Redis" class="headerlink" title="2.2 在Windows环境下安装、测试Redis"></a>2.2 在Windows环境下安装、测试Redis</h5><p>（1）<a href="https://github.com/microsoftarchive/redis/releases" target="_blank" rel="noopener">下载Redis</a>，解压到本地目录。</p>
+<ul>
+<li>redis-server.exe：Redis服务器</li>
+<li>redis-cli.exe：Redis客户端</li>
+<li>redis-check-aof.exe：更新日志检查</li>
+<li>redis-benchmark.exe：性能测试，模拟N个客户端同时发送M个set/get查询</li>
+</ul>
+<p>（2）命令行窗口，输入 <code>redis-server.exe redis.windows.conf</code> 以启动Redis服务器。此窗口保持常开。</p>
+<p>（3）另开命令行窗口，输入 <code>redis-cli.exe -h 127.0.0.1 -p 6379</code>，客户端连接服务器，其中 Redis服务器监听 <strong>6379 端口</strong>。</p>
+<p>（4）测试</p>
+<ul>
+<li><p>设置键值对： <code>set testKey 1</code></p>
+</li>
+<li><p>取出键值对： <code>get testKey</code></p>
+</li>
+<li><p>删除键值对： <code>del testKey</code></p>
+</li>
+</ul>
+<p><img src="/2020/03/01/xmall项目源码学习/xmall%E9%A1%B9%E7%9B%AE%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%5Credis_cli_test.jpg" alt></p>
+<p>删除键值对后，返回 <code>1</code> 说明删除成功，返回 <code>0</code> 说明删除失败。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>xmall</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>五大常用算法之分治法</title>
     <url>/2020/02/26/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%88%86%E6%B2%BB%E6%B3%95/</url>
     <content><![CDATA[<p><a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>是一种十分重要的算法思想，其精髓是”分而治之”，即把复杂的问题分解成数个小规模的、形式相同的子问题，再逐个”击破”子问题，最后合并所有子问题的解以解决原问题。诸如快速排序、归并排序、快速傅里叶变换等算法均是分治法思想的重要体现。</p>
