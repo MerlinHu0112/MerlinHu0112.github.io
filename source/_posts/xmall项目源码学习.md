@@ -25,13 +25,13 @@ ZooKeeper可提供用于命名，配置管理，同步和组服务等高级别�
 
 *ZooKeeper服务如下图*
 
-![](xmall项目源码学习\zookeeper_service.jpg)
+![](xmall项目源码学习/zookeeper_service.jpg)
 
 ZooKeeper允许分布式进程通过共享的**层次命名空间**相互协调。ZooKeeper命名空间中的每个节点都可以具有与其关联的数据以及子节点。将ZooKeeper数据节点称为**znode**。
 
 *ZooKeeper的层次命名空间*
 
-![](xmall项目源码学习\zookeeper_namespace.jpg)
+![](xmall项目源码学习/zookeeper_namespace.jpg)
 
 ##### 1.2 ZooKeeper的特点
 
@@ -127,7 +127,7 @@ Redis具备：
 
 - 删除键值对： `del testKey`
 
-![](xmall项目源码学习\redis_cli_test.jpg)
+![](xmall项目源码学习/redis_cli_test.jpg)
 
 删除键值对后，返回 `1` 说明删除成功，返回 `0` 说明删除失败。
 

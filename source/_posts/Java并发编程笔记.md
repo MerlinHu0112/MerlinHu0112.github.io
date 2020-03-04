@@ -568,13 +568,13 @@ Thread-0 存入 300 元，余额为 1400 元
 
 （图源：https://blog.csdn.net/csdnnews/article/details/104471154/ & https://www.cnblogs.com/panning/p/10990502.html ）
 
-![](Java并发编程笔记\对象的内存布局.jpg)
+![](Java并发编程笔记/对象的内存布局.jpg)
 
 （2）锁升级过程
 
 Java锁升级过程（图源：https://blog.csdn.net/csdnnews/article/details/104471154/ ）
 
-![](Java并发编程笔记\Java锁升级过程.jpg)
+![](Java并发编程笔记/Java锁升级过程.jpg)
 
 1. 无锁
 
