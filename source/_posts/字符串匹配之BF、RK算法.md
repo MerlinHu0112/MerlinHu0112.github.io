@@ -1,10 +1,11 @@
 ---
-title: 差点忘了学字符串算法
+title: 字符串匹配之BF、RK算法
 comments: true
 top: false
 date: 2020-03-03
 tags:
 	- String Matching
+	- BF
 	- RK
 	- KMP
 	- BM
@@ -26,7 +27,7 @@ categories:
 
 在前三轮中，模式串首位字符与主串对应位置字符不匹配，将模式串“向右移动一位”。在第四轮匹配中，模式串的首位字符与主串对应位置的字符匹配，则继续比较第二位，直到完成全部匹配。
 
-![](差点忘了学字符串匹配算法/BF_Algorithm.jpg)
+![](字符串匹配之BF、RK算法/BF_Algorithm.jpg)
 
 #### 2. BF算法实现：
 
@@ -71,7 +72,7 @@ BF算法在最坏情况下，外层循环执行 `m - n + 1` 次，内层循环�
 
 截取主串 `[0, n-1]` 段，**首次**计算部分主串哈希值
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_1.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_1.jpg)
 
 那么如何计算哈希值呢？
 
@@ -81,7 +82,7 @@ BF算法在最坏情况下，外层循环执行 `m - n + 1` 次，内层循环�
 
 示例如图：
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_2.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_2.jpg)
 
 算法实现如下：
 
@@ -104,7 +105,7 @@ int firstHash(String str) {
 
 示例如图：
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_3.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_3.jpg)
 
 算法实现如下：
 
@@ -145,7 +146,7 @@ for(int i=1; i<n; ++i) {
 
 将模式串移动一位，**主串部分**去除首位元素并添加末位元素，中间部分并未改变。中间部分的哈希值保存在上一次计算结果当中。故，若是能利用上一次的哈希值计算本次哈希值，则**将时间复杂度优化为** `O(1)`。
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_4.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_4.jpg)
 
 （1）按位相加
 
@@ -175,7 +176,7 @@ if(strCode < 0) {
 
 两个字符串的哈希值相同，并不意味着字符串一定相同，这是**哈希冲突**。
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_5.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_5.jpg)
 
 当字符串的哈希值相同时，仍需要进一步逐位匹配字符。
 
@@ -190,7 +191,7 @@ boolean compareString(int start, String string, String pattern){
 }
 ```
 
-![](差点忘了学字符串匹配算法/RK_Algorithm_6.jpg)
+![](字符串匹配之BF、RK算法/RK_Algorithm_6.jpg)
 
 #### 2. RK算法的完整实现
 
@@ -299,15 +300,22 @@ public static int improvedRobinKarp(String string, String pattern) {
     }
     return -1;
 }
+
+private static boolean compareString(int start, String string, String pattern){ 
+    String subString = string.substring(start, start+pattern.length());
+    return subString.equals(pattern);
+}
 ```
 
 #### 3. RK算法的性能
 
-RK算法首次计算哈希值过程可视为预处理，其时间复杂度为 `O(n)`。优化后的重新计算哈希值的算法，其时间复杂度为 `O(1)`。用模式串的哈希值和主串的局部哈希值比较，最大循环次数为 `m - n + 1`，故其时间复杂度为 `O( m - n + 1 )`。
+RK算法首次计算哈希值过程可视为预处理，其时间复杂度为 `O(n)`。优化后的重新计算哈希值的算法，其时间复杂度为 `O(1)`。
 
-综上，RK算法在较好的情况下，时间复杂度为 `O(m)`。
+模式串的哈希值和主串的局部哈希值比较过程，在较好的情况下（即哈希冲突少），最大循环次数为 `m - n + 1`，故其时间复杂度为 `O( m - n + 1 )`。
 
-当然，RK算法也有不足。**当哈希冲突频繁时**，算法性能会下降，**严重时RK算法会退化成BF算法。**
+综上，RK算法在**较好的情况下**，时间复杂度为 `O(m)`。
+
+当然，RK算法也有不足。**当哈希冲突频繁时**，算法性能会下降（即RK算法性能不稳定），**严重时RK算法会退化成BF算法。**
 
 ---
 
@@ -316,6 +324,3 @@ RK算法首次计算哈希值过程可视为预处理，其时间复杂度为 `O
 [1] [漫画：什么是字符串匹配算法？](https://blog.csdn.net/bjweimengshu/article/details/103966767)
 
 [2] [面试算法之字符串匹配算法，Rabin-Karp算法详解](https://blog.csdn.net/tyler_download/article/details/52457108?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task)
-
-[3]  [漫画：如何优化 “字符串匹配算法”？](https://blog.csdn.net/bjweimengshu/article/details/104368394)
-
