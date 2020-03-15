@@ -33,6 +33,8 @@ ZooKeeper允许分布式进程通过共享的**层次命名空间**相互协调�
 
 ![](xmall项目源码学习/zookeeper_namespace.jpg)
 
+
+
 ##### 1.2 ZooKeeper的特点
 
 1. ZooKeeper数据保存在内存中，因此具备高吞吐量和低延迟。
@@ -40,6 +42,8 @@ ZooKeeper允许分布式进程通过共享的**层次命名空间**相互协调�
 3. 只要大多数服务器可用，ZooKeeper服务将正常服务。
 4. 标记每一次更新，可用于实现同步。
 5. 在“读取为主”的工作负载中，ZooKeeper非常快。
+
+
 
 ##### 1.3 ZooKeeper的配置及运行
 
@@ -131,3 +135,236 @@ Redis具备：
 
 删除键值对后，返回 `1` 说明删除成功，返回 `0` 说明删除失败。
 
+
+
+#### 3. ActiveMQ
+
+##### 3.1 ActiveMQ概述
+
+ActiveMQ 是一种基于 Java 消息服务（Java Message Service）的消息中间件。
+
+在**高并发**的条件下，由于来不及同步处理，请求往往会发生阻塞。例如大量的 update 请求同时到达 MySQL 服务器，造成请求大量堆积。通过使用 ActiveMQ，**异步处理已到达的请求**，缓解服务器压力。
+
+（图源：https://www.cnblogs.com/xiguadadage/p/11217604.html）
+
+![](xmall项目源码学习/ActiveMQ_1.png)
+
+如上图所示，通过 ActiveMQ 保存开锁指令，随后异步执行耗时的开锁操作，以减轻服务器的压力。
+
+
+
+##### 3.2 ActiveMQ消息类型
+
+JMS 消息通常有两种类型，ActiveMQ 是基于 JMS 的，所以介绍 ActiveMQ 的两种消息类型：**点对点**（Point-to-Point）和**发布/订阅**（Publish/Subscribe）。
+
+（1）点对点
+
+生产者与消费者点对点发送消息，借助队列（javax.jms.Queue）存储消息。
+
+![](xmall项目源码学习/ActiveMQ_2.png)
+
+点对点类型的要点：
+
+- 每个消息只有一个消费者 `Consumer` ，一旦被消费，消息就不再在队列中。
+- 生产者 `Producer` 发送消息不受消费者状态的影响。（无依赖性）
+- 消费者在成功接收消息后，需要向队列应答成功。
+
+（2）发布/订阅
+
+生产者发布事件，不同的消费者订阅并使用感兴趣的事件。此类型一般与特定的主题（javax.jms.Topic）关联。
+
+![](xmall项目源码学习/ActiveMQ_3.png)
+
+发布/订阅类型的要点：
+
+- 每个消息可以有**多个消费者**。
+- 针对某个主题（Topic）的订阅者，它必须创建一个订阅者之后，才能消费发布者的消息。（有依赖性）
+- 为了消费消息，订阅者必须**保持运行**的状态。
+
+
+
+##### 3.3 ActiveMQ的使用
+
+下载并解压至本地，免安装。在bin目录下执行 activemq.bat start。
+
+在浏览器中输入http://localhost:8161/admin/ 可访问控制台，账户/密码为 admin/admin。
+
+接下来测试 ActiveMQ 应用于简单的 Java 程序中。
+
+（1）Maven中引入依赖
+
+```xml
+<dependency>
+    <groupId>org.apache.activemq</groupId>
+    <artifactId>activemq-all</artifactId>
+    <version>5.9.0</version>
+</dependency>
+```
+
+（2）生产者
+
+```java
+import javax.jms.Connection;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+public class Producer {
+	
+	private static final String brokerURL = "tcp://127.0.0.1:61616";
+	
+	public static void main (String[] args) throws JMSException {
+		// 创建连接工厂
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerURL);
+		// 建立连接
+		Connection conn = factory.createConnection();
+		conn.start();
+		// 创建会话
+		Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据
+		Destination dest = session.createQueue("TestQueue");
+		// 创建生产者
+		MessageProducer producer = session.createProducer(dest);
+		// 发送消息
+		for(int i=1; i<6; i++) {
+			TextMessage message = session.createTextMessage("第"+i+"条消息");
+			producer.send(message);
+			System.out.println(message.getText());
+		}
+		// 关闭连接
+		conn.close();
+	}
+}
+```
+
+运行生产者之前，控制台如下：
+
+![](xmall项目源码学习/ActiveMQ_4.jpg)
+
+运行生产者，发送5条消息，控制台发生了变化：
+
+![](xmall项目源码学习/ActiveMQ_5.jpg)
+
+如图，队列中等待的消息 `Pending Message` 有5条，当前无消费者。
+
+（3）消费者
+
+```java
+import javax.jms.Connection;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+public class Consumer {
+
+	private static final String brokerURL = "tcp://127.0.0.1:61616";
+	
+	public static void main (String[] args) throws JMSException {
+		// 创建连接工厂
+		ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory(brokerURL);
+		// 建立连接
+		Connection conn = factory.createConnection();
+		conn.start();
+		// 创建会话
+		Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据
+		Destination dest = session.createQueue("TestQueue");
+		// 创建消费者
+		MessageConsumer consumer = session.createConsumer(dest);
+		// 消费者监听
+		consumer.setMessageListener(new MessageListener() {
+			@Override
+			public void onMessage(Message message) {
+				TextMessage textMessage = (TextMessage) message;
+				try {
+					System.out.println(textMessage.getText());
+				}catch (JMSException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+}
+```
+
+消费者启动后，控制台又发生了变化：
+
+![](xmall项目源码学习/ActiveMQ_6.jpg)
+
+显示此时有1个消费者，刚入队的5条消息均已出队，当前队列中无消息。
+
+注意创建会话的方法，其中有两个参数。
+
+```java
+// 创建会话
+Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
+```
+
+1. false: 表示 *不使用事务* 。事务：生产者在发送消息后等待消息代理的确认，没有回应则抛出异常，并由生产者负责处理。
+2. *确认模式* ：
+   - `AUTO_ACKNOWLEDGE`：指定消息接收者在每次收到消息时自动发送确认。消息只向目标发送一次，但传输过程中可能因为错误而丢失消息。
+   - `CLIENT_ACKNOWLEDGE`：由消息接收者确认收到消息，通过调用消息的 `acknowledge()` 方法（会通知消息提供者收到了消息）。
+   - `DUPS_OK_ACKNOWLEDGE`：指定消息提供者在消息接收者没有确认发送时重新发送消息（这种确认模式不在乎接收者收到重复的消息）。
+
+
+
+##### 3.4 ActiveMQ进阶之多种MQ简要比较
+
+- ActiveMQ 适用于解耦和异步操作，简单易用，对队列数较多的情况支持不好。
+- RabbitMQ，erlang开发，性能较稳定，社区活跃度高，但是不利于做二次开发和维护。
+- RocketMQ 支持海量消息，但未实现 JMS 规范。
+- Kafka 适用于大数据领域、日志采集等场景。
+
+
+
+##### 3.5 ActiveMQ进阶之持久化
+
+为避免意外丢失数据，也为重启时可恢复至重启前的正常状态，ActiveMQ 需要实现持久化。
+
+ActiveMQ的消息持久化机制有 **JDBC，AMQ，KahaDB** 和 **LevelDB**。
+
+**持久化原理**：在发送者将消息发送出去后，消息中心首先将消息存储到本地数据文件、内存数据库或者远程数据库等，然后试图将消息发送给接收者，发送成功则将消息从存储中删除，失败则继续尝试。
+
+消息中心启动以后首先要检查指定的存储位置，如果有未发送成功的消息，则需要把消息发送出去。
+
+（1）JDBC
+
+数据库会创建3个表：`activemq_msgs`，`activemq_acks` 和 `activemq_lock`。
+
+`activemq_msgs `用于存储消息，`Queue` 和 `Topic` 都存储在这个表中。
+
+（2）AMQ
+
+- 以顺序追加的方式将消息写入日志文件。
+- 创建消息主键索引，且提供缓存。综上，AMQ 性能优于 JDBC。
+
+AMQ 的缺点：
+
+- 重建索引时间长，且索引文件占用磁盘空间较大。
+
+（3）KahaDB（默认）
+
+从 ActiveMQ 5.4 开始成为默认的持久化插件。
+
+- 基于日志文件，支持索引和缓存。
+- 使用更少的数据文件，恢复时间远小于 AMQ。
+
+（4）LevelDB
+
+5.6 版本推出的持久化引擎，性能高于 KahaDB。可见这几种持久化方式中，LevelDB 性能最好。
+
+
+
+#### 参考资料
+
+[1] [消息中间件之ActiveMQ](https://www.jianshu.com/p/cd8e037e11ff)
+
+[2] [浅谈ActiveMQ与使用](https://www.cnblogs.com/xiguadadage/p/11217604.html)
