@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LeetCode题集（二）：动态规划问题</title>
+    <url>/2020/03/15/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>总结在LeetCode刷题过程中遇见的动态规划求解的问题。</p>
+<p>有关 DP 的详细介绍见<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划</a></p>
+<a id="more"></a>
+
+<h4 id="最大子序和问题"><a href="#最大子序和问题" class="headerlink" title="最大子序和问题"></a>最大子序和问题</h4><p>相关题目：LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题-最大子序和</a>。</p>
+<p><code>Kadane</code>算法求解最大子序和问题的分析见<a href="https://merlinhu0112.github.io/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/">动态规划和分治法求解最大子序和问题</a>。</p>
+<h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
+<p>正确输出结果：6</p>
+<h5 id="2-实现"><a href="#2-实现" class="headerlink" title="2. 实现"></a>2. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法总结：</p>
+<ul>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<hr>
+<h4 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h4><p>相关题目：LeetCode<a href="https://leetcode-cn.com/problems/integer-break/" target="_blank" rel="noopener">第343题-整数拆分</a>，<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">面试题14-I.剪绳子</a>。</p>
+<h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>此类型题大致题意是：将整数 <code>n</code> 拆分成 <code>m</code> 份，求最大积。</p>
+<h5 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h5>]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>Algorithms</tag>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>（转）TCP为什么三次握手而不是两次握手？</title>
     <url>/2020/03/10/%EF%BC%88%E8%BD%AC%EF%BC%89TCP%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F/</url>
     <content><![CDATA[<p>TCP连接时需要三次握手，那为什么是三次呢？两次可不可以呢？</p>
@@ -73,9 +104,9 @@
       </tags>
   </entry>
   <entry>
-    <title>LeetCode题集（一）：O(1)时间复杂度获取队列或栈的最值</title>
-    <url>/2020/03/09/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AO-1-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%8E%B7%E5%8F%96%E9%98%9F%E5%88%97%E6%88%96%E6%A0%88%E7%9A%84%E6%9C%80%E5%80%BC/</url>
-    <content><![CDATA[<p>LeetCode刷题过程中遇见“平均时间复杂度O(1)获得队列或栈的最值”系列问题，总结一下。</p>
+    <title>LeetCode题集（一）：O(1)时间复杂度的操作</title>
+    <url>/2020/03/09/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AO(1)%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>LeetCode刷题过程中遇见“O(1)时间复杂度的操作”系列问题，总结一下。</p>
 <a id="more"></a>
 
 <h4 id="一、最大队列"><a href="#一、最大队列" class="headerlink" title="一、最大队列"></a>一、最大队列</h4><p><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/" target="_blank" rel="noopener">面试题59 - II. 队列的最大值</a></p>
@@ -91,16 +122,62 @@
 <li>入 <code>deque</code> 时，先从队尾开始寻找所有比<code>ele</code> 小的元素，直至遇见首个大于 <code>ele</code> 的元素或已经到了队头。随后从队尾开始，移除所有小于 <code>ele</code> 的元素并将 <code>ele</code> 入队。</li>
 </ul>
 <p>（图源：<a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/solution/ru-he-jie-jue-o1-fu-za-du-de-api-she-ji-ti-by-z1m/" target="_blank" rel="noopener">如何解决 O(1) 复杂度的 API 设计题</a>）</p>
-<p><img src="/2020/03/09/LeetCode题集（一）：O-1-时间复杂度获取队列或栈的最值/1.gif" alt></p>
+<p><img src="/2020/03/09/LeetCode题集（一）：O(1)时间复杂度的操作/1.gif" alt></p>
 <h5 id="3-代码实现："><a href="#3-代码实现：" class="headerlink" title="3. 代码实现："></a>3. 代码实现：</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxQueue</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 队列queue，实现MaxQueue的基本结构</span></span><br><span class="line">	<span class="keyword">private</span> Queue&lt;Integer&gt; queue;</span><br><span class="line">	<span class="comment">// 双端队列（可两端出、入队），用于记录最大值递减序列</span></span><br><span class="line">	<span class="keyword">private</span> Deque&lt;Integer&gt; deque;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MaxQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">         deque = <span class="keyword">new</span> ArrayDeque&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max_value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> deque.size() &gt; <span class="number">0</span> ? deque.peek() : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	queue.add(value);</span><br><span class="line">    	<span class="keyword">while</span>(deque.size() &gt; <span class="number">0</span> &amp;&amp; deque.peekLast() &lt; value ) &#123;</span><br><span class="line">    		<span class="comment">// 移除双端队列后部小于value的元素，直至遇见一个</span></span><br><span class="line">    		<span class="comment">// 大于value的元素或双端队列为空时</span></span><br><span class="line">    		deque.pollLast();</span><br><span class="line">    	&#125;</span><br><span class="line">    	deque.add(value); <span class="comment">// 双端队列队尾入队</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop_front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 获取队首元素，若队列为空则为-1</span></span><br><span class="line">    	<span class="keyword">int</span> headEle = queue.size() &gt; <span class="number">0</span> ? queue.poll() : -<span class="number">1</span>;</span><br><span class="line">    	<span class="keyword">if</span>(deque.size() &gt; <span class="number">0</span> &amp;&amp; deque.peek() == headEle) &#123;</span><br><span class="line">    		deque.poll();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> headEle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<hr>
 <h4 id="二、最小栈"><a href="#二、最小栈" class="headerlink" title="二、最小栈"></a>二、最小栈</h4><p><a href="https://leetcode-cn.com/problems/min-stack-lcci/" target="_blank" rel="noopener">面试题 03.02. 栈的最小值</a></p>
 <h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请设计一个栈，除了常规栈支持的pop与push函数以外，还支持min函数，该函数返回栈元素中的最小值。执行push、pop和min操作的时间复杂度必须为 <code>O(1)</code> 。</p>
 <h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>类似最大队列的实现。</p>
 <p>利用辅助栈保存最小值集合，当前待压栈元素若不小于辅助栈栈顶元素，将该元素压入辅助栈中；否则，辅助栈不变。</p>
 <h5 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. 代码实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack; <span class="comment">// 存放元素</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; auxStack; <span class="comment">// 辅助栈，存放最小值序列</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        auxStack  = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        <span class="comment">// 辅助栈不为空且栈顶元素小于x时，x不进入辅助栈</span></span><br><span class="line">        <span class="keyword">if</span>(!auxStack.empty() &amp;&amp; auxStack.peek() &lt; x )&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 否则，x被压入辅助栈</span></span><br><span class="line">        auxStack.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最小栈栈顶元素等于辅助栈栈顶元素时，说明当前最小值将被弹栈，</span></span><br><span class="line">        <span class="comment">// 因此辅助栈栈顶元素同时弹栈</span></span><br><span class="line">        <span class="keyword">int</span> temp = stack.peek();</span><br><span class="line">        <span class="keyword">if</span>(auxStack.peek()==temp)&#123;</span><br><span class="line">            auxStack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最小栈栈顶元素弹栈</span></span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!auxStack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> auxStack.peek();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>（未完待续）</p>
+<hr>
+<h4 id="三、LRU缓存"><a href="#三、LRU缓存" class="headerlink" title="三、LRU缓存"></a>三、LRU缓存</h4><p><a href="https://leetcode-cn.com/problems/lru-cache-lcci/" target="_blank" rel="noopener">面试题 16.25. LRU缓存</a></p>
+<p><strong>LRU缓存</strong>：Least Recently Used，即最近最久未使用的，是一种常见的缓存淘汰算法。当存储的数据总量达到缓存限制时，删除最久未使用过的数据。</p>
+<h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>设计和构建一个“最近最少使用”缓存，该缓存会删除最近最少使用的项目。缓存应该从键映射到值（允许你插入和检索特定键对应的值），并在初始化时指定最大容量。</p>
+<p>当缓存被填满时，它应该删除最近最少使用的项目。</p>
+<p>它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p>
+<p>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。</p>
+<h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>为实现常数时间内 get 和 put 键值对，采用<strong>哈希表</strong>存储，如 HashMap。</p>
+<p>在操作键值对的同时，需要额外维护使用键值对的先后顺序，且维护也应在常数时间内完成。<strong>双向链表</strong>是一个不错的选择。</p>
+<p>双向链表维护访问先后顺序。其头结点（或尾结点）表示最近最久未使用过的数据。（以尾结点表示最近最久未使用为例）</p>
+<ul>
+<li>插入新的键值对时，将 <code>key</code> 存入双向链表的头结点，表示最近被使用的数据。</li>
+<li>当更新键值对时，将 <code>key</code> 从双向链表相应位置移向头结点。</li>
+<li>当缓存已满时，移除双向链表的尾结点并移除散列表中对应的键值对即可。</li>
+</ul>
+<p>上述三种操作，第一种和第三种均很容易在常数时间内实现，而第二种需要额外的辅助才能实现O(1)的时间复杂度，因为双向链表查找的时间复杂度为O(N)。</p>
+<p>Java提供的 <code>java.util.LinkedHashMap</code> 基于 <code>HashMap</code> 和双链表很容易实现LRU缓存。</p>
+<h5 id="3-基于LinkedHashMap（有序字典）的实现"><a href="#3-基于LinkedHashMap（有序字典）的实现" class="headerlink" title="3. 基于LinkedHashMap（有序字典）的实现"></a>3. 基于LinkedHashMap（有序字典）的实现</h5><p>Java提供的 LinkedHashMap 类默认按照键值对插入顺序维护双向链表，同时也提供一个特殊的构造函数，以实现按访问顺序维护双向链表。</p>
+<ul>
+<li>initialCapacity：初始化容量</li>
+<li>loadFactor：加载因子</li>
+<li>accessOrder：true 表示按访问顺序，false 表示按插入顺序</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedHashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">float</span> loadFactor,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">boolean</span> accessOrder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(initialCapacity, loadFactor);</span><br><span class="line">    <span class="keyword">this</span>.accessOrder = accessOrder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于 LinkedHashMap 类提供的 removeEldestEntry 方法默认返回 false，因此需要重写该方法，并指定删除最久未使用数据的规则（如当数据量超过缓存容量时）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K,V&gt; eldest)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>代码实现</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> LinkedHashMap&lt;Integer, Integer&gt; map;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> MAX_CACHE_SIZE; <span class="comment">// 缓存容量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">    	MAX_CACHE_SIZE = capacity;</span><br><span class="line">        <span class="comment">// 初始容量根据缓存容量和加载因子计算得到，不应设置为等于缓存容量。</span></span><br><span class="line">        <span class="comment">// 若初始容量被设置为缓存容量，易导致rehash操作发生，降低算法性能。</span></span><br><span class="line">    	map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;((<span class="keyword">int</span>) Math.ceil(capacity / <span class="number">0.75f</span>) + <span class="number">1</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>)&#123;</span><br><span class="line">    		<span class="meta">@Override</span></span><br><span class="line">    		<span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> </span>&#123;</span><br><span class="line">    			<span class="keyword">return</span> size() &gt; MAX_CACHE_SIZE;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    	Integer value = map.get(key);</span><br><span class="line">    	<span class="keyword">return</span> value == <span class="keyword">null</span> ? -<span class="number">1</span> : value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	map.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、基于哈希表和双向链表的实现"><a href="#4、基于哈希表和双向链表的实现" class="headerlink" title="4、基于哈希表和双向链表的实现"></a>4、基于哈希表和双向链表的实现</h5><p>如思路部分所述，可使用双向链表保存访问键值对的顺序信息。</p>
+<p>双向链表插入操作的时间复杂度为O(1)，但查询操作的时间复杂度为O(N)。若被访问的键值对对应的链表结点位于链表中部，那么查找操作将时总时间复杂度提升为O(N)。那如何解决这一问题呢？</p>
+<p>参照 LinkedHashMap 的源码实现。将键值对保存在链表结点中，哈希表保存 <strong>key 和 结点内存地址</strong>，这样，定位至相应结点的时间复杂度就被优化为O(1)。</p>
+<p><em>结点结构如下</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    Node prev;</span><br><span class="line">    Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>哈希表结构如下</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> HashMap&lt;Integer, Node&gt; cache;</span><br></pre></td></tr></table></figure>
+
+<p>（图源：<a href="https://leetcode-cn.com/problems/lru-cache/solution/lru-huan-cun-ji-zhi-by-leetcode/" target="_blank" rel="noopener">LRU 缓存机制</a>）</p>
+<p><img src="/2020/03/09/LeetCode题集（一）：O(1)时间复杂度的操作/2.jpg" alt></p>
+<p>头尾指针为辅助指针。</p>
+<p><em>算法实现</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 双向链表的结点</span></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> key;</span><br><span class="line">		<span class="keyword">int</span> value;</span><br><span class="line">		Node prev;</span><br><span class="line">		Node next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> Node head; <span class="comment">// 辅助的头指针</span></span><br><span class="line">	<span class="keyword">private</span> Node tail; <span class="comment">// 辅助的尾指针</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 在头部插入结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertHeadNode</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		node.prev = head;</span><br><span class="line">		node.next = head.next;</span><br><span class="line">		head.next.prev = node;</span><br><span class="line">		head.next = node;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移除尾结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> Node <span class="title">removeTailNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Node target = tail.prev;</span><br><span class="line">		removeNode(target);</span><br><span class="line">		<span class="comment">// 返回被移除的结点指针，是为了再移除尾结点后，</span></span><br><span class="line">		<span class="comment">// 从哈希表中删除对应的记录。</span></span><br><span class="line">		<span class="keyword">return</span> target;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移除结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		Node pNode = node.prev;</span><br><span class="line">		Node qNode = node.next;</span><br><span class="line">		pNode.next = qNode;</span><br><span class="line">		qNode.prev = pNode;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移动结点至头结点位置</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">moveToHead</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 先移除，再插入</span></span><br><span class="line">		removeNode(node);</span><br><span class="line">		insertHeadNode(node);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> HashMap&lt;Integer, Node&gt; cache;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>; <span class="comment">// 加载因子</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> MAX_CACHE_SIZE; <span class="comment">// 缓存容量;</span></span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> initialCapacity = (<span class="keyword">int</span>) Math.ceil(capacity / DEFAULT_LOAD_FACTOR) + <span class="number">1</span>; <span class="comment">// 哈希表初始容量</span></span><br><span class="line">    	cache = <span class="keyword">new</span> HashMap&lt;&gt;(initialCapacity, DEFAULT_LOAD_FACTOR);</span><br><span class="line">    	MAX_CACHE_SIZE = capacity;</span><br><span class="line">    	<span class="comment">// 初始化头尾指针</span></span><br><span class="line">    	head = <span class="keyword">new</span> Node();</span><br><span class="line">    	tail = <span class="keyword">new</span> Node();</span><br><span class="line">    	head.next = tail;</span><br><span class="line">    	tail.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    	Node node = cache.get(key);</span><br><span class="line">    	<span class="keyword">if</span>(node==<span class="keyword">null</span>) &#123;</span><br><span class="line">    		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	moveToHead(node); <span class="comment">// 更新访问记录</span></span><br><span class="line">    	<span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	Node node = <span class="keyword">null</span>;</span><br><span class="line">    	<span class="comment">// 键已存在</span></span><br><span class="line">    	<span class="keyword">if</span>(cache.containsKey(key)) &#123;</span><br><span class="line">    		node = cache.get(key);</span><br><span class="line">    		node.value = value;</span><br><span class="line">    		moveToHead(node);</span><br><span class="line">    		<span class="keyword">return</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="comment">// 键不存在</span></span><br><span class="line">    	node = <span class="keyword">new</span> Node();</span><br><span class="line">    	node.key = key;</span><br><span class="line">    	node.value = value;</span><br><span class="line">    	insertHeadNode(node); <span class="comment">// 插入头结点</span></span><br><span class="line">    	cache.put(key, node);</span><br><span class="line">    	<span class="comment">// 还需判断哈希表容量是否已超过缓存容量</span></span><br><span class="line">    	<span class="keyword">if</span>(cache.size() &gt; MAX_CACHE_SIZE) &#123;</span><br><span class="line">    		Node target = removeTailNode(); <span class="comment">// 移除尾结点</span></span><br><span class="line">    		cache.remove(target.key);</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>LeetCode</category>
@@ -109,6 +186,7 @@
         <tag>Algorithms</tag>
         <tag>Max Queue</tag>
         <tag>Min Stack</tag>
+        <tag>LRU</tag>
       </tags>
   </entry>
   <entry>
@@ -452,6 +530,94 @@
 </ul>
 <p><img src="/2020/03/01/xmall项目源码学习/redis_cli_test.jpg" alt></p>
 <p>删除键值对后，返回 <code>1</code> 说明删除成功，返回 <code>0</code> 说明删除失败。</p>
+<h4 id="3-ActiveMQ"><a href="#3-ActiveMQ" class="headerlink" title="3. ActiveMQ"></a>3. ActiveMQ</h4><h5 id="3-1-ActiveMQ概述"><a href="#3-1-ActiveMQ概述" class="headerlink" title="3.1 ActiveMQ概述"></a>3.1 ActiveMQ概述</h5><p>ActiveMQ 是一种基于 Java 消息服务（Java Message Service）的消息中间件。</p>
+<p>在<strong>高并发</strong>的条件下，由于来不及同步处理，请求往往会发生阻塞。例如大量的 update 请求同时到达 MySQL 服务器，造成请求大量堆积。通过使用 ActiveMQ，<strong>异步处理已到达的请求</strong>，缓解服务器压力。</p>
+<p>（图源：<a href="https://www.cnblogs.com/xiguadadage/p/11217604.html）" target="_blank" rel="noopener">https://www.cnblogs.com/xiguadadage/p/11217604.html）</a></p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_1.png" alt></p>
+<p>如上图所示，通过 ActiveMQ 保存开锁指令，随后异步执行耗时的开锁操作，以减轻服务器的压力。</p>
+<h5 id="3-2-ActiveMQ消息类型"><a href="#3-2-ActiveMQ消息类型" class="headerlink" title="3.2 ActiveMQ消息类型"></a>3.2 ActiveMQ消息类型</h5><p>JMS 消息通常有两种类型，ActiveMQ 是基于 JMS 的，所以介绍 ActiveMQ 的两种消息类型：<strong>点对点</strong>（Point-to-Point）和<strong>发布/订阅</strong>（Publish/Subscribe）。</p>
+<p>（1）点对点</p>
+<p>生产者与消费者点对点发送消息，借助队列（javax.jms.Queue）存储消息。</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_2.png" alt></p>
+<p>点对点类型的要点：</p>
+<ul>
+<li>每个消息只有一个消费者 <code>Consumer</code> ，一旦被消费，消息就不再在队列中。</li>
+<li>生产者 <code>Producer</code> 发送消息不受消费者状态的影响。（无依赖性）</li>
+<li>消费者在成功接收消息后，需要向队列应答成功。</li>
+</ul>
+<p>（2）发布/订阅</p>
+<p>生产者发布事件，不同的消费者订阅并使用感兴趣的事件。此类型一般与特定的主题（javax.jms.Topic）关联。</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_3.png" alt></p>
+<p>发布/订阅类型的要点：</p>
+<ul>
+<li>每个消息可以有<strong>多个消费者</strong>。</li>
+<li>针对某个主题（Topic）的订阅者，它必须创建一个订阅者之后，才能消费发布者的消息。（有依赖性）</li>
+<li>为了消费消息，订阅者必须<strong>保持运行</strong>的状态。</li>
+</ul>
+<h5 id="3-3-ActiveMQ的使用"><a href="#3-3-ActiveMQ的使用" class="headerlink" title="3.3 ActiveMQ的使用"></a>3.3 ActiveMQ的使用</h5><p>下载并解压至本地，免安装。在bin目录下执行 activemq.bat start。</p>
+<p>在浏览器中输入<a href="http://localhost:8161/admin/" target="_blank" rel="noopener">http://localhost:8161/admin/</a> 可访问控制台，账户/密码为 admin/admin。</p>
+<p>接下来测试 ActiveMQ 应用于简单的 Java 程序中。</p>
+<p>（1）Maven中引入依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.activemq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activemq-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）生产者</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.JMSException;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageProducer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> javax.jms.TextMessage;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerURL = <span class="string">"tcp://127.0.0.1:61616"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> JMSException </span>&#123;</span><br><span class="line">		<span class="comment">// 创建连接工厂</span></span><br><span class="line">		ActiveMQConnectionFactory factory = <span class="keyword">new</span> ActiveMQConnectionFactory(brokerURL);</span><br><span class="line">		<span class="comment">// 建立连接</span></span><br><span class="line">		Connection conn = factory.createConnection();</span><br><span class="line">		conn.start();</span><br><span class="line">		<span class="comment">// 创建会话</span></span><br><span class="line">		Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">		<span class="comment">// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据</span></span><br><span class="line">		Destination dest = session.createQueue(<span class="string">"TestQueue"</span>);</span><br><span class="line">		<span class="comment">// 创建生产者</span></span><br><span class="line">		MessageProducer producer = session.createProducer(dest);</span><br><span class="line">		<span class="comment">// 发送消息</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;<span class="number">6</span>; i++) &#123;</span><br><span class="line">			TextMessage message = session.createTextMessage(<span class="string">"第"</span>+i+<span class="string">"条消息"</span>);</span><br><span class="line">			producer.send(message);</span><br><span class="line">			System.out.println(message.getText());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 关闭连接</span></span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行生产者之前，控制台如下：</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_4.jpg" alt></p>
+<p>运行生产者，发送5条消息，控制台发生了变化：</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_5.jpg" alt></p>
+<p>如图，队列中等待的消息 <code>Pending Message</code> 有5条，当前无消费者。</p>
+<p>（3）消费者</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.JMSException;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Message;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageConsumer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageListener;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> javax.jms.TextMessage;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerURL = <span class="string">"tcp://127.0.0.1:61616"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> JMSException </span>&#123;</span><br><span class="line">		<span class="comment">// 创建连接工厂</span></span><br><span class="line">		ActiveMQConnectionFactory factory = <span class="keyword">new</span> ActiveMQConnectionFactory(brokerURL);</span><br><span class="line">		<span class="comment">// 建立连接</span></span><br><span class="line">		Connection conn = factory.createConnection();</span><br><span class="line">		conn.start();</span><br><span class="line">		<span class="comment">// 创建会话</span></span><br><span class="line">		Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">		<span class="comment">// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据</span></span><br><span class="line">		Destination dest = session.createQueue(<span class="string">"TestQueue"</span>);</span><br><span class="line">		<span class="comment">// 创建消费者</span></span><br><span class="line">		MessageConsumer consumer = session.createConsumer(dest);</span><br><span class="line">		<span class="comment">// 消费者监听</span></span><br><span class="line">		consumer.setMessageListener(<span class="keyword">new</span> MessageListener() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">				TextMessage textMessage = (TextMessage) message;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					System.out.println(textMessage.getText());</span><br><span class="line">				&#125;<span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>消费者启动后，控制台又发生了变化：</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_6.jpg" alt></p>
+<p>显示此时有1个消费者，刚入队的5条消息均已出队，当前队列中无消息。</p>
+<p>注意创建会话的方法，其中有两个参数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建会话</span></span><br><span class="line">Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>false: 表示 <em>不使用事务</em> 。事务：生产者在发送消息后等待消息代理的确认，没有回应则抛出异常，并由生产者负责处理。</li>
+<li><em>确认模式</em> ：<ul>
+<li><code>AUTO_ACKNOWLEDGE</code>：指定消息接收者在每次收到消息时自动发送确认。消息只向目标发送一次，但传输过程中可能因为错误而丢失消息。</li>
+<li><code>CLIENT_ACKNOWLEDGE</code>：由消息接收者确认收到消息，通过调用消息的 <code>acknowledge()</code> 方法（会通知消息提供者收到了消息）。</li>
+<li><code>DUPS_OK_ACKNOWLEDGE</code>：指定消息提供者在消息接收者没有确认发送时重新发送消息（这种确认模式不在乎接收者收到重复的消息）。</li>
+</ul>
+</li>
+</ol>
+<h5 id="3-4-ActiveMQ进阶之多种MQ简要比较"><a href="#3-4-ActiveMQ进阶之多种MQ简要比较" class="headerlink" title="3.4 ActiveMQ进阶之多种MQ简要比较"></a>3.4 ActiveMQ进阶之多种MQ简要比较</h5><ul>
+<li>ActiveMQ 适用于解耦和异步操作，简单易用，对队列数较多的情况支持不好。</li>
+<li>RabbitMQ，erlang开发，性能较稳定，社区活跃度高，但是不利于做二次开发和维护。</li>
+<li>RocketMQ 支持海量消息，但未实现 JMS 规范。</li>
+<li>Kafka 适用于大数据领域、日志采集等场景。</li>
+</ul>
+<h5 id="3-5-ActiveMQ进阶之持久化"><a href="#3-5-ActiveMQ进阶之持久化" class="headerlink" title="3.5 ActiveMQ进阶之持久化"></a>3.5 ActiveMQ进阶之持久化</h5><p>为避免意外丢失数据，也为重启时可恢复至重启前的正常状态，ActiveMQ 需要实现持久化。</p>
+<p>ActiveMQ的消息持久化机制有 <strong>JDBC，AMQ，KahaDB</strong> 和 <strong>LevelDB</strong>。</p>
+<p><strong>持久化原理</strong>：在发送者将消息发送出去后，消息中心首先将消息存储到本地数据文件、内存数据库或者远程数据库等，然后试图将消息发送给接收者，发送成功则将消息从存储中删除，失败则继续尝试。</p>
+<p>消息中心启动以后首先要检查指定的存储位置，如果有未发送成功的消息，则需要把消息发送出去。</p>
+<p>（1）JDBC</p>
+<p>数据库会创建3个表：<code>activemq_msgs</code>，<code>activemq_acks</code> 和 <code>activemq_lock</code>。</p>
+<p><code>activemq_msgs</code>用于存储消息，<code>Queue</code> 和 <code>Topic</code> 都存储在这个表中。</p>
+<p>（2）AMQ</p>
+<ul>
+<li>以顺序追加的方式将消息写入日志文件。</li>
+<li>创建消息主键索引，且提供缓存。综上，AMQ 性能优于 JDBC。</li>
+</ul>
+<p>AMQ 的缺点：</p>
+<ul>
+<li>重建索引时间长，且索引文件占用磁盘空间较大。</li>
+</ul>
+<p>（3）KahaDB（默认）</p>
+<p>从 ActiveMQ 5.4 开始成为默认的持久化插件。</p>
+<ul>
+<li>基于日志文件，支持索引和缓存。</li>
+<li>使用更少的数据文件，恢复时间远小于 AMQ。</li>
+</ul>
+<p>（4）LevelDB</p>
+<p>5.6 版本推出的持久化引擎，性能高于 KahaDB。可见这几种持久化方式中，LevelDB 性能最好。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://www.jianshu.com/p/cd8e037e11ff" target="_blank" rel="noopener">消息中间件之ActiveMQ</a></p>
+<p>[2] <a href="https://www.cnblogs.com/xiguadadage/p/11217604.html" target="_blank" rel="noopener">浅谈ActiveMQ与使用</a></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
@@ -1427,7 +1593,7 @@
 <li>时间复杂度：O(n*w)</li>
 <li>空间复杂度：O(n*w)</li>
 </ul>
-<p>==（3）动态规划算法==</p>
+<p>（3）动态规划算法</p>
 <p>以10名工人挖5座金矿为例，可作下表</p>
 <p><img src="/2020/01/02/五大常用算法之动态规划/7.jpg" alt></p>
 <p>表中，每一行的所有数据均可<strong>由上一行数据推导得到</strong>，因而动态规划算法可基于此规律，利用前一行数据推导当前行数据。</p>
