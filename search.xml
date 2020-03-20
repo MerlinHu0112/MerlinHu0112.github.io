@@ -1,28 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>五大常用算法之贪心法</title>
+    <url>/2020/03/17/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>贪心算法，求解问题时总是做出当前最优的选择，即求出局部最优解。通过每一步贪心选择，最终可得到问题的一个整体最优解。</p>
+<p><strong>贪心算法不是对所有问题都能得到整体最优解</strong></p>
+<p>贪心策略：无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
+<p><em>基本要素</em></p>
+<p><strong>贪心选择</strong>：整体最优解可以通过一系列局部最优的选择，即贪心选择来达到。</p>
+<p>每一次的贪心选择就是将所求问题简化为规模更小的子问题，从顶向下、迭代地做出选择。</p>
+<p><strong>最优子结构</strong>：问题的最优解包含子问题的最优解。</p>
+<p>与DP不同的是，贪心算法对每个子问题都要作出最优选择，不能回退；动态规划则会依据之前的子问题的结果进行选择，可以回退。</p>
+<p>如何实现？</p>
+<p>从原问题的某一个初始解出发，逐步逼近给定的目标，直至算法终止。</p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>Algorithms</tag>
+        <tag>Greedy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode题集（二）：动态规划问题</title>
     <url>/2020/03/15/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>总结在LeetCode刷题过程中遇见的动态规划求解的问题。</p>
 <p>有关 DP 的详细介绍见<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划</a></p>
 <a id="more"></a>
 
-<h4 id="最大子序和问题"><a href="#最大子序和问题" class="headerlink" title="最大子序和问题"></a>最大子序和问题</h4><p>相关题目：LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题-最大子序和</a>。</p>
+<h4 id="最大子序和问题"><a href="#最大子序和问题" class="headerlink" title="最大子序和问题"></a>最大子序和问题</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题-最大子序和</a>。</p>
 <p><code>Kadane</code>算法求解最大子序和问题的分析见<a href="https://merlinhu0112.github.io/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/">动态规划和分治法求解最大子序和问题</a>。</p>
 <h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
-<p>正确输出结果：6</p>
-<h5 id="2-实现"><a href="#2-实现" class="headerlink" title="2. 实现"></a>2. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用例：<code>[-2, 1, -3, 4, -1, 2, 1, -5, 4]</code></p>
+<p>正确输出结果：<code>6</code></p>
+<h5 id="2-实现"><a href="#2-实现" class="headerlink" title="2. 实现"></a>2. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>算法总结：</p>
-<ul>
-<li>时间复杂度：O(n)</li>
+<h5 id="3-性能"><a href="#3-性能" class="headerlink" title="3. 性能"></a>3. 性能</h5><ul>
+<li>时间复杂度：O(N)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
 <hr>
-<h4 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h4><p>相关题目：LeetCode<a href="https://leetcode-cn.com/problems/integer-break/" target="_blank" rel="noopener">第343题-整数拆分</a>，<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">面试题14-I.剪绳子</a>。</p>
-<h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>此类型题大致题意是：将整数 <code>n</code> 拆分成 <code>m</code> 份，求最大积。</p>
-<h5 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h5>]]></content>
+<h4 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/" target="_blank" rel="noopener">第300题-最长上升子序列</a></p>
+<h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：给定一个无序的整数数组，找到其中最长上升子序列的长度。</p>
+<p>用例：<code>[10, 9, 2, 5, 3, 7, 101, 18]</code></p>
+<p>输出：<code>4</code></p>
+<h5 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h5><p>用数组 <code>dp</code> 保存以数组 <code>nums</code> 下标 <code>0</code> 为起点、下标 <code>i</code> 为终点的局部区间最长上升子序列的长度，将其称为 <em>局部最长上升子序列长度</em>。</p>
+<p>逐个更新 <code>dp</code> 数组。易知，计算 <code>dp[i]</code> 的值，若满足：</p>
+<blockquote>
+<p>0 &lt;= j &lt; i，且 nums[j] &lt; nums[i]</p>
+</blockquote>
+<p>即对于局部区间 <code>[0, j]</code>，元素 <code>nums[i]</code> 是满足上升条件的。</p>
+<p> 状态转移方程为：</p>
+<blockquote>
+<p>dp[i] = max{ dp[j] } + 1， 0 &lt;= j &lt; i，且 nums[j] &lt; nums[i]</p>
+</blockquote>
+<h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// 保存不同索引位置处对应的局部最大上升子序列长度</span></span><br><span class="line">    Arrays.fill(dp, <span class="number">1</span>); <span class="comment">// 局部最长上升子序列长默认为1，即假设完全不存在上升序列</span></span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">1</span>; <span class="comment">// 全局最长上升子序列长度</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 双循环，逐个计算索引i位置处的最大上升子序列长度，最后求出全局最大值</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++)&#123;</span><br><span class="line">            <span class="comment">// 只有当nums[i]大于nums[j]时，严格满足上升条件</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; nums[j])&#123;</span><br><span class="line">                dp[i] = Math.max(dp[i], dp[j]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maxLength = Math.max(maxLength, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>对内循环中的赋值语句的理解</em></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dp[i] = Math.max(dp[i], dp[j]+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>若写成下式是<strong>错误的</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dp[i] = dp[j]+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>因为，索引 <code>j</code> 对应的局部最长上升子序列长度值，不一定是区间 <code>[0, i-1]</code> 中的最大值！</p>
+<h5 id="4-性能"><a href="#4-性能" class="headerlink" title="4. 性能"></a>4. 性能</h5><ul>
+<li>时间复杂度：O(N^2) </li>
+<li>空间复杂度：O(N)</li>
+</ul>
+<hr>
+<h4 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/integer-break/" target="_blank" rel="noopener">第343题-整数拆分</a>，<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">面试题14-I.剪绳子</a>。</p>
+<h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：给定一个正整数 <code>n</code>，将其拆分为<strong>至少</strong>两个正整数的和，并使这些整数的乘积最大化。 返回可以获得的最大乘积。</p>
+<p>条件：2 &lt;= n &lt;= 58 ，且 2 &lt;= m &lt;= n，其中 <code>m</code> 是划分的个数。</p>
+<h5 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2. 分析"></a>2. 分析</h5><p>设数组 <code>dp</code> 中的任意元素 dp[i] 保存整数 <code>i</code> 对应的最大乘积，其中 i &gt;= 2。</p>
+<p>边界条件为：</p>
+<blockquote>
+<p>dp[2] = 1</p>
+</blockquote>
+<p>其中 dp[0] 和 dp[1] 为无效参数，仅起到填充作用，以使 <code>dp</code> 数组的索引 <code>i</code> 与正整数 <code>n</code> 对应。</p>
+<p>对于整数 <code>i</code> ，可将其划分为 <code>j</code> 和 <code>i-j</code> ，其中 1&lt;= j &lt; i。</p>
+<p><code>j * (i-j)</code> 正是整数 <code>i</code> 拆分、求积的一种形式，但这不一定是最大值。因为对于由 <code>i</code> 划分得到的 <code>j</code> ，它对应的 <code>dp[j]</code> 不一定等于 <code>j</code>，即对整数 <code>j</code> 进一步划分，或许还能得到更大的乘积。</p>
+<p>综上，应在 j * ( i - j ) 和 dp[j] * ( i - j ) 中选择较大者。</p>
+<h5 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">2</span>] = <span class="number">1</span>; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;i; j++)&#123;</span><br><span class="line">            <span class="comment">// 状态转移方程</span></span><br><span class="line">            dp[i] = Math.max(Math.max((j*(i-j)), (dp[j]*(i-j))), dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-性能-1"><a href="#4-性能-1" class="headerlink" title="4. 性能"></a>4. 性能</h5><ul>
+<li>时间复杂度：O(N^2) </li>
+<li>空间复杂度：O(N)</li>
+</ul>
+<hr>
+]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
@@ -187,47 +253,6 @@
         <tag>Max Queue</tag>
         <tag>Min Stack</tag>
         <tag>LRU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字符串匹配之BM、KMP算法</title>
-    <url>/2020/03/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBM%E3%80%81KMP%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
-<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
-<a id="more"></a>
-
-<h3 id="一、BM算法"><a href="#一、BM算法" class="headerlink" title="一、BM算法"></a>一、BM算法</h3><p>在<a href>字符串匹配之BF、RK算法</a>部分已学习了BF、RK两种算法。</p>
-<p>BF算法过于暴力，时间复杂度较高。</p>
-<p>RK算法针对BF算法进行了优化，在较好的示例中时间复杂度较好。但RK算法不稳定，当样本哈希冲突严重时，RK算法一路退化至BF算法。</p>
-<p>本小节学习的BM算法时间复杂度仅为 <code>O( )</code>，且稳定，常用于文本编辑器中的查找功能。</p>
-<p>在BM算法中，有两个非常重要的概念：<strong>坏字符规则</strong> 和 <strong>好后缀规则</strong>。</p>
-<h4 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h4><p>坏字符规则是指，对于模式串和等长的主串子串，子串从右向左出现的第一个不与模式串对应位置字符匹配的子串字符，称之为坏字符。<strong>根据坏字符在模式串中是否出现，将模式串移动不等距离</strong>。</p>
-<p>在第一轮中，从右向左第一个字符 <code>d</code> 就是坏字符。随后在模式串中同样地<strong>从左向右</strong>找到首个字符d。移动模式串不再像BF/RK算法那样单次移动一位，而是直接<strong>将坏字符对齐</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_1.jpg" alt></p>
-<p>第二轮与第一轮相似。对比前两轮可发现，<strong>每轮移动模式串的距离不一定是相等的！</strong>这与坏字符的位置有关。</p>
-<p>正是这一特性，有效降低了算法的比较次数，提高了性能。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_2.jpg" alt></p>
-<p>第三轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_3.jpg" alt></p>
-<p>第四轮中遇见<strong>模式串中不存在坏字符</strong>的情况，这时直接<strong>将模式串移动至主串子串的坏字符下一位</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_4.jpg" alt></p>
-<p>第五轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_5.jpg" alt></p>
-<p>第六轮，顺利完成匹配。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_6.jpg" alt></p>
-<p>坏字符规则代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">boyerMoore</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始时，主串和模式串从0至pattern.length-1位一一对应</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>; <span class="comment">// 模式串对应主串的起始位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(start &lt;= (m-n)) &#123;</span><br><span class="line">        <span class="comment">// 从右往左寻找坏字符，其中坏字符位于主串</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(start+i) != pattern.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 未找到坏字符，即一一匹配，返回结果</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到坏字符，确定模式串移动距离</span></span><br><span class="line">        <span class="keyword">int</span> badCharIndex = findBadCharacter(string.charAt(start+i), pattern, i); <span class="comment">// 模式串中寻找坏字符从i-1开始</span></span><br><span class="line">        <span class="comment">// 计算坏字符产生的位移</span></span><br><span class="line">        <span class="keyword">int</span> offset = badCharIndex &gt;= <span class="number">0</span> ? i-badCharIndex : i+<span class="number">1</span>;</span><br><span class="line">        start += offset;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> badChar 坏字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> start 坏字符索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串中坏字符的位置，不存在则返回-1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findBadCharacter</span><span class="params">(<span class="keyword">char</span> badChar, String pattern, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>( badChar == (pattern.charAt(i)) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
-]]></content>
-      <categories>
-        <category>Algorithms</category>
-      </categories>
-      <tags>
-        <tag>String Matching</tag>
-        <tag>BM</tag>
-        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>
@@ -469,10 +494,10 @@
       </categories>
       <tags>
         <tag>String Matching</tag>
-        <tag>BM</tag>
-        <tag>KMP</tag>
         <tag>BF</tag>
         <tag>RK</tag>
+        <tag>KMP</tag>
+        <tag>BM</tag>
       </tags>
   </entry>
   <entry>
