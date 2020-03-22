@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>五大常用算法之贪心法</title>
-    <url>/2020/03/17/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>贪心算法，求解问题时总是做出当前最优的选择，即求出局部最优解。通过每一步贪心选择，最终可得到问题的一个整体最优解。</p>
-<p><strong>贪心算法不是对所有问题都能得到整体最优解</strong></p>
-<p>贪心策略：无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
-<p><em>基本要素</em></p>
-<p><strong>贪心选择</strong>：整体最优解可以通过一系列局部最优的选择，即贪心选择来达到。</p>
-<p>每一次的贪心选择就是将所求问题简化为规模更小的子问题，从顶向下、迭代地做出选择。</p>
-<p><strong>最优子结构</strong>：问题的最优解包含子问题的最优解。</p>
-<p>与DP不同的是，贪心算法对每个子问题都要作出最优选择，不能回退；动态规划则会依据之前的子问题的结果进行选择，可以回退。</p>
-<p>如何实现？</p>
-<p>从原问题的某一个初始解出发，逐步逼近给定的目标，直至算法终止。</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Algorithms</tag>
-        <tag>Greedy</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode题集（二）：动态规划问题</title>
     <url>/2020/03/15/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<p>总结在LeetCode刷题过程中遇见的动态规划求解的问题。</p>
@@ -1840,7 +1818,7 @@
 <h4 id="3-Parallel-Scavenge-收集器"><a href="#3-Parallel-Scavenge-收集器" class="headerlink" title="3. Parallel Scavenge 收集器"></a>3. Parallel Scavenge 收集器</h4><p>（1）与 ParNew 在基本实现上相似；</p>
 <p>（2）吞吐量优先：在GC停顿时间和CPU效率间平衡选择，不同于 CMS 等收集器追求尽可能短的 GC 停顿时          间；</p>
 <p>（3）GC Ergonomics：自适应调节策略。</p>
-<p>![](Java学习之虚拟机/Parallel Scavenge.jpg)</p>
+<p><img src="/2019/11/11/Java学习之虚拟机/ParallelScavenge.jpg" alt></p>
 <h4 id="4-Serial-Old-收集器"><a href="#4-Serial-Old-收集器" class="headerlink" title="4. Serial Old 收集器"></a>4. Serial Old 收集器</h4><p>（1）Serial 收集器的 老年代 版</p>
 <p>（2）标记 - 整理 算法</p>
 <p><img src="/2019/11/11/Java学习之虚拟机/SerialOld.jpg" alt></p>
