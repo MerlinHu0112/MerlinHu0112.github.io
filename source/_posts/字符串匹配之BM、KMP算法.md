@@ -9,7 +9,7 @@ tags:
 	- BM
 	- KMP
 categories:
-	- Algorithms
+	- 算法
 ---
 
 字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 `-1` 。比如主串为 `abjdefoahs` ，模式串为 `def` ，算法返回结果为 `3` 。又比如主串为 `abjdfeoahs`，模式串为 `wyz` ，算法返回结果为 `-1` 。

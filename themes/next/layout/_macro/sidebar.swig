@@ -69,8 +69,9 @@
                 {% if hasCategoriesPage %}</a>{% endif %}
               </div>
             {% endif %}
-
-            {% if site.tags.length > 0 %}
+			
+            {# 注释掉侧边栏中的标签字段
+			{% if site.tags.length > 0 %}
               {% set tagsPageQuery = site.pages.find({type: 'tags'}, {lean: true}) %}
               {% set hasTagsPage = tagsPageQuery.length > 0 %}
               <div class="site-state-item site-state-tags">
@@ -79,7 +80,7 @@
                   <span class="site-state-item-name">{{ __('state.tags') }}</span>
                 {% if hasTagsPage %}</a>{% endif %}
               </div>
-            {% endif %}
+            {% endif %} #}
 
           </nav>
 

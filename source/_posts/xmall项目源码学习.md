@@ -1,7 +1,7 @@
 ---
 title: xmall项目源码学习
 comments: true
-top: false
+top: true
 date: 2020-03-01
 tags: 
 	- xmall
@@ -47,15 +47,15 @@ ZooKeeper允许分布式进程通过共享的**层次命名空间**相互协调�
 
 ##### 1.3 ZooKeeper的配置及运行
 
-（1）从[ZooKeeper官网](http://zookeeper.apache.org/)下载压缩包 `apache-zookeeper-3.5.7-bin.tar.gz` ，解压至本地文件夹。
+（1）从[ZooKeeper官网](http://zookeeper.apache.org/)下载压缩包 `apache-zookeeper-3.5.7-bin.tar.gz` ，解压至本地，重命名为 `zookeeper`。
 
-（2）解压后有两个文件夹：`apache-zookeeper-3.5.7-bin` 和 `PaxHeaders.X` ，前者的 `conf` 和 `bin` 文件夹较为重要。
+（2）在ZooKeeper目录下新建data和dataLog文件夹，用于存储内存数据库快照和日志文件。
 
-（3）将 apache-zookeeper-3.5.7-bin\conf\ 目录下的 `zoo_sample.cfg` 文件重命名为 `zoo.cfg` ，并修改配置，如下所示。
+（3）将 zookeeper\conf\ 目录下的 `zoo_sample.cfg` 文件重命名为 `zoo.cfg` ，并修改配置，如下所示。
 
 ```
 # The number of milliseconds of each tick
-# 用作"心跳"，且最小会话超时为tickTime的两倍
+# “心跳”，最小会话超时为tickTime的两倍
 tickTime=2000
 # The number of ticks that the initial 
 # synchronization phase can take
@@ -67,11 +67,11 @@ syncLimit=5
 # do not use /tmp for storage, /tmp here is just 
 # example sakes.
 # 内存数据库快照
-dataDir=D:\\...(模糊化处理)\\Zookeeper\\dataDir
+dataDir=/.../zookeeper/data
 # 日志文件目录
-dataLogDir=D:\\...(模糊化处理)\\Zookeeper\\dataLogDir
+dataLogDir=/.../zookeeper/dataLog
 # the port at which the clients will connect
-# 用于侦听客户端连接的端口
+# 侦听客户端连接的端口
 clientPort=2181
 # the maximum number of client connections.
 # increase this if you need to handle more clients
@@ -87,9 +87,14 @@ clientPort=2181
 # Purge task interval in hours
 # Set to "0" to disable auto purge feature
 #autopurge.purgeInterval=1
-```
 
-注意：`dataDir` 和 `dataLogDir` 两项，地址中分隔符应为 `\\` 而不是 `\` ，后者在ZooKeeper运行时将在 apache-zookeeper-3.5.7-bin\bin\ 目录下生成文件夹存放日志文件和快照，而不是在指定位置。
+## Metrics Providers
+#
+# https://prometheus.io Metrics Exporter
+#metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider
+#metricsProvider.httpPort=7000
+#metricsProvider.exportJvmInfo=true
+```
 
 
 
@@ -110,30 +115,13 @@ Redis具备：
 
 
 
-##### 2.2 在Windows环境下安装、测试Redis
+##### 2.2 安装与启动
 
-（1）[下载Redis](https://github.com/microsoftarchive/redis/releases)，解压到本地目录。
+（1）在Ubuntu系统中，直接使用apt包管理器安装Redis。
 
-- redis-server.exe：Redis服务器
-- redis-cli.exe：Redis客户端
-- redis-check-aof.exe：更新日志检查
-- redis-benchmark.exe：性能测试，模拟N个客户端同时发送M个set/get查询
+（2）启动Redis服务器：redis-server。
 
-（2）命令行窗口，输入 `redis-server.exe redis.windows.conf` 以启动Redis服务器。此窗口保持常开。
-
-（3）另开命令行窗口，输入 `redis-cli.exe -h 127.0.0.1 -p 6379`，客户端连接服务器，其中 Redis服务器监听 **6379 端口**。
-
-（4）测试
-
-- 设置键值对： `set testKey 1`
-
-- 取出键值对： `get testKey`
-
-- 删除键值对： `del testKey`
-
-![](xmall项目源码学习/redis_cli_test.jpg)
-
-删除键值对后，返回 `1` 说明删除成功，返回 `0` 说明删除失败。
+（3）Redis客户端连接本地Redis服务器： redis-cli。
 
 
 
@@ -185,7 +173,11 @@ JMS 消息通常有两种类型，ActiveMQ 是基于 JMS 的，所以介绍 Acti
 
 ##### 3.3 ActiveMQ的使用
 
-下载并解压至本地，免安装。在bin目录下执行 activemq.bat start。
+下载并解压至本地，在bin目录下执行相应命令：
+
+- 启动：./activemq start
+- 查看状态：./activemq status
+- 关闭：./activemq stop
 
 在浏览器中输入http://localhost:8161/admin/ 可访问控制台，账户/密码为 admin/admin。
 
@@ -363,8 +355,39 @@ AMQ 的缺点：
 
 
 
+#### 4. Elasticsearch
+
+##### 4.1 Elasticsearch概述
+
+Elasticsearch是一个基于Apache Lucene的开源搜索引擎，使用Java语言开发并使用Lucene作为其核心来实现索引和搜索。
+
+Elasticsearch通过集成的RESTful API来隐藏Lucene的复杂性，它是：
+
+- 分布式的实时文件存储，每个字段都被索引且可被搜索；
+- 分布式的实时分析搜索引擎；
+- 可扩展性，处理PB级结构化或非结构化数据。
+
+
+
+##### 4.2 运行Elasticsearch
+
+（1）前台启动：./bin/elasticsearch
+
+（2）关闭：Ctrl+c
+
+
+
+##### 4.3 节点与集群
+
+- 节点（Node）：一个运行着的Elasticsearch实例。
+- 集群（cluster）：一组具有相同的 `cluster.name` 的节点的集合。集群内的节点共享数据，提供故障转移和扩展功能。
+
+
+
 #### 参考资料
 
 [1] [消息中间件之ActiveMQ](https://www.jianshu.com/p/cd8e037e11ff)
 
 [2] [浅谈ActiveMQ与使用](https://www.cnblogs.com/xiguadadage/p/11217604.html)
+
+[3] [Elasticsearch 权威指南（中文版）](https://es.xiaoleilu.com/)

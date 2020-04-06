@@ -28,7 +28,7 @@ categories:
 
 4. 运行时常量池：编译生成的字面量和符号引用。
 
-![](/Java学习之虚拟机/2.png)
+![](Java学习之虚拟机/2.png)
 
 
 
@@ -329,7 +329,7 @@ JVM 针对 Java堆 采用的回收算法主要分为：**标记-清除算法、�
 
 （3）GC Ergonomics：自适应调节策略。
 
-![](Java学习之虚拟机/Parallel Scavenge.jpg)
+![](Java学习之虚拟机/ParallelScavenge.jpg)
 
 #### 4. Serial Old 收集器
 

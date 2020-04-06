@@ -40,7 +40,7 @@ keywords: "Hexo, NexT"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: false
 
 footer:
   # Specify the date when the site was setup.
@@ -94,7 +94,7 @@ index_with_subtitle: false
 menu:
   home: / || home
   archives: /archives/ || archive
-  tags: /tags/ || tags
+  #tags: /tags/ || tags
   categories: /categories/ || th
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
