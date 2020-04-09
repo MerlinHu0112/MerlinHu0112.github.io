@@ -116,7 +116,7 @@
 
 
 
-  <meta name="keywords" content="Binary Tree,">
+  <meta name="keywords" content="Backtracking,DFS,BFS,">
 
 
 
@@ -127,18 +127,18 @@
 
 
 
-<meta name="description" content="《剑指Offer》中涉及的二叉树问题集合。 总结：  涉及二叉树的问题，绕不开DFS和BFS，即深度优先搜索和广度优先搜索。 常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。">
-<meta name="keywords" content="Binary Tree">
+<meta name="description" content="矩阵搜索问题通常可通过深度优先搜索（DFS）或广度优先搜索（BFS）解决。本文总结了在刷题过程中遇见的可采用 DFS + 回溯 解决的矩阵搜索问题。 核心：由当前位置向指定方向搜索（递归过程），若搜索结果不满足要求，则回溯至原位置。">
+<meta name="keywords" content="Backtracking,DFS,BFS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指Offer题集（二）：二叉树问题集合">
-<meta property="og:url" content="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（二）：二叉树问题集合/index.html">
+<meta property="og:title" content="剑指Offer题集（四）：矩阵搜索问题">
+<meta property="og:url" content="https://merlinhu0112.github.io/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/index.html">
 <meta property="og:site_name" content="Merlin小站">
-<meta property="og:description" content="《剑指Offer》中涉及的二叉树问题集合。 总结：  涉及二叉树的问题，绕不开DFS和BFS，即深度优先搜索和广度优先搜索。 常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。">
+<meta property="og:description" content="矩阵搜索问题通常可通过深度优先搜索（DFS）或广度优先搜索（BFS）解决。本文总结了在刷题过程中遇见的可采用 DFS + 回溯 解决的矩阵搜索问题。 核心：由当前位置向指定方向搜索（递归过程），若搜索结果不满足要求，则回溯至原位置。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-06T02:46:38.966Z">
+<meta property="og:updated_time" content="2020-04-09T05:30:04.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指Offer题集（二）：二叉树问题集合">
-<meta name="twitter:description" content="《剑指Offer》中涉及的二叉树问题集合。 总结：  涉及二叉树的问题，绕不开DFS和BFS，即深度优先搜索和广度优先搜索。 常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。">
+<meta name="twitter:title" content="剑指Offer题集（四）：矩阵搜索问题">
+<meta name="twitter:description" content="矩阵搜索问题通常可通过深度优先搜索（DFS）或广度优先搜索（BFS）解决。本文总结了在刷题过程中遇见的可采用 DFS + 回溯 解决的矩阵搜索问题。 核心：由当前位置向指定方向搜索（递归过程），若搜索结果不满足要求，则回溯至原位置。">
 
 
 
@@ -168,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（二）：二叉树问题集合/">
+  <link rel="canonical" href="https://merlinhu0112.github.io/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/">
 
 
 
 
 
-  <title>剑指Offer题集（二）：二叉树问题集合 | Merlin小站</title>
+  <title>剑指Offer题集（四）：矩阵搜索问题 | Merlin小站</title>
   
 
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（二）：二叉树问题集合/">
+    <link itemprop="mainEntityOfPage" href="https://merlinhu0112.github.io/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Merlin Hu">
@@ -360,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">剑指Offer题集（二）：二叉树问题集合</h1>
+          <h1 class="post-title" itemprop="name headline">剑指Offer题集（四）：矩阵搜索问题</h1>
         
 
         <div class="post-meta">
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T08:40:47+08:00">
-                2020-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-09T13:00:41+08:00">
+                2020-04-09
               </time>
             
 
@@ -391,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-06T10:46:38+08:00">
-                2020-04-06
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-09T13:30:04+08:00">
+                2020-04-09
               </time>
             
           </span>
@@ -432,8 +432,8 @@
 				
                  <span class="post-meta-item-text">评论</span>
 				
-                <a href="/2020/04/06/剑指Offer题集（二）：二叉树问题集合/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/06/剑指Offer题集（二）：二叉树问题集合/" itemprop="commentCount"></span>
+                <a href="/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +441,7 @@
 
           
           
-             <span id="/2020/04/06/剑指Offer题集（二）：二叉树问题集合/" class="leancloud_visitors" data-flag-title="剑指Offer题集（二）：二叉树问题集合">
+             <span id="/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/" class="leancloud_visitors" data-flag-title="剑指Offer题集（四）：矩阵搜索问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -466,7 +466,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  2,017 字
+                  1,210 字
                 </span>
               
 
@@ -482,7 +482,7 @@
                   <span class="post-meta-item-text">阅读本文约耗时</span>
                 
                 <span title="阅读本文约耗时">
-                  8 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -492,7 +492,11 @@
 	      
 			 <div class="post-tags">
 				
-					<a href="/tags/Binary-Tree/" rel="tag"><i class="fa fa-tag"></i> Binary Tree</a>
+					<a href="/tags/Backtracking/" rel="tag"><i class="fa fa-tag"></i> Backtracking</a>
+				
+					<a href="/tags/DFS/" rel="tag"><i class="fa fa-tag"></i> DFS</a>
+				
+					<a href="/tags/BFS/" rel="tag"><i class="fa fa-tag"></i> BFS</a>
 				
 			</div>
          
@@ -510,108 +514,26 @@
       
 
       
-        <p>《剑指Offer》中涉及的二叉树问题集合。</p>
-<p>总结：</p>
-<ul>
-<li>涉及二叉树的问题，绕不开DFS和BFS，即深度优先搜索和广度优先搜索。</li>
-<li>常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。</li>
-</ul>
+        <p>矩阵搜索问题通常可通过深度优先搜索（DFS）或广度优先搜索（BFS）解决。本文总结了在刷题过程中遇见的可采用 <strong>DFS + 回溯</strong> 解决的矩阵搜索问题。</p>
+<p>核心：由当前位置向指定方向搜索（递归过程），若搜索结果不满足要求，则回溯至原位置。</p>
 <a id="more"></a>
 
-<h4 id="面试题07-重建二叉树"><a href="#面试题07-重建二叉树" class="headerlink" title="面试题07. 重建二叉树"></a>面试题07. 重建二叉树</h4><h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
-<p><a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题07. 重建二叉树</a></p>
-<p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">力扣-105. 从前序与中序遍历序列构造二叉树</a></p>
-<h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归：易知，先序遍历得到的首个值是root节点的值，即可根据该元素值在中序遍历得到的数组中的位置，将其分为左右子树的节点，并分别递归地拼接左右子树。</li>
-</ul>
-<h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现：</p>
-<blockquote>
-<p>需要注意的是，在递归建立左右子树的过程中，对左子树，注意preHi的值；对右子树，注意preLo的值。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] preAux = <span class="keyword">null</span>; <span class="comment">// 辅助数组，先序遍历</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] inAux = <span class="keyword">null</span>; <span class="comment">// 辅助数组，中序遍历</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preorder==<span class="keyword">null</span> || inorder==<span class="keyword">null</span> || preorder.length==<span class="number">0</span> || inorder.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preAux = preorder;</span><br><span class="line">        inAux = inorder;</span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, preAux.length-<span class="number">1</span>, <span class="number">0</span>, inAux.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> preLo 先序遍历得到的数组的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> preHi 先序遍历得到的数组的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> inLo 中序遍历得到的数组的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> inHi 中遍历得到的数组的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 建树完成，返回根节点内存地址</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span> preLo, <span class="keyword">int</span> preHi, <span class="keyword">int</span> inLo, <span class="keyword">int</span> inHi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preLo &gt; preHi || inLo &gt; inHi)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rootVal = preAux[preLo]; <span class="comment">// 当前子树的根结点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line">        <span class="keyword">int</span> index = inLo; <span class="comment">// 根结点在中序遍历数组中的索引</span></span><br><span class="line">        <span class="keyword">while</span>(inAux[index]!=rootVal)&#123;</span><br><span class="line">            <span class="comment">// 结点元素值是唯一的，且一定存在</span></span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 在递归建立左右子树的过程中：对左子树，注意preHi的值；对右子树，注意preLo的值</span></span><br><span class="line">        root.left = helper(preLo+<span class="number">1</span>, preLo+(index-inLo), inLo, index-<span class="number">1</span>);</span><br><span class="line">        root.right = helper(preLo+(index-inLo)+<span class="number">1</span>, preHi, index+<span class="number">1</span>, inHi);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="面试题12-矩阵中的路径"><a href="#面试题12-矩阵中的路径" class="headerlink" title="面试题12. 矩阵中的路径"></a>面试题12. 矩阵中的路径</h4><h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。</p>
+<p><a href="https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题12. 矩阵中的路径</a></p>
+<p><a href="https://leetcode-cn.com/problems/word-search/" target="_blank" rel="noopener">力扣-79. 单词搜索</a></p>
+<h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>DFS+回溯：类似于<a href="https://merlinhu0112.github.io/2020/01/13/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/">八皇后</a>问题，由二维数组的每一个位置开始搜索。若当前位置字符符合要求，则<strong>递归搜索</strong>当前位置的<strong>上下左右</strong>位置，观察其是否依然符合。在搜索过程中，对于已访问过的位置，需要将其<strong>特殊标记</strong>。若发生回溯，则在回溯过程中取消已标记的位置。</p>
+<h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] arr = word.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;board.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;board[<span class="number">0</span>].length; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(helper(board, arr, i, j, <span class="number">0</span>))&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 回溯法</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> k 字符串word的索引</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">helper</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">char</span>[] arr,</span></span></span><br><span class="line"><span class="function"><span class="params">                                  <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 索引越界或字符不匹配，直接返回false</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span> || i&gt;board.length-<span class="number">1</span> || j&lt;<span class="number">0</span> || j&gt;board[<span class="number">0</span>].length-<span class="number">1</span></span><br><span class="line">                || arr[k]!=board[i][j])&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 以完成全部字符串的匹配，返回true</span></span><br><span class="line">        <span class="keyword">if</span>(k==arr.length-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">char</span> temp = board[i][j];</span><br><span class="line">        board[i][j] = <span class="string">'+'</span>; <span class="comment">// 占位，标识此位置字符已经被访问过</span></span><br><span class="line">        <span class="comment">// 若索引为k的字符是匹配的，则继续匹配索引为k+1的字符</span></span><br><span class="line">        <span class="comment">// 左,右,上,下</span></span><br><span class="line">        <span class="keyword">boolean</span> flag = helper(board, arr, i, j-<span class="number">1</span>, k+<span class="number">1</span>) || helper(board, arr, i, j+<span class="number">1</span>, k+<span class="number">1</span>)</span><br><span class="line">                || helper(board, arr, i-<span class="number">1</span>, j, k+<span class="number">1</span>) || helper(board, arr, i+<span class="number">1</span>, j, k+<span class="number">1</span>);</span><br><span class="line">        board[i][j] = temp; <span class="comment">// 还原</span></span><br><span class="line">        <span class="keyword">return</span> flag;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(N)，对于每个节点都有创建过程以及根据左右子树重建过程。</li>
-<li>空间复杂度：O(N)，存储整棵树的开销。</li>
-</ul>
-<p>（2）迭代实现</p>
-<p>暂无，可参考<a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/" target="_blank" rel="noopener">官方题解</a>。</p>
 <hr>
-<h4 id="面试题27-二叉树的镜像"><a href="#面试题27-二叉树的镜像" class="headerlink" title="面试题27.二叉树的镜像"></a>面试题27.二叉树的镜像</h4><h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。即翻转二叉树。</p>
-<p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题27. 二叉树的镜像</a></p>
-<p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">力扣-226. 翻转二叉树</a></p>
-<h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归：根据二叉树镜像的定义，通过<strong>递归先序遍历</strong>二叉树，互相交换左右子树，即可实现翻转二叉树。</li>
-</ul>
-<h5 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">mirrorTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        helper(root);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 交换root节点的左右子树</span></span><br><span class="line">        TreeNode temp = root.left;</span><br><span class="line">        root.left = root.right;</span><br><span class="line">        root.right = temp;</span><br><span class="line">        <span class="comment">// 递归修改左子树为镜像</span></span><br><span class="line">        <span class="keyword">if</span>(root.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            helper(root.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 递归修改右子树为镜像</span></span><br><span class="line">        <span class="keyword">if</span>(root.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            helper(root.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="面试题13-机器人的运动范围"><a href="#面试题13-机器人的运动范围" class="headerlink" title="面试题13. 机器人的运动范围"></a>面试题13. 机器人的运动范围</h4><h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>地上有一个 <code>m</code> 行 <code>n</code> 列的方格，从坐标 <code>[0,0]</code> 到坐标 <code>[m-1,n-1]</code> 。一个机器人从坐标 <code>[0, 0]</code>的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入<strong>行坐标和列坐标的数位之和大于k的格子</strong>。请问该机器人最多能够到达多少个格子？</p>
+<p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题13. 机器人的运动范围</a></p>
+<h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>DFS+回溯：类似于第12题的搜索过程。机器人从当前位置出发，探索相邻的位置。特别地，若当前位置是符合要求的，那么当前位置的<strong>左邻位</strong>和<strong>上邻位</strong>一定是符合要求的！因此在本题中，机器人的搜索策略可以简化为：若当前位置可行，仅<strong>向右</strong>和<strong>向下</strong>搜索。</p>
+<h5 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        count = <span class="number">0</span>; <span class="comment">// count是全局变量，每次调用movingCount方法时都要将其初始化</span></span><br><span class="line">        <span class="keyword">int</span>[][] visted = <span class="keyword">new</span> <span class="keyword">int</span>[m][n]; <span class="comment">// 二维数组用来标识指定位置是否已被使用过</span></span><br><span class="line">        put(visted, <span class="number">0</span>, <span class="number">0</span>, k);</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 放置机器人</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span>[][]visted, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="comment">// 索引越界或当前位置已被访问过，无效，直接返回</span></span><br><span class="line">        <span class="keyword">if</span>(i&lt;<span class="number">0</span> || i&gt;=visted.length || j&lt;<span class="number">0</span> || j&gt;=visted[<span class="number">0</span>].length || visted[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果索引i和j确定的位置可以放置机器人</span></span><br><span class="line">        <span class="keyword">if</span>(check(i, j, k) &amp;&amp; visted[i][j]!=<span class="number">1</span>)&#123;</span><br><span class="line">            visted[i][j] = <span class="number">1</span>; <span class="comment">// 表示此位置已被统计过</span></span><br><span class="line">            count++;</span><br><span class="line">            <span class="comment">// 只需要向右或向下搜索，向上或向左一定是满足的</span></span><br><span class="line">            <span class="comment">//put(visted, i-1, j, k);</span></span><br><span class="line">            put(visted, i+<span class="number">1</span>,j,k);</span><br><span class="line">            <span class="comment">//put(visted, i, j-1, k);</span></span><br><span class="line">            put(visted, i, j+<span class="number">1</span>, k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断索引i和j确定的位置，能否放置机器人</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = sum(i) + sum(j);</span><br><span class="line">        <span class="keyword">return</span> sum &lt;= k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            sum += i % <span class="number">10</span>;</span><br><span class="line">            i = i / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法分析：</p>
 <ul>
-<li>时间复杂度：O(N)，需要遍历每一个节点。</li>
-<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。</li>
-</ul>
-<p>（2）迭代实现</p>
-<p>暂无，可参考<a href="https://leetcode-cn.com/problems/invert-binary-tree/solution/fan-zhuan-er-cha-shu-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
-<hr>
-<h4 id="面试题55-I-二叉树的深度"><a href="#面试题55-I-二叉树的深度" class="headerlink" title="面试题55-I. 二叉树的深度"></a>面试题55-I. 二叉树的深度</h4><h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
-<p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题55-I. 二叉树的深度</a></p>
-<p><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">力扣-104. 二叉树的最大深度</a></p>
-<h5 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归：递归求解左右子树的最大深度，并选取较大者。</li>
-<li>迭代：层序遍历，辅助队列每次存入当前层级所有节点，深度计数器加1。</li>
-</ul>
-<h5 id="3-实现-2"><a href="#3-实现-2" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(helper(root.left), helper(root.right))+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(N)，需要遍历每一个节点。</li>
-<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。</li>
-</ul>
-<p>（2）迭代实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;      </span><br><span class="line">        <span class="comment">// BFS 广度优先搜索实现</span></span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root); <span class="comment">// 存入根结点</span></span><br><span class="line">        <span class="keyword">int</span> level = <span class="number">0</span>; <span class="comment">// 根结点所在层级为0</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">int</span> levelSize = queue.size(); <span class="comment">// 当前层结点数</span></span><br><span class="line">            <span class="comment">// 循环，取出当前层结点，并存入下一层结点</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;levelSize; i++)&#123;</span><br><span class="line">                TreeNode node = queue.remove();</span><br><span class="line">                <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    queue.add(node.left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    queue.add(node.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            level++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(N)，需要遍历每一个节点。</li>
-<li>空间复杂度：O(N)，队列存储遍历的每一个节点。</li>
-</ul>
-<hr>
-<h4 id="面试题68-I-二叉树的最近公共祖先"><a href="#面试题68-I-二叉树的最近公共祖先" class="headerlink" title="面试题68-I. 二叉树的最近公共祖先"></a>面试题68-I. 二叉树的最近公共祖先</h4><h5 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<blockquote>
-<p>最近公共祖先：对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。</p>
-</blockquote>
-<p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题68-I. 二叉树的最近公共祖先</a></p>
-<p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">力扣-236. 二叉树的最近公共祖先</a></p>
-<h5 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归实现</li>
-</ul>
-<h5 id="3-实现-3"><a href="#3-实现-3" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span> || root == p || root==q)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode leftAncestor = lowestCommonAncestor(root.left, p, q); <span class="comment">// 递归进入左子树查找</span></span><br><span class="line">        TreeNode rightAncestor = lowestCommonAncestor(root.right, p, q); <span class="comment">// 递归进入右子树查找</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(leftAncestor==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> rightAncestor; <span class="comment">// 左子树没有，返回右子树</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rightAncestor==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> leftAncestor; <span class="comment">// 右子树没有，返回左子树</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root; <span class="comment">// 都没有，返回根结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(N)，最坏情况下需要遍历所有节点。</li>
-<li>空间复杂度：O(N)，最坏情况下需要遍历所有节点。</li>
-</ul>
-<hr>
-<h4 id="235-二叉搜索树的最近公共祖先"><a href="#235-二叉搜索树的最近公共祖先" class="headerlink" title="235. 二叉搜索树的最近公共祖先"></a>235. 二叉搜索树的最近公共祖先</h4><h5 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<blockquote>
-<p>二叉搜索树的特性：左子树所有节点元素值不大于根节点元素值，右子树所有节点元素值不小于根节点元素值。</p>
-</blockquote>
-<p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" rel="noopener">力扣-235. 二叉搜索树的最近公共祖先</a></p>
-<h5 id="2-思路-4"><a href="#2-思路-4" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归：类似于上面的<strong>二叉树的最近公共祖先</strong>问题，且二叉搜索树的特性使问题得到简化。</li>
-</ul>
-<h5 id="3-实现-4"><a href="#3-实现-4" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p和q节点在左子树</span></span><br><span class="line">        <span class="keyword">if</span>(p.val &lt; root.val &amp;&amp; q.val &lt; root.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p和q节点在右子树</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(p.val &gt; root.val &amp;&amp; q.val &gt; root.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 都没有，返回根节点</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(N)。</li>
-<li>空间复杂度：O(N)。</li>
+<li>时间复杂度：O(MN)。最差情况下，机器人需要访问所有位置。</li>
+<li>空间复杂度：O(MN)。最坏情况下，机器人需要访问所有位置，辅助数组 <code>visted</code> 为 <code>m</code> 行、<code>n</code> 列。</li>
 </ul>
 <hr>
 
@@ -641,7 +563,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（二）：二叉树问题集合/" title="剑指Offer题集（二）：二叉树问题集合">https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（二）：二叉树问题集合/</a>
+    <a href="https://merlinhu0112.github.io/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/" title="剑指Offer题集（四）：矩阵搜索问题">https://merlinhu0112.github.io/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -696,18 +618,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-			  <a href="/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/" rel="prev" title="剑指Offer题集（三）：二分查找与有序数组查找元素">
-				<i class="fa fa-chevron-left"></i> 剑指Offer题集（三）：二分查找与有序数组查找元素
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2020/03/25/Java的反射机机制：原理与使用/" rel="next" title="Java的反射机机制：原理与使用">
-				Java的反射机机制：原理与使用 <i class="fa fa-chevron-right"></i>
+			  <a href="/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/" rel="next" title="剑指Offer题集（三）：二分查找与有序数组查找元素">
+				剑指Offer题集（三）：二分查找与有序数组查找元素 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -852,7 +770,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题07-重建二叉树"><span class="nav-text">面试题07. 重建二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现"><span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题27-二叉树的镜像"><span class="nav-text">面试题27.二叉树的镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-1"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-1"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-1"><span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题55-I-二叉树的深度"><span class="nav-text">面试题55-I. 二叉树的深度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-2"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-2"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-2"><span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题68-I-二叉树的最近公共祖先"><span class="nav-text">面试题68-I. 二叉树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-3"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-3"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-3"><span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#235-二叉搜索树的最近公共祖先"><span class="nav-text">235. 二叉搜索树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-4"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-4"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-4"><span class="nav-text">3. 实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题12-矩阵中的路径"><span class="nav-text">面试题12. 矩阵中的路径</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现"><span class="nav-text">3. 实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题13-机器人的运动范围"><span class="nav-text">面试题13. 机器人的运动范围</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-1"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-1"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-1"><span class="nav-text">3. 实现</span></a></li></ol></li></ol></div>
             
 
           </div>
