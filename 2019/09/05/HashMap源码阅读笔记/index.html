@@ -135,7 +135,7 @@
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="基于JDK 1.8的HashMap阅读笔记，主要包括如下方面：  HashMap的属性、构造方法及常用方法源码分析。 自定义的类，如何确保Key的一致性？ HashMap在JDK 1.8与JDK 1.7中的差异。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-29T13:44:37.508Z">
+<meta property="og:updated_time" content="2020-04-27T00:44:05.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap源码阅读笔记">
 <meta name="twitter:description" content="基于JDK 1.8的HashMap阅读笔记，主要包括如下方面：  HashMap的属性、构造方法及常用方法源码分析。 自定义的类，如何确保Key的一致性？ HashMap在JDK 1.8与JDK 1.7中的差异。">
@@ -391,8 +391,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-03-29T21:44:37+08:00">
-                2020-03-29
+              <time title="更新于" itemprop="dateModified" datetime="2020-04-27T08:44:05+08:00">
+                2020-04-27
               </time>
             
           </span>
@@ -466,7 +466,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  6,410 字
+                  6,408 字
                 </span>
               
 
@@ -527,7 +527,7 @@
 <li>多线程结构修改时（添加或删除键值对）必须保证同步，如Collections.synchronizedMap方法返回一个同步的Map。</li>
 </ul>
 <hr>
-<h4 id="2-属性"><a href="#2-属性" class="headerlink" title="2. 属性"></a>2. 属性</h4><h5 id="2-1-类的静态属性"><a href="#2-1-类的静态属性" class="headerlink" title="2.1 类的静态属性"></a>2.1 类的静态属性</h5><p>（1）<strong>初始容量</strong>：16，且必须为2的幂。</p>
+<h4 id="2-属性"><a href="#2-属性" class="headerlink" title="2. 属性"></a>2. 属性</h4><h5 id="2-1-静态常量"><a href="#2-1-静态常量" class="headerlink" title="2.1 静态常量"></a>2.1 静态常量</h5><p>（1）<strong>初始容量</strong>：16，且必须为2的幂。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -563,7 +563,7 @@
 <p>（6）<strong>树转链表的阈值</strong>：扩容时，原红黑树内结点数量不大于UNTREEIFY_THRESHOLD时，红黑树转换为链表。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</span><br></pre></td></tr></table></figure>
 
-<h5 id="2-2-成员属性"><a href="#2-2-成员属性" class="headerlink" title="2.2 成员属性"></a>2.2 成员属性</h5><p>（1）<strong>modCount</strong>：记录哈希表的结构修改次数。</p>
+<h5 id="2-2-实例变量"><a href="#2-2-实例变量" class="headerlink" title="2.2 实例变量"></a>2.2 实例变量</h5><p>（1）<strong>modCount</strong>：记录哈希表的结构修改次数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> modCount;</span><br></pre></td></tr></table></figure>
 
 <p>使用迭代器时，若调用HashMap的remove()方法试图删除元素时，会抛出ConcurrentModificationException异常（fail-fast策略）。</p>
@@ -982,7 +982,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1044,7 +1044,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-HashMap的概述"><span class="nav-text">1. HashMap的概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-属性"><span class="nav-text">2. 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-类的静态属性"><span class="nav-text">2.1 类的静态属性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-成员属性"><span class="nav-text">2.2 成员属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-节点内部类"><span class="nav-text">3. 节点内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-构造方法"><span class="nav-text">4. 构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-put方法"><span class="nav-text">5. put方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-resize方法"><span class="nav-text">6. resize方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-get方法"><span class="nav-text">7. get方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-remove方法"><span class="nav-text">8. remove方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-containsKey方法"><span class="nav-text">9. containsKey方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-treeifyBin方法"><span class="nav-text">10. treeifyBin方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-HashMap在JDK-1-7与JDK-1-8中的区别"><span class="nav-text">11.  HashMap在JDK 1.7与JDK 1.8中的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-总结"><span class="nav-text">12. 总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-HashMap的概述"><span class="nav-text">1. HashMap的概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-属性"><span class="nav-text">2. 属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-静态常量"><span class="nav-text">2.1 静态常量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-实例变量"><span class="nav-text">2.2 实例变量</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-节点内部类"><span class="nav-text">3. 节点内部类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-构造方法"><span class="nav-text">4. 构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-put方法"><span class="nav-text">5. put方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-resize方法"><span class="nav-text">6. resize方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-get方法"><span class="nav-text">7. get方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-remove方法"><span class="nav-text">8. remove方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-containsKey方法"><span class="nav-text">9. containsKey方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-treeifyBin方法"><span class="nav-text">10. treeifyBin方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-HashMap在JDK-1-7与JDK-1-8中的区别"><span class="nav-text">11.  HashMap在JDK 1.7与JDK 1.8中的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-总结"><span class="nav-text">12. 总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1078,7 +1078,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">55.0k 字</span>
+    <span title="全站共计">54.3k 字</span>
   
 </div>
 
