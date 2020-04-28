@@ -13,7 +13,7 @@ categories:
 
 总结：
 
-- 涉及二叉树的问题，绕不开DFS和BFS，即深度优先搜索和广度优先搜索。
+- 涉及二叉树的问题，离不开DFS和BFS，即深度优先搜索和广度优先搜索。
 - 常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。
 
 <!--more-->
@@ -89,7 +89,48 @@ class Solution {
 
 ---
 
-#### 面试题27.二叉树的镜像
+#### 面试题26. 树的子结构
+
+##### 1. 题目
+
+[力扣-《剑指Offer》-面试题26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
+
+输入两棵二叉树A和B，判断B是不是A的子结构。B是A的子结构， 即 A中有出现和B相同的结构和节点值。约定空树不是任意一个树的子结构。
+
+##### 2. 实现
+
+```java
+/**
+ * @Version 1.0
+ * @Date 2020-04-15
+ * 基于深度优先搜索
+ */
+public boolean isSubStructure(TreeNode A, TreeNode B) {
+    if(A==null || B==null)
+        return false; // 约定空树不是任意一个树的子结构
+    return (dfs(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));
+}
+
+// 深度优先搜索，判断树B是否是树A的子结构
+private static boolean dfs(TreeNode A, TreeNode B){
+    if(A==null || A.val!=B.val)
+        return false;
+    if(B.left!=null && !dfs(A.left, B.left))
+        return false;
+    if(B.right!=null && !dfs(A.right, B.right))
+        return false;
+    return true;
+}
+```
+
+算法分析：
+
+- 时间复杂度：O(MN)，其中M和N分别是树A和B的节点数。先序遍历树A，时间复杂度为O(M)。在先序遍历树A的过程中调用DFS方法，时间复杂度为O(N)。故算法的时间复杂度为O(MN)。
+- 空间复杂度：O(M)。当树A和B都退化为链表时，递归深度最大为M，故空间复杂度为O(M)。
+
+---
+
+#### 面试题27. 二叉树的镜像
 
 ##### 1. 题目
 
