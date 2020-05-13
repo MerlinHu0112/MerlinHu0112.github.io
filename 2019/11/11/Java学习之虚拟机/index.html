@@ -130,42 +130,42 @@
 <meta name="description" content="通读周志明先生的《深入理解Java虚拟机》一书，学习了Java虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java学习之虚拟机">
+<meta property="og:title" content="Java 学习之虚拟机">
 <meta property="og:url" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/index.html">
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="通读周志明先生的《深入理解Java虚拟机》一书，学习了Java虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/2.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/Serial.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/ParNew.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/ParallelScavenge.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/SerialOld.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/ParallelOld.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/CMS.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/g1.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E6%B5%81%E7%A8%8B.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/2.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/Serial.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/ParNew.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/ParallelScavenge.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/SerialOld.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/ParallelOld.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/CMS.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/g1.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E6%B5%81%E7%A8%8B.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg">
 <meta property="og:updated_time" content="2020-04-01T03:41:33.634Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java学习之虚拟机">
+<meta name="twitter:title" content="Java 学习之虚拟机">
 <meta name="twitter:description" content="通读周志明先生的《深入理解Java虚拟机》一书，学习了Java虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！">
-<meta name="twitter:image" content="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png">
+<meta name="twitter:image" content="https://merlinhu0112.github.io/2019/11/11/Java%20学习之虚拟机%20/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png">
 
 
 
@@ -201,7 +201,7 @@
 
 
 
-  <title>Java学习之虚拟机 | Merlin小站</title>
+  <title>Java 学习之虚拟机 | Merlin小站</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java学习之虚拟机</h1>
+          <h1 class="post-title" itemprop="name headline">Java 学习之虚拟机</h1>
         
 
         <div class="post-meta">
@@ -468,7 +468,7 @@
 
           
           
-             <span id="/2019/11/11/Java学习之虚拟机/" class="leancloud_visitors" data-flag-title="Java学习之虚拟机">
+             <span id="/2019/11/11/Java学习之虚拟机/" class="leancloud_visitors" data-flag-title="Java 学习之虚拟机">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -493,7 +493,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  4,419 字
+                  4,426 字
                 </span>
               
 
@@ -537,13 +537,13 @@
       
 
       
-        <p>通读周志明先生的《深入理解Java虚拟机》一书，学习了Java虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！</p>
+        <p>通读周志明先生的《深入理解 Java 虚拟机》一书，学习了 Java 虚拟机的内存模型，内存管理机制，常见的垃圾回收算法和不同类型的垃圾收集器，以及字节码文件的结构。现整理成笔记，温故而知新！</p>
 <a id="more"></a>
 
-<h3 id="一、内存管理机制"><a href="#一、内存管理机制" class="headerlink" title="一、内存管理机制"></a>一、内存管理机制</h3><h4 id="1-Java内存区域图示如下："><a href="#1-Java内存区域图示如下：" class="headerlink" title="1. Java内存区域图示如下："></a>1. Java内存区域图示如下：</h4><p><img src="/2019/11/11/Java学习之虚拟机/JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png" alt></p>
-<p>值得注意的是：<strong>Java虚拟机栈（Java Virtual Machine Stacks）</strong>、<strong>堆（Heap）</strong>、<strong>方法区（Method Area）</strong>：</p>
+<h3 id="一、内存管理机制"><a href="# 一、内存管理机制" class="headerlink" title="一、内存管理机制"></a>一、内存管理机制</h3><h4 id="1-Java 内存区域图示如下："><a href="#1-Java 内存区域图示如下：" class="headerlink" title="1. Java 内存区域图示如下："></a>1. Java 内存区域图示如下：</h4><p><img src="/2019/11/11/Java 学习之虚拟机 /JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E7%A4%BA%E6%84%8F.png" alt></p>
+<p>值得注意的是：<strong>Java 虚拟机栈（Java Virtual Machine Stacks）</strong>、<strong>堆（Heap）</strong>、<strong>方法区（Method Area）</strong>：</p>
 <ol>
-<li><p>虚拟机栈主要与方法调用相关，存储的局部变量表中保存<strong>对象引用</strong>；</p>
+<li><p>虚拟机栈主要与方法调用相关，存储的局部变量表中保存 <strong> 对象引用</strong>；</p>
 </li>
 <li><p>堆：存放所有的对象实例；</p>
 </li>
@@ -552,9 +552,9 @@
 <li><p>运行时常量池：编译生成的字面量和符号引用。</p>
 </li>
 </ol>
-<p><img src="/2019/11/11/Java学习之虚拟机/2.png" alt></p>
-<h4 id="2-HotSpot虚拟机新建对象过程"><a href="#2-HotSpot虚拟机新建对象过程" class="headerlink" title="2. HotSpot虚拟机新建对象过程"></a>2. HotSpot虚拟机新建对象过程</h4><p>以常见的HotSpot为例，介绍其新建普通 Java对象的过程。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg" alt></p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /2.png" alt></p>
+<h4 id="2-HotSpot 虚拟机新建对象过程"><a href="#2-HotSpot 虚拟机新建对象过程" class="headerlink" title="2. HotSpot 虚拟机新建对象过程"></a>2. HotSpot 虚拟机新建对象过程 </h4><p> 以常见的 HotSpot 为例，介绍其新建普通 Java 对象的过程。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /HotSpot%E8%99%9A%E6%8B%9F%E6%9C%BAnew%E5%AF%B9%E8%B1%A1%E8%BF%87%E7%A8%8B.jpg" alt></p>
 <p>（1）在堆中分配内存的两种方式：</p>
 <ul>
 <li><p>指针碰撞：内存区域规整（未使用区域与已使用区域分界）时，仅需要移动指针</p>
@@ -566,31 +566,31 @@
 <ul>
 <li><p>同步机制，CAS + 失败重试</p>
 </li>
-<li><p><strong>每个线程</strong>单独预分配一块内存区域，称之为<strong>本地线程分配缓冲（TLAB）</strong></p>
+<li><p><strong>每个线程 </strong> 单独预分配一块内存区域，称之为 <strong> 本地线程分配缓冲（TLAB）</strong></p>
 </li>
 </ul>
 <p>（3）对象的内存布局：</p>
 <ol>
-<li><p>对象头：保存运行时数据，如哈希码、GC分代年龄等；另一部分保存指向类元数据的<strong>类型指针</strong></p>
+<li><p>对象头：保存运行时数据，如哈希码、GC 分代年龄等；另一部分保存指向类元数据的 <strong> 类型指针</strong></p>
 </li>
 <li><p>实例数据部分</p>
 </li>
 <li><p>填充位</p>
 </li>
 </ol>
-<h4 id="3-对象的访问方式"><a href="#3-对象的访问方式" class="headerlink" title="3. 对象的访问方式"></a>3. 对象的访问方式</h4><p>访问对象的途径主要是通过句柄和直接访问：</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
+<h4 id="3- 对象的访问方式"><a href="#3- 对象的访问方式" class="headerlink" title="3. 对象的访问方式"></a>3. 对象的访问方式 </h4><p> 访问对象的途径主要是通过句柄和直接访问：</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E9%80%9A%E8%BF%87%E5%8F%A5%E6%9F%84%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
 <blockquote>
-<p><strong>对象类型数据</strong>是指该实例所属的类</p>
+<p><strong>对象类型数据 </strong> 是指该实例所属的类</p>
 <p>查找对象的元数据信息未经过对象本身</p>
-<p>优点：垃圾收集需要调整对象所在内存地址时，不影响reference；</p>
+<p>优点：垃圾收集需要调整对象所在内存地址时，不影响 reference；</p>
 </blockquote>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E9%80%9A%E8%BF%87%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1.jpg" alt></p>
 <blockquote>
 <p>查找对象的元数据信息须经过对象本身</p>
 <p>优点：访问速度快</p>
 </blockquote>
-<h4 id="4、内存分配策略"><a href="#4、内存分配策略" class="headerlink" title="4、内存分配策略"></a>4、内存分配策略</h4><p>具体的内存分配策略取决于 GC组合、JVM参数设置：</p>
+<h4 id="4、内存分配策略"><a href="#4、内存分配策略" class="headerlink" title="4、内存分配策略"></a>4、内存分配策略 </h4><p> 具体的内存分配策略取决于 GC 组合、JVM 参数设置：</p>
 <ol>
 <li><p>对象优先在新生代 Eden 区分配，该区域不足时，发起 Minor GC；</p>
 </li>
@@ -600,48 +600,48 @@
 </li>
 <li><p>Survivor 空间中相同年龄的对象达到一半空间时，年龄大于或等于该年龄的对象可进入老年代；</p>
 </li>
-<li><p>老年代为 Minor GC提供空间分配担保。</p>
+<li><p>老年代为 Minor GC 提供空间分配担保。</p>
 </li>
 </ol>
-<h3 id="二、GC工作区域"><a href="#二、GC工作区域" class="headerlink" title="二、GC工作区域"></a>二、GC工作区域</h3><p>在 JVM中，虚拟机栈、本地方法栈和程序计数器属于线程私有，随线程结束而释放内存。JVM中的GC关注的是<strong>方法区</strong>和<strong>堆</strong>。</p>
-<h4 id="1-回收堆"><a href="#1-回收堆" class="headerlink" title="1. 回收堆"></a>1. 回收堆</h4><h5 id="1-1-如何判断对象内存可回收？"><a href="#1-1-如何判断对象内存可回收？" class="headerlink" title="1.1 如何判断对象内存可回收？"></a>1.1 如何判断对象内存可回收？</h5><p><strong>可达性分析算法</strong>：根搜索方法，通过一些“GC Roots”对象作为起点，从这些节点开始往下搜索，搜索通过的路径成为引用链（ReferenceChain）。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg" alt></p>
-<h5 id="1-2-Java中可作为GC-Roots的四种对象："><a href="#1-2-Java中可作为GC-Roots的四种对象：" class="headerlink" title="1.2 Java中可作为GC Roots的四种对象："></a>1.2 Java中可作为GC Roots的四种对象：</h5><ul>
+<h3 id="二、GC 工作区域"><a href="# 二、GC 工作区域" class="headerlink" title="二、GC 工作区域"></a>二、GC 工作区域 </h3><p> 在 JVM 中，虚拟机栈、本地方法栈和程序计数器属于线程私有，随线程结束而释放内存。JVM 中的 GC 关注的是 <strong> 方法区 </strong> 和<strong>堆</strong>。</p>
+<h4 id="1- 回收堆"><a href="#1- 回收堆" class="headerlink" title="1. 回收堆"></a>1. 回收堆 </h4><h5 id="1-1- 如何判断对象内存可回收？"><a href="#1-1- 如何判断对象内存可回收？" class="headerlink" title="1.1 如何判断对象内存可回收？"></a>1.1 如何判断对象内存可回收？</h5><p><strong> 可达性分析算法</strong>：根搜索方法，通过一些“GC Roots”对象作为起点，从这些节点开始往下搜索，搜索通过的路径成为引用链（ReferenceChain）。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95.jpg" alt></p>
+<h5 id="1-2-Java 中可作为 GC-Roots 的四种对象："><a href="#1-2-Java 中可作为 GC-Roots 的四种对象：" class="headerlink" title="1.2 Java 中可作为 GC Roots 的四种对象："></a>1.2 Java 中可作为 GC Roots 的四种对象：</h5><ul>
 <li><p>虚拟机栈的本地变量表中引用的对象</p>
 </li>
 <li><p>方法区类静态属性引用的对象</p>
 </li>
 <li><p>方法区常量引用的对象</p>
 </li>
-<li><p>本地方法栈Native方法引用的对象</p>
+<li><p>本地方法栈 Native 方法引用的对象</p>
 </li>
 </ul>
-<h5 id="1-3-经可达性分析后，可回收对象就一定会被回收？"><a href="#1-3-经可达性分析后，可回收对象就一定会被回收？" class="headerlink" title="1.3 经可达性分析后，可回收对象就一定会被回收？"></a>1.3 经可达性分析后，可回收对象就一定会被回收？</h5><p>经可达性分析后，被定为可回收的对象须经历<strong>两次标记</strong>方能被GC回收内存。【重点：finalize()方法】</p>
-<h5 id="1-4-JVM为什么不采用经典的引用计数算法来判断对象是否可回收？"><a href="#1-4-JVM为什么不采用经典的引用计数算法来判断对象是否可回收？" class="headerlink" title="1.4 JVM为什么不采用经典的引用计数算法来判断对象是否可回收？"></a>1.4 JVM为什么不采用经典的<strong>引用计数</strong>算法来判断对象是否可回收？</h5><p>引用计数算法实现简单，但面临一个重要缺陷：当两个对象互相引用（循环引用）时，相应的内存区域无法被回收，导致<strong>内存泄漏</strong></p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg" alt></p>
-<h5 id="1-5-引用分类（是否回收被引用对象所在的内存区域）"><a href="#1-5-引用分类（是否回收被引用对象所在的内存区域）" class="headerlink" title="1.5 引用分类（是否回收被引用对象所在的内存区域）"></a>1.5 引用分类（是否回收被引用对象所在的内存区域）</h5><ol>
-<li><p>强引用：new出来的对象引用关系，不会回收；</p>
+<h5 id="1-3- 经可达性分析后，可回收对象就一定会被回收？"><a href="#1-3- 经可达性分析后，可回收对象就一定会被回收？" class="headerlink" title="1.3 经可达性分析后，可回收对象就一定会被回收？"></a>1.3 经可达性分析后，可回收对象就一定会被回收？</h5><p>经可达性分析后，被定为可回收的对象须经历 <strong> 两次标记 </strong> 方能被 GC 回收内存。【重点：finalize()方法】</p>
+<h5 id="1-4-JVM 为什么不采用经典的引用计数算法来判断对象是否可回收？"><a href="#1-4-JVM 为什么不采用经典的引用计数算法来判断对象是否可回收？" class="headerlink" title="1.4 JVM 为什么不采用经典的引用计数算法来判断对象是否可回收？"></a>1.4 JVM 为什么不采用经典的 <strong> 引用计数 </strong> 算法来判断对象是否可回收？</h5><p>引用计数算法实现简单，但面临一个重要缺陷：当两个对象互相引用（循环引用）时，相应的内存区域无法被回收，导致 <strong> 内存泄漏</strong></p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8.jpg" alt></p>
+<h5 id="1-5- 引用分类（是否回收被引用对象所在的内存区域）"><a href="#1-5- 引用分类（是否回收被引用对象所在的内存区域）" class="headerlink" title="1.5 引用分类（是否回收被引用对象所在的内存区域）"></a>1.5 引用分类（是否回收被引用对象所在的内存区域）</h5><ol>
+<li><p>强引用：new 出来的对象引用关系，不会回收；</p>
 </li>
 <li><p>软引用：有用、非必需，在内存溢出前进行二次回收；</p>
 </li>
-<li><p>弱引用：生存至下一次GC工作前，一旦GC开始回收内存，则直接回收其对象；</p>
+<li><p>弱引用：生存至下一次 GC 工作前，一旦 GC 开始回收内存，则直接回收其对象；</p>
 </li>
 <li><p>虚引用：无法通过虚引用取得对象，仅能在此对象被回收时通知系统。</p>
 </li>
 </ol>
-<h4 id="2、回收方法区"><a href="#2、回收方法区" class="headerlink" title="2、回收方法区"></a>2、回收方法区</h4><p>方法区待回收的内容主要为：废弃常量 和 无用的类。</p>
+<h4 id="2、回收方法区"><a href="#2、回收方法区" class="headerlink" title="2、回收方法区"></a>2、回收方法区 </h4><p> 方法区待回收的内容主要为：废弃常量 和 无用的类。</p>
 <p>（1）废弃常量：当常量池中的常量不被任何对象引用时，则可以清理出常量池。</p>
 <p>（2）无用的类：无用的类须满足下述三个条件，</p>
 <ul>
-<li><p>Java堆中该类所有的实例均已被回收；</p>
+<li><p>Java 堆中该类所有的实例均已被回收；</p>
 </li>
-<li><p>该类的加载器ClassLoader已被回收；</p>
+<li><p>该类的加载器 ClassLoader 已被回收；</p>
 </li>
 <li><p>无法通过反射机制访问该类的方法。</p>
 </li>
 </ul>
-<h3 id="三、回收算法"><a href="#三、回收算法" class="headerlink" title="三、回收算法"></a>三、回收算法</h3><p>JVM 针对 Java堆 采用的回收算法主要分为：<strong>标记-清除算法、复制算法和标记-整理算法</strong>；采用的策略为：分代收集算法，即新生代采用复制算法，老年代采用标记-清除算法和标记-整理算法</p>
-<h4 id="1-算法"><a href="#1-算法" class="headerlink" title="1. 算法"></a>1. 算法</h4><h5 id="1-1-标记-清除（Mark-Sweep）算法"><a href="#1-1-标记-清除（Mark-Sweep）算法" class="headerlink" title="1.1 标记-清除（Mark-Sweep）算法"></a>1.1 标记-清除（Mark-Sweep）算法</h5><p>在标记阶段，由<strong>根节点开始经可达性分析</strong>，标记所有从根节点开始的可达对象，因此未被标记的对象就是未被引用的垃圾对象；</p>
+<h3 id="三、回收算法"><a href="# 三、回收算法" class="headerlink" title="三、回收算法"></a>三、回收算法 </h3><p>JVM 针对 Java 堆 采用的回收算法主要分为：<strong> 标记 - 清除算法、复制算法和标记 - 整理算法</strong>；采用的策略为：分代收集算法，即新生代采用复制算法，老年代采用标记 - 清除算法和标记 - 整理算法</p>
+<h4 id="1- 算法"><a href="#1- 算法" class="headerlink" title="1. 算法"></a>1. 算法 </h4><h5 id="1-1- 标记 - 清除（Mark-Sweep）算法"><a href="#1-1- 标记 - 清除（Mark-Sweep）算法" class="headerlink" title="1.1 标记 - 清除（Mark-Sweep）算法"></a>1.1 标记 - 清除（Mark-Sweep）算法</h5><p> 在标记阶段，由 <strong> 根节点开始经可达性分析</strong>，标记所有从根节点开始的可达对象，因此未被标记的对象就是未被引用的垃圾对象；</p>
 <p>在清除阶段，清除所有未被标记的对象。</p>
 <ul>
 <li><p><em>特点：将循环引用标记为不可达，解决了引用计数算法无法处理循环引用的问题.</em></p>
@@ -649,70 +649,70 @@
 <li><p><em>缺点：1、效率低；2、易导致内存区域不规整（即大量不连续的内存碎片）。</em></p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" alt></p>
-<h5 id="1-2-复制（Copying）算法"><a href="#1-2-复制（Copying）算法" class="headerlink" title="1.2 复制（Copying）算法"></a>1.2 复制（Copying）算法</h5><p>内存对半分，先使用一半，需要清理时先将存活对象转移至保留内存区域，随后全部回收刚使用过的一半内存。</p>
-<p><strong>适用于新生代</strong>中对象存活率低、可回收对象比例高的场景。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E6%A0%87%E8%AE%B0-%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-2- 复制（Copying）算法"><a href="#1-2- 复制（Copying）算法" class="headerlink" title="1.2 复制（Copying）算法"></a>1.2 复制（Copying）算法 </h5><p> 内存对半分，先使用一半，需要清理时先将存活对象转移至保留内存区域，随后全部回收刚使用过的一半内存。</p>
+<p><strong>适用于新生代 </strong> 中对象存活率低、可回收对象比例高的场景。</p>
 <ul>
 <li><em>优点：1、无内存碎片；2、效率高。</em></li>
 <li><em>缺点：1、实际使用内存仅占一半，浪费资源；2、当对象存活率高时，需要较为频繁的复制操作，效率降低。</em></li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" alt></p>
-<h5 id="1-3-标记-整理（Mark-Compact）算法"><a href="#1-3-标记-整理（Mark-Compact）算法" class="headerlink" title="1.3 标记-整理（Mark-Compact）算法"></a>1.3 标记-整理（Mark-Compact）算法</h5><p>针对老年代中对象存活率高，若使用复制算法，则效率低。</p>
-<p>标记-整理算法（或标记-压缩算法）核心在于：标记完成后，将“分散”的存活对象移动至“端集中”区域，随后清理其端边界以外的内存。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-3- 标记 - 整理（Mark-Compact）算法"><a href="#1-3- 标记 - 整理（Mark-Compact）算法" class="headerlink" title="1.3 标记 - 整理（Mark-Compact）算法"></a>1.3 标记 - 整理（Mark-Compact）算法 </h5><p> 针对老年代中对象存活率高，若使用复制算法，则效率低。</p>
+<p>标记 - 整理算法（或标记 - 压缩算法）核心在于：标记完成后，将“分散”的存活对象移动至“端集中”区域，随后清理其端边界以外的内存。</p>
 <ul>
 <li><p><em>优点：1、适用于对象存活率高的场景；2、无内存碎片。</em></p>
 </li>
 <li><p><em>缺点：标记、整理过程代价高昂。</em></p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" alt></p>
-<h5 id="1-4-分代收集（Generational-Collection）算法"><a href="#1-4-分代收集（Generational-Collection）算法" class="headerlink" title="1.4 分代收集（Generational Collection）算法"></a>1.4 分代收集（Generational Collection）算法</h5><p>将 Java堆分为<strong>新生代</strong>和<strong>老年代</strong></p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E6%A0%87%E8%AE%B0-%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95.png" alt></p>
+<h5 id="1-4- 分代收集（Generational-Collection）算法"><a href="#1-4- 分代收集（Generational-Collection）算法" class="headerlink" title="1.4 分代收集（Generational Collection）算法"></a>1.4 分代收集（Generational Collection）算法 </h5><p> 将 Java 堆分为 <strong> 新生代 </strong> 和<strong>老年代</strong></p>
 <ul>
 <li><p>新生代：对象存活率低，垃圾多；</p>
 </li>
 <li><p>老年代：对象存活率高，垃圾少。</p>
 </li>
 </ul>
-<p>基于上述算法的优缺点，分代收集的策略是：<em>对新生代采用复制算法，对老年代采用标记-清除或标记-整理算法</em> 。</p>
-<p>在新生代中，分为：较大的<strong>Eden空间</strong>和两块较小的<strong>Survivor空间</strong>。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png" alt></p>
+<p>基于上述算法的优缺点，分代收集的策略是：<em>对新生代采用复制算法，对老年代采用标记 - 清除或标记 - 整理算法</em> 。</p>
+<p>在新生代中，分为：较大的 <strong>Eden 空间</strong> 和两块较小的<strong>Survivor 空间</strong>。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E6%96%B0%E7%94%9F%E4%BB%A3%E5%85%B7%E4%BD%93%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0.png" alt></p>
 <ol>
-<li><p>在新生代中，先使用Eden和一块Survivor区域，另一块Survivor区域保留，其空间比例一般为8：1：1；</p>
+<li><p>在新生代中，先使用 Eden 和一块 Survivor 区域，另一块 Survivor 区域保留，其空间比例一般为 8：1：1；</p>
 </li>
-<li><p>回收时，Eden和Survivor(From)中<strong>存活时间长和大对象直接进入老年代</strong>，其余存活对象进入Survivor(To)区域；</p>
+<li><p>回收时，Eden 和 Survivor(From)中 <strong> 存活时间长和大对象直接进入老年代 </strong>，其余存活对象进入 Survivor(To) 区域；</p>
 </li>
-<li><p>当Survivor(To)区域空间不足时，利用<strong>分配担保机制</strong>，非存活时间长或大对象的存活对象同样被放入老年代中；</p>
+<li><p>当 Survivor(To)区域空间不足时，利用 <strong> 分配担保机制</strong>，非存活时间长或大对象的存活对象同样被放入老年代中；</p>
 </li>
-<li><p>清理Eden和Survivor(From)。</p>
+<li><p>清理 Eden 和 Survivor(From)。</p>
 </li>
 </ol>
-<h4 id="2-HotSpot-的算法实现"><a href="#2-HotSpot-的算法实现" class="headerlink" title="2. HotSpot 的算法实现"></a>2. HotSpot 的算法实现</h4><p>（1）在可达性分析算法中，如何快速、精确地找出（枚举）根节点（GC Roots）？</p>
-<p>精确：GC进行时停止所有 Java线程，确保分析时引用关系不再变化；</p>
-<p>速度：OopMap（Ordinary Object Pointer Map）普通对象指针的Map数据结构，保存对象引用信息。</p>
+<h4 id="2-HotSpot- 的算法实现"><a href="#2-HotSpot- 的算法实现" class="headerlink" title="2. HotSpot 的算法实现"></a>2. HotSpot 的算法实现</h4><p>（1）在可达性分析算法中，如何快速、精确地找出（枚举）根节点（GC Roots）？</p>
+<p>精确：GC 进行时停止所有 Java 线程，确保分析时引用关系不再变化；</p>
+<p>速度：OopMap（Ordinary Object Pointer Map）普通对象指针的 Map 数据结构，保存对象引用信息。</p>
 <p>（2）Safe Point &amp; Safe Region</p>
 <blockquote>
-<p>安全点：GC中断线程的“位置”</p>
+<p>安全点：GC 中断线程的“位置”</p>
 </blockquote>
-<h3 id="四、垃圾收集器"><a href="#四、垃圾收集器" class="headerlink" title="四、垃圾收集器"></a>四、垃圾收集器</h3><p>重要概念：</p>
+<h3 id="四、垃圾收集器"><a href="# 四、垃圾收集器" class="headerlink" title="四、垃圾收集器"></a>四、垃圾收集器 </h3><p> 重要概念：</p>
 <p>（1）在垃圾收集器中，并发（Concurrent）与并行（Parallel）的区别：</p>
 <ul>
-<li><p>并发：用户进程与垃圾收集进程并发执行。单CPU环境，只能交替执行；多CPU环境，可同时执行。</p>
+<li><p>并发：用户进程与垃圾收集进程并发执行。单 CPU 环境，只能交替执行；多 CPU 环境，可同时执行。</p>
 <blockquote>
 <p><em>CMS 在并发标记、清理阶段</em></p>
 </blockquote>
 </li>
-<li><p>并行：用户进程暂停，在多CPU环境中，多条垃圾收集线程可同时执行。</p>
+<li><p>并行：用户进程暂停，在多 CPU 环境中，多条垃圾收集线程可同时执行。</p>
 </li>
 </ul>
-<p>在垃圾收集器中，并发与并行的重要区别在于<strong>前者不用暂停用户进程，后者必须暂停用户进程</strong>，这与常说的线程并发和并行的概念还是有点不同！单核和多核环境只决定了线程能否同时执行。</p>
-<p>（2）吞吐量与GC停顿时间的关系</p>
+<p>在垃圾收集器中，并发与并行的重要区别在于 <strong> 前者不用暂停用户进程，后者必须暂停用户进程</strong>，这与常说的线程并发和并行的概念还是有点不同！单核和多核环境只决定了线程能否同时执行。</p>
+<p>（2）吞吐量与 GC 停顿时间的关系</p>
 <ul>
-<li><p>吞吐量越高，表示CPU利用效率越高</p>
+<li><p>吞吐量越高，表示 CPU 利用效率越高</p>
 </li>
-<li><p>GC停顿时间缩短是以牺牲吞吐量和新生代空间大小换来的</p>
+<li><p>GC 停顿时间缩短是以牺牲吞吐量和新生代空间大小换来的</p>
 </li>
 </ul>
-<p>因此，追求更短的 GC停顿时间，适合交互频繁的场景，代价是 CPU利用率下降；追求更高的 CPU利用率，适合计算量大的场景，代价是 GC停顿时间延长。*</p>
+<p>因此，追求更短的 GC 停顿时间，适合交互频繁的场景，代价是 CPU 利用率下降；追求更高的 CPU 利用率，适合计算量大的场景，代价是 GC 停顿时间延长。*</p>
 <p>（3）Minor GC 和 Full GC</p>
 <ul>
 <li><p>Minor GC：发生在新生代的垃圾收集动作，GC 频繁且速度快；</p>
@@ -720,30 +720,30 @@
 <li><p>Major GC / Full GC：发生在老年代，速度比 Minor GC 慢。</p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg" alt></p>
-<h4 id="1-Serial-收集器"><a href="#1-Serial-收集器" class="headerlink" title="1. Serial 收集器"></a>1. Serial 收集器</h4><p>（1）单线程：单条GC线程完成收集，且必须暂停其它所有用户正常工作线程（中断其它的 Java 线程）；</p>
-<p>（2）对于单CPU环境，Serial 没有线程交互开销，最高的单线程收集效率；</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8.jpg" alt></p>
+<h4 id="1-Serial- 收集器"><a href="#1-Serial- 收集器" class="headerlink" title="1. Serial 收集器"></a>1. Serial 收集器</h4><p>（1）单线程：单条 GC 线程完成收集，且必须暂停其它所有用户正常工作线程（中断其它的 Java 线程）；</p>
+<p>（2）对于单 CPU 环境，Serial 没有线程交互开销，最高的单线程收集效率；</p>
 <p>（3）Client 模式下默认的新生代收集器。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/Serial.jpg" alt></p>
-<h4 id="2-ParNew-收集器"><a href="#2-ParNew-收集器" class="headerlink" title="2. ParNew 收集器"></a>2. ParNew 收集器</h4><p>（1）多线程：多条GC线程（多核时才可能同时执行），且必须暂停其它所有用户正常工作线程；</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /Serial.jpg" alt></p>
+<h4 id="2-ParNew- 收集器"><a href="#2-ParNew- 收集器" class="headerlink" title="2. ParNew 收集器"></a>2. ParNew 收集器</h4><p>（1）多线程：多条 GC 线程（多核时才可能同时执行），且必须暂停其它所有用户正常工作线程；</p>
 <p>（2）除多线程外，ParNew 其余实现与 Serial 相同；</p>
-<p>（3）对于单CPU环境，ParNew 存在线程交互开销，效率低于 Serial；</p>
-<p>（4）对于多核CPU环境，ParNew 因多线程并行，效率一般高于 Serial；</p>
-<p>（5）Server模式下首选的新生代收集器。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/ParNew.jpg" alt></p>
-<h4 id="3-Parallel-Scavenge-收集器"><a href="#3-Parallel-Scavenge-收集器" class="headerlink" title="3. Parallel Scavenge 收集器"></a>3. Parallel Scavenge 收集器</h4><p>（1）与 ParNew 在基本实现上相似；</p>
-<p>（2）吞吐量优先：在GC停顿时间和CPU效率间平衡选择，不同于 CMS 等收集器追求尽可能短的 GC 停顿时          间；</p>
+<p>（3）对于单 CPU 环境，ParNew 存在线程交互开销，效率低于 Serial；</p>
+<p>（4）对于多核 CPU 环境，ParNew 因多线程并行，效率一般高于 Serial；</p>
+<p>（5）Server 模式下首选的新生代收集器。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /ParNew.jpg" alt></p>
+<h4 id="3-Parallel-Scavenge- 收集器"><a href="#3-Parallel-Scavenge- 收集器" class="headerlink" title="3. Parallel Scavenge 收集器"></a>3. Parallel Scavenge 收集器</h4><p>（1）与 ParNew 在基本实现上相似；</p>
+<p>（2）吞吐量优先：在 GC 停顿时间和 CPU 效率间平衡选择，不同于 CMS 等收集器追求尽可能短的 GC 停顿时          间；</p>
 <p>（3）GC Ergonomics：自适应调节策略。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/ParallelScavenge.jpg" alt></p>
-<h4 id="4-Serial-Old-收集器"><a href="#4-Serial-Old-收集器" class="headerlink" title="4. Serial Old 收集器"></a>4. Serial Old 收集器</h4><p>（1）Serial 收集器的 老年代 版</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /ParallelScavenge.jpg" alt></p>
+<h4 id="4-Serial-Old- 收集器"><a href="#4-Serial-Old- 收集器" class="headerlink" title="4. Serial Old 收集器"></a>4. Serial Old 收集器</h4><p>（1）Serial 收集器的 老年代 版</p>
 <p>（2）标记 - 整理 算法</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/SerialOld.jpg" alt></p>
-<h4 id="5-Parallel-Old-收集器"><a href="#5-Parallel-Old-收集器" class="headerlink" title="5. Parallel Old 收集器"></a>5. Parallel Old 收集器</h4><p>（1）Parallel Scavenge 收集器的 老年代 版</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /SerialOld.jpg" alt></p>
+<h4 id="5-Parallel-Old- 收集器"><a href="#5-Parallel-Old- 收集器" class="headerlink" title="5. Parallel Old 收集器"></a>5. Parallel Old 收集器</h4><p>（1）Parallel Scavenge 收集器的 老年代 版</p>
 <p>（2）标记 - 整理 算法</p>
-<p>（3）Parallel Scavenge + Parallel Old 组合：吞吐量优先，适合注重吞吐量和CPU资源敏感的场景</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/ParallelOld.jpg" alt></p>
-<h4 id="6-CMS-收集器"><a href="#6-CMS-收集器" class="headerlink" title="6. CMS 收集器"></a>6. CMS 收集器</h4><p>（1）标记 - 清理 算法</p>
-<p>（2）突出点：CMS ( Concurrent Mark Sweep ) 收集器在运行期间，<strong>不需要一直中断其它线程</strong>，因此能实现<strong>最短的 GC 停顿时间</strong></p>
+<p>（3）Parallel Scavenge + Parallel Old 组合：吞吐量优先，适合注重吞吐量和 CPU 资源敏感的场景</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /ParallelOld.jpg" alt></p>
+<h4 id="6-CMS- 收集器"><a href="#6-CMS- 收集器" class="headerlink" title="6. CMS 收集器"></a>6. CMS 收集器</h4><p>（1）标记 - 清理 算法</p>
+<p>（2）突出点：CMS (Concurrent Mark Sweep) 收集器在运行期间，<strong>不需要一直中断其它线程 </strong>，因此能实现<strong> 最短的 GC 停顿时间</strong></p>
 <p>（3）分为以下四个步骤：</p>
 <ul>
 <li><p>初始标记</p>
@@ -758,23 +758,23 @@
 <p>其中，并发标记 / 并发清理期间，不暂停其它 CPU 核上的线程，耗时较长；初始标记 / 重新标记期间，需要暂停其它所有线程，耗时较短。</p>
 <p>（4）CMS 的不足：</p>
 <ul>
-<li><p>对CPU资源敏感，使吞吐量下降，CPU利用率降低</p>
+<li><p>对 CPU 资源敏感，使吞吐量下降，CPU 利用率降低</p>
 </li>
-<li><p>并发清理阶段其它用户线程产生的“浮动垃圾”须等到下次GC</p>
+<li><p>并发清理阶段其它用户线程产生的“浮动垃圾”须等到下次 GC</p>
 </li>
 <li><p>潜在的 Concurrent Mode Failure 问题</p>
 </li>
 <li><p>清理算法产生大量空间碎片</p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/CMS.jpg" alt></p>
-<h4 id="7-G1-Garbage-First-收集器"><a href="#7-G1-Garbage-First-收集器" class="headerlink" title="7. G1( Garbage-First ) 收集器"></a>7. G1( Garbage-First ) 收集器</h4><p>基本原理：Region + 区域回收优先级</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /CMS.jpg" alt></p>
+<h4 id="7-G1-Garbage-First- 收集器"><a href="#7-G1-Garbage-First- 收集器" class="headerlink" title="7. G1( Garbage-First) 收集器"></a>7. G1(Garbage-First) 收集器 </h4><p> 基本原理：Region + 区域回收优先级</p>
 <p>(1) 不再使用 新生代 / 老年代 划分，而是使用 <strong>Region</strong> 划分堆内存区域；</p>
-<p>(2) G1追踪不同的 Region，并维护 <strong>优先列表</strong>，由此决定优先GC的区域；</p>
-<p>(3) 不同的Region之间的对象引用关系保存在 Remembered Set中（新生代与老年代之间亦是）。</p>
+<p>(2) G1 追踪不同的 Region，并维护 <strong>优先列表</strong>，由此决定优先 GC 的区域；</p>
+<p>(3) 不同的 Region 之间的对象引用关系保存在 Remembered Set 中（新生代与老年代之间亦是）。</p>
 <p><em>优点：</em></p>
 <ul>
-<li><p>更适合多 CPU的环境；</p>
+<li><p>更适合多 CPU 的环境；</p>
 </li>
 <li><p>可独自运作，且对寿命不同的对象也采取不同的策略；</p>
 </li>
@@ -783,25 +783,25 @@
 <li><p><strong>可预测的暂停</strong>。</p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/g1.jpg" alt></p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /g1.jpg" alt></p>
 <p>运行过程如下：</p>
 <ol>
-<li><p>初始标记：标记GC Roots直接关联的对象；</p>
+<li><p>初始标记：标记 GC Roots 直接关联的对象；</p>
 </li>
-<li><p>并发标记：可达性分析，耗时长、与其它 Java线程并发；</p>
+<li><p>并发标记：可达性分析，耗时长、与其它 Java 线程并发；</p>
 </li>
-<li><p>最终标记：Remembered Set Logs中数据（记录并发标记阶段的引用变化）与Remembered Set合并；</p>
+<li><p>最终标记：Remembered Set Logs 中数据（记录并发标记阶段的引用变化）与 Remembered Set 合并；</p>
 </li>
-<li><p>筛选回收：有选择地确定GC Region。</p>
+<li><p>筛选回收：有选择地确定 GC Region。</p>
 </li>
 </ol>
-<h3 id="五、虚拟机类加载"><a href="#五、虚拟机类加载" class="headerlink" title="五、虚拟机类加载"></a>五、虚拟机类加载</h3><p><strong><em>虚拟机将编译得到的字节码文件加载到内存，经连接、解析等过程，得到可直接使用的 Java 类型的过程，称为类加载</em></strong>。</p>
+<h3 id="五、虚拟机类加载"><a href="# 五、虚拟机类加载" class="headerlink" title="五、虚拟机类加载"></a>五、虚拟机类加载 </h3><p><strong><em> 虚拟机将编译得到的字节码文件加载到内存，经连接、解析等过程，得到可直接使用的 Java 类型的过程，称为类加载</em></strong>。</p>
 <p><strong><em>程序运行时期进行</em></strong></p>
-<h4 id="1-加载过程"><a href="#1-加载过程" class="headerlink" title="1. 加载过程"></a>1. 加载过程</h4><p>类的生命周期如下图</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt></p>
-<h5 id="1-1-加载"><a href="#1-1-加载" class="headerlink" title="1.1 加载"></a>1.1 加载</h5><p>加载Class文件过程三个动作：</p>
+<h4 id="1- 加载过程"><a href="#1- 加载过程" class="headerlink" title="1. 加载过程"></a>1. 加载过程 </h4><p> 类的生命周期如下图</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E7%B1%BB%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg" alt></p>
+<h5 id="1-1- 加载"><a href="#1-1- 加载" class="headerlink" title="1.1 加载"></a>1.1 加载 </h5><p> 加载 Class 文件过程三个动作：</p>
 <ol>
-<li><p>通过<strong>非数组类</strong>的全限定名获取二进制字节流，但具体的获取途径并未规定（可以从ZIP包、网络、JSP文件等）；</p>
+<li><p>通过 <strong> 非数组类 </strong> 的全限定名获取二进制字节流，但具体的获取途径并未规定（可以从 ZIP 包、网络、JSP 文件等）；</p>
 <blockquote>
 <p><em>数组类直接由虚拟机加载，不经过类加载器</em></p>
 </blockquote>
@@ -814,12 +814,12 @@
 </blockquote>
 </li>
 </ol>
-<h5 id="1-2-验证"><a href="#1-2-验证" class="headerlink" title="1.2 验证"></a>1.2 验证</h5><p><img src="/2019/11/11/Java学习之虚拟机/%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E6%B5%81%E7%A8%8B.jpg" alt></p>
+<h5 id="1-2- 验证"><a href="#1-2- 验证" class="headerlink" title="1.2 验证"></a>1.2 验证</h5><p><img src="/2019/11/11/Java 学习之虚拟机 /%E9%AA%8C%E8%AF%81%E9%98%B6%E6%AE%B5%E6%B5%81%E7%A8%8B.jpg" alt></p>
 <blockquote>
-<p>符号引用验证发生于解析阶段，说明<strong>类加载过程各项“工作”是按先后顺序开始，但不一定是前一阶段结束才开始后一阶段，不同阶段的“工作”可并行</strong></p>
+<p>符号引用验证发生于解析阶段，说明 <strong> 类加载过程各项“工作”是按先后顺序开始，但不一定是前一阶段结束才开始后一阶段，不同阶段的“工作”可并行</strong></p>
 </blockquote>
-<h5 id="1-3-准备"><a href="#1-3-准备" class="headerlink" title="1.3 准备"></a>1.3 准备</h5><p>在方法区为<strong>类静态变量</strong>分配内存并初始化为零值，<strong>final</strong>修饰的<strong>类静态常量</strong>赋给定的初值</p>
-<h5 id="1-4-解析"><a href="#1-4-解析" class="headerlink" title="1.4 解析"></a>1.4 解析</h5><p>（1）符号引用：存放于常量池中的常量，包括：</p>
+<h5 id="1-3- 准备"><a href="#1-3- 准备" class="headerlink" title="1.3 准备"></a>1.3 准备 </h5><p> 在方法区为 <strong> 类静态变量 </strong> 分配内存并初始化为零值，<strong>final</strong>修饰的 <strong> 类静态常量 </strong> 赋给定的初值</p>
+<h5 id="1-4- 解析"><a href="#1-4- 解析" class="headerlink" title="1.4 解析"></a>1.4 解析</h5><p>（1）符号引用：存放于常量池中的常量，包括：</p>
 <ol>
 <li><p>类和接口的全限定名；</p>
 </li>
@@ -829,11 +829,11 @@
 </li>
 </ol>
 <p>（2）解析过程：将符号引用解析、翻译，匹配对应的物理内存地址，即直接引用。</p>
-<h5 id="1-5-初始化"><a href="#1-5-初始化" class="headerlink" title="1.5 初始化"></a>1.5 初始化</h5><p>初始化阶段，执行类构造器的 <code>&lt;clinit&gt;()</code> 方法</p>
+<h5 id="1-5- 初始化"><a href="#1-5- 初始化" class="headerlink" title="1.5 初始化"></a>1.5 初始化 </h5><p> 初始化阶段，执行类构造器的 <code>&lt;clinit&gt;()</code> 方法</p>
 <blockquote>
 <p>类变量赋值语句 &amp;&amp; 静态代码块</p>
 </blockquote>
-<h4 id="2、双亲委派模型"><a href="#2、双亲委派模型" class="headerlink" title="2、双亲委派模型"></a>2、双亲委派模型</h4><p>双亲委派模型的要点：</p>
+<h4 id="2、双亲委派模型"><a href="#2、双亲委派模型" class="headerlink" title="2、双亲委派模型"></a>2、双亲委派模型 </h4><p> 双亲委派模型的要点：</p>
 <ol>
 <li><p>子类加载器先请求父类加载器尝试加载；</p>
 </li>
@@ -842,23 +842,23 @@
 <li><p><strong>所有的加载请求首先被启动类加载器处理</strong>。</p>
 </li>
 </ol>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg" alt></p>
-<h3 id="六、并发"><a href="#六、并发" class="headerlink" title="六、并发"></a>六、并发</h3><h4 id="1-Java内存模型"><a href="#1-Java内存模型" class="headerlink" title="1. Java内存模型"></a>1. Java内存模型</h4><blockquote>
-<p>定义了<strong>线程共享的变量</strong>从虚拟机内存中被读取或写入的底层实现</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B.jpg" alt></p>
+<h3 id="六、并发"><a href="# 六、并发" class="headerlink" title="六、并发"></a>六、并发</h3><h4 id="1-Java 内存模型"><a href="#1-Java 内存模型" class="headerlink" title="1. Java 内存模型"></a>1. Java 内存模型</h4><blockquote>
+<p>定义了 <strong> 线程共享的变量 </strong> 从虚拟机内存中被读取或写入的底层实现</p>
 <p>线程共享变量：实例字段、静态字段、构成数组对象的元素</p>
 </blockquote>
-<h4 id="1-1-主内存与工作内存"><a href="#1-1-主内存与工作内存" class="headerlink" title="1.1 主内存与工作内存"></a>1.1 主内存与工作内存</h4><ul>
+<h4 id="1-1- 主内存与工作内存"><a href="#1-1- 主内存与工作内存" class="headerlink" title="1.1 主内存与工作内存"></a>1.1 主内存与工作内存</h4><ul>
 <li><p>工作内存中保存主内存中（共享）变量的拷贝副本；</p>
 </li>
-<li><p>工作内存中还保存了<strong>线程私有的变量</strong>；</p>
+<li><p>工作内存中还保存了 <strong> 线程私有的变量</strong>；</p>
 </li>
 <li><p>线程对（共享）变量的读写操作必须经过工作内存才可与主内存交互；</p>
 </li>
 <li><p>线程间（共享）变量值的传递须借助主内存。</p>
 </li>
 </ul>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE.jpg" alt></p>
-<h4 id="1-2-内存间交互"><a href="#1-2-内存间交互" class="headerlink" title="1.2 内存间交互"></a>1.2 内存间交互</h4><table>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E5%9B%BE.jpg" alt></p>
+<h4 id="1-2- 内存间交互"><a href="#1-2- 内存间交互" class="headerlink" title="1.2 内存间交互"></a>1.2 内存间交互</h4><table>
 <thead>
 <tr>
 <th align="center">操作</th>
@@ -907,9 +907,9 @@
 <td align="center">store 操作后，变量值存入主内存的变量中</td>
 </tr>
 </tbody></table>
-<h4 id="1-3-原子性、可见性和有序性"><a href="#1-3-原子性、可见性和有序性" class="headerlink" title="1.3 原子性、可见性和有序性"></a>1.3 原子性、可见性和有序性</h4><p>（1）原子性</p>
+<h4 id="1-3- 原子性、可见性和有序性"><a href="#1-3- 原子性、可见性和有序性" class="headerlink" title="1.3 原子性、可见性和有序性"></a>1.3 原子性、可见性和有序性</h4><p>（1）原子性</p>
 <ol>
-<li>read、load、use、assign、store、write 均为原子性的变量操作，实现<strong>基本数据类型的访问和读写操作是原子性的</strong>；</li>
+<li>read、load、use、assign、store、write 均为原子性的变量操作，实现 <strong> 基本数据类型的访问和读写操作是原子性的</strong>；</li>
 <li>lock 和 unlock 操作，更大范围内实现原子性（<strong>synchronized</strong> 关键字）。</li>
 </ol>
 <p>（2）可见性</p>
@@ -921,27 +921,27 @@
 <p>（3）有序性</p>
 <ol>
 <li><em>线程内表现为串行的语义</em> ：在本线程内观察，操作是有序的；</li>
-<li><em>指令重排</em> &amp; <em>工作内存与主内存同步延迟</em> ： 从另一个线程观察，被观察线程内的操作是无序的。</li>
+<li><em>指令重排 </em> &amp; <em> 工作内存与主内存同步延迟</em> ： 从另一个线程观察，被观察线程内的操作是无序的。</li>
 </ol>
-<h4 id="2-Java线程"><a href="#2-Java线程" class="headerlink" title="2. Java线程"></a>2. Java线程</h4><blockquote>
-<p>线程将进程的<strong>资源分配</strong>和<strong>执行调度</strong>分开，线程共享进程资源（内存地址、文件I/O等），线程独立被CPU调用、执行。</p>
+<h4 id="2-Java 线程"><a href="#2-Java 线程" class="headerlink" title="2. Java 线程"></a>2. Java 线程</h4><blockquote>
+<p>线程将进程的 <strong> 资源分配 </strong> 和<strong>执行调度 </strong> 分开，线程共享进程资源（内存地址、文件 I/O 等），线程独立被 CPU 调用、执行。</p>
 </blockquote>
 <p>实现线程的三种方式：内核线程实现、用户线程实现、用户线程加轻量级进程的混合实现。</p>
-<h5 id="2-1-内核线程实现"><a href="#2-1-内核线程实现" class="headerlink" title="2.1 内核线程实现"></a>2.1 内核线程实现</h5><p><em>内核线程（Kernel-Level Thread, KLT）*：由操作系统内核完成线程切换、调度、任务映射等操作，用户程序通过 *轻量级进程 （Light Weight Process, LWP)</em> 接口使用内核线程。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<h5 id="2-1- 内核线程实现"><a href="#2-1- 内核线程实现" class="headerlink" title="2.1 内核线程实现"></a>2.1 内核线程实现 </h5><p><em> 内核线程（Kernel-Level Thread, KLT）*：由操作系统内核完成线程切换、调度、任务映射等操作，用户程序通过 * 轻量级进程 （Light Weight Process, LWP)</em> 接口使用内核线程。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E4%B8%80%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
 <blockquote>
 <p>特点：系统调用代价高</p>
 </blockquote>
-<h5 id="2-2-用户线程实现"><a href="#2-2-用户线程实现" class="headerlink" title="2.2 用户线程实现"></a>2.2 用户线程实现</h5><p><em>用户线程（User Thread, UT）</em> ：建立在用户空间的线程库，用户线程的建立、同步、调度和销毁在用户态中完成。</p>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<h5 id="2-2- 用户线程实现"><a href="#2-2- 用户线程实现" class="headerlink" title="2.2 用户线程实现"></a>2.2 用户线程实现 </h5><p><em> 用户线程（User Thread, UT）</em> ：建立在用户空间的线程库，用户线程的建立、同步、调度和销毁在用户态中完成。</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%80%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
 <blockquote>
 <p>特点：用户态操作，代价小；实现过程异常复杂。</p>
 </blockquote>
-<h5 id="2-3-用户线程加轻量级进程的混合实现"><a href="#2-3-用户线程加轻量级进程的混合实现" class="headerlink" title="2.3 用户线程加轻量级进程的混合实现"></a>2.3 用户线程加轻量级进程的混合实现</h5><blockquote>
+<h5 id="2-3- 用户线程加轻量级进程的混合实现"><a href="#2-3- 用户线程加轻量级进程的混合实现" class="headerlink" title="2.3 用户线程加轻量级进程的混合实现"></a>2.3 用户线程加轻量级进程的混合实现</h5><blockquote>
 <p>轻量级进程是用户线程与内核线程之间的桥梁</p>
 </blockquote>
-<p><img src="/2019/11/11/Java学习之虚拟机/%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] 《深入理解Java虚拟机》周志明 著</p>
+<p><img src="/2019/11/11/Java 学习之虚拟机 /%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E4%B9%8B%E9%97%B4%E5%A4%9A%E5%AF%B9%E5%A4%9A%E7%9A%84%E5%85%B3%E7%B3%BB.jpg" alt></p>
+<h3 id="参考资料"><a href="# 参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] 《深入理解 Java 虚拟机》周志明 著</p>
 <p>[2] <a href="https://blog.csdn.net/qq_41701956/article/details/81664921" target="_blank" rel="noopener">https://blog.csdn.net/qq_41701956/article/details/81664921</a></p>
 <p>[3] <a href="https://blog.csdn.net/wen7280/article/details/54428387" target="_blank" rel="noopener">https://blog.csdn.net/wen7280/article/details/54428387</a></p>
 <p>[4] <a href="https://www.jianshu.com/p/114bf4d9e59e" target="_blank" rel="noopener">https://www.jianshu.com/p/114bf4d9e59e</a></p>
@@ -973,7 +973,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/" title="Java学习之虚拟机">https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/</a>
+    <a href="https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/" title="Java 学习之虚拟机">https://merlinhu0112.github.io/2019/11/11/Java学习之虚拟机/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -1038,8 +1038,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2019/09/05/HashMap源码阅读笔记/" rel="next" title="HashMap源码阅读笔记">
-				HashMap源码阅读笔记 <i class="fa fa-chevron-right"></i>
+			  <a href="/2019/09/05/HashMap源码阅读笔记/" rel="next" title="集合源码一：HashMap 源码阅读笔记">
+				集合源码一：HashMap 源码阅读笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1122,7 +1122,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1133,7 +1133,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1184,7 +1184,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、内存管理机制"><span class="nav-text">一、内存管理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Java内存区域图示如下："><span class="nav-text">1. Java内存区域图示如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HotSpot虚拟机新建对象过程"><span class="nav-text">2. HotSpot虚拟机新建对象过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-对象的访问方式"><span class="nav-text">3. 对象的访问方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、内存分配策略"><span class="nav-text">4、内存分配策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、GC工作区域"><span class="nav-text">二、GC工作区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-回收堆"><span class="nav-text">1. 回收堆</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-如何判断对象内存可回收？"><span class="nav-text">1.1 如何判断对象内存可回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-Java中可作为GC-Roots的四种对象："><span class="nav-text">1.2 Java中可作为GC Roots的四种对象：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-经可达性分析后，可回收对象就一定会被回收？"><span class="nav-text">1.3 经可达性分析后，可回收对象就一定会被回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-JVM为什么不采用经典的引用计数算法来判断对象是否可回收？"><span class="nav-text">1.4 JVM为什么不采用经典的引用计数算法来判断对象是否可回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-引用分类（是否回收被引用对象所在的内存区域）"><span class="nav-text">1.5 引用分类（是否回收被引用对象所在的内存区域）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、回收方法区"><span class="nav-text">2、回收方法区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、回收算法"><span class="nav-text">三、回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-算法"><span class="nav-text">1. 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-标记-清除（Mark-Sweep）算法"><span class="nav-text">1.1 标记-清除（Mark-Sweep）算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-复制（Copying）算法"><span class="nav-text">1.2 复制（Copying）算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-标记-整理（Mark-Compact）算法"><span class="nav-text">1.3 标记-整理（Mark-Compact）算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-分代收集（Generational-Collection）算法"><span class="nav-text">1.4 分代收集（Generational Collection）算法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HotSpot-的算法实现"><span class="nav-text">2. HotSpot 的算法实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、垃圾收集器"><span class="nav-text">四、垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Serial-收集器"><span class="nav-text">1. Serial 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-ParNew-收集器"><span class="nav-text">2. ParNew 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Parallel-Scavenge-收集器"><span class="nav-text">3. Parallel Scavenge 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Serial-Old-收集器"><span class="nav-text">4. Serial Old 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Parallel-Old-收集器"><span class="nav-text">5. Parallel Old 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CMS-收集器"><span class="nav-text">6. CMS 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-G1-Garbage-First-收集器"><span class="nav-text">7. G1( Garbage-First ) 收集器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、虚拟机类加载"><span class="nav-text">五、虚拟机类加载</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-加载过程"><span class="nav-text">1. 加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-加载"><span class="nav-text">1.1 加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-验证"><span class="nav-text">1.2 验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-准备"><span class="nav-text">1.3 准备</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-解析"><span class="nav-text">1.4 解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5-初始化"><span class="nav-text">1.5 初始化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、双亲委派模型"><span class="nav-text">2、双亲委派模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、并发"><span class="nav-text">六、并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Java内存模型"><span class="nav-text">1. Java内存模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-主内存与工作内存"><span class="nav-text">1.1 主内存与工作内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-内存间交互"><span class="nav-text">1.2 内存间交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-原子性、可见性和有序性"><span class="nav-text">1.3 原子性、可见性和有序性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Java线程"><span class="nav-text">2. Java线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-内核线程实现"><span class="nav-text">2.1 内核线程实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-用户线程实现"><span class="nav-text">2.2 用户线程实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3-用户线程加轻量级进程的混合实现"><span class="nav-text">2.3 用户线程加轻量级进程的混合实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、内存管理机制"><span class="nav-text">一、内存管理机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Java 内存区域图示如下："><span class="nav-text">1. Java 内存区域图示如下：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HotSpot 虚拟机新建对象过程"><span class="nav-text">2. HotSpot 虚拟机新建对象过程 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3- 对象的访问方式"><span class="nav-text">3. 对象的访问方式 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、内存分配策略"><span class="nav-text">4、内存分配策略 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、GC 工作区域"><span class="nav-text">二、GC 工作区域 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1- 回收堆"><span class="nav-text">1. 回收堆 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1- 如何判断对象内存可回收？"><span class="nav-text">1.1 如何判断对象内存可回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-Java 中可作为 GC-Roots 的四种对象："><span class="nav-text">1.2 Java 中可作为 GC Roots 的四种对象：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3- 经可达性分析后，可回收对象就一定会被回收？"><span class="nav-text">1.3 经可达性分析后，可回收对象就一定会被回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4-JVM 为什么不采用经典的引用计数算法来判断对象是否可回收？"><span class="nav-text">1.4 JVM 为什么不采用经典的  引用计数  算法来判断对象是否可回收？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5- 引用分类（是否回收被引用对象所在的内存区域）"><span class="nav-text">1.5 引用分类（是否回收被引用对象所在的内存区域）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、回收方法区"><span class="nav-text">2、回收方法区 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、回收算法"><span class="nav-text">三、回收算法 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1- 算法"><span class="nav-text">1. 算法 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1- 标记 - 清除（Mark-Sweep）算法"><span class="nav-text">1.1 标记 - 清除（Mark-Sweep）算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2- 复制（Copying）算法"><span class="nav-text">1.2 复制（Copying）算法 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3- 标记 - 整理（Mark-Compact）算法"><span class="nav-text">1.3 标记 - 整理（Mark-Compact）算法 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4- 分代收集（Generational-Collection）算法"><span class="nav-text">1.4 分代收集（Generational Collection）算法 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-HotSpot- 的算法实现"><span class="nav-text">2. HotSpot 的算法实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、垃圾收集器"><span class="nav-text">四、垃圾收集器 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Serial- 收集器"><span class="nav-text">1. Serial 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-ParNew- 收集器"><span class="nav-text">2. ParNew 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Parallel-Scavenge- 收集器"><span class="nav-text">3. Parallel Scavenge 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Serial-Old- 收集器"><span class="nav-text">4. Serial Old 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Parallel-Old- 收集器"><span class="nav-text">5. Parallel Old 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CMS- 收集器"><span class="nav-text">6. CMS 收集器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-G1-Garbage-First- 收集器"><span class="nav-text">7. G1(Garbage-First) 收集器 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、虚拟机类加载"><span class="nav-text">五、虚拟机类加载 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1- 加载过程"><span class="nav-text">1. 加载过程 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1- 加载"><span class="nav-text">1.1 加载 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2- 验证"><span class="nav-text">1.2 验证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3- 准备"><span class="nav-text">1.3 准备 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-4- 解析"><span class="nav-text">1.4 解析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-5- 初始化"><span class="nav-text">1.5 初始化 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、双亲委派模型"><span class="nav-text">2、双亲委派模型 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、并发"><span class="nav-text">六、并发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Java 内存模型"><span class="nav-text">1. Java 内存模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1- 主内存与工作内存"><span class="nav-text">1.1 主内存与工作内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2- 内存间交互"><span class="nav-text">1.2 内存间交互</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3- 原子性、可见性和有序性"><span class="nav-text">1.3 原子性、可见性和有序性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Java 线程"><span class="nav-text">2. Java 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1- 内核线程实现"><span class="nav-text">2.1 内核线程实现 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2- 用户线程实现"><span class="nav-text">2.2 用户线程实现 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3- 用户线程加轻量级进程的混合实现"><span class="nav-text">2.3 用户线程加轻量级进程的混合实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -1218,7 +1218,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">54.3k 字</span>
+    <span title="全站共计">66.5k 字</span>
   
 </div>
 

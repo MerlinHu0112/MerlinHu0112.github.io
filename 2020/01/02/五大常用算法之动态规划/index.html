@@ -135,18 +135,18 @@
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="通过阅读他人优秀的文章，基于经典的青蛙跳台阶问题，深入地学习动态规划建模过程。通过递归算法、自顶向下的备忘录算法及自低向上的动态规划算法，解决实际问题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/1.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/2.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/3.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/4.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/5.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/6.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/7.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/1.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/2.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/3.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/4.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/5.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/6.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/7.jpg">
 <meta property="og:updated_time" content="2020-03-17T03:15:00.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="五大常用算法之动态规划">
 <meta name="twitter:description" content="通过阅读他人优秀的文章，基于经典的青蛙跳台阶问题，深入地学习动态规划建模过程。通过递归算法、自顶向下的备忘录算法及自低向上的动态规划算法，解决实际问题。">
-<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/01/02/五大常用算法之动态规划/1.jpg">
+<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/01/02/%20五大常用算法之动态规划%20/1.jpg">
 
 
 
@@ -474,7 +474,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  2,104 字
+                  2,120 字
                 </span>
               
 
@@ -523,37 +523,37 @@
         <p>通过阅读他人优秀的文章，基于经典的青蛙跳台阶问题，深入地学习动态规划建模过程。通过递归算法、自顶向下的备忘录算法及自低向上的动态规划算法，解决实际问题。</p>
 <a id="more"></a>
 
-<h4 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h4><p>动态规划（Dynamic Programming）与<strong>分治法</strong>类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p>
-<p>与分治法不同的是，适合于用动态规划求解的问题，经分解得到<strong>子问题往往不是互相独立的</strong>。</p>
+<h4 id="一、概念"><a href="# 一、概念" class="headerlink" title="一、概念"></a>一、概念 </h4><p> 动态规划（Dynamic Programming）与 <strong> 分治法 </strong> 类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。</p>
+<p>与分治法不同的是，适合于用动态规划求解的问题，经分解得到 <strong> 子问题往往不是互相独立的</strong>。</p>
 <p>用一个表来记录所有已解的子问题的答案，不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中，这就是动态规划法的基本思路。</p>
-<h4 id="二、建模"><a href="#二、建模" class="headerlink" title="二、建模"></a>二、建模</h4><p>对问题建模前，须明确以下三个重要概念：</p>
+<h4 id="二、建模"><a href="# 二、建模" class="headerlink" title="二、建模"></a>二、建模 </h4><p> 对问题建模前，须明确以下三个重要概念：</p>
 <blockquote>
 <p>1、最优子结构</p>
 <p>2、边界</p>
 <p>3、状态转移方程</p>
 </blockquote>
-<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><h5 id="1-对青蛙跳台阶问题的图解"><a href="#1-对青蛙跳台阶问题的图解" class="headerlink" title="1. 对青蛙跳台阶问题的图解"></a>1. 对青蛙跳台阶问题的图解</h5><p>（本小节图源：<a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a> ）</p>
+<h4 id="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><a href="# 三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程" class="headerlink" title="三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"></a>三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</h4><h5 id="1- 对青蛙跳台阶问题的图解"><a href="#1- 对青蛙跳台阶问题的图解" class="headerlink" title="1. 对青蛙跳台阶问题的图解"></a>1. 对青蛙跳台阶问题的图解</h5><p>（本小节图源：<a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a> ）</p>
 <ul>
-<li>每次跳1级台阶</li>
+<li>每次跳 1 级台阶</li>
 </ul>
-<p><img src="/2020/01/02/五大常用算法之动态规划/1.jpg" alt></p>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /1.jpg" alt></p>
 <ul>
-<li>或每次跳2级台阶</li>
+<li>或每次跳 2 级台阶</li>
 </ul>
-<p><img src="/2020/01/02/五大常用算法之动态规划/2.jpg" alt></p>
-<p>如果站在第n级台阶的角度上，如何到达该层？</p>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /2.jpg" alt></p>
+<p>如果站在第 n 级台阶的角度上，如何到达该层？</p>
 <blockquote>
-<p>a. 从第n-1级台阶，跳1级台阶，到达第n级</p>
+<p>a. 从第 n-1 级台阶，跳 1 级台阶，到达第 n 级</p>
 </blockquote>
-<p><img src="/2020/01/02/五大常用算法之动态规划/3.jpg" alt></p>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /3.jpg" alt></p>
 <blockquote>
-<p>b. 从第n-2级台阶，跳2级台阶，到达第n级</p>
+<p>b. 从第 n-2 级台阶，跳 2 级台阶，到达第 n 级</p>
 </blockquote>
-<p><img src="/2020/01/02/五大常用算法之动态规划/4.jpg" alt></p>
-<p>显然，<strong>到达第n级台阶的路线总数等于到达第n-1级和第n-2级之和</strong>。</p>
-<h5 id="2-建模"><a href="#2-建模" class="headerlink" title="2. 建模"></a>2. 建模</h5><ul>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /4.jpg" alt></p>
+<p>显然，<strong>到达第 n 级台阶的路线总数等于到达第 n-1 级和第 n-2 级之和</strong>。</p>
+<h5 id="2- 建模"><a href="#2- 建模" class="headerlink" title="2. 建模"></a>2. 建模</h5><ul>
 <li><p>最优子结构</p>
-<p>如上所述，第n级台阶的路线总数等于到达第n-1级和第n-2级之和，即 F(n) = F(n-1) + F(n-2)。</p>
+<p>如上所述，第 n 级台阶的路线总数等于到达第 n-1 级和第 n-2 级之和，即 F(n) = F(n-1) + F(n-2)。</p>
 </li>
 <li><p>状态转移方程</p>
 <p><strong>F(n) = F(n-1) + F(n-2)</strong></p>
@@ -562,7 +562,7 @@
 <p>F(1) = 1, F(2) = 2</p>
 </li>
 </ul>
-<h5 id="3-算法实现"><a href="#3-算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><p>（1）递归</p>
+<h5 id="3- 算法实现"><a href="#3- 算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><p>（1）递归</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">frogJump</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> frogJump(N-<span class="number">1</span>) + frogJump(N-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
@@ -571,7 +571,7 @@
 <li>空间复杂度：O(N)</li>
 </ul>
 <p>（2）备忘录算法（自顶向下）</p>
-<p>利用集合Map，避免递归算法中的重复计算部分，提高算法效率</p>
+<p>利用集合 Map，避免递归算法中的重复计算部分，提高算法效率</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">frogJump</span><span class="params">(<span class="keyword">int</span> N, HashMap&lt;Integer, Integer&gt; map)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> N;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(N))&#123;</span><br><span class="line">        <span class="keyword">return</span> map.get(N);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = frogJump(N-<span class="number">1</span>) + frogJump(N-<span class="number">2</span>);</span><br><span class="line">        map.put(N, val);</span><br><span class="line">        <span class="keyword">return</span> val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
@@ -591,50 +591,50 @@
 <li>时间复杂度：O(N)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
-<h4 id="四、更加复杂的动态规划——国王与金矿问题"><a href="#四、更加复杂的动态规划——国王与金矿问题" class="headerlink" title="四、更加复杂的动态规划——国王与金矿问题"></a>四、更加复杂的动态规划——国王与金矿问题</h4><p>问题：有一个国家发现了n座金矿，每座金矿的黄金储量不同，且每座金矿需要参与挖掘的工人数也不同。参与挖矿工人的总数是w。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
+<h4 id="四、更加复杂的动态规划——国王与金矿问题"><a href="# 四、更加复杂的动态规划——国王与金矿问题" class="headerlink" title="四、更加复杂的动态规划——国王与金矿问题"></a>四、更加复杂的动态规划——国王与金矿问题 </h4><p> 问题：有一个国家发现了 n 座金矿，每座金矿的黄金储量不同，且每座金矿需要参与挖掘的工人数也不同。参与挖矿工人的总数是 w。每座金矿要么全挖，要么不挖，不能派出一半人挖取一半金矿。要想得到尽可能多的黄金，应该选择挖取哪几座金矿？</p>
 <p>（本小节图源：<a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a> ）</p>
-<p><img src="/2020/01/02/五大常用算法之动态规划/5.jpg" alt></p>
-<h5 id="1-建模"><a href="#1-建模" class="headerlink" title="1. 建模"></a>1. 建模</h5><blockquote>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /5.jpg" alt></p>
+<h5 id="1- 建模"><a href="#1- 建模" class="headerlink" title="1. 建模"></a>1. 建模</h5><blockquote>
 <p>n：金矿数量；w：总的工人数；g[]：保存每座金矿的矿藏量；p[]：保存每座金矿的用工数</p>
 </blockquote>
 <p>建模过程中，需要明确最优子结构、状态转移方程和边界这三个要素。</p>
 <p>（1）确定最优子结构</p>
-<p>以10名工人开挖5座金矿为例。其最优子结构分为如下两种情况：</p>
+<p>以 10 名工人开挖 5 座金矿为例。其最优子结构分为如下两种情况：</p>
 <ul>
-<li>若不挖第5座金矿，则最优解为10人开挖4座金矿的最优解；</li>
-<li>若挖第5座金矿，则需要找到剩下的人挖剩余的4座金矿的最优解；</li>
+<li>若不挖第 5 座金矿，则最优解为 10 人开挖 4 座金矿的最优解；</li>
+<li>若挖第 5 座金矿，则需要找到剩下的人挖剩余的 4 座金矿的最优解；</li>
 </ul>
-<p><img src="/2020/01/02/五大常用算法之动态规划/6.jpg" alt></p>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /6.jpg" alt></p>
 <blockquote>
-<p>显然，10人挖5座金矿的最优解是这两种子状态的较大值</p>
+<p>显然，10 人挖 5 座金矿的最优解是这两种子状态的较大值</p>
 </blockquote>
 <p>（2）确定状态转移方程</p>
 <ul>
-<li>若第n座金矿有足够的人工开挖，则w个工人开挖n座金矿的情形，满足下列方程：</li>
+<li>若第 n 座金矿有足够的人工开挖，则 w 个工人开挖 n 座金矿的情形，满足下列方程：</li>
 </ul>
 <blockquote>
 <p>F(n, w) = max(F(n-1, w), F(n-1, w-p[n-1])+g(n-1)), n&gt;1, w&gt;=p[n-1]</p>
 </blockquote>
 <ul>
-<li>若w个工人不能满足开采第n座金矿所需的工人数，则满足下列方程：</li>
+<li>若 w 个工人不能满足开采第 n 座金矿所需的工人数，则满足下列方程：</li>
 </ul>
 <blockquote>
 <p>F(n, w) = F(n-1, w), n&gt;1, w&lt;p[n-1]</p>
 </blockquote>
 <p>（3）确定边界</p>
 <ul>
-<li>若金矿数仅为1，且工人数能满足开采该金矿所需的工人数，则有：</li>
+<li>若金矿数仅为 1，且工人数能满足开采该金矿所需的工人数，则有：</li>
 </ul>
 <blockquote>
 <p>F(n, w) = g[0], n==1, w&gt;=p[0]</p>
 </blockquote>
 <ul>
-<li>若金矿数为1，但工人总数不满足要求，则有：</li>
+<li>若金矿数为 1，但工人总数不满足要求，则有：</li>
 </ul>
 <blockquote>
 <p>F(n, w) = 0, n==1, w&lt;p[0]</p>
 </blockquote>
-<h5 id="2-算法实现"><a href="#2-算法实现" class="headerlink" title="2. 算法实现"></a>2. 算法实现</h5><p>（1）递归解法</p>
+<h5 id="2- 算法实现"><a href="#2- 算法实现" class="headerlink" title="2. 算法实现"></a>2. 算法实现</h5><p>（1）递归解法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&lt;p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&gt;=p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> g[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> a = getMaxGold(n-<span class="number">1</span>, w, g, p);</span><br><span class="line">    <span class="keyword">if</span>(w&lt;p[n-<span class="number">1</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> b = getMaxGold(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>], g, p) + g[n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> Math.max(a, b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
@@ -644,9 +644,9 @@
 </ul>
 <p>（2）备忘录算法</p>
 <blockquote>
-<p>类似于青蛙跳问题中的备忘录算法，利用集合Map保存子状态，其中HashMap的Key是包含金矿数n和工人数w的对象，Value是最多的开采量。</p>
+<p>类似于青蛙跳问题中的备忘录算法，利用集合 Map 保存子状态，其中 HashMap 的 Key 是包含金矿数 n 和工人数 w 的对象，Value 是最多的开采量。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p, HashMap&lt;KeyObject, Integer&gt; map)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&lt;p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&gt;=p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> g[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    KeyObject a_obj = <span class="keyword">new</span> KeyObject(n-<span class="number">1</span>, w);</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(a_obj)) &#123;</span><br><span class="line">        a = map.get(a_obj);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        a = getMaxGold(n-<span class="number">1</span>, w, g, p, map);</span><br><span class="line">        map.put(a_obj, a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(w&lt;p[n-<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    KeyObject b_obj = <span class="keyword">new</span> KeyObject(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(b_obj)) &#123;</span><br><span class="line">        b = map.get(b_obj) + g[n-<span class="number">1</span>];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        b = getMaxGold(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>], g, p, map);</span><br><span class="line">        map.put(b_obj, b);</span><br><span class="line">        b += g[n-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Math.max(a, b);   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 内部类用于HashMap中的Key</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> w;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">KeyObject</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.w = w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p, HashMap&lt;KeyObject, Integer&gt; map)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&lt;p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span> &amp;&amp; w&gt;=p[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> g[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    KeyObject a_obj = <span class="keyword">new</span> KeyObject(n-<span class="number">1</span>, w);</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(a_obj)) &#123;</span><br><span class="line">        a = map.get(a_obj);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        a = getMaxGold(n-<span class="number">1</span>, w, g, p, map);</span><br><span class="line">        map.put(a_obj, a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(w&lt;p[n-<span class="number">1</span>]) &#123;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    KeyObject b_obj = <span class="keyword">new</span> KeyObject(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>]);</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(map.containsKey(b_obj)) &#123;</span><br><span class="line">        b = map.get(b_obj) + g[n-<span class="number">1</span>];</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        b = getMaxGold(n-<span class="number">1</span>, w-p[n-<span class="number">1</span>], g, p, map);</span><br><span class="line">        map.put(b_obj, b);</span><br><span class="line">        b += g[n-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Math.max(a, b);   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 内部类用于 HashMap 中的 Key</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyObject</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> w;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">KeyObject</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">        <span class="keyword">this</span>.w = w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
 <ul>
@@ -654,17 +654,17 @@
 <li>空间复杂度：O(n*w)</li>
 </ul>
 <p>（3）动态规划算法</p>
-<p>以10名工人挖5座金矿为例，可作下表</p>
-<p><img src="/2020/01/02/五大常用算法之动态规划/7.jpg" alt></p>
-<p>表中，每一行的所有数据均可<strong>由上一行数据推导得到</strong>，因而动态规划算法可基于此规律，利用前一行数据推导当前行数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] preResult = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>]; <span class="comment">// w+1列，保存上一行数据</span></span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 填充边界</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(j&lt;p[<span class="number">0</span>]) &#123;</span><br><span class="line">            preResult[j] = <span class="number">0</span>; <span class="comment">// 当金矿数为1，但工人总数无法满足开采要求时</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            preResult[j] = g[<span class="number">0</span>]; <span class="comment">// 金矿数为1，且工人总数满足要求</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> preResult[w];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 状态转移方程</span></span><br><span class="line">    <span class="comment">// 外循环中，i为当前金矿索引；内循环中，j为工人数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j&lt;p[i]) &#123;</span><br><span class="line">                <span class="comment">// 若j个工人不能满足开采第i+1座金矿所需的工人数</span></span><br><span class="line">                result[j] = preResult[j];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 若第i+1座金矿有足够的人工开挖，则j个工人开挖i+1座金矿</span></span><br><span class="line">                result[j] = Math.max(preResult[j], preResult[j-p[i]]+g[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新子状态</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            preResult[j] = result[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result[w];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以 10 名工人挖 5 座金矿为例，可作下表</p>
+<p><img src="/2020/01/02/ 五大常用算法之动态规划 /7.jpg" alt></p>
+<p>表中，每一行的所有数据均可 <strong> 由上一行数据推导得到</strong>，因而动态规划算法可基于此规律，利用前一行数据推导当前行数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getMaxGold</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> w, <span class="keyword">int</span>[] g, <span class="keyword">int</span>[] p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">0</span> || w&lt;=<span class="number">0</span> || g==<span class="keyword">null</span> || p==<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>[] preResult = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>]; <span class="comment">// w+1 列，保存上一行数据</span></span><br><span class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[w+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 填充边界</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(j&lt;p[<span class="number">0</span>]) &#123;</span><br><span class="line">            preResult[j] = <span class="number">0</span>; <span class="comment">// 当金矿数为 1，但工人总数无法满足开采要求时</span></span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            preResult[j] = g[<span class="number">0</span>]; <span class="comment">// 金矿数为 1，且工人总数满足要求</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> preResult[w];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 状态转移方程</span></span><br><span class="line">    <span class="comment">// 外循环中，i 为当前金矿索引；内循环中，j 为工人数</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j&lt;p[i]) &#123;</span><br><span class="line">                <span class="comment">// 若 j 个工人不能满足开采第 i+1 座金矿所需的工人数</span></span><br><span class="line">                result[j] = preResult[j];</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 若第 i+1 座金矿有足够的人工开挖，则 j 个工人开挖 i+1 座金矿</span></span><br><span class="line">                result[j] = Math.max(preResult[j], preResult[j-p[i]]+g[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新子状态</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=w;j++) &#123;</span><br><span class="line">            preResult[j] = result[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result[w];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法复杂度分析：</p>
 <ul>
 <li>时间复杂度：O(n*w)</li>
 <li>空间复杂度：O(w)</li>
 </ul>
-<h4 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>[1] <a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a></p>
+<h4 id="参考资料："><a href="# 参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h4><p>[1] <a href="https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3h9iqU4rdH3EIy5m6AzXsg</a></p>
 <p>[2] <a href="https://www.cnblogs.com/hczd123/p/7412950.html" target="_blank" rel="noopener">https://www.cnblogs.com/hczd123/p/7412950.html</a></p>
 
       
@@ -748,8 +748,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-			  <a href="/2020/01/12/Java并发编程笔记/" rel="prev" title="Java并发编程学习笔记">
-				<i class="fa fa-chevron-left"></i> Java并发编程学习笔记
+			  <a href="/2020/01/12/Java并发编程笔记/" rel="prev" title="Java 并发编程学习笔记">
+				<i class="fa fa-chevron-left"></i> Java 并发编程学习笔记
               </a>
             
           </div>
@@ -758,8 +758,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2019/11/11/Java学习之虚拟机/" rel="next" title="Java学习之虚拟机">
-				Java学习之虚拟机 <i class="fa fa-chevron-right"></i>
+			  <a href="/2019/11/11/Java学习之虚拟机/" rel="next" title="Java 学习之虚拟机">
+				Java 学习之虚拟机 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -842,7 +842,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -853,7 +853,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -904,7 +904,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、概念"><span class="nav-text">一、概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、建模"><span class="nav-text">二、建模</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><span class="nav-text">三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-对青蛙跳台阶问题的图解"><span class="nav-text">1. 对青蛙跳台阶问题的图解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-建模"><span class="nav-text">2. 建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-算法实现"><span class="nav-text">3. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、更加复杂的动态规划——国王与金矿问题"><span class="nav-text">四、更加复杂的动态规划——国王与金矿问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-建模"><span class="nav-text">1. 建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-算法实现"><span class="nav-text">2. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、概念"><span class="nav-text">一、概念 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、建模"><span class="nav-text">二、建模 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程"><span class="nav-text">三、以青蛙跳台阶问题为例，深入剖析动态规划建模过程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1- 对青蛙跳台阶问题的图解"><span class="nav-text">1. 对青蛙跳台阶问题的图解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2- 建模"><span class="nav-text">2. 建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3- 算法实现"><span class="nav-text">3. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、更加复杂的动态规划——国王与金矿问题"><span class="nav-text">四、更加复杂的动态规划——国王与金矿问题 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1- 建模"><span class="nav-text">1. 建模</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2- 算法实现"><span class="nav-text">2. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料："><span class="nav-text">参考资料：</span></a></li></ol></div>
             
 
           </div>
@@ -938,7 +938,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">54.3k 字</span>
+    <span title="全站共计">66.5k 字</span>
   
 </div>
 
