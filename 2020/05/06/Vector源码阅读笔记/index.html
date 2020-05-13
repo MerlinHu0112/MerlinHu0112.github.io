@@ -135,7 +135,7 @@
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="基于 JDK 1.8 的 Vector 类的源码阅读笔记。 除去 Vector 类是同步、ArrayList 类是非同步，以及二者在扩容机制的微小差异，Vector 类和 ArrayList 是非常相似的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-13T03:47:45.634Z">
+<meta property="og:updated_time" content="2020-05-13T04:11:06.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集合源码三：Vector 源码阅读笔记">
 <meta name="twitter:description" content="基于 JDK 1.8 的 Vector 类的源码阅读笔记。 除去 Vector 类是同步、ArrayList 类是非同步，以及二者在扩容机制的微小差异，Vector 类和 ArrayList 是非常相似的。">
@@ -391,7 +391,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-05-13T11:47:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-13T12:11:06+08:00">
                 2020-05-13
               </time>
             
@@ -530,7 +530,7 @@
 <h5 id="2-2- 实例变量"><a href="#2-2- 实例变量" class="headerlink" title="2.2 实例变量"></a>2.2 实例变量</h5><p>（1）数组缓冲区：存放 Vector 数组元素</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> Object[] elementData;</span><br></pre></td></tr></table></figure>
 
-<p>（2）容量增量：每次扩容时数组增加的容量。*<em>当 capacityIncrement 小于或等于 0 时，数组双倍扩容，而不是增加 0 *</em>。</p>
+<p>（2）容量增量：每次扩容时数组增加的容量。<strong>当 capacityIncrement 小于或等于 0 时，数组双倍扩容，而不是增加 0</strong>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">int</span> capacityIncrement;</span><br></pre></td></tr></table></figure>
 
 <p>（3）数组大小</p>
