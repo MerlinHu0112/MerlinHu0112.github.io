@@ -12,13 +12,13 @@ categories:
 	- LeetCode
 ---
 
-LeetCode刷题过程中遇见“O(1)时间复杂度的操作”系列问题，总结一下。
+LeetCode 刷题过程中遇见 “O(1) 时间复杂度的操作” 系列问题，总结一下。
 
 <!-- more -->
 
 #### 一、最大队列
 
-[面试题59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
+[力扣-《剑指Offer》-面试题59 - II. 队列的最大值](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
 
 ##### 1. 题目
 
@@ -84,15 +84,15 @@ public class MaxQueue {
 
 ---
 
-
-
 #### 二、最小栈
 
-[面试题 03.02. 栈的最小值](https://leetcode-cn.com/problems/min-stack-lcci/)
+[力扣-155. 最小栈](https://leetcode-cn.com/problems/min-stack/)
+
+[力扣-《程序员面试金典》-面试题 03.02. 栈的最小值](https://leetcode-cn.com/problems/min-stack-lcci/)
 
 ##### 1. 题目
 
-请设计一个栈，除了常规栈支持的pop与push函数以外，还支持min函数，该函数返回栈元素中的最小值。执行push、pop和min操作的时间复杂度必须为 `O(1)` 。
+请设计一个栈，除了常规栈支持的 pop 与 push 函数以外，还支持 min 函数，该函数返回栈元素中的最小值。执行 push、pop 和 min 操作的时间复杂度必须为 `O(1)` 。
 
 ##### 2. 思路
 
@@ -157,11 +157,9 @@ class MinStack {
 
 ---
 
-
-
 #### 三、LRU缓存
 
-[面试题 16.25. LRU缓存](https://leetcode-cn.com/problems/lru-cache-lcci/)
+[力扣-《程序员面试金典》-面试题 16.25. LRU缓存](https://leetcode-cn.com/problems/lru-cache-lcci/)
 
 **LRU缓存**：Least Recently Used，即最近最久未使用的，是一种常见的缓存淘汰算法。当存储的数据总量达到缓存限制时，删除最久未使用过的数据。
 
@@ -190,7 +188,7 @@ class MinStack {
 - 当更新键值对时，将 `key` 从双向链表相应位置移向头结点。
 - 当缓存已满时，移除双向链表的尾结点并移除散列表中对应的键值对即可。
 
-上述三种操作，第一种和第三种均很容易在常数时间内实现，而第二种需要额外的辅助才能实现O(1)的时间复杂度，因为双向链表查找的时间复杂度为O(N)。
+上述三种操作，第一种和第三种均很容易在常数时间内实现，而第二种需要额外的辅助才能实现O(1)的时间复杂度，因为双向链表查找的时间复杂度为 O(N)。
 
 Java提供的 `java.util.LinkedHashMap` 基于 `HashMap` 和双链表很容易实现LRU缓存。
 
@@ -385,4 +383,6 @@ class LRUCache {
 }
 ```
 
+---
 
+#### 四、

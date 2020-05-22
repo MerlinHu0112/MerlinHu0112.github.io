@@ -9,7 +9,7 @@ categories:
 	- 学习笔记
 ---
 
-通过阅读GitHub上开源的[xmall项目](https://github.com/Exrick/xmall)深入学习分布式项目，初步了解Spring Boot框架及多种中间件的使用、原理。
+通过阅读GitHub上开源的[xmall项目](https://github.com/Exrick/xmall)深入学习分布式项目，初步了解SpringBoot框架及多种中间件的使用、原理。
 
 <!-- more -->
 

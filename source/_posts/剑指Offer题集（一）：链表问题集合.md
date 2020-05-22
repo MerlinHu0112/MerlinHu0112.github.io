@@ -15,15 +15,15 @@ categories:
 
 - 对单链表的操作，善用两个指针！
 - 对单链表的逆序操作，优先考虑递归或栈辅助。
-- 对单链表的删除操作，常常要考虑设置dummyNode，以便操作头节点。
-- 对单链表倒数第K个元素的操作，可用双指针，其中first指针要先行K步。
+- 对单链表的删除操作，常常要考虑设置 dummyNode，以便操作头节点。
+- 对单链表倒数第 K 个元素的操作，可用双指针，其中 first 指针要先行 K 步。
 - 对循环单链表的操作，可用快慢指针。
 
 ---
 
 <!--more-->
 
-> 题目来源于《剑指Offer》第二版。同样的题目，在牛客网和LeetCode《剑指Offer》专区的表示和要求或许稍有差异，但算法实现是相同的。
+> 题目来源于《剑指Offer》第二版。同样的题目，在牛客网和 LeetCode《剑指Offer》专区的表示和要求或许稍有差异，但算法实现是相同的。
 
 ---
 
@@ -294,6 +294,69 @@ class Solution {
 
 - 时间复杂度为：O(N)。
 - 空间复杂度为：O(1)。
+
+---
+
+#### 面试题25. 合并两个排序的链表
+
+##### 1. 题目
+
+输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
+
+[力扣-《剑指Offer》-面试题25. 合并两个排序的链表](https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)
+
+[力扣-21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+##### 2. 思路
+
+- 迭代 or 递归
+
+##### 3. 实现
+
+（1）迭代法
+
+```java
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    ListNode sentinel = new ListNode(-1); // 哨兵结点，为合并后链表头结点的前驱结点
+    ListNode curr = sentinel;
+    while(l1!=null && l2!=null){
+        if(l1.val <= l2.val){
+            curr.next = l1;
+            l1 = l1.next;
+        }else{
+            curr.next = l2;
+            l2 = l2.next;
+        }
+        curr = curr.next;
+    }
+
+    curr.next = l1 == null ? l2 : l1; // 某一链表已全部遍历时，直接插入尾部
+    return sentinel.next;
+}
+```
+
+（2）递归法
+
+```java
+public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    if(l1==null)
+        return l2;
+    else if(l2==null)
+        return l1;
+    else if(l1.val <= l2.val){
+        l1.next = mergeTwoLists(l1.next, l2);
+        return l1;
+    }else{
+        l2.next = mergeTwoLists(l1, l2.next);
+        return l2;
+    }
+}
+```
+
+算法分析：
+
+- 时间复杂度：迭代法和递归法均为 O(M+N)，其中 M 和 N 分别为链表长度。
+- 空间复杂度：迭代法为 O(1)，递归法为 O(M+N)。
 
 ---
 

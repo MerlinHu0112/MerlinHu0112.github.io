@@ -7,7 +7,7 @@ tags:
 	- TCP
 	- Three-way handshake
 categories:
-	- 转载
+	- 学习笔记
 copyright: false
 ---
 

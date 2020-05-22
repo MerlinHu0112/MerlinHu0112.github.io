@@ -1,16 +1,15 @@
 ---
-title: HashMap源码阅读笔记
+title: 集合源码一：HashMap源码阅读笔记
 comments: true
 top: false
 date: 2019-09-05
 tags:
 	- HashMap
-	- Sound Code
 categories:
-	- 源码学习
+	- 集合源码
 ---
 
-基于JDK 1.8的HashMap阅读笔记，主要包括如下方面：
+基于 JDK 1.8 的HashMap阅读笔记，主要包括如下方面：
 
 - HashMap的属性、构造方法及常用方法源码分析。
 - 自定义的类，如何确保Key的一致性？
@@ -27,7 +26,7 @@ categories:
 
 ---
 
-#### 2. 属性
+#### 2. 字段
 
 ##### 2.1 静态常量
 
