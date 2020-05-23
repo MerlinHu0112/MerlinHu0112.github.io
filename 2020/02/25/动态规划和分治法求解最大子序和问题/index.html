@@ -135,13 +135,13 @@
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="基于LeetCode第53题，总结动态规划和分治法的解题思路，同时涉及经典的Kadane算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/02/25/%20动态规划和分治法求解最大子序和问题%20/dp_1.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/02/25/%20动态规划和分治法求解最大子序和问题%20/kadane.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png">
 <meta property="og:updated_time" content="2020-03-15T14:27:55.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划和分治法求解最大子序和问题">
 <meta name="twitter:description" content="基于LeetCode第53题，总结动态规划和分治法的解题思路，同时涉及经典的Kadane算法。">
-<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/02/25/%20动态规划和分治法求解最大子序和问题%20/dp_1.png">
+<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png">
 
 
 
@@ -469,7 +469,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  773 字
+                  771 字
                 </span>
               
 
@@ -517,13 +517,13 @@
       
 
       
-        <p>基于 LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第 53 题 </a>，总结<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin" target="_blank" rel="noopener"> 动态规划 </a> 和<a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法 </a> 的解题思路，同时涉及经典的 Kadane 算法。</p>
+        <p>基于LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题</a>，总结<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin" target="_blank" rel="noopener">动态规划</a>和<a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>的解题思路，同时涉及经典的Kadane算法。</p>
 <a id="more"></a>
 
-<h4 id="一、题目介绍"><a href="# 一、题目介绍" class="headerlink" title="一、题目介绍"></a>一、题目介绍 </h4><p> 题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<h4 id="一、题目介绍"><a href="#一、题目介绍" class="headerlink" title="一、题目介绍"></a>一、题目介绍</h4><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
 <p>正确输出结果：6</p>
-<h4 id="二、动态规划法"><a href="# 二、动态规划法" class="headerlink" title="二、动态规划法"></a>二、动态规划法 </h4><p> 在<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划 </a> 中学习了动态规划中首先需要确定的三个要素：</p>
+<h4 id="二、动态规划法"><a href="#二、动态规划法" class="headerlink" title="二、动态规划法"></a>二、动态规划法</h4><p>在<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划</a>中学习了动态规划中首先需要确定的三个要素：</p>
 <ul>
 <li><p>最优子结构</p>
 </li>
@@ -532,34 +532,34 @@
 <li><p>状态转移方程</p>
 </li>
 </ul>
-<p>在本题中，对于数组 <code>nums</code> 中索引为 <code>i</code> 的元素，其 <strong> 当前最大子序和 </strong> 为下列二者中的较大者：</p>
+<p>在本题中，对于数组 <code>nums</code> 中索引为 <code>i</code> 的元素，其<strong>当前最大子序和</strong>为下列二者中的较大者：</p>
 <ul>
 <li>索引 <code>i-1</code> 处的当前最大子序和，加上索引 <code>i</code> 处的 <code>nums</code> 数组元素值；</li>
 <li>索引 <code>i</code> 处的 <code>nums</code> 数组元素值。</li>
 </ul>
-<p>设 <code>dp</code> 数组保存每个元素位置的 <strong> 当前最大子序和</strong>。</p>
-<p>状态转移方程为：<code>dp[i] = max((dp[i-1]+nums[i]), (nums[i]) )</code>；边界条件为：<code>dp[0] = nums[0]</code>。</p>
+<p>设 <code>dp</code> 数组保存每个元素位置的<strong>当前最大子序和</strong>。</p>
+<p>状态转移方程为：<code>dp[i] = max( (dp[i-1]+nums[i]), (nums[i]) )</code>；边界条件为：<code>dp[0] = nums[0]</code>。</p>
 <p>算法过程的图示如下：</p>
-<p><img src="/2020/02/25/ 动态规划和分治法求解最大子序和问题 /dp_1.png" alt></p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png" alt></p>
 <p>算法实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// dp 数组存储 nums 数组每个元素位置的当前最大子序和</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max((dp[i-<span class="number">1</span>]+nums[i]), nums[i]); <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; ++i) &#123;</span><br><span class="line">        res = Math.max(dp[i], res); <span class="comment">// 遍历 dp 数组，找出最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// dp数组存储nums数组每个元素位置的当前最大子序和</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max((dp[i-<span class="number">1</span>]+nums[i]), nums[i]); <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; ++i) &#123;</span><br><span class="line">        res = Math.max(dp[i], res); <span class="comment">// 遍历dp数组，找出最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法总结：</p>
 <ul>
 <li>时间复杂度：O(n)</li>
 <li>空间复杂度：O(n)</li>
 </ul>
-<h4 id="三、Kadane 算法"><a href="# 三、Kadane 算法" class="headerlink" title="三、Kadane 算法"></a>三、Kadane 算法</h4><blockquote>
-<p>Kadane 算法是一种动态规划算法。</p>
+<h4 id="三、Kadane算法"><a href="#三、Kadane算法" class="headerlink" title="三、Kadane算法"></a>三、Kadane算法</h4><blockquote>
+<p>Kadane算法是一种动态规划算法。</p>
 </blockquote>
-<p>在上述动态规划算法中，使用 <code>dp</code> 数组保存数组 <code>nums</code> 所有位置的最大子序和。在经典的 kadane 算法中，对此进行了优化。</p>
-<p>Kadane 算法采用两个辅助变量：</p>
+<p>在上述动态规划算法中，使用 <code>dp</code> 数组保存数组 <code>nums</code> 所有位置的最大子序和。在经典的 kadane算法中，对此进行了优化。</p>
+<p>Kadane算法采用两个辅助变量：</p>
 <ul>
 <li>currSum：当前位置 <code>i</code> 的最大子序和，对应的是 <code>dp</code> 中 <code>i</code> 位置的元素值；</li>
 <li>maxSum：保存全局最大子序和。</li>
 </ul>
 <p>算法过程的图示如下：</p>
-<p><img src="/2020/02/25/ 动态规划和分治法求解最大子序和问题 /kadane.png" alt></p>
+<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png" alt></p>
 <p>算法实现如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -568,8 +568,8 @@
 <li>时间复杂度：O(n)</li>
 <li>空间复杂度：O(1)</li>
 </ul>
-<h4 id="四、分治法"><a href="# 四、分治法" class="headerlink" title="四、分治法"></a>四、分治法 </h4><p> 关于分治法求解过程，详见 <a href="https://merlinhu0112.github.io/2020/02/26/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%88%86%E6%B2%BB%E6%B3%95/"> 五大常用算法之分治法</a>。</p>
-<h4 id="五、算法性能总结："><a href="# 五、算法性能总结：" class="headerlink" title="五、算法性能总结："></a>五、算法性能总结：</h4><p>暴力法的时间复杂度较高，为 O(n^3) 或 O(n^2)。</p>
+<h4 id="四、分治法"><a href="#四、分治法" class="headerlink" title="四、分治法"></a>四、分治法</h4><p>关于分治法求解过程，详见<a href="https://merlinhu0112.github.io/2020/02/26/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%88%86%E6%B2%BB%E6%B3%95/">五大常用算法之分治法</a>。</p>
+<h4 id="五、算法性能总结："><a href="#五、算法性能总结：" class="headerlink" title="五、算法性能总结："></a>五、算法性能总结：</h4><p>暴力法的时间复杂度较高，为 O(n^3) 或 O(n^2)。</p>
 <p>分治法的思路较为复杂，从是否跨越中间元素出发，将数组分为三个不会重合的子序列，对其分别求出最大子序和，取三者中的较大者即可。该算法的时间复杂度为 O(n log n)，空间复杂度为 O(log n)。</p>
 <p>动态规划法的思路更加直观、易理解。算法性能也是最优的，时间复杂度可达 O(n)，空间复杂度为 O(1)。</p>
 
@@ -664,8 +664,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2020/02/21/Java创建线程的方式/" rel="next" title="Java 创建线程的方式">
-				Java 创建线程的方式 <i class="fa fa-chevron-right"></i>
+			  <a href="/2020/02/21/Java创建线程的方式/" rel="next" title="Java创建线程的方式">
+				Java创建线程的方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -810,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、题目介绍"><span class="nav-text">一、题目介绍 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、动态规划法"><span class="nav-text">二、动态规划法 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Kadane 算法"><span class="nav-text">三、Kadane 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、分治法"><span class="nav-text">四、分治法 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、算法性能总结："><span class="nav-text">五、算法性能总结：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、题目介绍"><span class="nav-text">一、题目介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、动态规划法"><span class="nav-text">二、动态规划法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Kadane算法"><span class="nav-text">三、Kadane算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、分治法"><span class="nav-text">四、分治法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、算法性能总结："><span class="nav-text">五、算法性能总结：</span></a></li></ol></div>
             
 
           </div>
@@ -844,7 +844,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">78.4k 字</span>
+    <span title="全站共计">78.0k 字</span>
   
 </div>
 

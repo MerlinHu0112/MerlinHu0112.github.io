@@ -135,22 +135,22 @@
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="基于八皇后问题给出回溯算法的解析过程。回溯算法是真的难，过于抽象，还需反反复复地看看看！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/1.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/2.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/3.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/4.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/5.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/6.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/7.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/8.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/9.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/10.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/11.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/1.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/2.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/3.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/4.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/5.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/6.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/7.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/8.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/9.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/10.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/11.jpg">
 <meta property="og:updated_time" content="2020-02-26T05:30:45.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="五大常用算法之回溯算法">
 <meta name="twitter:description" content="基于八皇后问题给出回溯算法的解析过程。回溯算法是真的难，过于抽象，还需反反复复地看看看！">
-<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/01/13/%20五大常用算法之回溯算法%20/1.jpg">
+<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/01/13/五大常用算法之回溯算法/1.jpg">
 
 
 
@@ -478,7 +478,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  1,452 字
+                  1,449 字
                 </span>
               
 
@@ -527,47 +527,47 @@
         <p>基于八皇后问题给出回溯算法的解析过程。回溯算法是真的难，过于抽象，还需反反复复地看看看！</p>
 <a id="more"></a>
 
-<h4 id="一、基本概念"><a href="# 一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念 </h4><p> 回溯法（探索与回溯法）是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“<strong>回溯点</strong>”。</p>
-<p>其基本思想是，在包含问题的所有解的解空间树中，按照 <strong> 深度优先搜索 </strong> 的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。</p>
-<h4 id="二、典型应用之八皇后问题"><a href="# 二、典型应用之八皇后问题" class="headerlink" title="二、典型应用之八皇后问题"></a>二、典型应用之八皇后问题 </h4><p> 题干：八皇后问题由马克斯·贝瑟尔于 1848 年提出：在 8×8 格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上。试问总共有多少种摆放的方法？==（92 种）==</p>
-<h5 id="1- 分析"><a href="#1- 分析" class="headerlink" title="1. 分析"></a>1. 分析</h5><ul>
-<li><p>显然，棋盘上每一行（或每一列）上只能同时出现一个皇后。要解决此问题，可先摆放第 1 行的皇后，紧接着摆放第 2 行的皇后。</p>
+<h4 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h4><p>回溯法（探索与回溯法）是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“<strong>回溯点</strong>”。</p>
+<p>其基本思想是，在包含问题的所有解的解空间树中，按照<strong>深度优先搜索</strong>的策略，从根结点出发深度探索解空间树。当探索到某一结点时，要先判断该结点是否包含问题的解，如果包含，就从该结点出发继续探索下去，如果该结点不包含问题的解，则逐层向其祖先结点回溯。</p>
+<h4 id="二、典型应用之八皇后问题"><a href="#二、典型应用之八皇后问题" class="headerlink" title="二、典型应用之八皇后问题"></a>二、典型应用之八皇后问题</h4><p>题干：八皇后问题由马克斯·贝瑟尔于1848年提出：在8×8格的国际象棋上摆放八个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上。试问总共有多少种摆放的方法？==（92种）==</p>
+<h5 id="1-分析"><a href="#1-分析" class="headerlink" title="1. 分析"></a>1. 分析</h5><ul>
+<li><p>显然，棋盘上每一行（或每一列）上只能同时出现一个皇后。要解决此问题，可先摆放第1行的皇后，紧接着摆放第2行的皇后。</p>
 </li>
-<li><p>在摆放第 i 行的皇后时，需要判断其是否与前面所有行已存在的皇后产生冲突。</p>
+<li><p>在摆放第i行的皇后时，需要判断其是否与前面所有行已存在的皇后产生冲突。</p>
 </li>
 <li><p>若无，直接放置，并继续下一行，直至摆放完最后一行。</p>
 </li>
-<li><p>若产生冲突，则调整此行的皇后位置。若此行所有位置均不符合要求，则需要 <strong> 回溯至第 i-1 行，调整改行皇后的位置</strong>，直至回溯至第 1 行。</p>
+<li><p>若产生冲突，则调整此行的皇后位置。若此行所有位置均不符合要求，则需要<strong>回溯至第i-1行，调整改行皇后的位置</strong>，直至回溯至第1行。</p>
 </li>
 </ul>
-<h5 id="2- 图解"><a href="#2- 图解" class="headerlink" title="2. 图解"></a>2. 图解 </h5><p>（1）放置第 1 行的皇后：8 格均可，先尝试放置在第 1 格。红色表示<strong> 下一行 </strong> 对应位置已被锁定。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /1.jpg" alt></p>
-<p>（2）放置第 2 行的皇后：前两格已被第 1 行的皇后锁定，故只能在后 6 格中任选，选第 3 格。相应的，前两行放置好的皇后也锁定了第 3 行部分位置。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /2.jpg" alt></p>
-<p>（3）放置第 3 行的皇后：在未被锁定的后 4 格中任选，选第 5 格。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /3.jpg" alt></p>
-<p>（4）放置第 4 行的皇后：只有 3 格可选，选第 2 格。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /4.jpg" alt></p>
-<p>（5）放置第 5 行的皇后：只剩 2 格可选，选第 1 格。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /5.jpg" alt></p>
-<p>（6）放置第 6 行的皇后：只能选择第 4 格。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /6.jpg" alt></p>
-<p>（7）放置第 7 行的皇后：只能选择第 6 格。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /7.jpg" alt></p>
-<p>（8）放置完前 7 行后可发现，第 8 行所有位置均被锁定。故回溯至第 7 行。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /8.jpg" alt></p>
-<p>（9）第 7 行仅有一个位置，且已尝试过，故继续回溯至第 6 行。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /9.jpg" alt></p>
-<p>（10）同样地，继续回溯至第 5 行。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /10.jpg" alt></p>
-<p>（11）第 5 行有两个位置，前一个已被尝试过，故选择第 4 格作为第 5 行皇后的新位置。</p>
-<p><img src="/2020/01/13/ 五大常用算法之回溯算法 /11.jpg" alt></p>
+<h5 id="2-图解"><a href="#2-图解" class="headerlink" title="2. 图解"></a>2. 图解</h5><p>（1）放置第1行的皇后：8格均可，先尝试放置在第1格。红色表示<strong>下一行</strong>对应位置已被锁定。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/1.jpg" alt></p>
+<p>（2）放置第2行的皇后：前两格已被第1行的皇后锁定，故只能在后6格中任选，选第3格。相应的，前两行放置好的皇后也锁定了第3行部分位置。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/2.jpg" alt></p>
+<p>（3）放置第3行的皇后：在未被锁定的后4格中任选，选第5格。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/3.jpg" alt></p>
+<p>（4）放置第4行的皇后：只有3格可选，选第2格。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/4.jpg" alt></p>
+<p>（5）放置第5行的皇后：只剩2格可选，选第1格。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/5.jpg" alt></p>
+<p>（6）放置第6行的皇后：只能选择第4格。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/6.jpg" alt></p>
+<p>（7）放置第7行的皇后：只能选择第6格。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/7.jpg" alt></p>
+<p>（8）放置完前7行后可发现，第8行所有位置均被锁定。故回溯至第7行。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/8.jpg" alt></p>
+<p>（9）第7行仅有一个位置，且已尝试过，故继续回溯至第6行。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/9.jpg" alt></p>
+<p>（10）同样地，继续回溯至第5行。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/10.jpg" alt></p>
+<p>（11）第5行有两个位置，前一个已被尝试过，故选择第4格作为第5行皇后的新位置。</p>
+<p><img src="/2020/01/13/五大常用算法之回溯算法/11.jpg" alt></p>
 <blockquote>
-<p>很不幸，第 5 行重新放置后，第 6 行所有位置被锁定，故仍需回溯至第 4 行。在此就不继续演示了。</p>
+<p>很不幸，第5行重新放置后，第6行所有位置被锁定，故仍需回溯至第4行。在此就不继续演示了。</p>
 </blockquote>
-<h5 id="3- 算法实现"><a href="#3- 算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 八皇后问题，基于递归的回溯思想，解决此问题</span></span><br><span class="line"><span class="comment"> * 2020-01-13</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EightQueens</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] checkerboard = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>]; <span class="comment">// 棋盘的列投影，记录每一行的皇后存放的列索引值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> len = <span class="number">8</span>; <span class="comment">// 棋盘的行或列长度为 8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> queens = <span class="number">8</span>; <span class="comment">// 皇后数，为 8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 记录总共的解法数，对八皇后问题，应为 92</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EightQueens</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 递归地放置皇后到第 i+1 行合适的位置</span></span><br><span class="line"><span class="comment">	 * 放置第 i+1 行的皇后之后，需要判断其是否与之前的皇后冲突，若无，递归进入下一行；</span></span><br><span class="line"><span class="comment">	 * 若产生冲突，将其往后移动一列，避免冲突</span></span><br><span class="line"><span class="comment">	 * 注意 for 循环内部是递归嵌套的，若到最后某一行皇后已无法移动，则会逐步返回上一层，直至</span></span><br><span class="line"><span class="comment">	 * 调整首行以实现放入所有皇后</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putQueen</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==queens) &#123;</span><br><span class="line">			total++; <span class="comment">// 此语句执行则说明当前结果是一种可行解法，故总解法数加 1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>; col&lt;len; col++) &#123;</span><br><span class="line">				checkerboard[i] = col; <span class="comment">// 对于第 i+1 行，该行的皇后放在第 col+1 列；若 if 语句为 false，则调整第 i+1 行的皇后位置</span></span><br><span class="line">				<span class="keyword">if</span>(check(i)) &#123;</span><br><span class="line">					putQueen(i+<span class="number">1</span>); <span class="comment">// 若检查发现，第 i+1 行及之前各行皇后位置均满足题意，则递归移动下一行</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断第 i+1 行放入的皇后是否与之前的皇后产生冲突</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++) &#123;</span><br><span class="line">			<span class="comment">// j 为第 i+1 行之前的所有行，需要逐一比较</span></span><br><span class="line">			<span class="keyword">if</span>(checkerboard[i]==checkerboard[j] || i-checkerboard[i]==j-checkerboard[j] ||</span><br><span class="line">					i+checkerboard[i]==j+checkerboard[j]) &#123;</span><br><span class="line">				<span class="comment">// checkerboard[i]==checkerboard[j] 判断不同行的皇后是否在同一列</span></span><br><span class="line">				<span class="comment">// i-checkerboard[i]==j-checkerboard[j] 判断不同行的皇后是否在左对角线上</span></span><br><span class="line">				<span class="comment">// i+checkerboard[i]==j+checkerboard[j] 判断不同行的皇后是否在右对角线上</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 辅助方法，启动 putQueen</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		putQueen(<span class="number">0</span>); <span class="comment">// 从第 1 行开始，其行序号为 0</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-算法实现"><a href="#3-算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 八皇后问题，基于递归的回溯思想，解决此问题</span></span><br><span class="line"><span class="comment"> * 2020-01-13</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Merlin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EightQueens</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] checkerboard = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>]; <span class="comment">// 棋盘的列投影，记录每一行的皇后存放的列索引值</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> len = <span class="number">8</span>; <span class="comment">// 棋盘的行或列长度为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> queens = <span class="number">8</span>; <span class="comment">// 皇后数，为8</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> total = <span class="number">0</span>; <span class="comment">// 记录总共的解法数，对八皇后问题，应为92</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">EightQueens</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 递归地放置皇后到第i+1行合适的位置</span></span><br><span class="line"><span class="comment">	 * 放置第i+1行的皇后之后，需要判断其是否与之前的皇后冲突，若无，递归进入下一行；</span></span><br><span class="line"><span class="comment">	 * 若产生冲突，将其往后移动一列，避免冲突</span></span><br><span class="line"><span class="comment">	 * 注意for循环内部是递归嵌套的，若到最后某一行皇后已无法移动，则会逐步返回上一层，直至</span></span><br><span class="line"><span class="comment">	 * 调整首行以实现放入所有皇后</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">putQueen</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(i==queens) &#123;</span><br><span class="line">			total++; <span class="comment">// 此语句执行则说明当前结果是一种可行解法，故总解法数加1</span></span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> col=<span class="number">0</span>; col&lt;len; col++) &#123;</span><br><span class="line">				checkerboard[i] = col; <span class="comment">// 对于第i+1行，该行的皇后放在第col+1列；若if语句为false，则调整第i+1行的皇后位置</span></span><br><span class="line">				<span class="keyword">if</span>(check(i)) &#123;</span><br><span class="line">					putQueen(i+<span class="number">1</span>); <span class="comment">// 若检查发现，第i+1行及之前各行皇后位置均满足题意，则递归移动下一行</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 判断第i+1行放入的皇后是否与之前的皇后产生冲突</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> i 行序号，[0, 7]</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++) &#123;</span><br><span class="line">			<span class="comment">// j为第i+1行之前的所有行，需要逐一比较</span></span><br><span class="line">			<span class="keyword">if</span>(checkerboard[i]==checkerboard[j] || i-checkerboard[i]==j-checkerboard[j] ||</span><br><span class="line">					i+checkerboard[i]==j+checkerboard[j]) &#123;</span><br><span class="line">				<span class="comment">// checkerboard[i]==checkerboard[j] 判断不同行的皇后是否在同一列</span></span><br><span class="line">				<span class="comment">// i-checkerboard[i]==j-checkerboard[j] 判断不同行的皇后是否在左对角线上</span></span><br><span class="line">				<span class="comment">// i+checkerboard[i]==j+checkerboard[j] 判断不同行的皇后是否在右对角线上</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 辅助方法，启动putQueen</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		putQueen(<span class="number">0</span>); <span class="comment">// 从第1行开始，其行序号为0</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotal</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> total;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="参考资料"><a href="# 参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://www.php.cn/faq/415926.html" target="_blank" rel="noopener">https://www.php.cn/faq/415926.html</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://www.php.cn/faq/415926.html" target="_blank" rel="noopener">https://www.php.cn/faq/415926.html</a></p>
 <p>[2] <a href="https://www.jianshu.com/p/dd3c3f3e84c0" target="_blank" rel="noopener">https://www.jianshu.com/p/dd3c3f3e84c0</a></p>
 
       
@@ -651,8 +651,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-			  <a href="/2020/02/04/Java类中代码加载顺序/" rel="prev" title="Java 类中代码加载顺序">
-				<i class="fa fa-chevron-left"></i> Java 类中代码加载顺序
+			  <a href="/2020/02/04/Java类中代码加载顺序/" rel="prev" title="Java类中代码加载顺序">
+				<i class="fa fa-chevron-left"></i> Java类中代码加载顺序
               </a>
             
           </div>
@@ -661,8 +661,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2020/01/12/Java并发编程笔记/" rel="next" title="Java 并发编程学习笔记">
-				Java 并发编程学习笔记 <i class="fa fa-chevron-right"></i>
+			  <a href="/2020/01/12/Java并发编程笔记/" rel="next" title="Java并发编程学习笔记">
+				Java并发编程学习笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -807,7 +807,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、基本概念"><span class="nav-text">一、基本概念 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、典型应用之八皇后问题"><span class="nav-text">二、典型应用之八皇后问题 </span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1- 分析"><span class="nav-text">1. 分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2- 图解"><span class="nav-text">2. 图解 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3- 算法实现"><span class="nav-text">3. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、基本概念"><span class="nav-text">一、基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、典型应用之八皇后问题"><span class="nav-text">二、典型应用之八皇后问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-分析"><span class="nav-text">1. 分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-图解"><span class="nav-text">2. 图解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-算法实现"><span class="nav-text">3. 算法实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -841,7 +841,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">78.4k 字</span>
+    <span title="全站共计">78.0k 字</span>
   
 </div>
 

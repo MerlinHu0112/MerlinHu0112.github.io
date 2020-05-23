@@ -130,24 +130,24 @@
 <meta name="description" content="通过阅读GitHub上开源的xmall项目深入学习分布式项目，初步了解SpringBoot框架及多种中间件的使用、原理。">
 <meta name="keywords" content="xmall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xmall 项目源码学习">
+<meta property="og:title" content="xmall项目源码学习">
 <meta property="og:url" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/index.html">
 <meta property="og:site_name" content="Merlin小站">
 <meta property="og:description" content="通过阅读GitHub上开源的xmall项目深入学习分布式项目，初步了解SpringBoot框架及多种中间件的使用、原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/zookeeper_service.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/zookeeper_namespace.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_1.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_2.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_3.png">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_4.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_5.jpg">
-<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/ActiveMQ_6.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/zookeeper_service.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/zookeeper_namespace.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_1.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_2.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_3.png">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_4.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_5.jpg">
+<meta property="og:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/ActiveMQ_6.jpg">
 <meta property="og:updated_time" content="2020-04-30T01:40:48.493Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xmall 项目源码学习">
+<meta name="twitter:title" content="xmall项目源码学习">
 <meta name="twitter:description" content="通过阅读GitHub上开源的xmall项目深入学习分布式项目，初步了解SpringBoot框架及多种中间件的使用、原理。">
-<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/03/01/xmall%20项目源码学习%20/zookeeper_service.jpg">
+<meta name="twitter:image" content="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/zookeeper_service.jpg">
 
 
 
@@ -183,7 +183,7 @@
 
 
 
-  <title>xmall 项目源码学习 | Merlin小站</title>
+  <title>xmall项目源码学习 | Merlin小站</title>
   
 
 
@@ -369,7 +369,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">xmall 项目源码学习</h1>
+          <h1 class="post-title" itemprop="name headline">xmall项目源码学习</h1>
         
 
         <div class="post-meta">
@@ -454,7 +454,7 @@
 
           
           
-             <span id="/2020/03/01/xmall项目源码学习/" class="leancloud_visitors" data-flag-title="xmall 项目源码学习">
+             <span id="/2020/03/01/xmall项目源码学习/" class="leancloud_visitors" data-flag-title="xmall项目源码学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -479,7 +479,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  2,828 字
+                  2,816 字
                 </span>
               
 
@@ -523,89 +523,89 @@
       
 
       
-        <p>通过阅读 GitHub 上开源的 <a href="https://github.com/Exrick/xmall" target="_blank" rel="noopener">xmall 项目</a> 深入学习分布式项目，初步了解 SpringBoot 框架及多种中间件的使用、原理。</p>
+        <p>通过阅读GitHub上开源的<a href="https://github.com/Exrick/xmall" target="_blank" rel="noopener">xmall项目</a>深入学习分布式项目，初步了解SpringBoot框架及多种中间件的使用、原理。</p>
 <a id="more"></a>
 
-<h3 id="一、前期配置学习"><a href="# 一、前期配置学习" class="headerlink" title="一、前期配置学习"></a>一、前期配置学习</h3><h4 id="1-ZooKeeper"><a href="#1-ZooKeeper" class="headerlink" title="1. ZooKeeper"></a>1. ZooKeeper</h4><h5 id="1-1-ZooKeeper 概述"><a href="#1-1-ZooKeeper 概述" class="headerlink" title="1.1 ZooKeeper 概述"></a>1.1 ZooKeeper 概述</h5><p>ZooKpeeper 用于分布式应用程序的高性能协调服务。（“ZooKeeper is a high-performance coordination service for distributed applications.”）</p>
-<p>ZooKeeper 可提供用于命名，配置管理，同步和组服务等高级别的服务，目的在于减轻分布式应用程序从头开始实施协调服务的责任。</p>
-<p><em>ZooKeeper 服务如下图</em></p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /zookeeper_service.jpg" alt></p>
-<p>ZooKeeper 允许分布式进程通过共享的 <strong> 层次命名空间 </strong> 相互协调。ZooKeeper 命名空间中的每个节点都可以具有与其关联的数据以及子节点。将 ZooKeeper 数据节点称为<strong>znode</strong>。</p>
-<p><em>ZooKeeper 的层次命名空间</em></p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /zookeeper_namespace.jpg" alt></p>
-<h5 id="1-2-ZooKeeper 的特点"><a href="#1-2-ZooKeeper 的特点" class="headerlink" title="1.2 ZooKeeper 的特点"></a>1.2 ZooKeeper 的特点</h5><ol>
-<li>ZooKeeper 数据保存在内存中，因此具备高吞吐量和低延迟。</li>
-<li>ZooKeeper 的所有服务器维护内存中的状态图像，以及持久存储事务日志和数据库快照。</li>
-<li>只要大多数服务器可用，ZooKeeper 服务将正常服务。</li>
+<h3 id="一、前期配置学习"><a href="#一、前期配置学习" class="headerlink" title="一、前期配置学习"></a>一、前期配置学习</h3><h4 id="1-ZooKeeper"><a href="#1-ZooKeeper" class="headerlink" title="1. ZooKeeper"></a>1. ZooKeeper</h4><h5 id="1-1-ZooKeeper概述"><a href="#1-1-ZooKeeper概述" class="headerlink" title="1.1 ZooKeeper概述"></a>1.1 ZooKeeper概述</h5><p>ZooKpeeper用于分布式应用程序的高性能协调服务。（“ZooKeeper is a high-performance coordination service for distributed applications.”）</p>
+<p>ZooKeeper可提供用于命名，配置管理，同步和组服务等高级别的服务，目的在于减轻分布式应用程序从头开始实施协调服务的责任。</p>
+<p><em>ZooKeeper服务如下图</em></p>
+<p><img src="/2020/03/01/xmall项目源码学习/zookeeper_service.jpg" alt></p>
+<p>ZooKeeper允许分布式进程通过共享的<strong>层次命名空间</strong>相互协调。ZooKeeper命名空间中的每个节点都可以具有与其关联的数据以及子节点。将ZooKeeper数据节点称为<strong>znode</strong>。</p>
+<p><em>ZooKeeper的层次命名空间</em></p>
+<p><img src="/2020/03/01/xmall项目源码学习/zookeeper_namespace.jpg" alt></p>
+<h5 id="1-2-ZooKeeper的特点"><a href="#1-2-ZooKeeper的特点" class="headerlink" title="1.2 ZooKeeper的特点"></a>1.2 ZooKeeper的特点</h5><ol>
+<li>ZooKeeper数据保存在内存中，因此具备高吞吐量和低延迟。</li>
+<li>ZooKeeper的所有服务器维护内存中的状态图像，以及持久存储事务日志和数据库快照。</li>
+<li>只要大多数服务器可用，ZooKeeper服务将正常服务。</li>
 <li>标记每一次更新，可用于实现同步。</li>
-<li>在“读取为主”的工作负载中，ZooKeeper 非常快。</li>
+<li>在“读取为主”的工作负载中，ZooKeeper非常快。</li>
 </ol>
-<h5 id="1-3-ZooKeeper 的配置及运行"><a href="#1-3-ZooKeeper 的配置及运行" class="headerlink" title="1.3 ZooKeeper 的配置及运行"></a>1.3 ZooKeeper 的配置及运行 </h5><p>（1）从<a href="http://zookeeper.apache.org/" target="_blank" rel="noopener">ZooKeeper 官网</a> 下载压缩包 <code>apache-zookeeper-3.5.7-bin.tar.gz</code> ，解压至本地，重命名为 <code>zookeeper</code>。</p>
-<p>（2）在 ZooKeeper 目录下新建 data 和 dataLog 文件夹，用于存储内存数据库快照和日志文件。</p>
+<h5 id="1-3-ZooKeeper的配置及运行"><a href="#1-3-ZooKeeper的配置及运行" class="headerlink" title="1.3 ZooKeeper的配置及运行"></a>1.3 ZooKeeper的配置及运行</h5><p>（1）从<a href="http://zookeeper.apache.org/" target="_blank" rel="noopener">ZooKeeper官网</a>下载压缩包 <code>apache-zookeeper-3.5.7-bin.tar.gz</code> ，解压至本地，重命名为 <code>zookeeper</code>。</p>
+<p>（2）在ZooKeeper目录下新建data和dataLog文件夹，用于存储内存数据库快照和日志文件。</p>
 <p>（3）将 zookeeper\conf\ 目录下的 <code>zoo_sample.cfg</code> 文件重命名为 <code>zoo.cfg</code> ，并修改配置，如下所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># The number of milliseconds of each tick</span><br><span class="line"># “心跳”，最小会话超时为 tickTime 的两倍</span><br><span class="line">tickTime=2000</span><br><span class="line"># The number of ticks that the initial </span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit=10</span><br><span class="line"># The number of ticks that can pass between </span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit=5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just </span><br><span class="line"># example sakes.</span><br><span class="line"># 内存数据库快照</span><br><span class="line">dataDir=/.../zookeeper/data</span><br><span class="line"># 日志文件目录</span><br><span class="line">dataLogDir=/.../zookeeper/dataLog</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line"># 侦听客户端连接的端口</span><br><span class="line">clientPort=2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the </span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount=3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval=1</span><br><span class="line"></span><br><span class="line">## Metrics Providers</span><br><span class="line">#</span><br><span class="line"># https://prometheus.io Metrics Exporter</span><br><span class="line">#metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider</span><br><span class="line">#metricsProvider.httpPort=7000</span><br><span class="line">#metricsProvider.exportJvmInfo=true</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># The number of milliseconds of each tick</span><br><span class="line"># “心跳”，最小会话超时为tickTime的两倍</span><br><span class="line">tickTime=2000</span><br><span class="line"># The number of ticks that the initial </span><br><span class="line"># synchronization phase can take</span><br><span class="line">initLimit=10</span><br><span class="line"># The number of ticks that can pass between </span><br><span class="line"># sending a request and getting an acknowledgement</span><br><span class="line">syncLimit=5</span><br><span class="line"># the directory where the snapshot is stored.</span><br><span class="line"># do not use /tmp for storage, /tmp here is just </span><br><span class="line"># example sakes.</span><br><span class="line"># 内存数据库快照</span><br><span class="line">dataDir=/.../zookeeper/data</span><br><span class="line"># 日志文件目录</span><br><span class="line">dataLogDir=/.../zookeeper/dataLog</span><br><span class="line"># the port at which the clients will connect</span><br><span class="line"># 侦听客户端连接的端口</span><br><span class="line">clientPort=2181</span><br><span class="line"># the maximum number of client connections.</span><br><span class="line"># increase this if you need to handle more clients</span><br><span class="line">#maxClientCnxns=60</span><br><span class="line">#</span><br><span class="line"># Be sure to read the maintenance section of the </span><br><span class="line"># administrator guide before turning on autopurge.</span><br><span class="line">#</span><br><span class="line"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span><br><span class="line">#</span><br><span class="line"># The number of snapshots to retain in dataDir</span><br><span class="line">#autopurge.snapRetainCount=3</span><br><span class="line"># Purge task interval in hours</span><br><span class="line"># Set to &quot;0&quot; to disable auto purge feature</span><br><span class="line">#autopurge.purgeInterval=1</span><br><span class="line"></span><br><span class="line">## Metrics Providers</span><br><span class="line">#</span><br><span class="line"># https://prometheus.io Metrics Exporter</span><br><span class="line">#metricsProvider.className=org.apache.zookeeper.metrics.prometheus.PrometheusMetricsProvider</span><br><span class="line">#metricsProvider.httpPort=7000</span><br><span class="line">#metricsProvider.exportJvmInfo=true</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-Redis"><a href="#2-Redis" class="headerlink" title="2. Redis"></a>2. Redis</h4><h5 id="2-1-Redis 概述"><a href="#2-1-Redis 概述" class="headerlink" title="2.1 Redis 概述"></a>2.1 Redis 概述 </h5><p>Redis 是用 C 语言编写的、基于<strong> 内存数据集（in-memory dataset）</strong>的内存数据存储结构，可用来实现 <strong> 数据库 </strong>、<strong> 缓存 </strong>（cache）和<strong> 消息代理</strong>（message broker）。</p>
-<p>Redis 是 <strong> 键值存储 </strong> 的形式，支持常见的字符串，哈希，列表（list），集合（set）、有序集合、位图和超日志等。</p>
-<p>Redis 具备：</p>
+<h4 id="2-Redis"><a href="#2-Redis" class="headerlink" title="2. Redis"></a>2. Redis</h4><h5 id="2-1-Redis概述"><a href="#2-1-Redis概述" class="headerlink" title="2.1 Redis概述"></a>2.1 Redis概述</h5><p>Redis是用C语言编写的、基于<strong>内存数据集（in-memory dataset）</strong>的内存数据存储结构，可用来实现<strong>数据库</strong>、<strong>缓存</strong>（cache）和<strong>消息代理</strong>（message broker）。</p>
+<p>Redis是<strong>键值存储</strong>的形式，支持常见的字符串，哈希，列表（list），集合（set）、有序集合、位图和超日志等。</p>
+<p>Redis具备：</p>
 <ul>
 <li>事务。</li>
-<li>不同级别的磁盘持久化（on-disk persistence），可一次全部持久化，也可以通过将每个命令附加到 log 来持久化它，还可以选择禁用持久化（用于网络内存缓存）。</li>
-<li>通过 <strong> 哨兵</strong>（Redis Sentinel）和 Redis Cluster 自动分区提供高可用性。</li>
+<li>不同级别的磁盘持久化（on-disk persistence），可一次全部持久化，也可以通过将每个命令附加到log来持久化它，还可以选择禁用持久化（用于网络内存缓存）。</li>
+<li>通过<strong>哨兵</strong>（Redis Sentinel）和 Redis Cluster自动分区提供高可用性。</li>
 <li>对数据进行原子操作（如 <em>INCR</em> 命令），如追加到字符串，在哈希中增加值，将元素推送到列表等。</li>
 </ul>
-<h5 id="2-2- 安装与启动"><a href="#2-2- 安装与启动" class="headerlink" title="2.2 安装与启动"></a>2.2 安装与启动</h5><p>（1）在 Ubuntu 系统中，直接使用 apt 包管理器安装 Redis。</p>
-<p>（2）启动 Redis 服务器：redis-server。</p>
-<p>（3）Redis 客户端连接本地 Redis 服务器： redis-cli。</p>
-<h4 id="3-ActiveMQ"><a href="#3-ActiveMQ" class="headerlink" title="3. ActiveMQ"></a>3. ActiveMQ</h4><h5 id="3-1-ActiveMQ 概述"><a href="#3-1-ActiveMQ 概述" class="headerlink" title="3.1 ActiveMQ 概述"></a>3.1 ActiveMQ 概述</h5><p>ActiveMQ 是一种基于 Java 消息服务（Java Message Service）的消息中间件。</p>
-<p>在 <strong> 高并发 </strong> 的条件下，由于来不及同步处理，请求往往会发生阻塞。例如大量的 update 请求同时到达 MySQL 服务器，造成请求大量堆积。通过使用 ActiveMQ，<strong>异步处理已到达的请求</strong>，缓解服务器压力。</p>
+<h5 id="2-2-安装与启动"><a href="#2-2-安装与启动" class="headerlink" title="2.2 安装与启动"></a>2.2 安装与启动</h5><p>（1）在Ubuntu系统中，直接使用apt包管理器安装Redis。</p>
+<p>（2）启动Redis服务器：redis-server。</p>
+<p>（3）Redis客户端连接本地Redis服务器： redis-cli。</p>
+<h4 id="3-ActiveMQ"><a href="#3-ActiveMQ" class="headerlink" title="3. ActiveMQ"></a>3. ActiveMQ</h4><h5 id="3-1-ActiveMQ概述"><a href="#3-1-ActiveMQ概述" class="headerlink" title="3.1 ActiveMQ概述"></a>3.1 ActiveMQ概述</h5><p>ActiveMQ 是一种基于 Java 消息服务（Java Message Service）的消息中间件。</p>
+<p>在<strong>高并发</strong>的条件下，由于来不及同步处理，请求往往会发生阻塞。例如大量的 update 请求同时到达 MySQL 服务器，造成请求大量堆积。通过使用 ActiveMQ，<strong>异步处理已到达的请求</strong>，缓解服务器压力。</p>
 <p>（图源：<a href="https://www.cnblogs.com/xiguadadage/p/11217604.html）" target="_blank" rel="noopener">https://www.cnblogs.com/xiguadadage/p/11217604.html）</a></p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_1.png" alt></p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_1.png" alt></p>
 <p>如上图所示，通过 ActiveMQ 保存开锁指令，随后异步执行耗时的开锁操作，以减轻服务器的压力。</p>
-<h5 id="3-2-ActiveMQ 消息类型"><a href="#3-2-ActiveMQ 消息类型" class="headerlink" title="3.2 ActiveMQ 消息类型"></a>3.2 ActiveMQ 消息类型 </h5><p>JMS 消息通常有两种类型，ActiveMQ 是基于 JMS 的，所以介绍 ActiveMQ 的两种消息类型：<strong> 点对点 </strong>（Point-to-Point）和<strong> 发布 / 订阅</strong>（Publish/Subscribe）。</p>
+<h5 id="3-2-ActiveMQ消息类型"><a href="#3-2-ActiveMQ消息类型" class="headerlink" title="3.2 ActiveMQ消息类型"></a>3.2 ActiveMQ消息类型</h5><p>JMS 消息通常有两种类型，ActiveMQ 是基于 JMS 的，所以介绍 ActiveMQ 的两种消息类型：<strong>点对点</strong>（Point-to-Point）和<strong>发布/订阅</strong>（Publish/Subscribe）。</p>
 <p>（1）点对点</p>
 <p>生产者与消费者点对点发送消息，借助队列（javax.jms.Queue）存储消息。</p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_2.png" alt></p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_2.png" alt></p>
 <p>点对点类型的要点：</p>
 <ul>
 <li>每个消息只有一个消费者 <code>Consumer</code> ，一旦被消费，消息就不再在队列中。</li>
 <li>生产者 <code>Producer</code> 发送消息不受消费者状态的影响。（无依赖性）</li>
 <li>消费者在成功接收消息后，需要向队列应答成功。</li>
 </ul>
-<p>（2）发布 / 订阅</p>
+<p>（2）发布/订阅</p>
 <p>生产者发布事件，不同的消费者订阅并使用感兴趣的事件。此类型一般与特定的主题（javax.jms.Topic）关联。</p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_3.png" alt></p>
-<p>发布 / 订阅类型的要点：</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_3.png" alt></p>
+<p>发布/订阅类型的要点：</p>
 <ul>
-<li>每个消息可以有 <strong> 多个消费者</strong>。</li>
+<li>每个消息可以有<strong>多个消费者</strong>。</li>
 <li>针对某个主题（Topic）的订阅者，它必须创建一个订阅者之后，才能消费发布者的消息。（有依赖性）</li>
-<li>为了消费消息，订阅者必须 <strong> 保持运行 </strong> 的状态。</li>
+<li>为了消费消息，订阅者必须<strong>保持运行</strong>的状态。</li>
 </ul>
-<h5 id="3-3-ActiveMQ 的使用"><a href="#3-3-ActiveMQ 的使用" class="headerlink" title="3.3 ActiveMQ 的使用"></a>3.3 ActiveMQ 的使用 </h5><p> 下载并解压至本地，在 bin 目录下执行相应命令：</p>
+<h5 id="3-3-ActiveMQ的使用"><a href="#3-3-ActiveMQ的使用" class="headerlink" title="3.3 ActiveMQ的使用"></a>3.3 ActiveMQ的使用</h5><p>下载并解压至本地，在bin目录下执行相应命令：</p>
 <ul>
 <li>启动：./activemq start</li>
 <li>查看状态：./activemq status</li>
 <li>关闭：./activemq stop</li>
 </ul>
-<p>在浏览器中输入<a href="http://localhost:8161/admin/" target="_blank" rel="noopener">http://localhost:8161/admin/</a> 可访问控制台，账户 / 密码为 admin/admin。</p>
+<p>在浏览器中输入<a href="http://localhost:8161/admin/" target="_blank" rel="noopener">http://localhost:8161/admin/</a> 可访问控制台，账户/密码为 admin/admin。</p>
 <p>接下来测试 ActiveMQ 应用于简单的 Java 程序中。</p>
-<p>（1）Maven 中引入依赖</p>
+<p>（1）Maven中引入依赖</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.activemq<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>activemq-all<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>（2）生产者</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.JMSException;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageProducer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> javax.jms.TextMessage;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerURL = <span class="string">"tcp://127.0.0.1:61616"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> JMSException </span>&#123;</span><br><span class="line">		<span class="comment">// 创建连接工厂</span></span><br><span class="line">		ActiveMQConnectionFactory factory = <span class="keyword">new</span> ActiveMQConnectionFactory(brokerURL);</span><br><span class="line">		<span class="comment">// 建立连接</span></span><br><span class="line">		Connection conn = factory.createConnection();</span><br><span class="line">		conn.start();</span><br><span class="line">		<span class="comment">// 创建会话</span></span><br><span class="line">		Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">		<span class="comment">// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据</span></span><br><span class="line">		Destination dest = session.createQueue(<span class="string">"TestQueue"</span>);</span><br><span class="line">		<span class="comment">// 创建生产者</span></span><br><span class="line">		MessageProducer producer = session.createProducer(dest);</span><br><span class="line">		<span class="comment">// 发送消息</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;<span class="number">6</span>; i++) &#123;</span><br><span class="line">			TextMessage message = session.createTextMessage(<span class="string">"第"</span>+i+<span class="string">"条消息"</span>);</span><br><span class="line">			producer.send(message);</span><br><span class="line">			System.out.println(message.getText());</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 关闭连接</span></span><br><span class="line">		conn.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>运行生产者之前，控制台如下：</p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_4.jpg" alt></p>
-<p>运行生产者，发送 5 条消息，控制台发生了变化：</p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_5.jpg" alt></p>
-<p>如图，队列中等待的消息 <code>Pending Message</code> 有 5 条，当前无消费者。</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_4.jpg" alt></p>
+<p>运行生产者，发送5条消息，控制台发生了变化：</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_5.jpg" alt></p>
+<p>如图，队列中等待的消息 <code>Pending Message</code> 有5条，当前无消费者。</p>
 <p>（3）消费者</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javax.jms.Connection;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Destination;</span><br><span class="line"><span class="keyword">import</span> javax.jms.JMSException;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Message;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageConsumer;</span><br><span class="line"><span class="keyword">import</span> javax.jms.MessageListener;</span><br><span class="line"><span class="keyword">import</span> javax.jms.Session;</span><br><span class="line"><span class="keyword">import</span> javax.jms.TextMessage;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Consumer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String brokerURL = <span class="string">"tcp://127.0.0.1:61616"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> <span class="params">(String[] args)</span> <span class="keyword">throws</span> JMSException </span>&#123;</span><br><span class="line">		<span class="comment">// 创建连接工厂</span></span><br><span class="line">		ActiveMQConnectionFactory factory = <span class="keyword">new</span> ActiveMQConnectionFactory(brokerURL);</span><br><span class="line">		<span class="comment">// 建立连接</span></span><br><span class="line">		Connection conn = factory.createConnection();</span><br><span class="line">		conn.start();</span><br><span class="line">		<span class="comment">// 创建会话</span></span><br><span class="line">		Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">		<span class="comment">// 创建队列目标，并标识队列名称，消费者将依据队列名称接收数据</span></span><br><span class="line">		Destination dest = session.createQueue(<span class="string">"TestQueue"</span>);</span><br><span class="line">		<span class="comment">// 创建消费者</span></span><br><span class="line">		MessageConsumer consumer = session.createConsumer(dest);</span><br><span class="line">		<span class="comment">// 消费者监听</span></span><br><span class="line">		consumer.setMessageListener(<span class="keyword">new</span> MessageListener() &#123;</span><br><span class="line">			<span class="meta">@Override</span></span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMessage</span><span class="params">(Message message)</span> </span>&#123;</span><br><span class="line">				TextMessage textMessage = (TextMessage) message;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					System.out.println(textMessage.getText());</span><br><span class="line">				&#125;<span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>消费者启动后，控制台又发生了变化：</p>
-<p><img src="/2020/03/01/xmall 项目源码学习 /ActiveMQ_6.jpg" alt></p>
-<p>显示此时有 1 个消费者，刚入队的 5 条消息均已出队，当前队列中无消息。</p>
+<p><img src="/2020/03/01/xmall项目源码学习/ActiveMQ_6.jpg" alt></p>
+<p>显示此时有1个消费者，刚入队的5条消息均已出队，当前队列中无消息。</p>
 <p>注意创建会话的方法，其中有两个参数。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建会话</span></span><br><span class="line">Session session = conn.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br></pre></td></tr></table></figure>
 
@@ -618,18 +618,18 @@
 </ul>
 </li>
 </ol>
-<h5 id="3-4-ActiveMQ 进阶之多种 MQ 简要比较"><a href="#3-4-ActiveMQ 进阶之多种 MQ 简要比较" class="headerlink" title="3.4 ActiveMQ 进阶之多种 MQ 简要比较"></a>3.4 ActiveMQ 进阶之多种 MQ 简要比较</h5><ul>
+<h5 id="3-4-ActiveMQ进阶之多种MQ简要比较"><a href="#3-4-ActiveMQ进阶之多种MQ简要比较" class="headerlink" title="3.4 ActiveMQ进阶之多种MQ简要比较"></a>3.4 ActiveMQ进阶之多种MQ简要比较</h5><ul>
 <li>ActiveMQ 适用于解耦和异步操作，简单易用，对队列数较多的情况支持不好。</li>
-<li>RabbitMQ，erlang 开发，性能较稳定，社区活跃度高，但是不利于做二次开发和维护。</li>
+<li>RabbitMQ，erlang开发，性能较稳定，社区活跃度高，但是不利于做二次开发和维护。</li>
 <li>RocketMQ 支持海量消息，但未实现 JMS 规范。</li>
 <li>Kafka 适用于大数据领域、日志采集等场景。</li>
 </ul>
-<h5 id="3-5-ActiveMQ 进阶之持久化"><a href="#3-5-ActiveMQ 进阶之持久化" class="headerlink" title="3.5 ActiveMQ 进阶之持久化"></a>3.5 ActiveMQ 进阶之持久化 </h5><p> 为避免意外丢失数据，也为重启时可恢复至重启前的正常状态，ActiveMQ 需要实现持久化。</p>
-<p>ActiveMQ 的消息持久化机制有 <strong>JDBC，AMQ，KahaDB</strong> 和 <strong>LevelDB</strong>。</p>
+<h5 id="3-5-ActiveMQ进阶之持久化"><a href="#3-5-ActiveMQ进阶之持久化" class="headerlink" title="3.5 ActiveMQ进阶之持久化"></a>3.5 ActiveMQ进阶之持久化</h5><p>为避免意外丢失数据，也为重启时可恢复至重启前的正常状态，ActiveMQ 需要实现持久化。</p>
+<p>ActiveMQ的消息持久化机制有 <strong>JDBC，AMQ，KahaDB</strong> 和 <strong>LevelDB</strong>。</p>
 <p><strong>持久化原理</strong>：在发送者将消息发送出去后，消息中心首先将消息存储到本地数据文件、内存数据库或者远程数据库等，然后试图将消息发送给接收者，发送成功则将消息从存储中删除，失败则继续尝试。</p>
 <p>消息中心启动以后首先要检查指定的存储位置，如果有未发送成功的消息，则需要把消息发送出去。</p>
 <p>（1）JDBC</p>
-<p>数据库会创建 3 个表：<code>activemq_msgs</code>，<code>activemq_acks</code> 和 <code>activemq_lock</code>。</p>
+<p>数据库会创建3个表：<code>activemq_msgs</code>，<code>activemq_acks</code> 和 <code>activemq_lock</code>。</p>
 <p><code>activemq_msgs</code>用于存储消息，<code>Queue</code> 和 <code>Topic</code> 都存储在这个表中。</p>
 <p>（2）AMQ</p>
 <ul>
@@ -648,21 +648,21 @@
 </ul>
 <p>（4）LevelDB</p>
 <p>5.6 版本推出的持久化引擎，性能高于 KahaDB。可见这几种持久化方式中，LevelDB 性能最好。</p>
-<h4 id="4-Elasticsearch"><a href="#4-Elasticsearch" class="headerlink" title="4. Elasticsearch"></a>4. Elasticsearch</h4><h5 id="4-1-Elasticsearch 概述"><a href="#4-1-Elasticsearch 概述" class="headerlink" title="4.1 Elasticsearch 概述"></a>4.1 Elasticsearch 概述</h5><p>Elasticsearch 是一个基于 Apache Lucene 的开源搜索引擎，使用 Java 语言开发并使用 Lucene 作为其核心来实现索引和搜索。</p>
-<p>Elasticsearch 通过集成的 RESTful API 来隐藏 Lucene 的复杂性，它是：</p>
+<h4 id="4-Elasticsearch"><a href="#4-Elasticsearch" class="headerlink" title="4. Elasticsearch"></a>4. Elasticsearch</h4><h5 id="4-1-Elasticsearch概述"><a href="#4-1-Elasticsearch概述" class="headerlink" title="4.1 Elasticsearch概述"></a>4.1 Elasticsearch概述</h5><p>Elasticsearch是一个基于Apache Lucene的开源搜索引擎，使用Java语言开发并使用Lucene作为其核心来实现索引和搜索。</p>
+<p>Elasticsearch通过集成的RESTful API来隐藏Lucene的复杂性，它是：</p>
 <ul>
 <li>分布式的实时文件存储，每个字段都被索引且可被搜索；</li>
 <li>分布式的实时分析搜索引擎；</li>
-<li>可扩展性，处理 PB 级结构化或非结构化数据。</li>
+<li>可扩展性，处理PB级结构化或非结构化数据。</li>
 </ul>
-<h5 id="4-2- 运行 Elasticsearch"><a href="#4-2- 运行 Elasticsearch" class="headerlink" title="4.2 运行 Elasticsearch"></a>4.2 运行 Elasticsearch</h5><p>（1）前台启动：./bin/elasticsearch</p>
+<h5 id="4-2-运行Elasticsearch"><a href="#4-2-运行Elasticsearch" class="headerlink" title="4.2 运行Elasticsearch"></a>4.2 运行Elasticsearch</h5><p>（1）前台启动：./bin/elasticsearch</p>
 <p>（2）关闭：Ctrl+c</p>
-<h5 id="4-3- 节点与集群"><a href="#4-3- 节点与集群" class="headerlink" title="4.3 节点与集群"></a>4.3 节点与集群</h5><ul>
-<li>节点（Node）：一个运行着的 Elasticsearch 实例。</li>
+<h5 id="4-3-节点与集群"><a href="#4-3-节点与集群" class="headerlink" title="4.3 节点与集群"></a>4.3 节点与集群</h5><ul>
+<li>节点（Node）：一个运行着的Elasticsearch实例。</li>
 <li>集群（cluster）：一组具有相同的 <code>cluster.name</code> 的节点的集合。集群内的节点共享数据，提供故障转移和扩展功能。</li>
 </ul>
-<h4 id="参考资料"><a href="# 参考资料" class="headerlink" title="参考资料"></a>参考资料 </h4><p>[1] <a href="https://www.jianshu.com/p/cd8e037e11ff" target="_blank" rel="noopener"> 消息中间件之 ActiveMQ</a></p>
-<p>[2] <a href="https://www.cnblogs.com/xiguadadage/p/11217604.html" target="_blank" rel="noopener">浅谈 ActiveMQ 与使用</a></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://www.jianshu.com/p/cd8e037e11ff" target="_blank" rel="noopener">消息中间件之ActiveMQ</a></p>
+<p>[2] <a href="https://www.cnblogs.com/xiguadadage/p/11217604.html" target="_blank" rel="noopener">浅谈ActiveMQ与使用</a></p>
 <p>[3] <a href="https://es.xiaoleilu.com/" target="_blank" rel="noopener">Elasticsearch 权威指南（中文版）</a></p>
 
       
@@ -691,7 +691,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/" title="xmall 项目源码学习">https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/</a>
+    <a href="https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/" title="xmall项目源码学习">https://merlinhu0112.github.io/2020/03/01/xmall项目源码学习/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -746,8 +746,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-			  <a href="/2020/03/03/字符串匹配之BF、RK算法/" rel="prev" title="字符串匹配之 BF、RK 算法">
-				<i class="fa fa-chevron-left"></i> 字符串匹配之 BF、RK 算法
+			  <a href="/2020/03/03/字符串匹配之BF、RK算法/" rel="prev" title="字符串匹配之BF、RK算法">
+				<i class="fa fa-chevron-left"></i> 字符串匹配之BF、RK算法
               </a>
             
           </div>
@@ -902,7 +902,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前期配置学习"><span class="nav-text">一、前期配置学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ZooKeeper"><span class="nav-text">1. ZooKeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-ZooKeeper 概述"><span class="nav-text">1.1 ZooKeeper 概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-ZooKeeper 的特点"><span class="nav-text">1.2 ZooKeeper 的特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-ZooKeeper 的配置及运行"><span class="nav-text">1.3 ZooKeeper 的配置及运行 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Redis"><span class="nav-text">2. Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-Redis 概述"><span class="nav-text">2.1 Redis 概述 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2- 安装与启动"><span class="nav-text">2.2 安装与启动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ActiveMQ"><span class="nav-text">3. ActiveMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-ActiveMQ 概述"><span class="nav-text">3.1 ActiveMQ 概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-ActiveMQ 消息类型"><span class="nav-text">3.2 ActiveMQ 消息类型 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-ActiveMQ 的使用"><span class="nav-text">3.3 ActiveMQ 的使用 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-ActiveMQ 进阶之多种 MQ 简要比较"><span class="nav-text">3.4 ActiveMQ 进阶之多种 MQ 简要比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-ActiveMQ 进阶之持久化"><span class="nav-text">3.5 ActiveMQ 进阶之持久化 </span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Elasticsearch"><span class="nav-text">4. Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-Elasticsearch 概述"><span class="nav-text">4.1 Elasticsearch 概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2- 运行 Elasticsearch"><span class="nav-text">4.2 运行 Elasticsearch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3- 节点与集群"><span class="nav-text">4.3 节点与集群</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料 </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前期配置学习"><span class="nav-text">一、前期配置学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ZooKeeper"><span class="nav-text">1. ZooKeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1-ZooKeeper概述"><span class="nav-text">1.1 ZooKeeper概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-ZooKeeper的特点"><span class="nav-text">1.2 ZooKeeper的特点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-ZooKeeper的配置及运行"><span class="nav-text">1.3 ZooKeeper的配置及运行</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Redis"><span class="nav-text">2. Redis</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-Redis概述"><span class="nav-text">2.1 Redis概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-安装与启动"><span class="nav-text">2.2 安装与启动</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ActiveMQ"><span class="nav-text">3. ActiveMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-ActiveMQ概述"><span class="nav-text">3.1 ActiveMQ概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-ActiveMQ消息类型"><span class="nav-text">3.2 ActiveMQ消息类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-ActiveMQ的使用"><span class="nav-text">3.3 ActiveMQ的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-ActiveMQ进阶之多种MQ简要比较"><span class="nav-text">3.4 ActiveMQ进阶之多种MQ简要比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-ActiveMQ进阶之持久化"><span class="nav-text">3.5 ActiveMQ进阶之持久化</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Elasticsearch"><span class="nav-text">4. Elasticsearch</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-1-Elasticsearch概述"><span class="nav-text">4.1 Elasticsearch概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-运行Elasticsearch"><span class="nav-text">4.2 运行Elasticsearch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-节点与集群"><span class="nav-text">4.3 节点与集群</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -936,7 +936,7 @@
     
       <span class="post-meta-item-text">全站共计</span>
     
-    <span title="全站共计">78.4k 字</span>
+    <span title="全站共计">78.0k 字</span>
   
 </div>
 
