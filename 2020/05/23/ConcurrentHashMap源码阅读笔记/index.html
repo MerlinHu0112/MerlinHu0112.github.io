@@ -116,7 +116,7 @@
 
 
 
-  <meta name="keywords" content="Binary Search,Sorted Array,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -127,18 +127,18 @@
 
 
 
-<meta name="description" content="在无序的数组中查找目标值是否存在，只能通过遍历数组的方式，其时间复杂度为O(N)。 在有序的数组中查找目标值是否存在，可以通过遍历数组的方式，时间复杂度为O(N)。考虑到有序这一特性，还可以通过二分查找，使时间复杂度降至O(log N)。">
-<meta name="keywords" content="Binary Search,Sorted Array">
+<meta name="description" content="累了，想一想，再出发！">
+<meta name="keywords" content="“Java”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指Offer题集（三）：二分查找与有序数组查找元素">
-<meta property="og:url" content="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/index.html">
+<meta property="og:title" content="ConcurrentHashMap源码阅读笔记">
+<meta property="og:url" content="https://merlinhu0112.github.io/2020/05/23/ConcurrentHashMap源码阅读笔记/index.html">
 <meta property="og:site_name" content="Merlin小站">
-<meta property="og:description" content="在无序的数组中查找目标值是否存在，只能通过遍历数组的方式，其时间复杂度为O(N)。 在有序的数组中查找目标值是否存在，可以通过遍历数组的方式，时间复杂度为O(N)。考虑到有序这一特性，还可以通过二分查找，使时间复杂度降至O(log N)。">
+<meta property="og:description" content="累了，想一想，再出发！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-07T08:05:31.868Z">
+<meta property="og:updated_time" content="2020-05-23T08:33:55.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指Offer题集（三）：二分查找与有序数组查找元素">
-<meta name="twitter:description" content="在无序的数组中查找目标值是否存在，只能通过遍历数组的方式，其时间复杂度为O(N)。 在有序的数组中查找目标值是否存在，可以通过遍历数组的方式，时间复杂度为O(N)。考虑到有序这一特性，还可以通过二分查找，使时间复杂度降至O(log N)。">
+<meta name="twitter:title" content="ConcurrentHashMap源码阅读笔记">
+<meta name="twitter:description" content="累了，想一想，再出发！">
 
 
 
@@ -168,13 +168,13 @@
 
 
 
-  <link rel="canonical" href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/">
+  <link rel="canonical" href="https://merlinhu0112.github.io/2020/05/23/ConcurrentHashMap源码阅读笔记/">
 
 
 
 
 
-  <title>剑指Offer题集（三）：二分查找与有序数组查找元素 | Merlin小站</title>
+  <title>ConcurrentHashMap源码阅读笔记 | Merlin小站</title>
   
 
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/">
+    <link itemprop="mainEntityOfPage" href="https://merlinhu0112.github.io/2020/05/23/ConcurrentHashMap源码阅读笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Merlin Hu">
@@ -360,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">剑指Offer题集（三）：二分查找与有序数组查找元素</h1>
+          <h1 class="post-title" itemprop="name headline">ConcurrentHashMap源码阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -375,8 +375,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T16:25:33+08:00">
-                2020-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-23T16:33:55+08:00">
+                2020-05-23
               </time>
             
 
@@ -391,34 +391,12 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2020-04-07T16:05:31+08:00">
-                2020-04-07
+              <time title="更新于" itemprop="dateModified" datetime="2020-05-23T16:33:55+08:00">
+                2020-05-23
               </time>
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/剑指Offer/" itemprop="url" rel="index">
-                    <span itemprop="name">剑指Offer</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -432,8 +410,8 @@
 				
                  <span class="post-meta-item-text">评论</span>
 				
-                <a href="/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/" itemprop="commentCount"></span>
+                <a href="/2020/05/23/ConcurrentHashMap源码阅读笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/23/ConcurrentHashMap源码阅读笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +419,7 @@
 
           
           
-             <span id="/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/" class="leancloud_visitors" data-flag-title="剑指Offer题集（三）：二分查找与有序数组查找元素">
+             <span id="/2020/05/23/ConcurrentHashMap源码阅读笔记/" class="leancloud_visitors" data-flag-title="ConcurrentHashMap源码阅读笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -466,7 +444,7 @@
                   <span class="post-meta-item-text">全文共</span>
                 
                 <span title="全文共">
-                  1,425 字
+                  0 字
                 </span>
               
 
@@ -482,7 +460,7 @@
                   <span class="post-meta-item-text">阅读本文约耗时</span>
                 
                 <span title="阅读本文约耗时">
-                  6 分钟
+                  1 分钟
                 </span>
               
             </div>
@@ -490,14 +468,6 @@
           
 		  
 	      
-			 <div class="post-tags">
-				
-					<a href="/tags/Binary-Search/" rel="tag"><i class="fa fa-tag"></i> Binary Search</a>
-				
-					<a href="/tags/Sorted-Array/" rel="tag"><i class="fa fa-tag"></i> Sorted Array</a>
-				
-			</div>
-         
 		 
         </div>
       </header>
@@ -512,56 +482,7 @@
       
 
       
-        <p>在无序的数组中查找目标值是否存在，只能通过遍历数组的方式，其时间复杂度为O(N)。</p>
-<p>在<strong>有序</strong>的数组中查找目标值是否存在，可以通过遍历数组的方式，时间复杂度为O(N)。考虑到有序这一特性，还可以通过<strong>二分查找</strong>，使时间复杂度降至<strong>O(log N)</strong>。</p>
-<a id="more"></a>
-
-<h4 id="面试题11-旋转数组的最小数字"><a href="#面试题11-旋转数组的最小数字" class="headerlink" title="面试题11. 旋转数组的最小数字"></a>面试题11. 旋转数组的最小数字</h4><h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。例如，数组 <code>[0, 1, 2, 4, 5, 6, 7]</code> 可能变为 <code>[4, 5, 6, 7, 0, 1, 2]</code> ，最小的数字是 <code>0</code> 。</p>
-<p>注意数组中<strong>可能存在重复的元素</strong>。</p>
-<p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题11. 旋转数组的最小数字</a></p>
-<p><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/" target="_blank" rel="noopener">力扣-154. 寻找旋转排序数组中的最小值 II</a></p>
-<h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>（1）遍历数组，时间复杂度为O(N)。</p>
-<p>（2）利用<strong>数组部分有序</strong>的特性，采用二分法，时间复杂度为O(log N)。</p>
-<p>设置数组的左边界 <code>left</code> 和右边界 <code>right</code> 指针，及中间元素 <code>mid</code> 指针。将 <code>numbers[mid]</code> 与 <code>numbers[right]</code> 比较，会有如下三种情况：</p>
-<ul>
-<li><code>numbers[mid] &gt; numbers[right]</code> 。当前数组的中间元素和右边界不在同一侧，即最小元素值应该在 <code>mid</code> 和 <code>right</code> 之间，故令 <code>left = mid + 1</code>，继续二分查找。</li>
-<li><code>numbers[mid] &lt; numbers[right]</code> 。当前数组的中间元素和右边界在同一侧，即最小元素值应该在 <strong>mid之前（含mid）</strong>，故令 <code>right = mid</code>，继续二分查找。</li>
-<li><code>numbers[mid] = numbers[right]</code> 。此时无法断定最小元素值是在 <code>mid</code> 的哪一侧，故令 <code>right = right - 1</code>，继续二分查找。若数组所有元素均相同，则时间复杂度恶化为O(N)。</li>
-</ul>
-<h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minArray</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = numbers.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid;</span><br><span class="line">        <span class="comment">// 循环，直至left==right</span></span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(numbers[mid] &gt; numbers[right])&#123;</span><br><span class="line">                <span class="comment">// 目标元素在右边</span></span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(numbers[mid] &lt; numbers[right])&#123;</span><br><span class="line">                <span class="comment">// 目标元素在左边</span></span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：平均为O(log N)，最坏为O(N)。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-<h5 id="4-数组不含重复值的情况"><a href="#4-数组不含重复值的情况" class="headerlink" title="4. 数组不含重复值的情况"></a>4. 数组不含重复值的情况</h5><p><a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">153. 寻找旋转排序数组中的最小值</a></p>
-<p><strong>数组不含重复值</strong>：此时不存在上述 <code>numbers[mid] = numbers[right]</code> 的情形，算法的时间复杂度稳定为O(log N)。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 二分法</span></span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            mid = left + (right-left)/<span class="number">2</span>; <span class="comment">// 防加和溢出</span></span><br><span class="line">            <span class="keyword">if</span>(nums[mid] &gt; nums[right])&#123;</span><br><span class="line">                <span class="comment">// 目标元素在右边</span></span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 目标元素在左边</span></span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            不同于154题的元素可重复，本题元素不可重复，即</span></span><br><span class="line"><span class="comment">            不存在"nums[mid]==nums[right]"的情况，因此使得</span></span><br><span class="line"><span class="comment">            算法的时间复杂度稳定为O(logN)</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="面试题53-I-在排序数组中查找数字-I"><a href="#面试题53-I-在排序数组中查找数字-I" class="headerlink" title="面试题53-I. 在排序数组中查找数字 I"></a>面试题53-I. 在排序数组中查找数字 I</h4><h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>在有序的数组中找出指定值的左右边界，指定值可有多个，也可不存在。要求算法的时间复杂度为O(log N)。</p>
-<p> <a href="https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题53-I. 在排序数组中查找数字 I</a></p>
-<p>  <a href="https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/" target="_blank" rel="noopener">力扣-34. 在排序数组中查找元素的第一个和最后一个位置</a></p>
-<h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><p><strong>有序数组 + O(log N)的时间复杂度 == 二分法</strong></p>
-<p>不同于普通的二分法查找目标值是否存在，此类题不仅需要明确目标值是否存在，还要确定存在的目标值的左右索引。</p>
-<p>设 <code>left</code>、<code>right</code>、<code>mid</code> 指针。显然，有如下三种情况：</p>
-<p>（1）<code>nums[mid] &lt; target</code>，目标值可能位于数组右侧，令 <code>left = mid + 1</code>，继续二分查找。</p>
-<p>（2）<code>nums[mid] &gt; target</code>，目标值可能位于数组左侧，令 <code>right = mid - 1</code>，继续二分查找。</p>
-<p>（3）<code>nums[mid] = target</code>，匹配到目标值。此时，需要进一步确定目标值的左右边界。</p>
-<ul>
-<li>对于左边界：若 <code>mid &gt; 0 &amp;&amp; nums[mid] == nums[mid-1]</code> 成立，令 <code>right = mid - 1</code>，继续二分查找；否则，<code>mid</code> 为左边界，直接返回。</li>
-<li>对于右边界：若 <code>mid &lt; nums.length - 1 &amp;&amp; nums[mid] == nums[mid+1]</code> 成立，令 <code>right = mid - 1</code>，继续二分查找；否则，<code>mid</code> 为右边界，直接返回。</li>
-</ul>
-<h5 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 二分法，使得时间复杂度为O(logN)以达到题目要求。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] searchRange(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] res = &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;;</span><br><span class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span> || target &lt; nums[<span class="number">0</span>] || target &gt; nums[nums.length-<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftIndex = binarySearch(nums, target, <span class="keyword">true</span>);</span><br><span class="line">        res[<span class="number">0</span>] = leftIndex;</span><br><span class="line">        <span class="keyword">int</span> rightIndex = binarySearch(nums, target, <span class="keyword">false</span>);</span><br><span class="line">        res[<span class="number">1</span>] = rightIndex;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// flag标志位：flag为true时表示，当匹配到目标值时，进入左边寻找左边界；</span></span><br><span class="line">    <span class="comment">// flag为false时表示，当匹配到目标值时，进入右边寻找右边界</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">binarySearch</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> target, <span class="keyword">boolean</span> flag)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = arr.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            mid = left + (right-left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(arr[mid]==target)&#123;</span><br><span class="line">                <span class="comment">// 匹配到目标值</span></span><br><span class="line">                <span class="keyword">if</span>(flag)&#123;</span><br><span class="line">                    <span class="comment">// 寻找左边界</span></span><br><span class="line">                    <span class="keyword">if</span>(mid &gt; <span class="number">0</span> &amp;&amp; arr[mid]==arr[mid-<span class="number">1</span>])&#123;</span><br><span class="line">                        right = mid - <span class="number">1</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> mid; <span class="comment">// mid即为左边界</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">// 寻找右边界</span></span><br><span class="line">                    <span class="keyword">if</span>(mid &lt; arr.length - <span class="number">1</span> &amp;&amp; arr[mid]==arr[mid+<span class="number">1</span>])&#123;</span><br><span class="line">                        left = mid + <span class="number">1</span>;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        <span class="keyword">return</span> mid; <span class="comment">// mid即为右边界</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(arr[mid] &gt; target)&#123;</span><br><span class="line">                <span class="comment">// 目标值可能在当前数组的左边</span></span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">// 目标值可能在当前数组的右边</span></span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法分析：</p>
-<ul>
-<li>时间复杂度：O(log N)。</li>
-<li>空间复杂度：O(1)。</li>
-</ul>
-<hr>
-
+        
       
     </div>
 	
@@ -588,7 +509,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/" title="剑指Offer题集（三）：二分查找与有序数组查找元素">https://merlinhu0112.github.io/2020/04/06/剑指Offer题集（三）：二分查找与有序数组查找元素/</a>
+    <a href="https://merlinhu0112.github.io/2020/05/23/ConcurrentHashMap源码阅读笔记/" title="ConcurrentHashMap源码阅读笔记">https://merlinhu0112.github.io/2020/05/23/ConcurrentHashMap源码阅读笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -643,18 +564,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-			  <a href="/2020/04/09/剑指Offer题集（四）：矩阵搜索问题/" rel="prev" title="剑指Offer题集（四）：矩阵搜索问题">
-				<i class="fa fa-chevron-left"></i> 剑指Offer题集（四）：矩阵搜索问题
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-			  <a href="/2020/04/06/剑指Offer题集（二）：二叉树问题集合/" rel="next" title="剑指Offer题集（二）：二叉树问题集合">
-				剑指Offer题集（二）：二叉树问题集合 <i class="fa fa-chevron-right"></i>
+			  <a href="/2020/05/22/Spring学习之IoC/" rel="next" title="Spring学习之IoC">
+				Spring学习之IoC <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,17 +627,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -789,22 +697,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题11-旋转数组的最小数字"><span class="nav-text">面试题11. 旋转数组的最小数字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现"><span class="nav-text">3. 实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-数组不含重复值的情况"><span class="nav-text">4. 数组不含重复值的情况</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题53-I-在排序数组中查找数字-I"><span class="nav-text">面试题53-I. 在排序数组中查找数字 I</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-题目-1"><span class="nav-text">1. 题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-思路-1"><span class="nav-text">2. 思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-实现-1"><span class="nav-text">3. 实现</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
