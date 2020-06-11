@@ -1,6 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring学习之AOP</title>
+    <url>/2020/06/11/Spring%E5%AD%A6%E4%B9%A0%E4%B9%8BAOP/</url>
+    <content><![CDATA[<p>软件开发就是为了解决各种需求包括<strong>业务需求</strong>和<strong>系统需求</strong>。使用面向对象编程（OOP，Object-Oriented Programming）可以很好地对业务需求等普通关注点进行抽象和封装，使之模块化。但对于散落在系统中各处的系统需求的实现，OOP 无法从容应对。于是，<strong>面向切面编程</strong>（<strong>AOP</strong>，Aspect-Oriented Programming）这一理念被提了出来。</p>
+<p>AOP 是一种理念，而不是一种新的开发模式。它需要借助某种语言（不一定是 Java）以实现相应的概念实体，这些语言则被成为 AOL（Aspect-Oriented Language）。譬如，<strong>AspectJ</strong> 就是一种扩展自 Java 语言的 AOL。</p>
+<a id="more"></a>
+
+<h4 id="一、AOP-的分类"><a href="#一、AOP-的分类" class="headerlink" title="一、AOP 的分类"></a>一、AOP 的分类</h4><p>在 Java 语言范围内，常见的 AOP 框架有：<strong>AspectJ</strong>、<strong>Spring AOP</strong>、JBoss AOP 和 Nanning 等。AOP 可被划分为两种不同的类型：静态 AOP 和动态 AOP。</p>
+<h5 id="1-1-静态-AOP"><a href="#1-1-静态-AOP" class="headerlink" title="1.1 静态 AOP"></a>1.1 静态 AOP</h5><p>第一代 AOP 被称为静态 AOP，AspectJ 是其中典型的代表。</p>
+<p>早期的 AspectJ 框架使用 ajc 编译器<strong>将横切逻辑以 Java 字节码的形式编译到系统的对应模块中</strong>。</p>
+<ul>
+<li>优点：在编译时即将横切逻辑插入 Java 类中，因此运行时性能较高。</li>
+<li>缺点：灵活性不够。</li>
+</ul>
+<h5 id="1-2-动态-AOP-之动态代理"><a href="#1-2-动态-AOP-之动态代理" class="headerlink" title="1.2 动态 AOP 之动态代理"></a>1.2 动态 AOP 之动态代理</h5><p>第二代 AOP 被称为动态 AOP。Spring AOP、JBoss AOP 以及 Nanning 等框架均为动态 AOP。此外，AspectJ 框架后来融合了 AspectWerkz 框架，开始支持动态 AOP。动态代理是动态 AOP 的实现方式之一。</p>
+<p>动态代理实现 AOP：将横切逻辑封装到代理类的 InvocationHandler 方法中。在程序运行期间，利用<strong>反射技术动态地生成代理对象并将横切逻辑加入代理对象中</strong>。</p>
+<ul>
+<li>优点：灵活性高。</li>
+<li>缺点：<ul>
+<li>被织入横切逻辑的 Java 类必须实现接口；</li>
+<li>运行时动态织入，性能不及静态织入。</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-3-动态-AOP-之动态字节码增强"><a href="#1-3-动态-AOP-之动态字节码增强" class="headerlink" title="1.3 动态 AOP 之动态字节码增强"></a>1.3 动态 AOP 之动态字节码增强</h5><p>动态字节码技术也是动态 AOP 的实现方式之一。使用 ASM 或 CGLIB 等工具库，在程序运行期间，为需要织入横切逻辑的 Java 类<strong>动态地生成子类并将横切逻辑加入子类中</strong>。</p>
+<ul>
+<li>优点：灵活性高。当 Java 类未实现接口时，不能使用动态代理，转而可以借用动态字节码技术。</li>
+<li>缺点：对 final 修饰的类，无法使用此技术。</li>
+</ul>
+<blockquote>
+<p>Spring AOP 默认使用动态代理实现 AOP。当相应的 Java 类没有实现接口时，则采用 CGLIB 动态字节码技术实现 AOP。</p>
+</blockquote>
+<h4 id="二、Spring-AOP-的概念实体"><a href="#二、Spring-AOP-的概念实体" class="headerlink" title="二、Spring AOP 的概念实体"></a>二、Spring AOP 的概念实体</h4><p>AOP 的相关概念实体如下：</p>
+<ul>
+<li>Joinpoint（连接点）：目标对象中，允许增强的方法</li>
+<li>Pointcut（切入点）：可以插入增强处理的连接点</li>
+<li>Advice（通知）：增强代码</li>
+<li>Aspect（切面）：Pointcut + Advice</li>
+<li>Target（目标对象）：被代理对象</li>
+<li>Weaving（织入）：将 Advice 织入 Pointcut 的过程，完成方法的增强</li>
+</ul>
+<blockquote>
+<p>Spring AOP 中部分概念与上述概念存在差异，如 Spring 中无 Aspect，而是 Advisor。</p>
+</blockquote>
+<h5 id="2-1-Joinpoint"><a href="#2-1-Joinpoint" class="headerlink" title="2.1 Joinpoint"></a>2.1 Joinpoint</h5><p>AOP 的 Joinpoint 支持多种不同的类型，如方法调用、方法执行、字段设置和获取等，但 Spring AOP 仅支持<strong>方法执行类型</strong>的 Joinpoint。正是因为 Spring AOP 不支持构造器连接点，我们无法在创建 bean 的时候应用 AOP。</p>
+<h5 id="2-2-Pointcut"><a href="#2-2-Pointcut" class="headerlink" title="2.2 Pointcut"></a>2.2 Pointcut</h5><p>Spring 提供 org.springframework.aop.Pointcut 接口作为切入点的顶级抽象，它定义了用于捕捉 Joinpoint 的方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Pointcut</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取切入点的ClassFilter对象，用于匹配将被织入的对象。</span></span><br><span class="line">	<span class="function">ClassFilter <span class="title">getClassFilter</span><span class="params">()</span></span>; </span><br><span class="line">    <span class="comment">// 获取切入点的MethodMatcher对象，用于匹配相应的Joinpoint。 </span></span><br><span class="line">	<span class="function">MethodMatcher <span class="title">getMethodMatcher</span><span class="params">()</span></span>; </span><br><span class="line">    <span class="comment">// 若Pointcut类型为TruePointcut，默认支持匹配所有对象上所有的Joinpoint。 </span></span><br><span class="line">	Pointcut TRUE = TruePointcut.INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>org.springframework.aop.MethodMatcher 接口定义了方法级别的拦截！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodMatcher</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Method method, Class&lt;?&gt; targetClass)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">isRuntime</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(Method method, Class&lt;?&gt; targetClass, Object... args)</span></span>;</span><br><span class="line">	MethodMatcher TRUE = TrueMethodMatcher.INSTANCE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Spring 提供两个重要的实现：Class StaticMethodMatcher 和 DynamicMethodMatcher。</p>
+<ul>
+<li>StaticMethodMatcher：isRuntime() 方法返回 false 时，调用两个参数的 matches 方法，表示不需要考虑 Joinpoint 的方法参数。方法的返回结果是可以缓存的。</li>
+<li>DynamicMethodMatcher：isRuntime() 方法返回 true 时，只有当两个参数的 matches 方法返回 true 时，三个参数的 matches 方法才会被执行。匹配的结果是无法缓存的。</li>
+</ul>
+<p><img src="/2020/06/11/Spring学习之AOP/Pointcut%E7%9A%84%E5%B8%B8%E8%A7%81%E5%AE%9E%E7%8E%B0%E7%B1%BB.jpg" alt></p>
+<h5 id="2-3-Advice"><a href="#2-3-Advice" class="headerlink" title="2.3 Advice"></a>2.3 Advice</h5><p>Advice 实现了被织入到 Joinpoint 中的横切逻辑，即增强代码。根据位置，Advice 可被细分为：</p>
+<ul>
+<li>Before Advice（前置通知）：在 Joinpoint 指定位置之前执行，可完成系统的初始化工作。</li>
+<li>After Advice（后置通知）：在 Joinpoint 指定位置之后执行，可继续细分<ul>
+<li>After Returning Advice（后置返回通知）：Joinpoint 处执行流程正常完成后执行；</li>
+<li>Throws Advice（异常通知）：Joinpoint 处执行过程中抛出异常时执行；</li>
+<li>After Advice：必须执行（Spring AOP 未提供）。</li>
+</ul>
+</li>
+<li>Around Advice（环绕通知）：在 Joinpoint 前后分别执行指定的横切逻辑。Spring 未提供相应的接口，而是直接使用 AOP Alliance 提供的 <strong>Interceptor（拦截器）</strong> 接口。</li>
+<li>Introduction：无特定执行时机，用来为对象添加新的特性或行为。</li>
+</ul>
+<p>在 Spring 中，依照 Advice 实例能否被共享，分为 per-class 类型和 per-instance 类型：</p>
+<ul>
+<li>per-class：可在目标对象类的所有实例间共享，包括 Before Advice、After Advice 和 Interceptor。</li>
+<li>per-instance：为不同的实例对象保存各自的状态和相关逻辑，Introduction。</li>
+</ul>
+<p><img src="/2020/06/11/Spring学习之AOP/Spring%E4%B8%ADAdvice%E8%B0%B1%E5%9B%BE.jpg" alt></p>
+<p>（1）Before Advice</p>
+<p>实现 org.springframework.aop.MethodBeforeAdvice 接口。此横切逻辑不能直接中断 Joinpoint 执行流程，除非 before 方法中抛出异常。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodBeforeAdvice</span> <span class="keyword">extends</span> <span class="title">BeforeAdvice</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">before</span><span class="params">(Method method, Object[] args, Object target)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）Throws Advice</p>
+<p>通过 Throws Advice，可实现实时监控程序运行时产生的异常，并通过一定的机制（如发送邮件）告知管理者。</p>
+<p>Spring 提供的 org.springframework.aop.ThrowsAdvice 接口没有定义任何方法，因为这些横切逻辑的调用依靠的是 <strong>Java 的反射机制</strong>。但在实现该接口的时候，所实现的方法应遵守一定的规则，常见三种形式如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExceptionThrowsAdvice</span> <span class="keyword">implements</span> <span class="title">ThrowsAdvice</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 普通异常处理</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(Exception ex)</span></span>&#123;&#125;</span><br><span class="line">    <span class="comment">// 运行时异常处理</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(RuntimeException ex)</span></span>&#123;&#125;</span><br><span class="line">    <span class="comment">// 程序运行时异常处理，可用于实时监控程序运行时产生的异常</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">(Method m, Object[] args, </span></span></span><br><span class="line"><span class="function"><span class="params">                              Object target, RuntimeException ex)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）After Returning Advice</p>
+<p>Spring 提供的 org.springframework.aop.AfterReturningAdvice 接口定义的方法在 Joinpoint 执行完毕后，可访问 Joinpoint 处方法的返回值、方法参数、目标对象等，但<strong>不能修改方法的返回值</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AfterReturningAdvice</span> <span class="keyword">extends</span> <span class="title">AfterAdvice</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">(Object returnValue, Method method, Object[] args,</span></span></span><br><span class="line"><span class="function"><span class="params">                        Object target)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）Interceptor</strong></p>
+<p>Spring 未直接定义 Around Advice，而是直接使用 AOP Alliance 提供的 MethodInterceptor 接口。MethodInterceptor 接口提供的功能更加强大，可以完全覆盖前三种 Advice 所提供的功能。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MethodInterceptor</span> <span class="keyword">extends</span> <span class="title">Interceptor</span> </span>&#123;</span><br><span class="line">    <span class="function">Object <span class="title">invoke</span><span class="params">(MethodInvocation invocation)</span> <span class="keyword">throws</span> Throwable</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过调用 MethodInvocation 的 <strong>proceed() ** 方法，可让程序执行继续沿着调用链传播，即执行 Joinpoint 处原有的流程。</strong>在 proceed() 方法前后可分别插入横切逻辑**。</p>
+<h5 id="2-4-Advisor"><a href="#2-4-Advisor" class="headerlink" title="2.4 Advisor"></a>2.4 Advisor</h5><p>Spring AOP 中无 Aspect 的概念，取而代之的是 Advisor。</p>
+<blockquote>
+<p>Aspect 可由多个 Pointcut 和多个 Advice 组成，而 Advisor 一般由一个 Pointcut 和一个 Advice 组成。</p>
+</blockquote>
+<p>org.springframework.aop.Advisor 接口有两个常见子接口：PointcutAdvisor 和 IntroductionAdvisor。</p>
+<p>PointcutAdvisor 支持任何类型的 Pointcut 和除 Introduction 外的任何类型的 Advice。</p>
+<ul>
+<li>DefaultPointcutAdvisor：支持任何类型的 Pointcut 和除 Introduction 外的任何类型的 Advice。</li>
+<li>NameMatchMethodPointcutAdvisor：支持 NameMatchMethodPointcut 类型的 Pointcut 和除 Introduction 外的任何类型的 Advice。</li>
+<li>RegexpMethodPointcutAdvisor：限定通过正则表达式为其设置相应的 Pointcut。</li>
+</ul>
+<h5 id="2-5-织入"><a href="#2-5-织入" class="headerlink" title="2.5 织入"></a>2.5 织入</h5><p>AspectJ 使用 ajc 编译器作为织入器，Spring AOP 基于<strong>代理模式</strong>使用 <strong>ProxyFactory</strong> 作为最基本的织入器实现。</p>
+<h4 id="三、使用-Spring-AOP-的两种方式"><a href="#三、使用-Spring-AOP-的两种方式" class="headerlink" title="三、使用 Spring AOP 的两种方式"></a>三、使用 Spring AOP 的两种方式</h4><p>Spring AOP 有两种常见的使用方式：</p>
+<ul>
+<li>基于 XML 的声明方式</li>
+<li>基于 AspectJ 的注解方式</li>
+</ul>
+<h5 id="3-1-基于-XML-的声明方式"><a href="#3-1-基于-XML-的声明方式" class="headerlink" title="3.1 基于 XML 的声明方式"></a>3.1 基于 XML 的声明方式</h5><p>编写切面类，类中定义了不同的增强方法。在 Spring 的 XML 配置文件中，声明切面、切点和相应的通知。</p>
+<p>（1）业务接口</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">service</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）业务实现类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span>(<span class="string">"userService"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">service</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"为用户提供服务！"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">520</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）<strong>自定义切面类</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(<span class="string">"myAspect"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 前置通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===前置通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 后置通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===后置通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 后置返回通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object result)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===后置返回通知==="</span>);</span><br><span class="line">        System.out.println(<span class="string">"后置返回通知###方法的返回结果为："</span> + result.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 异常通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingAdvice</span><span class="params">(Exception ex)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"抛出异常！异常信息如下："</span>);</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">        System.out.println(<span class="string">"===异常通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 环绕通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint obj)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===环绕通知开始==="</span>);</span><br><span class="line">        Object result = obj.proceed(); <span class="comment">// 让程序执行继续沿着调用链传播</span></span><br><span class="line">        System.out.println(<span class="string">"环绕通知###方法的返回结果为："</span> + result);</span><br><span class="line">        System.out.println(<span class="string">"===环绕通知结束==="</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1314</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）Spring 配置文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop/spring-aop.xsd "</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--配置自动包扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.merlin"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--声明切面、切点和通知--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"myPointcut"</span> <span class="attr">expression</span>=<span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">"myAspect"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"beforeAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"myPointcut"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"afterReturningAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"myPointcut"</span> <span class="attr">returning</span>=<span class="string">"result"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"afterThrowingAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"myPointcut"</span> <span class="attr">throwing</span>=<span class="string">"ex"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"afterAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"myPointcut"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"aroundAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"myPointcut"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（5）测试类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">( String[] args )</span> </span>&#123;</span><br><span class="line">        ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"ApplicationContext.xml"</span>);</span><br><span class="line">        UserService userService = (UserService) applicationContext.getBean(<span class="string">"userService"</span>);</span><br><span class="line">        <span class="keyword">int</span> result = userService.service();</span><br><span class="line">        System.out.println(<span class="string">"返回值为："</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（6）运行结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">===前置通知===</span><br><span class="line">===环绕通知开始===</span><br><span class="line">为用户提供服务！</span><br><span class="line">环绕通知###方法的返回结果为：520</span><br><span class="line">===环绕通知结束===</span><br><span class="line">===后置通知===</span><br><span class="line">===后置返回通知===</span><br><span class="line">后置返回通知###方法的返回结果为：1314</span><br><span class="line">返回值为：<span class="number">1314</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ol>
+<li>根据运行结果不难发现，在环绕通知中，方法的返回值由 <code>520</code> 被修改为 <code>1314</code> 。可见，<strong>环绕通知可以修改连接点方法的返回值</strong>。</li>
+<li>在配置 <code>&lt;aop:config&gt;</code> 的时候，若切点元素 <code>&lt;aop:pointcut&gt;</code> 位于切面元素 <code>&lt;aop:aspect&gt;</code> 内，则该切点只对当前切面有效，对于 <code>&lt;aop:config&gt;</code> 中定义的其它切面是无效的。</li>
+<li>接第 2 条。当切点元素 <code>&lt;aop:pointcut&gt;</code> 在切面元素 <code>&lt;aop:aspect&gt;</code> <strong>之前</strong>被定义时，则该切点对于 <code>&lt;aop:config&gt;</code> 中定义的所有切面均有效。</li>
+</ol>
+<h5 id="3-2-基于-AspectJ-的注解方式"><a href="#3-2-基于-AspectJ-的注解方式" class="headerlink" title="3.2 基于 AspectJ 的注解方式"></a>3.2 基于 AspectJ 的注解方式</h5><p>与前述基于 XML 的声明方式不同的是，注解方式是通过不同的注解符号标识切面、切点，如 <code>@Aspect</code>、<code>@Before</code>、<code>@Around</code> 等。</p>
+<blockquote>
+<p>业务接口、业务实现类、测试类同前</p>
+</blockquote>
+<p>（1）切面类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.merlin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(<span class="string">"myAspect"</span>)</span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">// 注解，标识切面</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 前置通知</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===前置通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 后置通知</span></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterAdvice</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===后置通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 后置返回通知</span></span><br><span class="line">    <span class="meta">@AfterReturning</span>(value = <span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>, returning = <span class="string">"result"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningAdvice</span><span class="params">(Object result)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===后置返回通知==="</span>);</span><br><span class="line">        System.out.println(<span class="string">"后置返回通知###方法的返回结果为："</span> + result.toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 异常通知</span></span><br><span class="line">    <span class="meta">@AfterThrowing</span>(value = <span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>, throwing = <span class="string">"ex"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingAdvice</span><span class="params">(Exception ex)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"抛出异常！异常信息如下："</span>);</span><br><span class="line">        ex.printStackTrace();</span><br><span class="line">        System.out.println(<span class="string">"===异常通知==="</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 环绕通知</span></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* cn.merlin.UserServiceImpl.service(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">aroundAdvice</span><span class="params">(ProceedingJoinPoint obj)</span> <span class="keyword">throws</span> Throwable</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"===环绕通知开始==="</span>);</span><br><span class="line">        Object result = obj.proceed(); <span class="comment">// 让程序执行继续沿着调用链传播</span></span><br><span class="line">        System.out.println(<span class="string">"环绕通知###方法的返回结果为："</span> + result);</span><br><span class="line">        System.out.println(<span class="string">"===环绕通知结束==="</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1314</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）运行结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">===环绕通知开始===</span><br><span class="line">===前置通知===</span><br><span class="line">为用户提供服务！</span><br><span class="line">环绕通知###方法的返回结果为：520</span><br><span class="line">===环绕通知结束===</span><br><span class="line">===后置通知===</span><br><span class="line">===后置返回通知===</span><br><span class="line">后置返回通知###方法的返回结果为：1314</span><br><span class="line">返回值为：<span class="number">1314</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-3-切点表达式"><a href="#3-3-切点表达式" class="headerlink" title="3.3 切点表达式"></a>3.3 切点表达式</h5><p>基于 3.1 和 3.2 小节不难发现，在使用 Spring AOP 时，重点在于切面类和类中的增强方法，以及切点表达式 execution。</p>
+<p>切点表达式的基本格式如下（<code>?</code> 表示当前项是非必须的）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execution(modifiers-pattern? ret-type-pattern declaring-type-pattern?name-pattern(param-pattern) <span class="keyword">throws</span>-pattern?)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>modifiers-pattern：表示方法的修饰符，如 public；</li>
+<li>ret-type-pattern：方法的返回值类型，如 void；</li>
+<li>declaring-type-pattern：方法所在的<strong>类的全路径名</strong>；</li>
+<li>name-pattern：方法名；</li>
+<li>param-pattern：方法的形参列表；</li>
+<li>throws-pattern：方法抛出的异常类型。</li>
+</ul>
+<p>如前述代码所示，</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execution(* cn.merlin.UserServiceImpl.service(..))</span><br></pre></td></tr></table></figure>
+
+<p>表示匹配 cn.merlin.UserServiceImpl 类的 service 方法，该方法返回值可为任意类型，形参列表也是任意的。</p>
+<h4 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h4><p>本文分别介绍了动态代理和动态字节码增强两种方式以实现 Spring AOP。动态代理是在程序运行期间，利用反射技术动态地生成代理对象并将横切逻辑加入代理对象中，因此要求被插入横切逻辑的 Java 类必须实现接口。否则，只能使用 CGLIB 动态代理技术生成子类并将横切逻辑放入子类中。</p>
+<p>此外，本文还展示了基于 XML 的声明和基于 AspectJ 的注解两种使用 Spring AOP 的方式。需要注意的是，Spring 只支持方法级别的连接点，即切面的粒度是方法。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] 《Spring 揭秘》</p>
+<p>[2] <a href="https://www.cnblogs.com/xiaoxi/p/5981514.html" target="_blank" rel="noopener">Spring系列之AOP实现的两种方式</a></p>
+<p>[3] <a href="https://www.cnblogs.com/hang-on/p/11383289.html" target="_blank" rel="noopener">(一)spring aop的两种配置方式。</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>AOP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ConcurrentHashMap源码阅读笔记</title>
     <url>/2020/05/23/ConcurrentHashMap%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[]]></content>
@@ -72,7 +247,7 @@
 
 <ol start="2">
 <li><p>随后获取 bean 实例的注册表，用于注册 BeanDefinition 对象。bean 名称与 BeanDefinition 对象的映射表<code>beanDefinitionMap</code> 和单例 bean 的缓存 <code>singletonObjects</code> 底层结构均为 ConcurrentHashMap。</p>
-<p>在创建 bean 时，默认采用 CGLib 动态生成子类。</p>
+<p>在创建 bean 时，默认采用 CGLIB 动态生成子类。</p>
 </li>
 </ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">DefaultListableBeanFactory beanRegistry = <span class="keyword">new</span> DefaultListableBeanFactory();</span><br></pre></td></tr></table></figure>
@@ -82,7 +257,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultListableBeanFactory</span> <span class="keyword">extends</span> <span class="title">AbstractAutowireCapableBeanFactory</span></span></span><br><span class="line"><span class="class">	<span class="keyword">implements</span> <span class="title">ConfigurableListableBeanFactory</span>, <span class="title">BeanDefinitionRegistry</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 调用DefaultListableBeanFactory类的空参构造函数完成实例化</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DefaultListableBeanFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(); </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>实例化过程中，部分 DefaultListableBeanFactory 类及其父类字段被初始化。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*** 初始化的来自DefaultListableBeanFactory类的部分字段 ***/</span></span><br><span class="line"><span class="comment">// 允许使用相同的bean名称重新注册不同的bean，即以后一个bean覆盖前一个</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> allowBeanDefinitionOverriding = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// 允许预加载类，包括设置了懒加载的bean</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> allowEagerClassLoading = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// bean名称与BeanDefinition对象的映射表</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, BeanDefinition&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 来自父类的部分字段 ***/</span></span><br><span class="line"><span class="comment">// 创建bean实例的策略，默认使用CGLib动态生成子类</span></span><br><span class="line"><span class="keyword">private</span> InstantiationStrategy instantiationStrategy = </span><br><span class="line">    							<span class="keyword">new</span> CglibSubclassingInstantiationStrategy();</span><br><span class="line"><span class="comment">// 获取类加载器</span></span><br><span class="line"><span class="keyword">private</span> ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();</span><br><span class="line"><span class="comment">// true表示缓存bean元数据，false表示每次使用时获取</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> cacheBeanMetadata = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// 由FactoryBeans创建的单例对象的缓存，映射关系为“FactoryBean名称--&gt;对象”</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; factoryBeanObjectCache = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 单例bean缓存，映射关系为“bean名称--&gt;bean实例”，底层结构为ConcurrentHashMap，初始容量为256</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">// 单例工厂缓存，映射关系为“bean名称--&gt;工厂对象”，底层结构为HashMap，初始容量为16</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = </span><br><span class="line">    							<span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 早期的单例bean缓存</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = </span><br><span class="line">    							<span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 已注册的单例bean名称集合，按照注册顺序，底层结构为LinkedHashSet</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; registeredSingletons = </span><br><span class="line">    							<span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">// 当前正在创建的bean的名称</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; singletonsCurrentlyInCreation =</span><br><span class="line">   			 Collections.newSetFromMap(<span class="keyword">new</span> ConcurrentHashMap&lt;String, Boolean&gt;(<span class="number">16</span>));</span><br><span class="line"><span class="comment">// bean的规范命名与别名的映射表，底层结构为ConcurrentHashMap</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, String&gt; aliasMap = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, String&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*** 初始化的来自DefaultListableBeanFactory类的部分字段 ***/</span></span><br><span class="line"><span class="comment">// 允许使用相同的bean名称重新注册不同的bean，即以后一个bean覆盖前一个</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> allowBeanDefinitionOverriding = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// 允许预加载类，包括设置了懒加载的bean</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> allowEagerClassLoading = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// bean名称与BeanDefinition对象的映射表</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, BeanDefinition&gt; beanDefinitionMap = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, BeanDefinition&gt;(<span class="number">256</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*** 来自父类的部分字段 ***/</span></span><br><span class="line"><span class="comment">// 创建bean实例的策略，默认使用CGLIB动态生成子类</span></span><br><span class="line"><span class="keyword">private</span> InstantiationStrategy instantiationStrategy = </span><br><span class="line">    							<span class="keyword">new</span> CglibSubclassingInstantiationStrategy();</span><br><span class="line"><span class="comment">// 获取类加载器</span></span><br><span class="line"><span class="keyword">private</span> ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();</span><br><span class="line"><span class="comment">// true表示缓存bean元数据，false表示每次使用时获取</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> cacheBeanMetadata = <span class="keyword">true</span>;</span><br><span class="line"><span class="comment">// 由FactoryBeans创建的单例对象的缓存，映射关系为“FactoryBean名称--&gt;对象”</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; factoryBeanObjectCache = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 单例bean缓存，映射关系为“bean名称--&gt;bean实例”，底层结构为ConcurrentHashMap，初始容量为256</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; singletonObjects = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, Object&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">// 单例工厂缓存，映射关系为“bean名称--&gt;工厂对象”，底层结构为HashMap，初始容量为16</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, ObjectFactory&lt;?&gt;&gt; singletonFactories = </span><br><span class="line">    							<span class="keyword">new</span> HashMap&lt;String, ObjectFactory&lt;?&gt;&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 早期的单例bean缓存</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Object&gt; earlySingletonObjects = </span><br><span class="line">    							<span class="keyword">new</span> HashMap&lt;String, Object&gt;(<span class="number">16</span>);</span><br><span class="line"><span class="comment">// 已注册的单例bean名称集合，按照注册顺序，底层结构为LinkedHashSet</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; registeredSingletons = </span><br><span class="line">    							<span class="keyword">new</span> LinkedHashSet&lt;String&gt;(<span class="number">256</span>);</span><br><span class="line"><span class="comment">// 当前正在创建的bean的名称</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Set&lt;String&gt; singletonsCurrentlyInCreation =</span><br><span class="line">   			 Collections.newSetFromMap(<span class="keyword">new</span> ConcurrentHashMap&lt;String, Boolean&gt;(<span class="number">16</span>));</span><br><span class="line"><span class="comment">// bean的规范命名与别名的映射表，底层结构为ConcurrentHashMap</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, String&gt; aliasMap = </span><br><span class="line">    							<span class="keyword">new</span> ConcurrentHashMap&lt;String, String&gt;(<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>创建载入BeanDefinition的读取器对象。</li>
@@ -165,7 +340,7 @@
 <p><img src="/2020/05/22/Spring学习之IoC/Bean%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B.jpg" alt></p>
 <h5 id="第一步：实例化-bean-对象"><a href="#第一步：实例化-bean-对象" class="headerlink" title="第一步：实例化 bean 对象"></a>第一步：实例化 bean 对象</h5><p>接口 org.springframework.beans.factory.support.InstantiationStrategy 定义了实例化策略，常见的策略有：</p>
 <ul>
-<li><strong>CglibSubclassingInstantiationStrategy</strong>：通过 CGLib 动态字节码技术，动态生成子类，是默认的实现类。它支持方法注入。</li>
+<li><strong>CglibSubclassingInstantiationStrategy</strong>：通过 CGLIB 动态字节码技术，动态生成子类，是默认的实现类。它支持方法注入。</li>
 <li>SimpleInstantiationStrategy：基于反射技术，不支持方法注入。</li>
 </ul>
 <h5 id="第二步：设置对象属性"><a href="#第二步：设置对象属性" class="headerlink" title="第二步：设置对象属性"></a>第二步：设置对象属性</h5><p>第一步实例化得到的是 BeanWrapper 对象，而非相应的 bean。这是因为 BeanWrapper 对象可以方便地对 bean 进行操作，包括<strong>属性设置</strong>、<strong>类型转换</strong>等。</p>
@@ -1154,7 +1329,7 @@
 <li>静态代理与动态代理的比较。</li>
 <li>JDK 动态代理过程及原理。</li>
 <li>WeakCache 缓存机制。</li>
-<li>CGLib 动态代理过程。</li>
+<li>CGLIB 动态代理过程。</li>
 </ul>
 <a id="more"></a>
 
@@ -1162,7 +1337,7 @@
 <ul>
 <li>静态代理：将增强的方法编写在代理类中，在编译期就明确了代理类。</li>
 <li>JDK 动态代理：通过 JDK 提供的 Proxy 类中的 newProxyInstance 方法<strong>动态地创建代理类</strong>，基于<strong>反射</strong>实例化代理对象。（只能代理接口）</li>
-<li>CGLib 动态代理：CGLib（Code Generation Library）基于 asm 字节码技术，<strong>生成被代理类的子类并覆盖其中的方法</strong>以实现增强。（代理非 final 修饰的类或接口）</li>
+<li>CGLIB 动态代理：CGLIB（Code Generation Library）基于 asm 字节码技术，<strong>生成被代理类的子类并覆盖其中的方法</strong>以实现增强。（代理非 final 修饰的类或接口）</li>
 <li>Aspectj 动态代理：暂略</li>
 <li>Instrumentation 动态代理：暂略</li>
 </ul>
@@ -1246,9 +1421,9 @@
 
 <p>【未完待续<del>~</del>】</p>
 <hr>
-<h4 id="三、CGLib-动态代理"><a href="#三、CGLib-动态代理" class="headerlink" title="三、CGLib 动态代理"></a>三、CGLib 动态代理</h4><p>CGLib 动态代理的特点如下：</p>
+<h4 id="三、CGLIB-动态代理"><a href="#三、CGLIB-动态代理" class="headerlink" title="三、CGLIB 动态代理"></a>三、CGLIB 动态代理</h4><p>CGLIB 动态代理的特点如下：</p>
 <ul>
-<li>CGLib 可代理接口和类，其中接口使用实现的方式，类使用的是继承的方式。</li>
+<li>CGLIB 可代理接口和类，其中接口使用实现的方式，类使用的是继承的方式。</li>
 <li>final 修饰的类是不能被代理的。final、private、static 修饰的方法是不能被代理的。</li>
 </ul>
 <p>（1）委托类</p>
@@ -1264,7 +1439,7 @@
 <li>静态代理在编译期就确定了代理类，而动态代理是在程序运行期间动态地创建代理类。</li>
 <li>JDK 动态代理生成的动态代理类继承 Proxy 类。Java 不允许多继承，因此 JDK 动态代理<strong>只能代理接口！</strong></li>
 <li>JDK 动态代理只能代理接口方法！若接口的实现类中定义了接口中未声明的方法，该方法不能被代理。</li>
-<li>JDK 动态代理创建动态代理对象的过程快，但调用委托类的接口方法慢；CGLib 动态代理创建动态代理对象的过程慢，但调用委托类的接口方法快。</li>
+<li>JDK 动态代理创建动态代理对象的过程快，但调用委托类的接口方法慢；CGLIB 动态代理创建动态代理对象的过程慢，但调用委托类的接口方法快。</li>
 </ul>
 <h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p>[1] <a href="https://cloud.tencent.com/developer/article/1461796" target="_blank" rel="noopener">太好了！总算有人把动态代理、CGlib、AOP都说清楚了！</a></p>
 <p>[2] <a href="https://www.cnblogs.com/zuidongfeng/p/8735241.html" target="_blank" rel="noopener">JDK动态代理实现原理</a></p>
@@ -1379,20 +1554,20 @@
     <content><![CDATA[<p>《剑指Offer》中涉及的二叉树问题集合。</p>
 <p>总结：</p>
 <ul>
-<li>涉及二叉树的问题，离不开DFS和BFS，即深度优先搜索和广度优先搜索。</li>
+<li>涉及二叉树的问题，离不开 DFS 和 BFS，即深度优先搜索和广度优先搜索。</li>
 <li>常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。</li>
 </ul>
 <a id="more"></a>
 
-<h4 id="面试题07-重建二叉树"><a href="#面试题07-重建二叉树" class="headerlink" title="面试题07. 重建二叉树"></a>面试题07. 重建二叉树</h4><h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
+<h4 id="面试题-07-重建二叉树"><a href="#面试题-07-重建二叉树" class="headerlink" title="面试题 07. 重建二叉树"></a>面试题 07. 重建二叉树</h4><h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
 <p><a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题07. 重建二叉树</a></p>
 <p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">力扣-105. 从前序与中序遍历序列构造二叉树</a></p>
 <h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
-<li>递归：易知，先序遍历得到的首个值是root节点的值，即可根据该元素值在中序遍历得到的数组中的位置，将其分为左右子树的节点，并分别递归地拼接左右子树。</li>
+<li>递归：易知，先序遍历得到的首个值是 root 节点的值，即可根据该元素值在中序遍历得到的数组中的位置，将其分为左右子树的节点，并分别递归地拼接左右子树。</li>
 </ul>
 <h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现：</p>
 <blockquote>
-<p>需要注意的是，在递归建立左右子树的过程中，对左子树，注意preHi的值；对右子树，注意preLo的值。</p>
+<p>需要注意的是，在递归建立左右子树的过程中，对左子树，注意 <code>preHi</code>；对右子树，注意 <code>preLo</code>。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] preAux = <span class="keyword">null</span>; <span class="comment">// 辅助数组，先序遍历</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] inAux = <span class="keyword">null</span>; <span class="comment">// 辅助数组，中序遍历</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] preorder, <span class="keyword">int</span>[] inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preorder==<span class="keyword">null</span> || inorder==<span class="keyword">null</span> || preorder.length==<span class="number">0</span> || inorder.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        preAux = preorder;</span><br><span class="line">        inAux = inorder;</span><br><span class="line">        <span class="keyword">return</span> helper(<span class="number">0</span>, preAux.length-<span class="number">1</span>, <span class="number">0</span>, inAux.length-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> preLo 先序遍历得到的数组的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> preHi 先序遍历得到的数组的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> inLo 中序遍历得到的数组的左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> inHi 中遍历得到的数组的右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 建树完成，返回根节点内存地址</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> TreeNode <span class="title">helper</span><span class="params">(<span class="keyword">int</span> preLo, <span class="keyword">int</span> preHi, <span class="keyword">int</span> inLo, <span class="keyword">int</span> inHi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preLo &gt; preHi || inLo &gt; inHi)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rootVal = preAux[preLo]; <span class="comment">// 当前子树的根结点</span></span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line">        <span class="keyword">int</span> index = inLo; <span class="comment">// 根结点在中序遍历数组中的索引</span></span><br><span class="line">        <span class="keyword">while</span>(inAux[index]!=rootVal)&#123;</span><br><span class="line">            <span class="comment">// 结点元素值是唯一的，且一定存在</span></span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 在递归建立左右子树的过程中：对左子树，注意preHi的值；对右子树，注意preLo的值</span></span><br><span class="line">        root.left = helper(preLo+<span class="number">1</span>, preLo+(index-inLo), inLo, index-<span class="number">1</span>);</span><br><span class="line">        root.right = helper(preLo+(index-inLo)+<span class="number">1</span>, preHi, index+<span class="number">1</span>, inHi);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1404,17 +1579,17 @@
 <p>（2）迭代实现</p>
 <p>暂无，可参考<a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/" target="_blank" rel="noopener">官方题解</a>。</p>
 <hr>
-<h4 id="面试题26-树的子结构"><a href="#面试题26-树的子结构" class="headerlink" title="面试题26. 树的子结构"></a>面试题26. 树的子结构</h4><h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题26. 树的子结构</a></p>
-<p>输入两棵二叉树A和B，判断B是不是A的子结构。B是A的子结构， 即 A中有出现和B相同的结构和节点值。约定空树不是任意一个树的子结构。</p>
+<h4 id="面试题-26-树的子结构"><a href="#面试题-26-树的子结构" class="headerlink" title="面试题 26. 树的子结构"></a>面试题 26. 树的子结构</h4><h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题26. 树的子结构</a></p>
+<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。约定空树不是任意一个树的子结构。</p>
 <h5 id="2-实现"><a href="#2-实现" class="headerlink" title="2. 实现"></a>2. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020-04-15</span></span><br><span class="line"><span class="comment"> * 基于深度优先搜索</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubStructure</span><span class="params">(TreeNode A, TreeNode B)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(A==<span class="keyword">null</span> || B==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// 约定空树不是任意一个树的子结构</span></span><br><span class="line">    <span class="keyword">return</span> (dfs(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 深度优先搜索，判断树B是否是树A的子结构</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(TreeNode A, TreeNode B)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(A==<span class="keyword">null</span> || A.val!=B.val)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(B.left!=<span class="keyword">null</span> &amp;&amp; !dfs(A.left, B.left))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(B.right!=<span class="keyword">null</span> &amp;&amp; !dfs(A.right, B.right))</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法分析：</p>
 <ul>
-<li>时间复杂度：O(MN)，其中M和N分别是树A和B的节点数。先序遍历树A，时间复杂度为O(M)。在先序遍历树A的过程中调用DFS方法，时间复杂度为O(N)。故算法的时间复杂度为O(MN)。</li>
-<li>空间复杂度：O(M)。当树A和B都退化为链表时，递归深度最大为M，故空间复杂度为O(M)。</li>
+<li>时间复杂度：O(MN)，其中 M 和 N 分别是树 A 和 B 的节点数。先序遍历树 A，时间复杂度为 O(M)。在先序遍历树 A 的过程中调用 DFS 方法，时间复杂度为 O(N)。故算法的时间复杂度为 O(MN)。</li>
+<li>空间复杂度：O(M)。当树 A 和 B 都退化为链表时，递归深度最大为 M，故空间复杂度为 O(M)。</li>
 </ul>
 <hr>
-<h4 id="面试题27-二叉树的镜像"><a href="#面试题27-二叉树的镜像" class="headerlink" title="面试题27. 二叉树的镜像"></a>面试题27. 二叉树的镜像</h4><h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。即翻转二叉树。</p>
+<h4 id="面试题-27-二叉树的镜像"><a href="#面试题-27-二叉树的镜像" class="headerlink" title="面试题 27. 二叉树的镜像"></a>面试题 27. 二叉树的镜像</h4><h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。即翻转二叉树。</p>
 <p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题27. 二叉树的镜像</a></p>
 <p><a href="https://leetcode-cn.com/problems/invert-binary-tree/" target="_blank" rel="noopener">力扣-226. 翻转二叉树</a></p>
 <h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
@@ -1426,25 +1601,42 @@
 <p>算法分析：</p>
 <ul>
 <li>时间复杂度：O(N)，需要遍历每一个节点。</li>
-<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。</li>
+<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用 N 次，故空间复杂度为 O(N)；在最好的情况下，二叉树是完全平衡的，高度为 O(logN)，故空间复杂度为 O(logN)。</li>
 </ul>
 <p>（2）迭代实现</p>
 <p>暂无，可参考<a href="https://leetcode-cn.com/problems/invert-binary-tree/solution/fan-zhuan-er-cha-shu-by-leetcode/" target="_blank" rel="noopener">官方题解</a></p>
 <hr>
-<h4 id="面试题55-I-二叉树的深度"><a href="#面试题55-I-二叉树的深度" class="headerlink" title="面试题55-I. 二叉树的深度"></a>面试题55-I. 二叉树的深度</h4><h5 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
+<h4 id="面试题-28-对称的二叉树"><a href="#面试题-28-对称的二叉树" class="headerlink" title="面试题 28. 对称的二叉树"></a>面试题 28. 对称的二叉树</h4><h5 id="1-题目-3"><a href="#1-题目-3" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。</p>
+<h5 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>对于对称二叉树上的任意两个对称的非叶子节点 <code>left</code> 和 <code>right</code>，必然有如下关系成立：</p>
+<ul>
+<li><code>left.val == right.val</code>；</li>
+<li><code>left.left.val == right.right.val</code>；</li>
+<li><code>left.right.val == right.left.val</code>。</li>
+</ul>
+<p>对于任意两个对称的叶子节点，只有第一条关系式成立。</p>
+<p>因此，递归地判断二叉树的左右子节点即可判断其是否为镜像对称的。</p>
+<h5 id="3-实现-2"><a href="#3-实现-2" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">return</span> recursive(root.left, root.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归方法</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">recursive</span><span class="params">(TreeNode left, TreeNode right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span> &amp;&amp; right==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(left==<span class="keyword">null</span> || right==<span class="keyword">null</span> || left.val!=right.val)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>; <span class="comment">// 只有一个子节点或左右子节点值不同时，一定不是镜像</span></span><br><span class="line">        <span class="keyword">return</span> (recursive(left.left, right.right) &amp;&amp;</span><br><span class="line">                recursive(left.right, right.left));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）迭代实现</p>
+<p>迭代实现基于深度优先搜索，但插入队列顺序与 BFS 有差异</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.Queue;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSymmetric</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="comment">// 开始时，根结点只有一个，将其存入两次</span></span><br><span class="line">        queue.add(root);</span><br><span class="line">        queue.add(root);</span><br><span class="line">        <span class="comment">// 当队列不为空时，每次取出两个连续的结点。</span></span><br><span class="line">        <span class="comment">// 当且仅当每次取出的两个结点值相等，才满足镜像对称</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty()) &#123;</span><br><span class="line">            TreeNode left = queue.poll();</span><br><span class="line">            TreeNode right = queue.poll();</span><br><span class="line">            <span class="comment">// 结点A、B均为null，满足镜像对称，且需要跳过此次循环</span></span><br><span class="line">            <span class="keyword">if</span>(left==<span class="keyword">null</span> &amp;&amp; right==<span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 只有一个子节点或左右子节点值不同时，一定不是镜像</span></span><br><span class="line">            <span class="keyword">if</span>(left==<span class="keyword">null</span> || right==<span class="keyword">null</span> || left.val!=right.val) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            queue.add(left.left);</span><br><span class="line">            queue.add(right.right);</span><br><span class="line">            queue.add(left.right);</span><br><span class="line">            queue.add(right.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="面试题-55-I-二叉树的深度"><a href="#面试题-55-I-二叉树的深度" class="headerlink" title="面试题 55-I. 二叉树的深度"></a>面试题 55-I. 二叉树的深度</h4><h5 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p>
 <p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题55-I. 二叉树的深度</a></p>
 <p><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">力扣-104. 二叉树的最大深度</a></p>
-<h5 id="2-思路-2"><a href="#2-思路-2" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
+<h5 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
 <li>递归：递归求解左右子树的最大深度，并选取较大者。</li>
 <li>迭代：层序遍历，辅助队列每次存入当前层级所有节点，深度计数器加1。</li>
 </ul>
-<h5 id="3-实现-2"><a href="#3-实现-2" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
+<h5 id="3-实现-3"><a href="#3-实现-3" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> helper(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">helper</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(helper(root.left), helper(root.right))+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法分析：</p>
 <ul>
 <li>时间复杂度：O(N)，需要遍历每一个节点。</li>
-<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。</li>
+<li>空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用 N 次，故空间复杂度为 O(N)；在最好的情况下，二叉树是完全平衡的，高度为 O(logN)，故空间复杂度为 O(logN)。</li>
 </ul>
 <p>（2）迭代实现</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;      </span><br><span class="line">        <span class="comment">// BFS 广度优先搜索实现</span></span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root); <span class="comment">// 存入根结点</span></span><br><span class="line">        <span class="keyword">int</span> level = <span class="number">0</span>; <span class="comment">// 根结点所在层级为0</span></span><br><span class="line">        <span class="keyword">while</span>(!queue.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">int</span> levelSize = queue.size(); <span class="comment">// 当前层结点数</span></span><br><span class="line">            <span class="comment">// 循环，取出当前层结点，并存入下一层结点</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;levelSize; i++)&#123;</span><br><span class="line">                TreeNode node = queue.remove();</span><br><span class="line">                <span class="keyword">if</span>(node.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    queue.add(node.left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(node.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    queue.add(node.right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            level++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> level;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1455,16 +1647,16 @@
 <li>空间复杂度：O(N)，队列存储遍历的每一个节点。</li>
 </ul>
 <hr>
-<h4 id="面试题68-I-二叉树的最近公共祖先"><a href="#面试题68-I-二叉树的最近公共祖先" class="headerlink" title="面试题68-I. 二叉树的最近公共祖先"></a>面试题68-I. 二叉树的最近公共祖先</h4><h5 id="1-题目-4"><a href="#1-题目-4" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<h4 id="面试题-68-I-二叉树的最近公共祖先"><a href="#面试题-68-I-二叉树的最近公共祖先" class="headerlink" title="面试题 68-I. 二叉树的最近公共祖先"></a>面试题 68-I. 二叉树的最近公共祖先</h4><h5 id="1-题目-5"><a href="#1-题目-5" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
 <blockquote>
 <p>最近公共祖先：对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（<strong>一个节点也可以是它自己的祖先</strong>）。</p>
 </blockquote>
 <p><a href="https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题68-I. 二叉树的最近公共祖先</a></p>
 <p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">力扣-236. 二叉树的最近公共祖先</a></p>
-<h5 id="2-思路-3"><a href="#2-思路-3" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
+<h5 id="2-思路-4"><a href="#2-思路-4" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
 <li>递归实现</li>
 </ul>
-<h5 id="3-实现-3"><a href="#3-实现-3" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
+<h5 id="3-实现-4"><a href="#3-实现-4" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span> || root == p || root==q)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        TreeNode leftAncestor = lowestCommonAncestor(root.left, p, q); <span class="comment">// 递归进入左子树查找</span></span><br><span class="line">        TreeNode rightAncestor = lowestCommonAncestor(root.right, p, q); <span class="comment">// 递归进入右子树查找</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(leftAncestor==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> rightAncestor; <span class="comment">// 左子树没有，返回右子树</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rightAncestor==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> leftAncestor; <span class="comment">// 右子树没有，返回左子树</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root; <span class="comment">// 都没有，返回根结点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法分析：</p>
@@ -1473,15 +1665,15 @@
 <li>空间复杂度：O(N)，最坏情况下需要遍历所有节点。</li>
 </ul>
 <hr>
-<h4 id="235-二叉搜索树的最近公共祖先"><a href="#235-二叉搜索树的最近公共祖先" class="headerlink" title="235. 二叉搜索树的最近公共祖先"></a>235. 二叉搜索树的最近公共祖先</h4><h5 id="1-题目-5"><a href="#1-题目-5" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
+<h4 id="235-二叉搜索树的最近公共祖先"><a href="#235-二叉搜索树的最近公共祖先" class="headerlink" title="235. 二叉搜索树的最近公共祖先"></a>235. 二叉搜索树的最近公共祖先</h4><h5 id="1-题目-6"><a href="#1-题目-6" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
 <blockquote>
 <p>二叉搜索树的特性：左子树所有节点元素值不大于根节点元素值，右子树所有节点元素值不小于根节点元素值。</p>
 </blockquote>
 <p><a href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" target="_blank" rel="noopener">力扣-235. 二叉搜索树的最近公共祖先</a></p>
-<h5 id="2-思路-4"><a href="#2-思路-4" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
+<h5 id="2-思路-5"><a href="#2-思路-5" class="headerlink" title="2. 思路"></a>2. 思路</h5><ul>
 <li>递归：类似于上面的<strong>二叉树的最近公共祖先</strong>问题，且二叉搜索树的特性使问题得到简化。</li>
 </ul>
-<h5 id="3-实现-4"><a href="#3-实现-4" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
+<h5 id="3-实现-5"><a href="#3-实现-5" class="headerlink" title="3. 实现"></a>3. 实现</h5><p>（1）递归实现</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p和q节点在左子树</span></span><br><span class="line">        <span class="keyword">if</span>(p.val &lt; root.val &amp;&amp; q.val &lt; root.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.left, p, q);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// p和q节点在右子树</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(p.val &gt; root.val &amp;&amp; q.val &gt; root.val)&#123;</span><br><span class="line">            <span class="keyword">return</span> lowestCommonAncestor(root.right, p, q);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 都没有，返回根节点</span></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>算法分析：</p>
@@ -2011,6 +2203,47 @@
       </tags>
   </entry>
   <entry>
+    <title>字符串匹配之BM、KMP算法</title>
+    <url>/2020/03/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBM%E3%80%81KMP%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
+<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
+<a id="more"></a>
+
+<h3 id="一、BM算法"><a href="#一、BM算法" class="headerlink" title="一、BM算法"></a>一、BM算法</h3><p>在<a href>字符串匹配之BF、RK算法</a>部分已学习了BF、RK两种算法。</p>
+<p>BF算法过于暴力，时间复杂度较高。</p>
+<p>RK算法针对BF算法进行了优化，在较好的示例中时间复杂度较好。但RK算法不稳定，当样本哈希冲突严重时，RK算法一路退化至BF算法。</p>
+<p>本小节学习的BM算法时间复杂度仅为 <code>O( )</code>，且稳定，常用于文本编辑器中的查找功能。</p>
+<p>在BM算法中，有两个非常重要的概念：<strong>坏字符规则</strong> 和 <strong>好后缀规则</strong>。</p>
+<h4 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h4><p>坏字符规则是指，对于模式串和等长的主串子串，子串从右向左出现的第一个不与模式串对应位置字符匹配的子串字符，称之为坏字符。<strong>根据坏字符在模式串中是否出现，将模式串移动不等距离</strong>。</p>
+<p>在第一轮中，从右向左第一个字符 <code>d</code> 就是坏字符。随后在模式串中同样地<strong>从左向右</strong>找到首个字符d。移动模式串不再像BF/RK算法那样单次移动一位，而是直接<strong>将坏字符对齐</strong>。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_1.jpg" alt></p>
+<p>第二轮与第一轮相似。对比前两轮可发现，<strong>每轮移动模式串的距离不一定是相等的！</strong>这与坏字符的位置有关。</p>
+<p>正是这一特性，有效降低了算法的比较次数，提高了性能。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_2.jpg" alt></p>
+<p>第三轮类似。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_3.jpg" alt></p>
+<p>第四轮中遇见<strong>模式串中不存在坏字符</strong>的情况，这时直接<strong>将模式串移动至主串子串的坏字符下一位</strong>。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_4.jpg" alt></p>
+<p>第五轮类似。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_5.jpg" alt></p>
+<p>第六轮，顺利完成匹配。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_6.jpg" alt></p>
+<p>坏字符规则代码实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">boyerMoore</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始时，主串和模式串从0至pattern.length-1位一一对应</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>; <span class="comment">// 模式串对应主串的起始位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(start &lt;= (m-n)) &#123;</span><br><span class="line">        <span class="comment">// 从右往左寻找坏字符，其中坏字符位于主串</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(start+i) != pattern.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 未找到坏字符，即一一匹配，返回结果</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到坏字符，确定模式串移动距离</span></span><br><span class="line">        <span class="keyword">int</span> badCharIndex = findBadCharacter(string.charAt(start+i), pattern, i); <span class="comment">// 模式串中寻找坏字符从i-1开始</span></span><br><span class="line">        <span class="comment">// 计算坏字符产生的位移</span></span><br><span class="line">        <span class="keyword">int</span> offset = badCharIndex &gt;= <span class="number">0</span> ? i-badCharIndex : i+<span class="number">1</span>;</span><br><span class="line">        start += offset;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> badChar 坏字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> start 坏字符索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串中坏字符的位置，不存在则返回-1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findBadCharacter</span><span class="params">(<span class="keyword">char</span> badChar, String pattern, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>( badChar == (pattern.charAt(i)) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>String Matching</tag>
+        <tag>BM</tag>
+        <tag>KMP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>什么是深拷贝，什么是浅拷贝？</title>
     <url>/2020/03/06/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B1%E6%8B%B7%E8%B4%9D%EF%BC%8C%E4%BB%80%E4%B9%88%E6%98%AF%E6%B5%85%E6%8B%B7%E8%B4%9D%EF%BC%9F/</url>
     <content><![CDATA[<p>浅拷贝（shallow copy）与深拷贝（deep copy）有何区别？浅克隆与深克隆又有何区别？Object基类中受保护的（protected）clone( )方法与Cloneable接口又有何联系？</p>
@@ -2167,47 +2400,6 @@
         <tag>Clone</tag>
         <tag>Shallow Copy</tag>
         <tag>Deep Copy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字符串匹配之BM、KMP算法</title>
-    <url>/2020/03/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBM%E3%80%81KMP%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
-<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
-<a id="more"></a>
-
-<h3 id="一、BM算法"><a href="#一、BM算法" class="headerlink" title="一、BM算法"></a>一、BM算法</h3><p>在<a href>字符串匹配之BF、RK算法</a>部分已学习了BF、RK两种算法。</p>
-<p>BF算法过于暴力，时间复杂度较高。</p>
-<p>RK算法针对BF算法进行了优化，在较好的示例中时间复杂度较好。但RK算法不稳定，当样本哈希冲突严重时，RK算法一路退化至BF算法。</p>
-<p>本小节学习的BM算法时间复杂度仅为 <code>O( )</code>，且稳定，常用于文本编辑器中的查找功能。</p>
-<p>在BM算法中，有两个非常重要的概念：<strong>坏字符规则</strong> 和 <strong>好后缀规则</strong>。</p>
-<h4 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h4><p>坏字符规则是指，对于模式串和等长的主串子串，子串从右向左出现的第一个不与模式串对应位置字符匹配的子串字符，称之为坏字符。<strong>根据坏字符在模式串中是否出现，将模式串移动不等距离</strong>。</p>
-<p>在第一轮中，从右向左第一个字符 <code>d</code> 就是坏字符。随后在模式串中同样地<strong>从左向右</strong>找到首个字符d。移动模式串不再像BF/RK算法那样单次移动一位，而是直接<strong>将坏字符对齐</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_1.jpg" alt></p>
-<p>第二轮与第一轮相似。对比前两轮可发现，<strong>每轮移动模式串的距离不一定是相等的！</strong>这与坏字符的位置有关。</p>
-<p>正是这一特性，有效降低了算法的比较次数，提高了性能。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_2.jpg" alt></p>
-<p>第三轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_3.jpg" alt></p>
-<p>第四轮中遇见<strong>模式串中不存在坏字符</strong>的情况，这时直接<strong>将模式串移动至主串子串的坏字符下一位</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_4.jpg" alt></p>
-<p>第五轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_5.jpg" alt></p>
-<p>第六轮，顺利完成匹配。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_6.jpg" alt></p>
-<p>坏字符规则代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">boyerMoore</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始时，主串和模式串从0至pattern.length-1位一一对应</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>; <span class="comment">// 模式串对应主串的起始位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(start &lt;= (m-n)) &#123;</span><br><span class="line">        <span class="comment">// 从右往左寻找坏字符，其中坏字符位于主串</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(start+i) != pattern.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 未找到坏字符，即一一匹配，返回结果</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到坏字符，确定模式串移动距离</span></span><br><span class="line">        <span class="keyword">int</span> badCharIndex = findBadCharacter(string.charAt(start+i), pattern, i); <span class="comment">// 模式串中寻找坏字符从i-1开始</span></span><br><span class="line">        <span class="comment">// 计算坏字符产生的位移</span></span><br><span class="line">        <span class="keyword">int</span> offset = badCharIndex &gt;= <span class="number">0</span> ? i-badCharIndex : i+<span class="number">1</span>;</span><br><span class="line">        start += offset;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> badChar 坏字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> start 坏字符索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串中坏字符的位置，不存在则返回-1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findBadCharacter</span><span class="params">(<span class="keyword">char</span> badChar, String pattern, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>( badChar == (pattern.charAt(i)) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>String Matching</tag>
-        <tag>BM</tag>
-        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>
