@@ -16,7 +16,7 @@ categories:
 - 静态代理与动态代理的比较。
 - JDK 动态代理过程及原理。
 - WeakCache 缓存机制。
-- CGLib 动态代理过程。
+- CGLIB 动态代理过程。
 
 <!--more-->
 
@@ -24,7 +24,7 @@ categories:
 
 - 静态代理：将增强的方法编写在代理类中，在编译期就明确了代理类。
 - JDK 动态代理：通过 JDK 提供的 Proxy 类中的 newProxyInstance 方法**动态地创建代理类**，基于**反射**实例化代理对象。（只能代理接口）
-- CGLib 动态代理：CGLib（Code Generation Library）基于 asm 字节码技术，**生成被代理类的子类并覆盖其中的方法**以实现增强。（代理非 final 修饰的类或接口）
+- CGLIB 动态代理：CGLIB（Code Generation Library）基于 asm 字节码技术，**生成被代理类的子类并覆盖其中的方法**以实现增强。（代理非 final 修饰的类或接口）
 - Aspectj 动态代理：暂略
 - Instrumentation 动态代理：暂略
 
@@ -554,11 +554,11 @@ private final class Factory implements Supplier<V> {
 
 
 
-#### 三、CGLib 动态代理
+#### 三、CGLIB 动态代理
 
-CGLib 动态代理的特点如下：
+CGLIB 动态代理的特点如下：
 
-- CGLib 可代理接口和类，其中接口使用实现的方式，类使用的是继承的方式。
+- CGLIB 可代理接口和类，其中接口使用实现的方式，类使用的是继承的方式。
 - final 修饰的类是不能被代理的。final、private、static 修饰的方法是不能被代理的。
 
 （1）委托类
@@ -628,7 +628,7 @@ public class Main {
 - 静态代理在编译期就确定了代理类，而动态代理是在程序运行期间动态地创建代理类。
 - JDK 动态代理生成的动态代理类继承 Proxy 类。Java 不允许多继承，因此 JDK 动态代理**只能代理接口！**
 - JDK 动态代理只能代理接口方法！若接口的实现类中定义了接口中未声明的方法，该方法不能被代理。
-- JDK 动态代理创建动态代理对象的过程快，但调用委托类的接口方法慢；CGLib 动态代理创建动态代理对象的过程慢，但调用委托类的接口方法快。
+- JDK 动态代理创建动态代理对象的过程快，但调用委托类的接口方法慢；CGLIB 动态代理创建动态代理对象的过程慢，但调用委托类的接口方法快。
 
 
 

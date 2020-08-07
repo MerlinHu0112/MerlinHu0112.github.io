@@ -13,12 +13,13 @@ categories:
 
 总结：
 
-- 涉及二叉树的问题，离不开DFS和BFS，即深度优先搜索和广度优先搜索。
+- 涉及二叉树的问题，离不开 DFS 和 BFS，即深度优先搜索和广度优先搜索。
 - 常用的解题方法是递归和迭代，其中递归法更加直观，迭代法往往需要栈或队列的辅助。
+- 要求处理一棵二叉树的遍历序列时，可先找出二叉树的根节点，再根据根节点将二叉树划分为左右子树并递归地处理左右子树。
 
 <!--more-->
 
-#### 面试题07. 重建二叉树
+#### 面试题 07. 重建二叉树
 
 ##### 1. 题目
 
@@ -30,13 +31,13 @@ categories:
 
 ##### 2. 思路
 
-- 递归：易知，先序遍历得到的首个值是root节点的值，即可根据该元素值在中序遍历得到的数组中的位置，将其分为左右子树的节点，并分别递归地拼接左右子树。
+- 递归：易知，先序遍历得到的首个值是 root 节点的值，即可根据该元素值在中序遍历得到的数组中的位置，将其分为左右子树的节点，并分别递归地拼接左右子树。
 
 ##### 3. 实现
 
 （1）递归实现：
 
-> 需要注意的是，在递归建立左右子树的过程中，对左子树，注意preHi的值；对右子树，注意preLo的值。
+> 需要注意的是，在递归建立左右子树的过程中，对左子树，注意 `preHi`；对右子树，注意 `preLo`。
 
 ```java
 class Solution {
@@ -89,13 +90,13 @@ class Solution {
 
 ---
 
-#### 面试题26. 树的子结构
+#### 面试题 26. 树的子结构
 
 ##### 1. 题目
 
 [力扣-《剑指Offer》-面试题26. 树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
 
-输入两棵二叉树A和B，判断B是不是A的子结构。B是A的子结构， 即 A中有出现和B相同的结构和节点值。约定空树不是任意一个树的子结构。
+输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。约定空树不是任意一个树的子结构。
 
 ##### 2. 实现
 
@@ -125,12 +126,12 @@ private static boolean dfs(TreeNode A, TreeNode B){
 
 算法分析：
 
-- 时间复杂度：O(MN)，其中M和N分别是树A和B的节点数。先序遍历树A，时间复杂度为O(M)。在先序遍历树A的过程中调用DFS方法，时间复杂度为O(N)。故算法的时间复杂度为O(MN)。
-- 空间复杂度：O(M)。当树A和B都退化为链表时，递归深度最大为M，故空间复杂度为O(M)。
+- 时间复杂度：O(MN)，其中 M 和 N 分别是树 A 和 B 的节点数。先序遍历树 A，时间复杂度为 O(M)。在先序遍历树 A 的过程中调用 DFS 方法，时间复杂度为 O(N)。故算法的时间复杂度为 O(MN)。
+- 空间复杂度：O(M)。当树 A 和 B 都退化为链表时，递归深度最大为 M，故空间复杂度为 O(M)。
 
 ---
 
-#### 面试题27. 二叉树的镜像
+#### 面试题 27. 二叉树的镜像
 
 ##### 1. 题目
 
@@ -181,7 +182,7 @@ class Solution {
 算法分析：
 
 - 时间复杂度：O(N)，需要遍历每一个节点。
-- 空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。
+- 空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用 N 次，故空间复杂度为 O(N)；在最好的情况下，二叉树是完全平衡的，高度为 O(logN)，故空间复杂度为 O(logN)。
 
 （2）迭代实现
 
@@ -189,7 +190,149 @@ class Solution {
 
 ---
 
-#### 面试题55-I. 二叉树的深度
+#### 面试题 28. 对称的二叉树
+
+##### 1. 题目
+
+请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+
+##### 2. 思路
+
+对于对称二叉树上的任意两个对称的非叶子节点 `left` 和 `right`，必然有如下关系成立：
+
+- `left.val == right.val`；
+- `left.left.val == right.right.val`；
+- `left.right.val == right.left.val`。
+
+对于任意两个对称的叶子节点，只有第一条关系式成立。
+
+因此，递归地判断二叉树的左右子节点即可判断其是否为镜像对称的。
+
+##### 3. 实现
+
+（1）递归实现
+
+```java
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null)
+            return true;
+        return recursive(root.left, root.right);
+    }
+
+    // 递归方法
+    private boolean recursive(TreeNode left, TreeNode right){
+        if(left==null && right==null)
+            return true;
+        if(left==null || right==null || left.val!=right.val)
+            return false; // 只有一个子节点或左右子节点值不同时，一定不是镜像
+        return (recursive(left.left, right.right) &&
+                recursive(left.right, right.left));
+    }
+}
+```
+
+（2）迭代实现
+
+迭代实现基于深度优先搜索，但插入队列顺序与 BFS 有差异
+
+```java
+import java.util.LinkedList;
+import java.util.Queue;
+
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        // 开始时，根结点只有一个，将其存入两次
+        queue.add(root);
+        queue.add(root);
+        // 当队列不为空时，每次取出两个连续的结点。
+        // 当且仅当每次取出的两个结点值相等，才满足镜像对称
+        while(!queue.isEmpty()) {
+            TreeNode left = queue.poll();
+            TreeNode right = queue.poll();
+            // 结点A、B均为null，满足镜像对称，且需要跳过此次循环
+            if(left==null && right==null) {
+                continue;
+            }
+            // 只有一个子节点或左右子节点值不同时，一定不是镜像
+            if(left==null || right==null || left.val!=right.val) {
+                return false;
+            }
+            queue.add(left.left);
+            queue.add(right.right);
+            queue.add(left.right);
+            queue.add(right.left);
+        }
+        return true;
+    }
+}
+```
+
+---
+
+#### 面试题33. 二叉搜索树的后序遍历序列
+
+##### 1. 题目
+
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回 `true`，否则返回 `false`。假设输入的数组的任意两个数字都互不相同。
+
+[力扣-《剑指Offer》-面试题33.二叉搜索树的后序遍历序列](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+
+##### 2. 思路
+
+- 二叉搜索树：左子树所有节点元素值小于根节点元素值，右子树所有节点元素值大于根节点元素值。
+- 给定数组的最后一个元素就是根节点，因此可根据根节点将数组划分为左右子树序列，再递归地判断左右子树。
+
+##### 3. 实现
+
+```java
+class Solution {
+    public boolean verifyPostorder(int[] postorder) {
+        if(postorder == null){
+            return false;
+        }
+        /* 测试用例中，空数组返回true
+        if(postorder == null || postorder.length <= 0){
+            return false;
+        }*/
+        return helper(postorder, 0, postorder.length-1);
+    }
+
+    private boolean helper(int[] arr, int start, int end){
+        // 递归终止条件
+        if(start >= end){
+            return true;
+        }
+        
+        // 从索引start开始，寻找首个大于根节点元素值的元素
+        int i = start;
+        for(; i < end; i++){
+            if(arr[i] > arr[end]){
+                break;
+            }
+        }
+        
+        // 索引i将数组分为左右子树两部分
+        int j = i;
+        for(; j < end; j++){
+            // 若右子树中存在小于根节点元素值的节点，直接返回false
+            if(arr[j] < arr[end]){
+                return false;
+            }
+        } 
+        
+        // 递归地判断左右子树
+        return (helper(arr, start, i-1) && helper(arr, i, end-1));
+    }
+}
+```
+
+（有[资料](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/solution/mian-shi-ti-33-er-cha-sou-suo-shu-de-hou-xu-bian-6/)认为此算法的时间复杂度为 O(N^2)，空间复杂度为 O(N)，但我不是很理解。）
+
+---
+
+#### 面试题 55-I. 二叉树的深度
 
 ##### 1. 题目
 
@@ -229,7 +372,7 @@ class Solution {
 算法分析：
 
 - 时间复杂度：O(N)，需要遍历每一个节点。
-- 空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用N次，故空间复杂度为O(N)；在最好的情况下，二叉树是完全平衡的，高度为O(logN)，故空间复杂度为O(logN)。
+- 空间复杂度：最坏的情况下，二叉树退化为链表，递归将被调用 N 次，故空间复杂度为 O(N)；在最好的情况下，二叉树是完全平衡的，高度为 O(logN)，故空间复杂度为 O(logN)。
 
 （2）迭代实现
 
@@ -269,7 +412,7 @@ class Solution {
 
 ---
 
-#### 面试题68-I. 二叉树的最近公共祖先
+#### 面试题 68-I. 二叉树的最近公共祖先
 
 ##### 1. 题目
 

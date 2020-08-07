@@ -195,7 +195,7 @@ public static ClassLoader getDefaultClassLoader() {
 
 2. 随后获取 bean 实例的注册表，用于注册 BeanDefinition 对象。bean 名称与 BeanDefinition 对象的映射表`beanDefinitionMap` 和单例 bean 的缓存 `singletonObjects` 底层结构均为 ConcurrentHashMap。
 
-   在创建 bean 时，默认采用 CGLib 动态生成子类。
+   在创建 bean 时，默认采用 CGLIB 动态生成子类。
 
 ```java
 DefaultListableBeanFactory beanRegistry = new DefaultListableBeanFactory();
@@ -229,7 +229,7 @@ private final Map<String, BeanDefinition> beanDefinitionMap =
     							new ConcurrentHashMap<String, BeanDefinition>(256);
 
 /*** 来自父类的部分字段 ***/
-// 创建bean实例的策略，默认使用CGLib动态生成子类
+// 创建bean实例的策略，默认使用CGLIB动态生成子类
 private InstantiationStrategy instantiationStrategy = 
     							new CglibSubclassingInstantiationStrategy();
 // 获取类加载器
@@ -763,7 +763,7 @@ protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 
 接口 org.springframework.beans.factory.support.InstantiationStrategy 定义了实例化策略，常见的策略有：
 
-- **CglibSubclassingInstantiationStrategy**：通过 CGLib 动态字节码技术，动态生成子类，是默认的实现类。它支持方法注入。
+- **CglibSubclassingInstantiationStrategy**：通过 CGLIB 动态字节码技术，动态生成子类，是默认的实现类。它支持方法注入。
 - SimpleInstantiationStrategy：基于反射技术，不支持方法注入。
 
 
