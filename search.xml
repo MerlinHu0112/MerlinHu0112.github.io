@@ -4725,8 +4725,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>SSM</tag>
         <tag>Spring MVC</tag>
+        <tag>SSM</tag>
       </tags>
   </entry>
   <entry>
@@ -4838,8 +4838,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Mybatis</tag>
         <tag>SSM</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
 </search>
