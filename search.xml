@@ -176,11 +176,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ConcurrentHashMap源码阅读笔记</title>
-    <url>/2020/05/23/ConcurrentHashMap%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>Spring学习之IoC</title>
     <url>/2020/05/22/Spring%E5%AD%A6%E4%B9%A0%E4%B9%8BIoC/</url>
     <content><![CDATA[<p>Spring 是基于 POJO（Plain Old Java Object，简单 Java 对象）的轻量级开发框架，由多个模块组成。其中，Core 模块是 Spring 框架的基石，它提供了 IoC 容器的实现，以及以依赖注入的方式管理对象之间的依赖关系。</p>
@@ -1943,8 +1938,8 @@
       </tags>
   </entry>
   <entry>
-    <title>算法复习（一）：常用排序算法与单链表排序</title>
-    <url>/2020/03/23/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E6%8E%92%E5%BA%8F/</url>
+    <title>常用排序算法与单链表排序</title>
+    <url>/2020/03/23/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8E%E5%8D%95%E9%93%BE%E8%A1%A8%E6%8E%92%E5%BA%8F/</url>
     <content><![CDATA[<p>复习常用的排序算法，如冒泡排序、选择排序、插入排序、希尔排序、归并排序、堆排序、快速排序等。结合《剑指Offer》、LeetCode和面试题中涉及的单链表排序问题，使用多种排序算法分别实现单链表排序。</p>
 <a id="more"></a>
 
@@ -1955,8 +1950,8 @@
 <li><strong>比较类排序</strong>：通过比较来决定元素间的相对次序，由于其时间复杂度不能突破<strong>O(N logN)</strong>，因此也称为<strong>非线性时间</strong>比较类排序。</li>
 <li><strong>非比较类排序</strong>：不通过比较来决定元素间的相对次序，它可以突破基于比较排序的时间下界，<strong>以线性时间运行</strong>，因此也称为线性时间非比较类排序。</li>
 </ul>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB.png" alt></p>
-<h5 id="1-2-算法性能总结"><a href="#1-2-算法性能总结" class="headerlink" title="1.2 算法性能总结"></a>1.2 算法性能总结</h5><p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83.png" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%88%86%E7%B1%BB.png" alt></p>
+<h5 id="1-2-算法性能总结"><a href="#1-2-算法性能总结" class="headerlink" title="1.2 算法性能总结"></a>1.2 算法性能总结</h5><p><img src="/2020/03/23/常用排序算法与单链表排序/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83.png" alt></p>
 <blockquote>
 <p><strong>稳定</strong>：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。</p>
 <p><strong>不稳定</strong>：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面。</p>
@@ -1973,7 +1968,7 @@
 <li>针对所有的元素重复以上的步骤，除了最后一个。</li>
 <li>重复步骤1~3，直到排序完成。</li>
 </ul>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.gif" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.gif" alt></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr==<span class="keyword">null</span> || arr.length==<span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;arr.length-i; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">               exch(arr, j, j+<span class="number">1</span>); <span class="comment">// 交换元素</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -1981,7 +1976,7 @@
 <p>运行时间与输入数据无关，即使数组已有序，时间复杂度仍为O(N^2)。</p>
 </blockquote>
 <p>核心：寻找剩余元素的最小者，并将其放置在数组前端对应位置。</p>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.gif" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.gif" alt></p>
  <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr==<span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> min = i; <span class="comment">// 当前内循环最小值索引</span></span><br><span class="line">        <span class="comment">// 内循环从i开始，即[0,i-1]区间已有序</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;arr.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[j] &lt; arr[min]) &#123;</span><br><span class="line">                min = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp = arr[min];</span><br><span class="line">        arr[min] = arr[i];</span><br><span class="line">        arr[i] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -1993,7 +1988,7 @@
 <li>将新元素插入到该位置后；</li>
 <li>重复步骤2~5。</li>
 </ul>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif" alt></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr==<span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 从第一个元素开始，该元素可以认为已经被排序。</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line">        <span class="comment">// 取出下一个元素，在已经排序的元素序列中从后向前扫描。</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&gt;<span class="number">0</span> &amp;&amp; (arr[j] &lt; arr[j-<span class="number">1</span>]); j--) &#123;</span><br><span class="line">            temp = arr[j];</span><br><span class="line">            arr[j] = arr[j-<span class="number">1</span>];</span><br><span class="line">            arr[j-<span class="number">1</span>] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>改进</strong>：在内循环中，较大的元素向右移动，而不是频繁交换。</p>
@@ -2011,7 +2006,7 @@
 <li><p>每趟排序，根据对应的增量值h，将待排序列分割成若干长度为m的子序列，分别对各子表进行<strong>直接插入排序</strong>。当h=1时，完成排序。</p>
 </li>
 </ul>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.gif" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.gif" alt></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr==<span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> len = arr.length;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(h &lt; len/<span class="number">3</span>)</span><br><span class="line">        h = h * <span class="number">3</span> + <span class="number">1</span>; <span class="comment">// 设置间隔h的递增序列为1，4，13，40，121，...</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(h &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = h; i&lt;len; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = arr[i]; <span class="comment">// 在内循环中，较大的元素向右移动，而不是频繁交换。</span></span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">for</span>(; j &gt;= h &amp;&amp; temp &lt; arr[j-h]; j-=h)</span><br><span class="line">                arr[j] = arr[j-h]; <span class="comment">// 较大元素向右移动，减少交换次数</span></span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        h /= <span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -2024,7 +2019,7 @@
 <li>一次循环后，数组被分为两个部分，称之为分区（partition）。依靠选定的基准值一分为二。</li>
 <li>递归地排序左右两个子数组。</li>
 </ul>
-<p><img src="/2020/03/23/算法复习（一）：常用排序算法与单链表排序/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.gif" alt></p>
+<p><img src="/2020/03/23/常用排序算法与单链表排序/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.gif" alt></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] sort(<span class="keyword">int</span>[] arr) &#123;</span><br><span class="line">    <span class="keyword">if</span>(arr==<span class="keyword">null</span> || arr.length==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> arr;</span><br><span class="line">    quickSort(arr, <span class="number">0</span>, arr.length-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lo &gt; hi)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> pivot = arr[lo];</span><br><span class="line">    <span class="keyword">int</span> i = lo, j = hi;</span><br><span class="line">    <span class="keyword">while</span>(i != j)&#123;</span><br><span class="line">        <span class="keyword">while</span>(arr[j] &gt;= pivot &amp;&amp; j &gt; i)&#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(arr[i] &lt;= pivot &amp;&amp; i &lt; j)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    arr[lo] = arr[i];</span><br><span class="line">    arr[i] = pivot;</span><br><span class="line">    quickSort(arr, lo, i-<span class="number">1</span>);</span><br><span class="line">    quickSort(arr, i+<span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -2054,104 +2049,6 @@
       <tags>
         <tag>Linked List</tag>
         <tag>Sort</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>五大常用算法之贪心法</title>
-    <url>/2020/03/17/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>贪心算法，求解问题时总是做出当前最优的选择，即求出局部最优解。通过每一步贪心选择，最终可得到问题的一个整体最优解。</p>
-<a id="more"></a>
-
-<p><strong>贪心算法不是对所有问题都能得到整体最优解</strong></p>
-<p>贪心策略：无后效性，即某个状态以前的过程不会影响以后的状态，只与当前状态有关。</p>
-<p><em>基本要素</em></p>
-<p><strong>贪心选择</strong>：整体最优解可以通过一系列局部最优的选择，即贪心选择来达到。</p>
-<p>每一次的贪心选择就是将所求问题简化为规模更小的子问题，从顶向下、迭代地做出选择。</p>
-<p><strong>最优子结构</strong>：问题的最优解包含子问题的最优解。</p>
-<p>与DP不同的是，贪心算法对每个子问题都要作出最优选择，不能回退；动态规划则会依据之前的子问题的结果进行选择，可以回退。</p>
-<p>如何实现？</p>
-<p>从原问题的某一个初始解出发，逐步逼近给定的目标，直至算法终止。</p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>Algorithms</tag>
-        <tag>Greedy</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode题集（二）：动态规划问题</title>
-    <url>/2020/03/15/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>总结在LeetCode刷题过程中遇见的动态规划求解的问题。</p>
-<p>有关 DP 的详细介绍见<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划</a></p>
-<a id="more"></a>
-
-<h4 id="最大子序和问题"><a href="#最大子序和问题" class="headerlink" title="最大子序和问题"></a>最大子序和问题</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题-最大子序和</a>。</p>
-<p><code>Kadane</code>算法求解最大子序和问题的分析见<a href="https://merlinhu0112.github.io/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/">动态规划和分治法求解最大子序和问题</a>。</p>
-<h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<p>用例：<code>[-2, 1, -3, 4, -1, 2, 1, -5, 4]</code></p>
-<p>正确输出结果：<code>6</code></p>
-<h5 id="2-实现"><a href="#2-实现" class="headerlink" title="2. 实现"></a>2. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-性能"><a href="#3-性能" class="headerlink" title="3. 性能"></a>3. 性能</h5><ul>
-<li>时间复杂度：O(N)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-<hr>
-<h4 id="最长上升子序列"><a href="#最长上升子序列" class="headerlink" title="最长上升子序列"></a>最长上升子序列</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/" target="_blank" rel="noopener">第300题-最长上升子序列</a></p>
-<h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：给定一个无序的整数数组，找到其中最长上升子序列的长度。</p>
-<p>用例：<code>[10, 9, 2, 5, 3, 7, 101, 18]</code></p>
-<p>输出：<code>4</code></p>
-<h5 id="2-分析"><a href="#2-分析" class="headerlink" title="2. 分析"></a>2. 分析</h5><p>用数组 <code>dp</code> 保存以数组 <code>nums</code> 下标 <code>0</code> 为起点、下标 <code>i</code> 为终点的局部区间最长上升子序列的长度，将其称为 <em>局部最长上升子序列长度</em>。</p>
-<p>逐个更新 <code>dp</code> 数组。易知，计算 <code>dp[i]</code> 的值，若满足：</p>
-<blockquote>
-<p>0 &lt;= j &lt; i，且 nums[j] &lt; nums[i]</p>
-</blockquote>
-<p>即对于局部区间 <code>[0, j]</code>，元素 <code>nums[i]</code> 是满足上升条件的。</p>
-<p> 状态转移方程为：</p>
-<blockquote>
-<p>dp[i] = max{ dp[j] } + 1， 0 &lt;= j &lt; i，且 nums[j] &lt; nums[i]</p>
-</blockquote>
-<h5 id="3-实现"><a href="#3-实现" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// 保存不同索引位置处对应的局部最大上升子序列长度</span></span><br><span class="line">    Arrays.fill(dp, <span class="number">1</span>); <span class="comment">// 局部最长上升子序列长默认为1，即假设完全不存在上升序列</span></span><br><span class="line">    <span class="keyword">int</span> maxLength = <span class="number">1</span>; <span class="comment">// 全局最长上升子序列长度</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 双循环，逐个计算索引i位置处的最大上升子序列长度，最后求出全局最大值</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;i; j++)&#123;</span><br><span class="line">            <span class="comment">// 只有当nums[i]大于nums[j]时，严格满足上升条件</span></span><br><span class="line">            <span class="keyword">if</span>(nums[i] &gt; nums[j])&#123;</span><br><span class="line">                dp[i] = Math.max(dp[i], dp[j]+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        maxLength = Math.max(maxLength, dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxLength;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>对内循环中的赋值语句的理解</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dp[i] = Math.max(dp[i], dp[j]+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>若写成下式是<strong>错误的</strong>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">dp[i] = dp[j]+<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>因为，索引 <code>j</code> 对应的局部最长上升子序列长度值，不一定是区间 <code>[0, i-1]</code> 中的最大值！</p>
-<h5 id="4-性能"><a href="#4-性能" class="headerlink" title="4. 性能"></a>4. 性能</h5><ul>
-<li>时间复杂度：O(N^2) </li>
-<li>空间复杂度：O(N)</li>
-</ul>
-<hr>
-<h4 id="整数拆分"><a href="#整数拆分" class="headerlink" title="整数拆分"></a>整数拆分</h4><p>相关题目：<a href="https://leetcode-cn.com/problems/integer-break/" target="_blank" rel="noopener">第343题-整数拆分</a>，<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof/" target="_blank" rel="noopener">面试题14-I.剪绳子</a>。</p>
-<h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>题目：给定一个正整数 <code>n</code>，将其拆分为<strong>至少</strong>两个正整数的和，并使这些整数的乘积最大化。 返回可以获得的最大乘积。</p>
-<p>条件：2 &lt;= n &lt;= 58 ，且 2 &lt;= m &lt;= n，其中 <code>m</code> 是划分的个数。</p>
-<h5 id="2-分析-1"><a href="#2-分析-1" class="headerlink" title="2. 分析"></a>2. 分析</h5><p>设数组 <code>dp</code> 中的任意元素 dp[i] 保存整数 <code>i</code> 对应的最大乘积，其中 i &gt;= 2。</p>
-<p>边界条件为：</p>
-<blockquote>
-<p>dp[2] = 1</p>
-</blockquote>
-<p>其中 dp[0] 和 dp[1] 为无效参数，仅起到填充作用，以使 <code>dp</code> 数组的索引 <code>i</code> 与正整数 <code>n</code> 对应。</p>
-<p>对于整数 <code>i</code> ，可将其划分为 <code>j</code> 和 <code>i-j</code> ，其中 1&lt;= j &lt; i。</p>
-<p><code>j * (i-j)</code> 正是整数 <code>i</code> 拆分、求积的一种形式，但这不一定是最大值。因为对于由 <code>i</code> 划分得到的 <code>j</code> ，它对应的 <code>dp[j]</code> 不一定等于 <code>j</code>，即对整数 <code>j</code> 进一步划分，或许还能得到更大的乘积。</p>
-<p>综上，应在 j * ( i - j ) 和 dp[j] * ( i - j ) 中选择较大者。</p>
-<h5 id="3-实现-1"><a href="#3-实现-1" class="headerlink" title="3. 实现"></a>3. 实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">integerBreak</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">    dp[<span class="number">2</span>] = <span class="number">1</span>; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">3</span>; i&lt;=n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;i; j++)&#123;</span><br><span class="line">            <span class="comment">// 状态转移方程</span></span><br><span class="line">            dp[i] = Math.max(Math.max((j*(i-j)), (dp[j]*(i-j))), dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-性能-1"><a href="#4-性能-1" class="headerlink" title="4. 性能"></a>4. 性能</h5><ul>
-<li>时间复杂度：O(N^2) </li>
-<li>空间复杂度：O(N)</li>
-</ul>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Algorithms</tag>
-        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -2224,135 +2121,6 @@
       <tags>
         <tag>TCP</tag>
         <tag>Three-way handshake</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LeetCode题集（一）：O(1)时间复杂度的操作</title>
-    <url>/2020/03/09/LeetCode%E9%A2%98%E9%9B%86%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9AO(1)%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%93%8D%E4%BD%9C/</url>
-    <content><![CDATA[<p>LeetCode 刷题过程中遇见 “O(1) 时间复杂度的操作” 系列问题，总结一下。</p>
-<a id="more"></a>
-
-<h4 id="一、最大队列"><a href="#一、最大队列" class="headerlink" title="一、最大队列"></a>一、最大队列</h4><p><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/" target="_blank" rel="noopener">力扣-《剑指Offer》-面试题59 - II. 队列的最大值</a></p>
-<h5 id="1-题目"><a href="#1-题目" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请定义一个队列并实现函数 max_value 得到队列里的最大值。</p>
-<ul>
-<li>要求函数 max_value、push_back 和 pop_front 的均摊时间复杂度都是 <code>O(1)</code>。</li>
-<li>若队列为空，pop_front 和 max_value 需要返回 -1。</li>
-</ul>
-<h5 id="2-图解"><a href="#2-图解" class="headerlink" title="2. 图解"></a>2. 图解</h5><p>队列 <code>queue</code> 实现 <code>MaxQueue</code> 的基本结构，双端队列 <code>deque</code> 保存<strong>最大值序列</strong>（降序）。</p>
-<p>当元素 <code>ele</code> 入队时，分别进入 <code>queue</code> 和 <code>deque</code>。</p>
-<ul>
-<li>入 <code>queue</code> 时，元素 <code>ele</code> 直接入队。</li>
-<li>入 <code>deque</code> 时，先从队尾开始寻找所有比<code>ele</code> 小的元素，直至遇见首个大于 <code>ele</code> 的元素或已经到了队头。随后从队尾开始，移除所有小于 <code>ele</code> 的元素并将 <code>ele</code> 入队。</li>
-</ul>
-<p>（图源：<a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/solution/ru-he-jie-jue-o1-fu-za-du-de-api-she-ji-ti-by-z1m/" target="_blank" rel="noopener">如何解决 O(1) 复杂度的 API 设计题</a>）</p>
-<p><img src="/2020/03/09/LeetCode题集（一）：O(1)时间复杂度的操作/1.gif" alt></p>
-<h5 id="3-代码实现："><a href="#3-代码实现：" class="headerlink" title="3. 代码实现："></a>3. 代码实现：</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaxQueue</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 队列queue，实现MaxQueue的基本结构</span></span><br><span class="line">	<span class="keyword">private</span> Queue&lt;Integer&gt; queue;</span><br><span class="line">	<span class="comment">// 双端队列（可两端出、入队），用于记录最大值递减序列</span></span><br><span class="line">	<span class="keyword">private</span> Deque&lt;Integer&gt; deque;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MaxQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">         queue = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</span><br><span class="line">         deque = <span class="keyword">new</span> ArrayDeque&lt;Integer&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max_value</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> deque.size() &gt; <span class="number">0</span> ? deque.peek() : -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push_back</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	queue.add(value);</span><br><span class="line">    	<span class="keyword">while</span>(deque.size() &gt; <span class="number">0</span> &amp;&amp; deque.peekLast() &lt; value ) &#123;</span><br><span class="line">    		<span class="comment">// 移除双端队列后部小于value的元素，直至遇见一个</span></span><br><span class="line">    		<span class="comment">// 大于value的元素或双端队列为空时</span></span><br><span class="line">    		deque.pollLast();</span><br><span class="line">    	&#125;</span><br><span class="line">    	deque.add(value); <span class="comment">// 双端队列队尾入队</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop_front</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 获取队首元素，若队列为空则为-1</span></span><br><span class="line">    	<span class="keyword">int</span> headEle = queue.size() &gt; <span class="number">0</span> ? queue.poll() : -<span class="number">1</span>;</span><br><span class="line">    	<span class="keyword">if</span>(deque.size() &gt; <span class="number">0</span> &amp;&amp; deque.peek() == headEle) &#123;</span><br><span class="line">    		deque.poll();</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> headEle;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="二、最小栈"><a href="#二、最小栈" class="headerlink" title="二、最小栈"></a>二、最小栈</h4><p><a href="https://leetcode-cn.com/problems/min-stack/" target="_blank" rel="noopener">力扣-155. 最小栈</a></p>
-<p><a href="https://leetcode-cn.com/problems/min-stack-lcci/" target="_blank" rel="noopener">力扣-《程序员面试金典》-面试题 03.02. 栈的最小值</a></p>
-<h5 id="1-题目-1"><a href="#1-题目-1" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>请设计一个栈，除了常规栈支持的 pop 与 push 函数以外，还支持 min 函数，该函数返回栈元素中的最小值。执行 push、pop 和 min 操作的时间复杂度必须为 <code>O(1)</code> 。</p>
-<h5 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>类似最大队列的实现。</p>
-<p>利用辅助栈保存最小值集合，当前待压栈元素若不小于辅助栈栈顶元素，将该元素压入辅助栈中；否则，辅助栈不变。</p>
-<h5 id="3-代码实现"><a href="#3-代码实现" class="headerlink" title="3. 代码实现"></a>3. 代码实现</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stack; <span class="comment">// 存放元素</span></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; auxStack; <span class="comment">// 辅助栈，存放最小值序列</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        auxStack  = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stack.push(x);</span><br><span class="line">        <span class="comment">// 辅助栈不为空且栈顶元素小于x时，x不进入辅助栈</span></span><br><span class="line">        <span class="keyword">if</span>(!auxStack.empty() &amp;&amp; auxStack.peek() &lt; x )&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 否则，x被压入辅助栈</span></span><br><span class="line">        auxStack.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最小栈栈顶元素等于辅助栈栈顶元素时，说明当前最小值将被弹栈，</span></span><br><span class="line">        <span class="comment">// 因此辅助栈栈顶元素同时弹栈</span></span><br><span class="line">        <span class="keyword">int</span> temp = stack.peek();</span><br><span class="line">        <span class="keyword">if</span>(auxStack.peek()==temp)&#123;</span><br><span class="line">            auxStack.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 最小栈栈顶元素弹栈</span></span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(stack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.peek();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!auxStack.empty())&#123;</span><br><span class="line">            <span class="keyword">return</span> auxStack.peek();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="三、LRU缓存"><a href="#三、LRU缓存" class="headerlink" title="三、LRU缓存"></a>三、LRU缓存</h4><p><a href="https://leetcode-cn.com/problems/lru-cache-lcci/" target="_blank" rel="noopener">力扣-《程序员面试金典》-面试题 16.25. LRU缓存</a></p>
-<p><strong>LRU缓存</strong>：Least Recently Used，即最近最久未使用的，是一种常见的缓存淘汰算法。当存储的数据总量达到缓存限制时，删除最久未使用过的数据。</p>
-<h5 id="1-题目-2"><a href="#1-题目-2" class="headerlink" title="1. 题目"></a>1. 题目</h5><p>设计和构建一个“最近最少使用”缓存，该缓存会删除最近最少使用的项目。缓存应该从键映射到值（允许你插入和检索特定键对应的值），并在初始化时指定最大容量。</p>
-<p>当缓存被填满时，它应该删除最近最少使用的项目。</p>
-<p>它应该支持以下操作： 获取数据 get 和 写入数据 put 。</p>
-<p>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。</p>
-<h5 id="2-思路-1"><a href="#2-思路-1" class="headerlink" title="2. 思路"></a>2. 思路</h5><p>为实现常数时间内 get 和 put 键值对，采用<strong>哈希表</strong>存储，如 HashMap。</p>
-<p>在操作键值对的同时，需要额外维护使用键值对的先后顺序，且维护也应在常数时间内完成。<strong>双向链表</strong>是一个不错的选择。</p>
-<p>双向链表维护访问先后顺序。其头结点（或尾结点）表示最近最久未使用过的数据。（以尾结点表示最近最久未使用为例）</p>
-<ul>
-<li>插入新的键值对时，将 <code>key</code> 存入双向链表的头结点，表示最近被使用的数据。</li>
-<li>当更新键值对时，将 <code>key</code> 从双向链表相应位置移向头结点。</li>
-<li>当缓存已满时，移除双向链表的尾结点并移除散列表中对应的键值对即可。</li>
-</ul>
-<p>上述三种操作，第一种和第三种均很容易在常数时间内实现，而第二种需要额外的辅助才能实现O(1)的时间复杂度，因为双向链表查找的时间复杂度为 O(N)。</p>
-<p>Java提供的 <code>java.util.LinkedHashMap</code> 基于 <code>HashMap</code> 和双链表很容易实现LRU缓存。</p>
-<h5 id="3-基于LinkedHashMap（有序字典）的实现"><a href="#3-基于LinkedHashMap（有序字典）的实现" class="headerlink" title="3. 基于LinkedHashMap（有序字典）的实现"></a>3. 基于LinkedHashMap（有序字典）的实现</h5><p>Java提供的 LinkedHashMap 类默认按照键值对插入顺序维护双向链表，同时也提供一个特殊的构造函数，以实现按访问顺序维护双向链表。</p>
-<ul>
-<li>initialCapacity：初始化容量</li>
-<li>loadFactor：加载因子</li>
-<li>accessOrder：true 表示按访问顺序，false 表示按插入顺序</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">LinkedHashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">float</span> loadFactor,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">boolean</span> accessOrder)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>(initialCapacity, loadFactor);</span><br><span class="line">    <span class="keyword">this</span>.accessOrder = accessOrder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>由于 LinkedHashMap 类提供的 removeEldestEntry 方法默认返回 false，因此需要重写该方法，并指定删除最久未使用数据的规则（如当数据量超过缓存容量时）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K,V&gt; eldest)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>代码实现</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> LinkedHashMap&lt;Integer, Integer&gt; map;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> MAX_CACHE_SIZE; <span class="comment">// 缓存容量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">    	MAX_CACHE_SIZE = capacity;</span><br><span class="line">        <span class="comment">// 初始容量根据缓存容量和加载因子计算得到，不应设置为等于缓存容量。</span></span><br><span class="line">        <span class="comment">// 若初始容量被设置为缓存容量，易导致rehash操作发生，降低算法性能。</span></span><br><span class="line">    	map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;((<span class="keyword">int</span>) Math.ceil(capacity / <span class="number">0.75f</span>) + <span class="number">1</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>)&#123;</span><br><span class="line">    		<span class="meta">@Override</span></span><br><span class="line">    		<span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> </span>&#123;</span><br><span class="line">    			<span class="keyword">return</span> size() &gt; MAX_CACHE_SIZE;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    	Integer value = map.get(key);</span><br><span class="line">    	<span class="keyword">return</span> value == <span class="keyword">null</span> ? -<span class="number">1</span> : value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	map.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4、基于哈希表和双向链表的实现"><a href="#4、基于哈希表和双向链表的实现" class="headerlink" title="4、基于哈希表和双向链表的实现"></a>4、基于哈希表和双向链表的实现</h5><p>如思路部分所述，可使用双向链表保存访问键值对的顺序信息。</p>
-<p>双向链表插入操作的时间复杂度为O(1)，但查询操作的时间复杂度为O(N)。若被访问的键值对对应的链表结点位于链表中部，那么查找操作将时总时间复杂度提升为O(N)。那如何解决这一问题呢？</p>
-<p>参照 LinkedHashMap 的源码实现。将键值对保存在链表结点中，哈希表保存 <strong>key 和 结点内存地址</strong>，这样，定位至相应结点的时间复杂度就被优化为O(1)。</p>
-<p><em>结点结构如下</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> key;</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    Node prev;</span><br><span class="line">    Node next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>哈希表结构如下</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> HashMap&lt;Integer, Node&gt; cache;</span><br></pre></td></tr></table></figure>
-
-<p>（图源：<a href="https://leetcode-cn.com/problems/lru-cache/solution/lru-huan-cun-ji-zhi-by-leetcode/" target="_blank" rel="noopener">LRU 缓存机制</a>）</p>
-<p><img src="/2020/03/09/LeetCode题集（一）：O(1)时间复杂度的操作/2.jpg" alt></p>
-<p>头尾指针为辅助指针。</p>
-<p><em>算法实现</em></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 双向链表的结点</span></span><br><span class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> key;</span><br><span class="line">		<span class="keyword">int</span> value;</span><br><span class="line">		Node prev;</span><br><span class="line">		Node next;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> Node head; <span class="comment">// 辅助的头指针</span></span><br><span class="line">	<span class="keyword">private</span> Node tail; <span class="comment">// 辅助的尾指针</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 在头部插入结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertHeadNode</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		node.prev = head;</span><br><span class="line">		node.next = head.next;</span><br><span class="line">		head.next.prev = node;</span><br><span class="line">		head.next = node;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移除尾结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> Node <span class="title">removeTailNode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Node target = tail.prev;</span><br><span class="line">		removeNode(target);</span><br><span class="line">		<span class="comment">// 返回被移除的结点指针，是为了再移除尾结点后，</span></span><br><span class="line">		<span class="comment">// 从哈希表中删除对应的记录。</span></span><br><span class="line">		<span class="keyword">return</span> target;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移除结点</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		Node pNode = node.prev;</span><br><span class="line">		Node qNode = node.next;</span><br><span class="line">		pNode.next = qNode;</span><br><span class="line">		qNode.prev = pNode;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 移动结点至头结点位置</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">moveToHead</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 先移除，再插入</span></span><br><span class="line">		removeNode(node);</span><br><span class="line">		insertHeadNode(node);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> HashMap&lt;Integer, Node&gt; cache;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>; <span class="comment">// 加载因子</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> MAX_CACHE_SIZE; <span class="comment">// 缓存容量;</span></span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">int</span> initialCapacity = (<span class="keyword">int</span>) Math.ceil(capacity / DEFAULT_LOAD_FACTOR) + <span class="number">1</span>; <span class="comment">// 哈希表初始容量</span></span><br><span class="line">    	cache = <span class="keyword">new</span> HashMap&lt;&gt;(initialCapacity, DEFAULT_LOAD_FACTOR);</span><br><span class="line">    	MAX_CACHE_SIZE = capacity;</span><br><span class="line">    	<span class="comment">// 初始化头尾指针</span></span><br><span class="line">    	head = <span class="keyword">new</span> Node();</span><br><span class="line">    	tail = <span class="keyword">new</span> Node();</span><br><span class="line">    	head.next = tail;</span><br><span class="line">    	tail.prev = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">    	Node node = cache.get(key);</span><br><span class="line">    	<span class="keyword">if</span>(node==<span class="keyword">null</span>) &#123;</span><br><span class="line">    		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	moveToHead(node); <span class="comment">// 更新访问记录</span></span><br><span class="line">    	<span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">    	Node node = <span class="keyword">null</span>;</span><br><span class="line">    	<span class="comment">// 键已存在</span></span><br><span class="line">    	<span class="keyword">if</span>(cache.containsKey(key)) &#123;</span><br><span class="line">    		node = cache.get(key);</span><br><span class="line">    		node.value = value;</span><br><span class="line">    		moveToHead(node);</span><br><span class="line">    		<span class="keyword">return</span>;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="comment">// 键不存在</span></span><br><span class="line">    	node = <span class="keyword">new</span> Node();</span><br><span class="line">    	node.key = key;</span><br><span class="line">    	node.value = value;</span><br><span class="line">    	insertHeadNode(node); <span class="comment">// 插入头结点</span></span><br><span class="line">    	cache.put(key, node);</span><br><span class="line">    	<span class="comment">// 还需判断哈希表容量是否已超过缓存容量</span></span><br><span class="line">    	<span class="keyword">if</span>(cache.size() &gt; MAX_CACHE_SIZE) &#123;</span><br><span class="line">    		Node target = removeTailNode(); <span class="comment">// 移除尾结点</span></span><br><span class="line">    		cache.remove(target.key);</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="四、"><a href="#四、" class="headerlink" title="四、"></a>四、</h4>]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
-        <tag>Algorithms</tag>
-        <tag>Max Queue</tag>
-        <tag>Min Stack</tag>
-        <tag>LRU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>字符串匹配之BM、KMP算法</title>
-    <url>/2020/03/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBM%E3%80%81KMP%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
-<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
-<a id="more"></a>
-
-<h3 id="一、BM算法"><a href="#一、BM算法" class="headerlink" title="一、BM算法"></a>一、BM算法</h3><p>在<a href>字符串匹配之BF、RK算法</a>部分已学习了BF、RK两种算法。</p>
-<p>BF算法过于暴力，时间复杂度较高。</p>
-<p>RK算法针对BF算法进行了优化，在较好的示例中时间复杂度较好。但RK算法不稳定，当样本哈希冲突严重时，RK算法一路退化至BF算法。</p>
-<p>本小节学习的BM算法时间复杂度仅为 <code>O( )</code>，且稳定，常用于文本编辑器中的查找功能。</p>
-<p>在BM算法中，有两个非常重要的概念：<strong>坏字符规则</strong> 和 <strong>好后缀规则</strong>。</p>
-<h4 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h4><p>坏字符规则是指，对于模式串和等长的主串子串，子串从右向左出现的第一个不与模式串对应位置字符匹配的子串字符，称之为坏字符。<strong>根据坏字符在模式串中是否出现，将模式串移动不等距离</strong>。</p>
-<p>在第一轮中，从右向左第一个字符 <code>d</code> 就是坏字符。随后在模式串中同样地<strong>从左向右</strong>找到首个字符d。移动模式串不再像BF/RK算法那样单次移动一位，而是直接<strong>将坏字符对齐</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_1.jpg" alt></p>
-<p>第二轮与第一轮相似。对比前两轮可发现，<strong>每轮移动模式串的距离不一定是相等的！</strong>这与坏字符的位置有关。</p>
-<p>正是这一特性，有效降低了算法的比较次数，提高了性能。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_2.jpg" alt></p>
-<p>第三轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_3.jpg" alt></p>
-<p>第四轮中遇见<strong>模式串中不存在坏字符</strong>的情况，这时直接<strong>将模式串移动至主串子串的坏字符下一位</strong>。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_4.jpg" alt></p>
-<p>第五轮类似。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_5.jpg" alt></p>
-<p>第六轮，顺利完成匹配。</p>
-<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_6.jpg" alt></p>
-<p>坏字符规则代码实现：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">boyerMoore</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始时，主串和模式串从0至pattern.length-1位一一对应</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>; <span class="comment">// 模式串对应主串的起始位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(start &lt;= (m-n)) &#123;</span><br><span class="line">        <span class="comment">// 从右往左寻找坏字符，其中坏字符位于主串</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(start+i) != pattern.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 未找到坏字符，即一一匹配，返回结果</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到坏字符，确定模式串移动距离</span></span><br><span class="line">        <span class="keyword">int</span> badCharIndex = findBadCharacter(string.charAt(start+i), pattern, i); <span class="comment">// 模式串中寻找坏字符从i-1开始</span></span><br><span class="line">        <span class="comment">// 计算坏字符产生的位移</span></span><br><span class="line">        <span class="keyword">int</span> offset = badCharIndex &gt;= <span class="number">0</span> ? i-badCharIndex : i+<span class="number">1</span>;</span><br><span class="line">        start += offset;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> badChar 坏字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> start 坏字符索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串中坏字符的位置，不存在则返回-1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findBadCharacter</span><span class="params">(<span class="keyword">char</span> badChar, String pattern, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>( badChar == (pattern.charAt(i)) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>String Matching</tag>
-        <tag>BM</tag>
-        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>
@@ -2512,6 +2280,47 @@
         <tag>Clone</tag>
         <tag>Shallow Copy</tag>
         <tag>Deep Copy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>字符串匹配之BM、KMP算法</title>
+    <url>/2020/03/06/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E4%B9%8BBM%E3%80%81KMP%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>字符串匹配算法，给定主串（string）和模式串（pattern），要求返回模式串在主串中首次出现的位置，若无则返回 <code>-1</code> 。比如主串为 <code>abjdefoahs</code> ，模式串为 <code>def</code> ，算法返回结果为 <code>3</code> 。又比如主串为 <code>abjdfeoahs</code>，模式串为 <code>wyz</code> ，算法返回结果为 <code>-1</code> 。</p>
+<p>常见的字符串匹配算法有：BF（Brute Force）、RK（Robin-Karp）、<strong>KMP</strong>、BM（Boyer Moore）、Sunday等。</p>
+<a id="more"></a>
+
+<h3 id="一、BM算法"><a href="#一、BM算法" class="headerlink" title="一、BM算法"></a>一、BM算法</h3><p>在<a href>字符串匹配之BF、RK算法</a>部分已学习了BF、RK两种算法。</p>
+<p>BF算法过于暴力，时间复杂度较高。</p>
+<p>RK算法针对BF算法进行了优化，在较好的示例中时间复杂度较好。但RK算法不稳定，当样本哈希冲突严重时，RK算法一路退化至BF算法。</p>
+<p>本小节学习的BM算法时间复杂度仅为 <code>O( )</code>，且稳定，常用于文本编辑器中的查找功能。</p>
+<p>在BM算法中，有两个非常重要的概念：<strong>坏字符规则</strong> 和 <strong>好后缀规则</strong>。</p>
+<h4 id="1-坏字符规则"><a href="#1-坏字符规则" class="headerlink" title="1. 坏字符规则"></a>1. 坏字符规则</h4><p>坏字符规则是指，对于模式串和等长的主串子串，子串从右向左出现的第一个不与模式串对应位置字符匹配的子串字符，称之为坏字符。<strong>根据坏字符在模式串中是否出现，将模式串移动不等距离</strong>。</p>
+<p>在第一轮中，从右向左第一个字符 <code>d</code> 就是坏字符。随后在模式串中同样地<strong>从左向右</strong>找到首个字符d。移动模式串不再像BF/RK算法那样单次移动一位，而是直接<strong>将坏字符对齐</strong>。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_1.jpg" alt></p>
+<p>第二轮与第一轮相似。对比前两轮可发现，<strong>每轮移动模式串的距离不一定是相等的！</strong>这与坏字符的位置有关。</p>
+<p>正是这一特性，有效降低了算法的比较次数，提高了性能。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_2.jpg" alt></p>
+<p>第三轮类似。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_3.jpg" alt></p>
+<p>第四轮中遇见<strong>模式串中不存在坏字符</strong>的情况，这时直接<strong>将模式串移动至主串子串的坏字符下一位</strong>。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_4.jpg" alt></p>
+<p>第五轮类似。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_5.jpg" alt></p>
+<p>第六轮，顺利完成匹配。</p>
+<p><img src="/2020/03/06/字符串匹配之BM、KMP算法/BM_Algorithm_6.jpg" alt></p>
+<p>坏字符规则代码实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> string 主串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串在主串中首次出现的位置，若无则返回-1。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">boyerMoore</span><span class="params">(String string, String pattern)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = string.length();</span><br><span class="line">    <span class="keyword">int</span> n = pattern.length();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 开始时，主串和模式串从0至pattern.length-1位一一对应</span></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>; <span class="comment">// 模式串对应主串的起始位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(start &lt;= (m-n)) &#123;</span><br><span class="line">        <span class="comment">// 从右往左寻找坏字符，其中坏字符位于主串</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">if</span>(string.charAt(start+i) != pattern.charAt(i)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 未找到坏字符，即一一匹配，返回结果</span></span><br><span class="line">        <span class="keyword">if</span>(i &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> start;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 找到坏字符，确定模式串移动距离</span></span><br><span class="line">        <span class="keyword">int</span> badCharIndex = findBadCharacter(string.charAt(start+i), pattern, i); <span class="comment">// 模式串中寻找坏字符从i-1开始</span></span><br><span class="line">        <span class="comment">// 计算坏字符产生的位移</span></span><br><span class="line">        <span class="keyword">int</span> offset = badCharIndex &gt;= <span class="number">0</span> ? i-badCharIndex : i+<span class="number">1</span>;</span><br><span class="line">        start += offset;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> badChar 坏字符</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> pattern 模式串</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> start 坏字符索引</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> 返回模式串中坏字符的位置，不存在则返回-1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findBadCharacter</span><span class="params">(<span class="keyword">char</span> badChar, String pattern, <span class="keyword">int</span> start)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = start-<span class="number">1</span>; i&gt;=<span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span>( badChar == (pattern.charAt(i)) ) &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p>[1] <a href="https://blog.csdn.net/bjweimengshu/article/details/104368394" target="_blank" rel="noopener">漫画：如何优化 “字符串匹配算法”？</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>String Matching</tag>
+        <tag>BM</tag>
+        <tag>KMP</tag>
       </tags>
   </entry>
   <entry>
@@ -2772,7 +2581,6 @@
 <p>问题描述：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
 <p>正确输出结果：6</p>
-<p>在<a href="https://merlinhu0112.github.io/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/">动态规划和分治法求解最大子序和问题</a>一文中，采用动态规划法解决了此问题。如何用分治法解决此问题呢？</p>
 <p>分治法的核心在于如何将目标数组划分为若干个子数组并分别求出子数组的最大子序和。容易想到，将数组沿 <code>(left+right)/2</code> 划分为两段，分别递归求解两段的最大子序和，随后合并结果（即从两个值中选择较大者）。</p>
 <p>那么，取上述两段最大子序和中的较大者就是数组 <code>nums</code> 的最大子序和了吗？</p>
 <p>显然，上述结论是不成立的。因为将数组一分为二，没有考虑到<strong>数组跨越中间元素组成的序列</strong>的情况。那么，考虑它就是咯！</p>
@@ -2799,76 +2607,8 @@
         <category>算法</category>
       </categories>
       <tags>
-        <tag>Algorithms</tag>
         <tag>Divide and Conquer</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态规划和分治法求解最大子序和问题</title>
-    <url>/2020/02/25/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%92%8C%E5%88%86%E6%B2%BB%E6%B3%95%E6%B1%82%E8%A7%A3%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>基于LeetCode<a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">第53题</a>，总结<a href="https://baike.baidu.com/item/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/529408?fr=aladdin" target="_blank" rel="noopener">动态规划</a>和<a href="https://baike.baidu.com/item/%E5%88%86%E6%B2%BB%E6%B3%95/2407337?fr=aladdin" target="_blank" rel="noopener">分治法</a>的解题思路，同时涉及经典的Kadane算法。</p>
-<a id="more"></a>
-
-<h4 id="一、题目介绍"><a href="#一、题目介绍" class="headerlink" title="一、题目介绍"></a>一、题目介绍</h4><p>题目：求最大子序和。给定一个整数数组 <code>nums</code> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
-<p>用例：[-2, 1, -3, 4, -1, 2, 1, -5, 4]</p>
-<p>正确输出结果：6</p>
-<h4 id="二、动态规划法"><a href="#二、动态规划法" class="headerlink" title="二、动态规划法"></a>二、动态规划法</h4><p>在<a href="https://merlinhu0112.github.io/2020/01/02/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">五大常用算法之动态规划</a>中学习了动态规划中首先需要确定的三个要素：</p>
-<ul>
-<li><p>最优子结构</p>
-</li>
-<li><p>边界</p>
-</li>
-<li><p>状态转移方程</p>
-</li>
-</ul>
-<p>在本题中，对于数组 <code>nums</code> 中索引为 <code>i</code> 的元素，其<strong>当前最大子序和</strong>为下列二者中的较大者：</p>
-<ul>
-<li>索引 <code>i-1</code> 处的当前最大子序和，加上索引 <code>i</code> 处的 <code>nums</code> 数组元素值；</li>
-<li>索引 <code>i</code> 处的 <code>nums</code> 数组元素值。</li>
-</ul>
-<p>设 <code>dp</code> 数组保存每个元素位置的<strong>当前最大子序和</strong>。</p>
-<p>状态转移方程为：<code>dp[i] = max( (dp[i-1]+nums[i]), (nums[i]) )</code>；边界条件为：<code>dp[0] = nums[0]</code>。</p>
-<p>算法过程的图示如下：</p>
-<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/dp_1.png" alt></p>
-<p>算法实现如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length]; <span class="comment">// dp数组存储nums数组每个元素位置的当前最大子序和</span></span><br><span class="line">    dp[<span class="number">0</span>] = nums[<span class="number">0</span>]; <span class="comment">// 边界条件</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        dp[i] = Math.max((dp[i-<span class="number">1</span>]+nums[i]), nums[i]); <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> res = dp[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;dp.length; ++i) &#123;</span><br><span class="line">        res = Math.max(dp[i], res); <span class="comment">// 遍历dp数组，找出最大值</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法总结：</p>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(n)</li>
-</ul>
-<h4 id="三、Kadane算法"><a href="#三、Kadane算法" class="headerlink" title="三、Kadane算法"></a>三、Kadane算法</h4><blockquote>
-<p>Kadane算法是一种动态规划算法。</p>
-</blockquote>
-<p>在上述动态规划算法中，使用 <code>dp</code> 数组保存数组 <code>nums</code> 所有位置的最大子序和。在经典的 kadane算法中，对此进行了优化。</p>
-<p>Kadane算法采用两个辅助变量：</p>
-<ul>
-<li>currSum：当前位置 <code>i</code> 的最大子序和，对应的是 <code>dp</code> 中 <code>i</code> 位置的元素值；</li>
-<li>maxSum：保存全局最大子序和。</li>
-</ul>
-<p>算法过程的图示如下：</p>
-<p><img src="/2020/02/25/动态规划和分治法求解最大子序和问题/kadane.png" alt></p>
-<p>算法实现如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> currSum = nums[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> maxSum = nums[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;nums.length; i++) &#123;</span><br><span class="line">        currSum = Math.max((currSum+nums[i]), nums[i]);</span><br><span class="line">        maxSum = Math.max(maxSum, currSum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>算法总结：</p>
-<ul>
-<li>时间复杂度：O(n)</li>
-<li>空间复杂度：O(1)</li>
-</ul>
-<h4 id="四、分治法"><a href="#四、分治法" class="headerlink" title="四、分治法"></a>四、分治法</h4><p>关于分治法求解过程，详见<a href="https://merlinhu0112.github.io/2020/02/26/%E4%BA%94%E5%A4%A7%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95%E4%B9%8B%E5%88%86%E6%B2%BB%E6%B3%95/">五大常用算法之分治法</a>。</p>
-<h4 id="五、算法性能总结："><a href="#五、算法性能总结：" class="headerlink" title="五、算法性能总结："></a>五、算法性能总结：</h4><p>暴力法的时间复杂度较高，为 O(n^3) 或 O(n^2)。</p>
-<p>分治法的思路较为复杂，从是否跨越中间元素出发，将数组分为三个不会重合的子序列，对其分别求出最大子序和，取三者中的较大者即可。该算法的时间复杂度为 O(n log n)，空间复杂度为 O(log n)。</p>
-<p>动态规划法的思路更加直观、易理解。算法性能也是最优的，时间复杂度可达 O(n)，空间复杂度为 O(1)。</p>
-]]></content>
-      <categories>
-        <category>LeetCode</category>
-      </categories>
-      <tags>
         <tag>Algorithms</tag>
-        <tag>DP</tag>
-        <tag>Kadane</tag>
       </tags>
   </entry>
   <entry>
@@ -4725,8 +4465,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>SSM</tag>
         <tag>Spring MVC</tag>
+        <tag>SSM</tag>
       </tags>
   </entry>
   <entry>
@@ -4838,8 +4578,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>Mybatis</tag>
         <tag>SSM</tag>
+        <tag>Mybatis</tag>
       </tags>
   </entry>
 </search>
